@@ -1,18 +1,20 @@
-# Use an official Node.js runtime as a parent image
-FROM node:14
+# Use Node.js LTS image
+FROM node:16
 
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the rest of your application code
+# Copy the entire backend source code
 COPY . .
 
-# Expose the port
+# Expose the port defined in your .env file or the default port
 EXPOSE 5000
 
 # Start the application
-CMD ["node", "app.js"]
+CMD ["npm", "run", "dev"]

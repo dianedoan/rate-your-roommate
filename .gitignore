@@ -1,1 +1,15 @@
-#Add .env file here
+# Node modules
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build output
+frontend/build/
+frontend/coverage/
+backend/dist/
+backend/build/
+
+# Environment variables
+# .env
+# backend/.env
+# frontend/.env

@@ -7,10 +7,12 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    environment:
-      - MONGO_URI=mongodb://db:27017/roommate_app
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
     depends_on:
-      - db
+      - mongo
 
   frontend:
     build:
@@ -18,15 +20,23 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - ./frontend/.env
     depends_on:
       - backend
 
-  db:
+  mongo:
     image: mongo:latest
+    container_name: mongo
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
 volumes:
-  mongodb_data:
+  mongo-data:
