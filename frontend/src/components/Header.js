@@ -7,10 +7,9 @@ function Header() {
       <Navbar.Brand href="/">Rate Your Roommate</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Link href="/about">About Us</Nav.Link>
-          <Nav.Link href="/terms">Terms & Conditions</Nav.Link>
-          <Nav.Link href="/forgot-password">Forgot Password?</Nav.Link>
+        <Nav className="ms-auto d-flex gap-3">
+          <button className="login-button">Login</button>
+          <button className="register-button">Register</button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

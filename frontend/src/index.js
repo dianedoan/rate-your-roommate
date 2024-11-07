@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // Use client from react-dom
 import App from './App';
-import './index.css'; // If you have global styles
+import './assets/styles/global.css'; // If you have global styles
 
 const root = ReactDOM.createRoot(document.getElementById('root')); // Create root element
 root.render(
