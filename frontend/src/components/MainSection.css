@@ -1,37 +1,112 @@
-/* MainSection.css */
 .main-section {
-    background-image: url('../assets/images/Picture5.svg'); 
-    /* background-image: url('../assets/images/favicon/web-app-manifest-512x512.png'); */
-    background-size: cover; /* Makes the image cover the entire section */
-    background-position: center center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents repeating the image */
-    height: 100vh; /* Full viewport height */
+    background-image: url('../assets/images/Picture5.svg'); /* Background image */
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     text-align: center;
-    padding: 20px; /* Adds padding for small screens */
-    box-sizing: border-box; /* Ensures padding does not overflow */
-  }
-  
-  .highlight {
-    color: #FFD700; /* Highlight color */
-  }
-  
-  /* Media Query for smaller screens (like mobile) */
-  @media (max-width: 768px) {
+    box-sizing: border-box;
+}
+
+.top-content {
+    position: absolute;
+    top: 10%; /* Bring top content closer to the top */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem; /* Default size for larger screens */
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: #FFD700;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+}
+
+.login-button, .register-button {
+    padding: 10px 20px;
+    font-size: 1.2rem; /* Button font size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth resizing transition */
+}
+
+.login-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.register-button {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 1024px) {
     .main-section {
-      height: auto; /* Let it adjust height based on content on small screens */
-      padding: 15px; /* Less padding on smaller screens */
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 10px; /* Add padding to bring content down a bit */
+        min-height: 100px; /* Maintain image visibility */
     }
-  
     h1 {
-      font-size: 1.5rem; /* Adjust the font size on smaller screens */
+        font-size: 2rem; /* Reduce title font size */
     }
-  
+
     .login-button, .register-button {
-      margin-bottom: 10px; /* Adds space between the buttons */
+        font-size: 1.1rem;
+        padding: 8px 18px;
     }
-  }
-  
+
+    .button-container {
+        gap: 15px; /* Reduce space between buttons */
+    }
+    .top-content {
+        top: 25%; /* Bring top content closer to the top */
+    }
+}
+
+/* Media Query for Small Screens (Mobile) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem; /* Further reduce title font size */
+    }
+
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+    }
+
+    .login-button, .register-button {
+        font-size: 1rem;
+        padding: 7px 16px;
+    }
+
+    .main-section {
+        min-height: 600px; /* Ensure enough space for background image */
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .login-button, .register-button {
+        font-size: 0.9rem;
+        padding: 6px 14px;
+    }
+}
