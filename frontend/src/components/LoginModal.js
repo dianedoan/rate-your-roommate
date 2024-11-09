@@ -22,12 +22,15 @@ const LoginModal = ({ onClose }) => {
   return (
     <Modal show onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
+        <Modal.Title className="w-100 text-center">
+        <div className="modal-title-main">Welcome back :)</div>
+        <div className="modal-title-sub">Please enter your login details</div>
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
+          <Form.Group controlId="username" className="mb-3">
+            <Form.Label>Username</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
@@ -36,7 +39,7 @@ const LoginModal = ({ onClose }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="password">
+          <Form.Group controlId="password" className="mb-3 mt-3">
             <Form.Label>Password</Form.Label>
             <div className="password-container">
               <Form.Control
@@ -45,32 +48,35 @@ const LoginModal = ({ onClose }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span
-                className="password-toggle"
+              <div
+                className="password-icon"
                 onClick={handlePasswordToggle}
               >
                 {passwordVisible ? <FaEyeSlash /> : <FaEye />}
-              </span>
+              </div>
             </div>
           </Form.Group>
 
-          <Button variant="primary" type="submit" block>
+          <Button variant="primary" type="submit" className="w-100 mt-3">
             Login
           </Button>
         </Form>
-        <div className="social-login">
-          <Button variant="outline-danger" block>
+        <div className="separator">
+            <div className="flex-grow-1 border-top"></div>
+            <span className="mx-2 text-center small">or sign in with</span>
+            <div className="flex-grow-1 border-top"></div>
+          </div>
+        <div className="social-login d-flex flex-column align-items-center">
+          <Button className="social-button" variant="outline-danger" block>
             <FaGoogle /> Login with Google
           </Button>
-          <Button variant="outline-primary" block>
+          <Button className="social-button" variant="outline-primary" block>
             <FaFacebook /> Login with Facebook
           </Button>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onClose}>
-          Close
-        </Button>
+
       </Modal.Footer>
     </Modal>
   );

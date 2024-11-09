@@ -1,0 +1,64 @@
+.modal-title {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .modal-title-main {
+    font-size: 2.50rem; /* Larger font for the main title */
+    font-weight: bold;
+  }
+  
+  .modal-title-sub {
+    font-size: 1rem; /* Smaller font for the subtitle */
+    color: #6c757d; /* Optional: change subtitle color */
+    margin-top: 5px; /* Adds space between the title and subtitle */
+  }
+
+.password-container {
+    position: relative;
+  }
+  .password-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1; /* Ensure the icon stays on top of the input */
+  }
+  
+  .password-container button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+
+.separator{
+    display: flex;
+    align-items: center;
+    margin-top: 1em; 
+      }
+  
+  .separator .border-top {
+    border-top: 1px solid #ccc; /* Lighter line color */
+  }
+  
+  .separator span {
+    font-size: 0.875rem;
+    color: #6c757d; 
+    text-align: center;
+  }
+  
+  .social-login {
+    align-items: center;
+    margin-top: 1em;
+  }
+
+  .social-button{
+    width: 50%;
+
+  }
+
+
+  
