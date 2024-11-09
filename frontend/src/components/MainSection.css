@@ -1,0 +1,112 @@
+.main-section {
+    background-image: url('../assets/images/Picture5.svg'); /* Background image */
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.top-content {
+    position: absolute;
+    top: 5%; /* Bring top content closer to the top */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem; /* Default size for larger screens */
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: #FFD700;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+}
+
+.login-button, .register-button {
+    padding: 10px 10px;
+    font-size: 1.2rem; /* Button font size */
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth resizing transition */
+}
+
+.login-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.register-button {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 1024px) {
+    .main-section {
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 10px; /* Add padding to bring content down a bit */
+        min-height: 100px; /* Maintain image visibility */
+    }
+    h1 {
+        font-size: 2rem; /* Reduce title font size */
+    }
+
+    .login-button, .register-button {
+        font-size: 1rem;
+        padding: 8px 8px;
+        border-radius: 1px;
+    }
+
+    .button-container {
+        gap: 15px; /* Reduce space between buttons */
+    }
+    .top-content{
+        top: 8%;
+    }
+}
+
+/* Media Query for Small Screens (Mobile) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1rem; /* Further reduce title font size */
+    }
+
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+    }
+
+    .login-button, .register-button {
+        font-size: 1rem;
+        padding: 7px 7px;
+    }
+
+    .top-content{
+        top: 8%;
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 0.5rem;
+    }
+
+    .login-button, .register-button {
+        font-size: 0.5rem;
+        padding: 6px 6px;
+    }
+}

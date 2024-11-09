@@ -1,0 +1,92 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #1E1E1E;
+  }
+  
+  /* Logo */
+  .logo {
+    color: #8CAD63; /* Green for main logo text */
+    background-color: #1E1E1E; /* Almost black */
+    color: #FFFFFF; /* White text */
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Menu Selector Button */
+  .menu-button {
+    background-color: #1E1E1E; /* Almost black */
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Login Button */
+  .login-button {
+    background-color: #559CD0; /* Sky blue */
+    color: #FFFFFF; /* White text */
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  /* Register Button */
+  .register-button {
+    background-color: #E3E3E3; /* Gray */
+    color: #1E1E1E; /* Almost black text */
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  /* Social Media Buttons */
+  .social-button {
+    background-color: #1E1E1E; /* Almost black */
+    color: #FFFFFF; /* White text */
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .social-button.twitter { /* Specific styling for Twitter button if needed */ }
+  .social-button.instagram { /* Specific styling for Instagram button if needed */ }
+  .social-button.tiktok { /* Specific styling for TikTok button if needed */ }
+  
+  /* Links */
+  .link {
+    color: #1E1E1E; /* Almost black */
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Specific Links */
+  .terms-link, .about-link, .forgot-password-link {
+    color: #1E1E1E; /* Almost black */
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .terms-link:hover,
+  .about-link:hover,
+  .forgot-password-link:hover {
+    text-decoration: underline;
+  }
+  
