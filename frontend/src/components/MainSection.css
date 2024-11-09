@@ -12,7 +12,7 @@
 
 .top-content {
     position: absolute;
-    top: 10%; /* Bring top content closer to the top */
+    top: 5%; /* Bring top content closer to the top */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -35,10 +35,9 @@ h1 {
 }
 
 .login-button, .register-button {
-    padding: 10px 20px;
+    padding: 10px 10px;
     font-size: 1.2rem; /* Button font size */
-    border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     transition: all 0.3s ease; /* Smooth resizing transition */
 }
@@ -66,22 +65,23 @@ h1 {
     }
 
     .login-button, .register-button {
-        font-size: 1.1rem;
-        padding: 8px 18px;
+        font-size: 1rem;
+        padding: 8px 8px;
+        border-radius: 1px;
     }
 
     .button-container {
         gap: 15px; /* Reduce space between buttons */
     }
-    .top-content {
-        top: 25%; /* Bring top content closer to the top */
+    .top-content{
+        top: 8%;
     }
 }
 
 /* Media Query for Small Screens (Mobile) */
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.5rem; /* Further reduce title font size */
+        font-size: 1rem; /* Further reduce title font size */
     }
 
     .button-container {
@@ -91,22 +91,22 @@ h1 {
 
     .login-button, .register-button {
         font-size: 1rem;
-        padding: 7px 16px;
+        padding: 7px 7px;
     }
 
-    .main-section {
-        min-height: 600px; /* Ensure enough space for background image */
+    .top-content{
+        top: 8%;
     }
 }
 
 /* Media Query for Extra Small Screens */
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.2rem;
+        font-size: 0.5rem;
     }
 
     .login-button, .register-button {
-        font-size: 0.9rem;
-        padding: 6px 14px;
+        font-size: 0.5rem;
+        padding: 6px 6px;
     }
 }
