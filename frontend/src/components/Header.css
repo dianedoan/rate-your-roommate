@@ -1,0 +1,13 @@
+/* Default logo styling */
+.navbar-logo {
+    height: 75px; /* Mobile size */
+    width: auto;  /* Maintain aspect ratio */
+  }
+  
+  /* Larger size for desktop screens */
+  @media (min-width: 992px) {
+    .navbar-logo {
+      height: 100px; /* Desktop size */
+    }
+  }
+  
