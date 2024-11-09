@@ -4,6 +4,7 @@ import MainSection from '../components/MainSection';
 import Features from '../components/Features';
 import Footer from '../components/Footer';
 import LoginModal from '../components/LoginModal'
+import RegisterModal from '../components/RegisterModal'
 import '../assets/styles/global.css';  
 
 function LandingPage (){

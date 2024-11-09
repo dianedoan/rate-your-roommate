@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
-import './Login.css';
+import './LoginModal.css';
 
 const LoginModal = ({ onClose }) => {
   const [passwordVisible, setPasswordVisible] = useState(false); // To toggle password visibility
