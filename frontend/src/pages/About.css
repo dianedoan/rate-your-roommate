@@ -1,11 +1,11 @@
 /* Main container setup */
-.terms-conditions-container {
+.about-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     position: relative;
-    background-image: url('../assets/images/Picture1.svg');
+    background-image: url('../assets/images/Picture2.svg');
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;
@@ -16,14 +16,14 @@
 
 
 /* Title styling - on top of background image */
-.terms-title {
+.about-title {
     font-size: 3rem;
     position: absolute;
     top: 4%; 
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
-    z-index: 1; /* Ensure title is on top of the image */
+    z-index: 1; 
     text-align: center;
 }
 
