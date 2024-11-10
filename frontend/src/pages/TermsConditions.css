@@ -1,0 +1,84 @@
+/* Main container setup */
+.terms-conditions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    background-image: url('../assets/images/Picture1.svg');
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh; 
+    box-sizing: border-box; 
+}
+
+
+/* Title styling - on top of background image */
+.terms-title {
+    font-size: 3rem;
+    position: absolute;
+    top: 4%; 
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 1; /* Ensure title is on top of the image */
+    text-align: center;
+}
+
+/* Content container */
+.content-container {
+    padding: 20px;
+    max-width: 1300px;
+    width: 100%;
+    position: relative;
+    top: 90vh; 
+    box-sizing: border-box;
+}
+
+/* Content styling for the paragraph */
+.terms-content {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 20px;
+    text-align: center;
+
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .terms-title {
+        font-size: 2.5rem;
+        top: 30%;
+    }
+
+    .content-container {
+        top: 94vh; /* Increase top value for smaller screens */
+        padding: 15px;
+    }
+
+    /* Adjust content font size for smaller screens */
+    .terms-content {
+        font-size: 0.6rem;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-title {
+        font-size: 2rem;
+        top: 30%;
+    }
+
+    .content-container {
+        top: 96vh; /* Increase top value more for mobile */
+        padding: 10px;
+    }
+
+    /* Further adjust content font size for mobile */
+    .terms-content {
+        font-size: 0.45rem;
+        padding: 0 10px;
+    }
+}
