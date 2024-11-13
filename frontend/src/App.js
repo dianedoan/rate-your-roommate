@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
+import SetUpProfileModal from './components/SetUpProfileModal';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -16,13 +17,14 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(null); // Track password reset success or failure
+  const [isSuccess, setIsSuccess] = useState(null); 
+  const [showSetUpProfile, setShowSetUpProfile] = useState(false);
 
   // Functions to toggle log in/register modal
   const handleLoginClick = () => setShowLogin(true);
   const handleRegisterClick = () => setShowRegister(true);
   const handleForgotPasswordClick = () => {
-    setIsSuccess(null); // Reset success or failure state
+    setIsSuccess(null); 
     setShowForgotPassword(true);
   }
   const handleCloseForgotPasswordModal = () => setShowForgotPassword(false);
@@ -32,12 +34,19 @@ function App() {
     // Handle form submit for ForgotPasswordModal
     const handleSubmitForgotPassword = (username, email) => {
       if (email === "user@example.com" && username =="hello") {
-        setIsSuccess(true); // Simulate success
+        setIsSuccess(true); 
 
       } else {
-        setIsSuccess(false); // Simulate failure
+        setIsSuccess(false); 
       }
     };
+
+    const handleSuccessfulRegistration = () => {
+      setShowRegister(false); 
+      setShowSetUpProfile(true); 
+    };
+
+    const handleCloseSetUpProfileModal = () => setShowSetUpProfile(false);
 
   return (
     <Router>
@@ -60,14 +69,17 @@ function App() {
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick}/>
       {showLogin && <LoginModal onClose={handleCloseLoginModal} />}
-      {showRegister && <RegisterModal onClose={handleCloseRegisterModal} />}
+      {showRegister && <RegisterModal 
+        onClose={handleCloseRegisterModal}
+        onRegisterSuccess={handleSuccessfulRegistration} 
+      />}
       {showForgotPassword && (
         <ForgotPasswordModal onClose={handleCloseForgotPasswordModal}
         onSubmit={handleSubmitForgotPassword} 
-        isSuccess={isSuccess}  //Pass the password reset success or failure state
+        isSuccess={isSuccess}  
          />
          )} 
-
+      {showSetUpProfile && <SetUpProfileModal show={showSetUpProfile} onClose={handleCloseSetUpProfileModal} />}
     </Router>
   );
 }

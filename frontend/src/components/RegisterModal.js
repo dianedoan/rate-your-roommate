@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './RegisterModal.css';
 
-const RegisterModal = ({ onClose }) => {
+const RegisterModal = ({ onClose, onRegisterSuccess }) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -11,6 +11,9 @@ const RegisterModal = ({ onClose }) => {
     password: '',
     agreeToTerms: false,
   });
+
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -26,6 +29,24 @@ const RegisterModal = ({ onClose }) => {
     e.preventDefault();
     // You can add form validation here and submit logic
     console.log('Form submitted:', formData);
+    if (!formData.email.includes('@')) {
+      setError('Please enter a valid email.');
+      return;
+    }
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters.');
+      return;
+    }
+
+    //Faking submission, to test set profile modal
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      onRegisterSuccess();  
+      onClose();  
+    }, 1000); 
+    setIsSubmitting(false);
+    onRegisterSuccess(); 
   };
 
   return (
@@ -107,10 +128,10 @@ const RegisterModal = ({ onClose }) => {
             />
           </Form.Group>
 
-          {/* Submit Button */}
-          <Button variant="primary" type="submit" className="w-100">
+          <Button variant="primary" type="submit" onClick={handleSubmit} className="w-100">
             Register
           </Button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </Form>
       </Modal.Body>
 
