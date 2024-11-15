@@ -25,7 +25,7 @@ function SetUpProfileModal({ show, onClose }) {
       ...prevState,
       [badge]: !prevState[badge],
     }));
-  };
+  }
 
   return (
     <Modal show={show} onHide={onClose} centered className="setup-profile-modal">

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import TermsConditions from "./pages/TermsConditions";
+import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginModal from './components/LoginModal';
@@ -48,6 +49,12 @@ function App() {
 
     const handleCloseSetUpProfileModal = () => setShowSetUpProfile(false);
 
+    const handleSuccessfulLogin = () => {
+    setShowLogin(false);
+    window.location.href = '/home';
+};
+
+
   return (
     <Router>
       <Header
@@ -66,9 +73,10 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick}/>
-      {showLogin && <LoginModal onClose={handleCloseLoginModal} />}
+      {showLogin && <LoginModal onClose={handleCloseLoginModal} onLoginSuccess={handleSuccessfulLogin} />}
       {showRegister && <RegisterModal 
         onClose={handleCloseRegisterModal}
         onRegisterSuccess={handleSuccessfulRegistration} 

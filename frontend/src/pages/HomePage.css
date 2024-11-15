@@ -1,0 +1,109 @@
+.homepage-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .top-rated-section, .explore-section {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .top-rated-section h2, .explore-section h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px; /* Space between header and card */
+  }
+  
+  .top-rated-card, .explore-card {
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row; /* Make the card layout horizontal */
+  }
+  
+  .profile-image-container, .card-image-container {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+    margin-right: 20px; /* Space between image and text */
+  }
+  
+  .profile-image {
+    width: 100px; /* Adjust image size */
+    height: 100px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: left;
+    margin-left: 20px;
+  }
+  
+  .profile-name {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .profile-description {
+    margin-top: 5px;
+    font-size: 1em;
+  }
+  
+  .profile-score {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #3C9B3F;
+    font-size: 0.8em;
+  }
+  
+  .location-favorite-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 70px;
+  }
+  
+  .location {
+    font-size: 0.8em; /* Smaller font size for location */
+    margin-top: 5px;
+  }
+  
+  .favorite-icon {
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+  }
+  
+  .card-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .top-rated-section h2, .explore-section h2 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .highlight {
+    color: #3C9B3F; /* Customize color as needed */
+  }
+  
