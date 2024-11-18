@@ -5,16 +5,13 @@ FROM node:16
 WORKDIR /app
 
 # Copy the package.json and package-lock.json into the container
-COPY ./package*.json /app/
-
-# Set the working directory to /app
-WORKDIR /app
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install && npm install react-bootstrap bootstrap
+RUN npm install && npm install react-bootstrap bootstrap react-icons
 
 # Copy the entire frontend directory (including public, src, etc.) into the container
-COPY ./ /app/
+COPY . .
 
 # Expose the port for the React development server
 EXPOSE 3000
