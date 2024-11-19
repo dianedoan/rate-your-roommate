@@ -37,6 +37,8 @@ html .nav-link {
 html .nav-link:hover {
   color: #1E1E1E; /* Almost black */
   text-shadow: 2px 2px #e4fff5;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 /* Specific Links */
