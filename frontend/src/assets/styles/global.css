@@ -59,11 +59,12 @@ html .nav-link:hover {
 .normal-btn {
   text-align: center;
   margin: 0.5rem;
-  font-size: 1rem;
-  padding: 0.5rem;
-  width: 7rem;
-  border-radius: 0.5rem;
+  font-size: 1.7rem;
+  padding: 1rem;
+  width: 15rem;
+  border-radius: 0.7rem;
   border: 0.1rem solid #1e1e1e;
+  text-shadow: 0.1rem 0.1rem #1e1e1e;
 }
 
 /* Navigation bar button */
@@ -75,20 +76,17 @@ html .nav-link:hover {
   width: 5rem;
   border-radius: 0.5rem;
   border: 0.1rem solid #1e1e1e;
+  text-shadow: 0.05rem 0.05rem #1e1e1e;
 }
 
 .normal-btn:hover {
   cursor: pointer;
-  background-color: #e4fff5;
-  color: #1e1e1e;
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }
 
 .nav-btn:hover {
   cursor: pointer;
-  background-color: #e4fff5;
-  color: #1e1e1e;
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }
@@ -103,6 +101,7 @@ html .nav-link:hover {
 .cancel-btn {
   background-color: #E3E3E3; /* Gray */
   color: #1E1E1E; /* Almost black text */
+  text-shadow: 0.05rem 0.05rem #9e9e9e;
 }
 
 /* Menu Selector Button */
