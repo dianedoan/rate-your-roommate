@@ -7,14 +7,36 @@ html body {
 
 /* TEXT */
 html h1 {
-  font-size: 4rem; /* Default size for larger screens */
+  font-size: 6rem; /* Default size */
   margin: 2rem 0rem;
   text-align: center;
   font-weight: bold;
+  padding: 0rem 2rem;
+}
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 1024px) {
+  html h1 {
+    font-size: 5rem; /* Reduce title font size */
+  }
+}
+
+/* Media Query for Small Screens (Mobile) */
+@media (max-width: 768px) {
+  html h1 {
+      font-size: 4rem; /* Further reduce title font size */
+  }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+  html h1 {
+      font-size: 3rem;
+  }
 }
 
 html h5 {
-  font-size: 1.5rem; /* Default size for larger screens */
+  font-size: 1.5rem; /* Default size */
   margin: 2rem 0rem;
   text-align: center;
   font-weight: bold;
@@ -22,7 +44,7 @@ html h5 {
 
 .highlight {
   color: #e4fff5;
-  -webkit-text-stroke-width: 0.1rem;
+  -webkit-text-stroke-width: 0.15rem;
   -webkit-text-stroke-color: #1e1e1e;
 }
 
@@ -59,12 +81,72 @@ html .nav-link:hover {
 .normal-btn {
   text-align: center;
   margin: 0.5rem;
-  font-size: 1.7rem;
+  font-size: 2.1rem;
   padding: 1rem;
-  width: 15rem;
-  border-radius: 0.7rem;
-  border: 0.1rem solid #1e1e1e;
+  width: 16rem;
+  border-radius: 0.8rem;
+  border: 0.2rem solid #1e1e1e;
   text-shadow: 0.1rem 0.1rem #1e1e1e;
+}
+
+/* Media query for laptop screens (1440px) */
+@media (max-width: 1440px) {
+  .normal-btn {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 2rem;
+    padding: 1rem;
+    width: 15rem;
+    border-radius: 0.7rem;
+    border: 0.15rem solid #1e1e1e;
+    text-shadow: 0.1rem 0.1rem #1e1e1e;
+  }
+}
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 1024px) {
+  .normal-btn {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1.7rem;
+    padding: 1rem;
+    width: 15rem;
+    border-radius: 0.7rem;
+    border: 0.15rem solid #1e1e1e;
+    text-shadow: 0.1rem 0.1rem #1e1e1e;
+  }
+  .highlight {
+    -webkit-text-stroke-width: 0.1rem;
+  }
+}
+
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 768px) {
+  .normal-btn {
+      text-align: center;
+      margin: 0.5rem;
+      font-size: 1.5rem;
+      padding: 1rem;
+      width: 14rem;
+      border-radius: 0.6rem;
+      border: 0.1rem solid #1e1e1e;
+      text-shadow: 0.1rem 0.1rem #1e1e1e;
+  }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+  .normal-btn {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1.3rem;
+    padding: 1rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+    text-shadow: 0.1rem 0.1rem #1e1e1e;
+  }
 }
 
 /* Navigation bar button */
