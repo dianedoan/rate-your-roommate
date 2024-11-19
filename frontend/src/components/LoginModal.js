@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
 import './LoginModal.css';
+import { Container, Nav } from 'react-bootstrap';
+import ForgotPasswordModal from './ForgotPasswordModal';
 
 const LoginModal = ({ onClose }) => {
   const [passwordVisible, setPasswordVisible] = useState(false); // To toggle password visibility
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(null);
+  const handleForgotPasswordClick = () => {
+    setShowForgotPassword(true);
+  }; 
+  const closeForgotPassword = () => {
+    setShowForgotPassword(false);
+    setIsSuccess(null);
+  };
 
   const handlePasswordToggle = () => {
     setPasswordVisible(!passwordVisible);
@@ -32,10 +44,11 @@ const LoginModal = ({ onClose }) => {
           <Form.Group controlId="username" className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              // type="email"
+              type="text"
+              placeholder="Enter username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
 
@@ -56,6 +69,7 @@ const LoginModal = ({ onClose }) => {
               </div>
             </div>
           </Form.Group>
+          <Nav.Link href="#" onClick={handleForgotPasswordClick}>Forgot Password?</Nav.Link>
 
           <Button variant="primary" type="submit" className="w-100 mt-3">
             Login
@@ -76,7 +90,10 @@ const LoginModal = ({ onClose }) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-
+      {showForgotPassword && (
+        <ForgotPasswordModal onClose={closeForgotPassword}
+        isSuccess={isSuccess} />
+      )}
       </Modal.Footer>
     </Modal>
   );
