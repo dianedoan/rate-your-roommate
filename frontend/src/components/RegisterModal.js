@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
 import './Modal.css';
 import './RegisterModal.css';
 
@@ -10,6 +11,9 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
     firstName: '',
     lastName: '',
     password: '',
+    confirmPassword: '',
+    securityQuestion: '',
+    securityAnswer: '',
     agreeToTerms: false,
   });
 
@@ -59,6 +63,21 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
 
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters.');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+
+    if (!formData.securityQuestion) {
+      setError('Please choose your security question.');
+      return;
+    }
+
+    if (!formData.securityAnswer) {
+      setError('Please enter your security answer.');
       return;
     }
 
@@ -144,6 +163,60 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
               placeholder="Enter your password"
               name="password"
               value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formConfirmPassword" className="mb-3 mt-3">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Re-enter your password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formSecurityQuestion" className="mb-3">
+            <Form.Label>Security Question</Form.Label>
+            <div className="dropdown-wrapper">
+            <Form.Control
+              as="select"
+              name="securityQuestion"
+              value={formData.securityQuestion}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select a security question
+              </option>
+              <option value="What is your pet's name?">
+                What is your pet's name?
+              </option>
+              <option value="What is your mother's maiden name?">
+                What is your mother's maiden name?
+              </option>
+              <option value="What was your first car?">
+                What was your first car?
+              </option>
+              <option value="What is the name of your favorite teacher?">
+                What is the name of your favorite teacher?
+              </option>
+            </Form.Control>
+            <FaChevronDown className="dropdown-icon" />
+            </div>
+          </Form.Group>
+
+          <Form.Group controlId="formSecurityAnswer" className="mb-3 mt-3">
+            <Form.Label>Security Answer</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter your security answer"
+              name="securityAnswer"
+              value={formData.securityAnswer}
               onChange={handleChange}
               required
             />
