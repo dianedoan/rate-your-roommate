@@ -7,8 +7,8 @@ function MainSection({onLoginClick, onRegisterClick}){
       <div className="top-content">
         <h1>Rate Your <span className="highlight">Roommate</span></h1>
         <div className="button-container">
-          <button className="login-button" onClick={onLoginClick}>Login</button>
-          <button className="register-button" onClick={onRegisterClick}>Register</button>
+          <button className="normal-btn submit-btn" onClick={onLoginClick}>Login</button>
+          <button className="normal-btn cancel-btn" onClick={onRegisterClick}>Register</button>
         </div>
       </div>
     </section>
