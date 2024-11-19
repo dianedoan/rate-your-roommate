@@ -1,8 +1,7 @@
 .modal-dialog {
   display: flex;
-  align-items: center; /* Vertically centers the modal */
-  justify-content: center; /* Horizontally centers the modal */
-  height: 90%;
+  align-items: center; 
+  min-height: 100vh;
 }
 
 html .modal-content {
@@ -111,4 +110,23 @@ html .link-btn:hover {
 
 .error-message {
   margin-top: 1rem;
+}
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-wrapper select {
+  appearance: none; /* Hides the default dropdown arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensures the icon doesn't block clicks */
+  color: #1e1e1e;
 }
