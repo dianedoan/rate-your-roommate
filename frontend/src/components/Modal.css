@@ -1,0 +1,114 @@
+.modal-dialog {
+  display: flex;
+  align-items: center; /* Vertically centers the modal */
+  justify-content: center; /* Horizontally centers the modal */
+  height: 90%;
+}
+
+html .modal-content {
+  padding: 1rem 2rem;
+  border: 0.1rem solid #1e1e1e;
+}
+
+.modal-title {
+  text-align: center;
+  width: 100%;
+}
+
+html .modal-title-main {
+  font-size: 2.50rem; /* Larger font for the main title */
+  font-weight: bold;
+}
+
+html .modal-title-sub {
+  font-size: 1rem; /* Smaller font for the subtitle */
+  color: #1e1e1e;
+  font-weight: bold;
+  margin-top: 5px; /* Adds space between the title and subtitle */
+}
+
+html .form-label {
+  font-weight: bold;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin-top: 1em; 
+}
+
+html .separator span {
+  font-size: 0.875rem;
+  color: #1e1e1e; 
+  text-align: center;
+}
+
+html .form-control {
+  border: 0.1rem solid #1e1e1e;
+}
+
+html .btn-close {
+  color: #1e1e1e;
+  opacity: 100%;
+}
+
+html .btn-close:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.password-container {
+  position: relative;
+}
+
+html .password-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1; /* Ensure the icon stays on top of the input */
+}
+
+html .password-icon:hover {
+  color: #559CD0;
+}
+
+html .btn-primary {
+  background-color: #559CD0; /* Sky blue */
+  color: #FFFFFF; /* White text */
+  border: 0.1rem solid #1e1e1e;
+  text-shadow: 0.05rem 0.1rem #1e1e1e;
+}
+
+html .btn-primary:hover {
+  background-color: #6db2e3; /* Lighter blue */
+  color: #FFFFFF; /* White text */
+  border: 0.1rem solid #1e1e1e;
+  text-shadow: 0.05rem 0.1rem #1e1e1e;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.social-login {
+  align-items: center;
+  margin-top: 1em;
+}
+
+html .social-button {
+  width: 65%;
+}
+
+html .link-btn {
+  padding: 0rem;
+  color: #1e1e1e;
+  font-weight: bold;
+}
+
+html .link-btn:hover {
+  color: #559CD0;
+}
+
+.error-message {
+  margin-top: 1rem;
+}

@@ -25,9 +25,14 @@ function App() {
   // Functions to toggle log in/register modal
   const handleLoginClick = () => setShowLogin(true);
   const handleRegisterClick = () => setShowRegister(true);
+  const handleRegisterToLoginClick = () => {
+    setShowRegister(false); // Close RegisterModal
+    setShowLogin(true);     // Open LoginModal
+  };
   const handleForgotPasswordClick = () => {
     setIsSuccess(null); 
     setShowForgotPassword(true);
+    setShowLogin(false); // Close LoginModal
   }
   const handleCloseForgotPasswordModal = () => setShowForgotPassword(false);
   const handleCloseLoginModal = () => setShowLogin(false);
@@ -51,9 +56,9 @@ function App() {
     const handleCloseSetUpProfileModal = () => setShowSetUpProfile(false);
 
     const handleSuccessfulLogin = () => {
-    setShowLogin(false);
-    window.location.href = '/home';
-};
+      setShowLogin(false);
+      window.location.href = '/home';
+    };
 
 
   return (
@@ -77,10 +82,15 @@ function App() {
         <Route path="/home" element={<HomePage />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick}/>
-      {showLogin && <LoginModal onClose={handleCloseLoginModal} onLoginSuccess={handleSuccessfulLogin} />}
+      {showLogin && <LoginModal 
+        onClose={handleCloseLoginModal} 
+        onLoginSuccess={handleSuccessfulLogin} 
+        onForgotPasswordClick={handleForgotPasswordClick}
+      />}
       {showRegister && <RegisterModal 
         onClose={handleCloseRegisterModal}
         onRegisterSuccess={handleSuccessfulRegistration} 
+        onLoginClick={handleRegisterToLoginClick}
       />}
       {showForgotPassword && (
         <ForgotPasswordModal onClose={handleCloseForgotPasswordModal}

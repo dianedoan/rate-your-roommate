@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import './ForgotPasswordModal.css';
+import './Modal.css';
 
 function ForgotPasswordModal({ onClose, onSubmit, isSuccess }) {
   const [email, setEmail] = useState("");

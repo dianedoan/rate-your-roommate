@@ -12,8 +12,8 @@ function Header ({onLoginClick, onRegisterClick}) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto d-flex">
-          <button className="nav-btn submit-btn" onClick={onLoginClick}>Login</button>
-          <button className="nav-btn cancel-btn" onClick={onRegisterClick}>Register</button>
+          <button className="nav-btn primary-btn" onClick={onLoginClick}>Login</button>
+          <button className="nav-btn secondary-btn" onClick={onRegisterClick}>Register</button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

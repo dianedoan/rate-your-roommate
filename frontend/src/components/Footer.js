@@ -9,7 +9,7 @@ function Footer({ onForgotPasswordClick }) {
         <Nav className="justify-content-center">
           <Nav.Link href="/terms">Terms & Conditions</Nav.Link>
           <Nav.Link href="/about">About Us</Nav.Link>
-          <Nav.Link href="#"onClick={onForgotPasswordClick}>Forgot Password?</Nav.Link>
+          <Nav.Link href="#" onClick={onForgotPasswordClick}>Forgot Password?</Nav.Link>
         </Nav>
       </Container>
     </section>
