@@ -1,7 +1,13 @@
 .modal-dialog {
   display: flex;
   align-items: center; 
-  min-height: 100vh;
+}
+
+/* Large screens */
+@media (min-height: 1200px) {
+  .modal-dialog {
+    height: 90%;
+  }
 }
 
 html .modal-content {
