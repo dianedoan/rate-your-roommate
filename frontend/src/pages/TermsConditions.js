@@ -1,16 +1,16 @@
 import React from 'react';
+import TermsContent from '../components/TermsContent';
 import './TermsConditions.css';  
-import TermContent from '../components/TermContent';
 
 function TermsConditions() {
     return (
     <div>
-      <section className="terms-conditions-container">
-        <div className="terms-condition-main">
+      <section className="terms-container">
+        <div className="terms-main">
             <h1 className="terms-title">Terms & Conditions</h1>
         </div>
       </section>
-      <TermContent />
+      <TermsContent />
  </div>
     );
   }
