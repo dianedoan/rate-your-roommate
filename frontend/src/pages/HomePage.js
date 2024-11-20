@@ -1,30 +1,33 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import profile1 from "../assets/images/profile-pics/profile1.jpg"; // Import the image
+import profile2 from "../assets/images/profile-pics/profile2.jpg"; // Import the image
+import profile3 from "../assets/images/profile-pics/profile3.jpg"; // Import the image
 import "./HomePage.css";
 
 const HomePage = () => {
   return (
     <div className="homepage-content">
       <div className="top-rated-section">
-        <h2>
-          Top-Rated <span className="highlight">Roommates</span>
-        </h2>
+        <h2>Top-Rated <span className="highlight2">Roommates</span></h2>
         <div className="top-rated-card">
           <div className="profile-image-container">
             <img
-              src="/path/to/alice-profile-image.jpg"
+              src={profile1} // Use the imported image
               alt="Alice Wang"
-              className="profile-image"
+              className="top-rated-profile-image"
             />
           </div>
           <div className="profile-info">
             <div className="profile-info">
-              <div className="profile-name">Alice Wang</div>
-              <div className="profile-description">
+              <div className="top-rated-profile-name">Alice Wang</div>
+              <div className="top-rated-profile-occupation">
                 Athlete
-                <br />I love skating and sleeping
               </div>
-              <div className="profile-score">4.5/5 Overall Score</div>
+              <div className="top-rated-profile-description">
+                I love skating and sleeping
+              </div>
+              <div className="profile-score"><span className="highlight4">4.5/5</span> Overall Score</div>
             </div>
           </div>
           <div className="location-favorite-container">
@@ -35,37 +38,59 @@ const HomePage = () => {
       </div>
 
       <div className="explore-section">
-        <h2>
-          Explore <span className="highlight">Roommates</span>
-        </h2>
-        <div className="explore-cards">
-          <Card className="explore-card">
-            <div className="profile-image-container">
-              <img
-                src="/path/to/dave-profile-image.jpg"
-                alt="Dave Jones"
-                className="profile-image"
-              />
-            </div>
+        <h2>Explore <span className="highlight3">Roommates</span></h2>
+        <div className="explore-card">
+          <div className="profile-image-container">
+            <img
+              src={profile2} // Use the imported image
+              alt="Dave Jones"
+              className="profile-image"
+            />
+          </div>
+          <div className="profile-info">
             <div className="profile-info">
               <div className="profile-name">Dave Jones</div>
+              <div className="profile-score">★★★★☆</div>
               <div className="profile-description">
                 Neurosurgeon
                 <br />I have a passion for biking
               </div>
-              <div className="profile-score">★★★★☆</div>
             </div>
-            <div className="location-favorite-container">
-              <p className="location">Airdrie, AB</p>
-              <div className="favorite-icon">&#9825;</div>
-            </div>
-          </Card>
+          </div>
+          <div className="location-favorite-container">
+            <p className="location">Airdrie, AB</p>
+            <div className="favorite-icon">&#9825;</div>
+          </div>
+        </div>
 
-          <Card className="explore-card">
+        <div className="explore-card">
+          <div className="profile-image-container">
+            <img
+              src={profile3} // Use the imported image
+              alt="Bob Brown"
+              className="profile-image"
+            />
+          </div>
+          <div className="profile-info">
+            <div className="profile-info">
+              <div className="profile-name">Bob Brown</div>
+              <div className="profile-score">★★★★☆</div>
+              <div className="profile-description">
+                Student
+                <br />NEED a roommate ASAP
+              </div>
+            </div>
+          </div>
+          <div className="location-favorite-container">
+            <p className="location">Calgary, AB</p>
+            <div className="favorite-icon">&#9825;</div>
+          </div>
+        </div>
+          {/* <Card className="explore-card">
             <div className="profile-image-container">
               <img
-                src="/path/to/dave-profile-image.jpg"
-                alt="Dave Jones"
+                src={profile1} // Use the imported image
+                alt="Bob Brown"
                 className="profile-image"
               />
             </div>
@@ -75,14 +100,13 @@ const HomePage = () => {
               Student
                 <br />NEED a roommate ASAP
               </div>
-              <div className="profile-score">★★☆☆☆</div>
+              <div className="profile-score">★★★★☆☆</div>
             </div>
             <div className="location-favorite-container">
               <p className="location">Calgary, AB</p>
               <div className="favorite-icon">&#9825;</div>
             </div>
-          </Card>
-        </div>
+          </Card> */}
       </div>
     </div>
   );

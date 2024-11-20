@@ -35,6 +35,11 @@
     text-shadow: 2px 2px #e4fff5;
     border: 0.1rem solid #1e1e1e;
   }
+
+  /* Nav Button when clicked */
+  .nav-btn:active {
+    background-color: #e4fff5;
+  }
 }
 
   

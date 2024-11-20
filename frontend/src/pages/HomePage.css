@@ -2,105 +2,150 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-  }
-  
-  .top-rated-section, .explore-section {
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .top-rated-section h2, .explore-section h2 {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px; /* Space between header and card */
-  }
-  
-  .top-rated-card, .explore-card {
-    align-items: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row; /* Make the card layout horizontal */
-  }
-  
-  .profile-image-container, .card-image-container {
-    flex-shrink: 0; /* Prevent the image from shrinking */
-    margin-right: 20px; /* Space between image and text */
-  }
-  
-  .profile-image {
-    width: 100px; /* Adjust image size */
-    height: 100px;
-    border-radius: 50%; /* Make the image circular */
-    object-fit: cover;
-  }
-  
-  .profile-info {
-    display: flex;
-    flex-direction: column; /* Stack profile name, description, and score vertically */
-    text-align: left;
-    margin-left: 20px;
-  }
-  
-  .profile-name {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  .profile-description {
-    margin-top: 5px;
-    font-size: 1em;
-  }
-  
-  .profile-score {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #3C9B3F;
-    font-size: 0.8em;
-  }
-  
-  .location-favorite-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 70px;
-  }
-  
-  .location {
-    font-size: 0.8em; /* Smaller font size for location */
-    margin-top: 5px;
-  }
-  
-  .favorite-icon {
-    font-size: 24px;
-    color: red;
-    cursor: pointer;
-  }
-  
-  .card-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card-body {
-    text-align: center;
-  }
-  
-  .top-rated-section h2, .explore-section h2 {
-    font-size: 2em;
-    font-weight: bold;
-  }
-  
-  
+}
+
+.top-rated-section, .explore-section {
+  width: 100%;
+  /* max-width: 800px; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem;
+}
+
+.top-rated-section {
+  background-color: #E4FFF5;
+  border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+}
+
+.explore-section {
+  background-color: #f2ffe1;
+}
+
+.top-rated-card {
+  display: flex;
+  flex-direction: row; /* Make the card layout horizontal */
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 40rem;
+  padding: 2rem;
+}
+
+.top-rated-card:hover {
+  cursor: pointer;
+}
+
+.explore-card {
+  display: flex;
+  flex-direction: row; /* Make the card layout horizontal */
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 40rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border: 0.12rem solid #1e1e1e; /* Bottom border */
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.explore-card:hover {
+  cursor: pointer;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.profile-image-container, .card-image-container {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  margin-right: 20px; /* Space between image and text */
+}
+
+.top-rated-profile-image {
+  width: 12rem; /* Adjust image size */
+  height: 12rem;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover;
+  padding-right: 1em;
+}
+
+.profile-image {
+  width: 8rem; /* Adjust image size */
+  height: 8rem;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column; /* Stack profile name, description, and score vertically */
+  text-align: left;
+  /* margin-left: 1rem; */
+}
+
+.top-rated-profile-name {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.profile-name {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.top-rated-profile-occupation {
+  margin-top: 0.5rem;
+  font-size: 1.3em;
+  font-weight: bold;
+
+}
+
+.profile-occupation {
+  margin-top: 1rem;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.top-rated-profile-description {
+  font-size: 1.2em;
+}
+
+.profile-description {
+  font-size: 1em;
+}
+
+.profile-score {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.location-favorite-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 70px;
+}
+
+.location {
+  font-size: 0.8em; /* Smaller font size for location */
+  margin-top: 5px;
+}
+
+.favorite-icon {
+  font-size: 24px;
+  color: red;
+  cursor: pointer;
+}
+
+.card-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
+  text-align: center;
+}
+

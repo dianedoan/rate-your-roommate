@@ -14,14 +14,59 @@ html h1 {
   padding: 0rem 2rem;
 }
 
+html h2 {
+  font-size: 3rem; /* Default size */
+  margin: 2rem 0rem;
+  text-align: center;
+  font-weight: bold;
+  padding: 0rem 2rem;
+}
+
 html h4 {
   margin-bottom: 2rem;
+}
+
+html h5 {
+  font-size: 1.5rem; /* Default size */
+  margin: 2rem 0rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.highlight {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.15rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+/* Top-rated Roommates text */
+.highlight2 {
+  color: #fefefe;
+  -webkit-text-stroke-width: 0.1rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+/* Explore Roommates text */
+.highlight3 {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.1rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+.highlight4 {
+  color: #fefefe;
+  font-size: 1.3em;
+  -webkit-text-stroke-width: 0.05rem;
+  -webkit-text-stroke-color: #1e1e1e;
 }
 
 /* Media Query for Tablet Screens (1024px) */
 @media (max-width: 1024px) {
   html h1 {
     font-size: 5rem; /* Reduce title font size */
+  }
+  .highlight {
+    -webkit-text-stroke-width: 0.1rem;
   }
 }
 
@@ -39,47 +84,6 @@ html h4 {
   }
 }
 
-html h5 {
-  font-size: 1.5rem; /* Default size */
-  margin: 2rem 0rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-.highlight {
-  color: #e4fff5;
-  -webkit-text-stroke-width: 0.15rem;
-  -webkit-text-stroke-color: #1e1e1e;
-}
-
-/* LINKS */
-html .nav-link {
-  color: #1E1E1E; /* Almost black */
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-html .nav-link:hover {
-  color: #1E1E1E; /* Almost black */
-  text-shadow: 2px 2px #e4fff5;
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
-}
-
-/* Specific Links */
-.terms-link, .about-link, .forgot-password-link {
-  color: #1E1E1E; /* Almost black */
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.terms-link:hover,
-.about-link:hover,
-.forgot-password-link:hover {
-  text-decoration: underline;
-}
 
 /* BUTTONS */
 .button-container {
@@ -124,9 +128,6 @@ html .nav-link:hover {
     border-radius: 0.7rem;
     border: 0.15rem solid #1e1e1e;
     text-shadow: 0.1rem 0.1rem #1e1e1e;
-  }
-  .highlight {
-    -webkit-text-stroke-width: 0.1rem;
   }
 }
 
@@ -193,6 +194,11 @@ html .nav-link:hover {
   color: #FFFFFF; /* White text */
 }
 
+/* Primary Button when clicked */
+.primary-btn:active {
+  background-color: #559CD0;
+}
+
 /* Secondary Button (e.g., register button) */
 .secondary-btn {
   background-color: #E3E3E3; /* Gray */
@@ -204,6 +210,11 @@ html .nav-link:hover {
   background-color: #f0f0f0; /* Lighter gray */
   color: #1E1E1E; /* Almost black text */
   text-shadow: 0.05rem 0.05rem #9e9e9e;
+}
+
+/* Secondary Button when clicked */
+.secondary-btn:active {
+  background-color: #E3E3E3;
 }
 
 /* Menu Selector Button */
@@ -231,6 +242,25 @@ html .nav-link:hover {
 .social-button.twitter { /* Specific styling for Twitter button if needed */ }
 .social-button.instagram { /* Specific styling for Instagram button if needed */ }
 .social-button.tiktok { /* Specific styling for TikTok button if needed */ }
+
+/* LINKS */
+html .nav-link {
+  color: #1E1E1E; /* Almost black */
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+html .nav-link:hover {
+  color: #1E1E1E; /* Almost black */
+  text-shadow: 2px 2px #e4fff5;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+html .nav-link:active {
+  color: #878787;
+}
 
 /* NAVIGATION BAR */
 html .navbar {
