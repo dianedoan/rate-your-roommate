@@ -23,7 +23,7 @@ const ReviewPage = () => {
               </div>
               <div className="review-profile-score"><span className="highlight4">4.5/5</span> Overall Score</div>
             </div>
-            <div className="favorite-icon">
+            <div className="profile-favorite-icon">
             <img
                 src={heart2}
                 alt="heart2"
