@@ -19,8 +19,10 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(null); 
   const [showSetupProfile, setShowSetupProfile] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(null); 
+  const [securityQuestion, setSecurityQuestion] = useState("");
+  const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
 
   // Functions to toggle log in/register modal
   const handleLoginClick = () => setShowLogin(true);
@@ -29,36 +31,57 @@ function App() {
     setShowRegister(false); // Close RegisterModal
     setShowLogin(true);     // Open LoginModal
   };
+
   const handleForgotPasswordClick = () => {
     setIsSuccess(null); 
     setShowForgotPassword(true);
     setShowLogin(false); // Close LoginModal
   }
-  const handleCloseForgotPasswordModal = () => setShowForgotPassword(false);
+
   const handleCloseLoginModal = () => setShowLogin(false);
   const handleCloseRegisterModal = () => setShowRegister(false);
+  
+  const handleCloseForgotPasswordModal = () => {
+    setShowForgotPassword(false);
+    setIsSuccess(null);
+    setShowPasswordResetForm(false);
+  };
+  
+  // Handle form submit for ForgotPasswordModal
+  const handleSubmitForgotPassword = (username, email) => {
+    if (username === "user" && email === "user@example.com") {
+      setIsSuccess(true);
+      setSecurityQuestion("What is your pet's name?");
+    } else {
+      setIsSuccess(false);
+    }
+  };
 
-    // Handle form submit for ForgotPasswordModal
-    const handleSubmitForgotPassword = (username, email) => {
-      if (email === "user@example.com" && username =="hello") {
-        setIsSuccess(true); 
+  // Handle form submit for security question in ForgotPasswordModal
+  const handleSecuritySubmit = (answer) => {
+    if (answer === "Kat") {
+      setShowPasswordResetForm(true); // Show password reset form
+    } else {
+      alert("Incorrect answer. Try again.");
+    }
+  };
 
-      } else {
-        setIsSuccess(false); 
-      }
-    };
+  // Handle form submit for password reset in ForgotPasswordModal
+  const handlePasswordReset = (newPassword) => {
+    console.log("New Password:", newPassword); // Simulate saving the password
+  };
 
-    const handleSuccessfulRegistration = () => {
-      setShowRegister(false); 
-      setShowSetupProfile(true); 
-    };
+  const handleSuccessfulRegistration = () => {
+    setShowRegister(false); 
+    setShowSetupProfile(true); 
+  };
 
-    const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
+  const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
 
-    const handleSuccessfulLogin = () => {
-      setShowLogin(false);
-      window.location.href = '/home';
-    };
+  const handleSuccessfulLogin = () => {
+    setShowLogin(false);
+    window.location.href = '/home';
+  };
 
 
   return (
@@ -93,11 +116,17 @@ function App() {
         onLoginClick={handleRegisterToLoginClick}
       />}
       {showForgotPassword && (
-        <ForgotPasswordModal onClose={handleCloseForgotPasswordModal}
-        onSubmit={handleSubmitForgotPassword} 
-        isSuccess={isSuccess}  
-         />
-         )} 
+        <ForgotPasswordModal
+          onClose={handleCloseForgotPasswordModal}
+          onSubmit={handleSubmitForgotPassword}
+          isSuccess={isSuccess}
+          securityQuestion={securityQuestion}
+          showPasswordResetForm={showPasswordResetForm}
+          onSecuritySubmit={handleSecuritySubmit}
+          onPasswordReset={handlePasswordReset}
+          onForgotPasswordClick={handleForgotPasswordClick}
+        />
+      )}
       {showSetupProfile && <SetupProfileModal show={showSetupProfile} onClose={handleCloseSetupProfileModal} />}
     </Router>
   );

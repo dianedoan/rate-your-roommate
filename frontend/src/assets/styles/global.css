@@ -14,6 +14,10 @@ html h1 {
   padding: 0rem 2rem;
 }
 
+html h4 {
+  margin-bottom: 2rem;
+}
+
 /* Media Query for Tablet Screens (1024px) */
 @media (max-width: 1024px) {
   html h1 {

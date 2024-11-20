@@ -13,6 +13,7 @@ html .modal-content {
 /* Modal Header */
 html .modal-header {
   border-bottom: none;
+  margin-top: 1rem;
 }
 
 /* Modal Footer */
