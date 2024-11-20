@@ -18,6 +18,7 @@ function Header({ onLoginClick, onRegisterClick }) {
   const isTermsPage = location.pathname === '/terms';
   const isAboutPage = location.pathname === '/about';
   const isHomePage = location.pathname === '/home';
+  const isReviewPage = location.pathname === '/review';
 
   return (
     <Navbar bg="white" expand="lg" className="navbar" sticky="top">
@@ -38,7 +39,7 @@ function Header({ onLoginClick, onRegisterClick }) {
               </button>
             </>
           )}
-          {isHomePage && (
+          {(isHomePage || isReviewPage) && (
             <>
               <Navbar.Brand>
                 <img src={bell} alt="bell-icon" className="navbar-bell" />

@@ -7,8 +7,6 @@ import heart2 from '../assets/images/button-icons/heart2.svg';
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import starfilled from '../assets/images/button-icons/star2-filled.svg'; 
 import star2filled from '../assets/images/button-icons/star2.svg'; 
-
-
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -58,17 +56,15 @@ const HomePage = () => {
             />
           </div>
           <div className="profile-info">
-            <div className="profile-info">
-              <div className="profile-name">Dave Jones</div>
-              <div className="profile-score">
-                ★★★★☆
+            <div className="profile-name">Dave Jones</div>
+            <div className="profile-score">
+              ★★★★☆
+            </div>
+            <div className="profile-occupation">
+              Neurosurgeon
               </div>
-              <div className="profile-occupation">
-                Neurosurgeon
-                </div>
-              <div className="profile-description">
-                I have a passion for biking
-              </div>
+            <div className="profile-description">
+              I have a passion for biking
             </div>
           </div>
           <div className="location-favorite-container">
@@ -92,15 +88,13 @@ const HomePage = () => {
             />
           </div>
           <div className="profile-info">
-            <div className="profile-info">
-              <div className="profile-name">Bob Brown</div>
-              <div className="profile-score">★★★★☆</div>
-              <div className="profile-occupation">
-                Student
-              </div>
-              <div className="profile-description">
-                NEED a roommate ASAP
-              </div>
+            <div className="profile-name">Bob Brown</div>
+            <div className="profile-score">★★★★☆</div>
+            <div className="profile-occupation">
+              Student
+            </div>
+            <div className="profile-description">
+              NEED a roommate ASAP
             </div>
           </div>
           <div className="location-favorite-container">

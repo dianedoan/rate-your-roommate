@@ -1,0 +1,171 @@
+.review-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-profile-section, .review-section {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+}
+
+.review-profile-section {
+  background-color: #E4FFF5;
+  border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+}
+
+.review-section {
+  background-color: #f2ffe1;
+}
+
+.review-profile-card {
+  display: flex;
+  flex-direction: row; /* Make the card layout horizontal */
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 1rem; */
+  width: 100%;
+  max-width: 65rem;
+  padding: 3rem 1rem;
+}
+
+.review-profile-card:hover {
+
+}
+
+.image-container, .card-image-container {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+}
+
+
+.review-profile-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: left;
+    /* margin-right: 2rem; */
+    width: 30rem;
+}
+
+.review-profile-name {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.review-profile-occupation {
+    margin-top: 0.5rem;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.review-profile-description {
+    font-size: 2em;
+}
+
+.review-profile-score {
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+.favorite-icon {
+    cursor: pointer;
+    margin-bottom: 14rem;
+}
+  
+.heart-icon {
+    width: 3rem; /* Adjust image size */
+    height: 3rem;
+    margin: 0rem 2rem;
+}
+
+.image-location-container {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    width: 18em;
+}
+
+.review-profile-image {
+    width: 15rem; /* Adjust image size */
+    height: 15rem;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    margin-bottom: 1rem;
+
+}
+
+.review-profile-location {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+/* Review Card */
+.review-card {
+    display: flex;
+    flex-direction: row; /* Make the card layout horizontal */
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+    width: 100%;
+    max-width: 55rem;
+    height: 100%;
+    padding: 3rem;
+    background-color: #ffffff;
+    border: 0.12rem solid #1e1e1e; /* Bottom border */
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-card:hover {
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
+.review-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: left;
+    margin-right: 1rem;
+    width: 30em;
+}
+
+.review-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.review-score {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.review-description {
+    font-size: 1.5em;
+}
+
+.review-username {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.location {
+  font-size: 1.3em; /* Smaller font size for location */
+  margin-bottom: 3rem;
+  text-align: right;
+}
+
+
+
+.card-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
+  text-align: center;
+}
+

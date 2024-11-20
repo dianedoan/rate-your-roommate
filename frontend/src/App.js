@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import TermsConditions from "./pages/TermsConditions";
 import HomePage from "./pages/HomePage";
+import ReviewPage from "./pages/ReviewPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginModal from './components/LoginModal';
@@ -24,7 +25,7 @@ function App() {
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
 
-  // Functions to toggle log in/register modal
+  // Functions to toggle login/register modal
   const handleLoginClick = () => setShowLogin(true);
   const handleRegisterClick = () => setShowRegister(true);
   const handleRegisterToLoginClick = () => {
@@ -103,8 +104,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/review" element={<ReviewPage />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick}/>
+      
       {showLogin && <LoginModal 
         onClose={handleCloseLoginModal} 
         onLoginSuccess={handleSuccessfulLogin} 
