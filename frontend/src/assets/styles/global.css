@@ -126,8 +126,7 @@ html .nav-link:hover {
   }
 }
 
-
-/* Media Query for Tablet Screens (1024px) */
+/* Media Query for Small Screens (768px) */
 @media (max-width: 768px) {
   .normal-btn {
       text-align: center;
