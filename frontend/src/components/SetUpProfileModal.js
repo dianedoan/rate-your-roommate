@@ -1,7 +1,7 @@
 // SetUpProfileModal.js
 import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col, Badge } from 'react-bootstrap';
-import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
+import { FaChevronDown, FaTimes } from "react-icons/fa"; // Import the down arrow and close icon
 import './Modal.css';
 import './SetupProfileModal.css';
 
@@ -13,25 +13,59 @@ function SetUpProfileModal({ show, onClose }) {
   const [city, setCity] = useState('');
   const [preferences, setPreferences] = useState([]);
   const [activeBadges, setActiveBadges] = useState({});
+  const [searchQuery, setSearchQuery] = useState(''); // Search input state
+  const [selectedPreferences, setSelectedPreferences] = useState([]); // State to track selected preferences
+  const preferencesList = [
+    'Age 18-24', 
+    'Age 25-34', 
+    'Age 35-44',
+    'Early Riser', 
+    'Late Sleeper', 
+    'Snores', 
+    'Pet Owner', 
+    'No Pets', 
+    'Allergic to Pets',
+    'Clean & Tidy',
+    'Messy',
+    'Organized', 
+    'Unorganized', 
+    'Likes Socializing',
+    'Prefers Quiet Spaces',
+    'Homebody',
+    'Goes Out Often',
+    'Travels Often',
+    'Works from Home',
+    'Smoker Friendly',
+    'Non-Smoker',
+    'Vegetarian',
+    'Vegan',
+    'Pescatarian',
+    'Non-Vegetarian',
+    'Bookworm',
+    'Fitness Enthusiast',
+    'Gamer'
+  ];
 
-//   const handlePreferenceClick = (preference) => {
-//     if (preferences.includes(preference)) {
-//       setPreferences(preferences.filter((p) => p !== preference));
-//     } else {
-//       setPreferences([...preferences, preference]);
-//     }
-//   };
+  // Filter the preferences based on search input
+  const filteredPreferences = preferencesList.filter((pref) =>
+    pref.toLowerCase().includes(searchQuery.toLowerCase()) && !selectedPreferences.includes(pref) // Case-insensitive search
+  );
 
-  const handleBadgeClick = (badge) => {
-    setActiveBadges((prevState) => ({
-      ...prevState,
-      [badge]: !prevState[badge],
-    }));
-  }
+  const handleBadgeClick = (pref) => {
+    // If the pref is in selectedPreferences, remove it, otherwise add it
+    if (selectedPreferences.includes(pref)) {
+      setSelectedPreferences((prevState) =>
+        prevState.filter((item) => item !== pref) // Remove if already selected
+      );
+    } else {
+      setSelectedPreferences((prevState) => [...prevState, pref]); // Add if not selected
+    }
+  };
 
   return (
-    <Modal show={show} onHide={onClose} centered className="setup-profile-modal">
-      <Modal.Header closeButton>
+    // Clicking outside of the modal does not close it
+    <Modal show={show} onHide={onClose} centered className="setup-profile-modal" backdrop="static">
+      <Modal.Header>
         <Modal.Title className="w-100 text-center">
           <div className="modal-title-main">Setup Profile</div>
           <div className="modal-title-sub">Personalize your profile now or later</div>
@@ -105,67 +139,67 @@ function SetUpProfileModal({ show, onClose }) {
 
           <Form.Group controlId="preferences" className="mt-3">
             <Form.Label>Preferences & Lifestyle</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Search for tags (e.g., age, pet, clean)"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
+              className="mb-3"
+            />
             <div className="preferences">
-              {[
-                'Age 18-24', 
-                'Age 25-34', 
-                'Age 35-44',
+              {filteredPreferences.length > 0 ? (
+              // {searchQuery && filteredPreferences.length > 0 ? ( 
+                  filteredPreferences.map((pref) => (
+                  <Badge
+                    key={pref}
+                    className={`preference-tag ${
+                      (pref === 'Age 18-24' || pref === 'Age 25-34'  || pref === 'Age 35-44') ? 'age-related' :       
+                      (pref === 'Early Riser' || pref === 'Late Sleeper' || pref === 'Snores') ? 'sleep-related' :
+                      (pref === 'Pet Owner' || pref === 'No Pets' || pref === 'Allergic to Pets') ? 'pet-related' :
+                      (pref === 'Clean & Tidy' || pref === 'Messy') ? 'cleanliness-related' :
+                      (pref === 'Organized' || pref === 'Unorganized') ? 'organize-related' :
+                      (pref === 'Likes Socializing' || pref === 'Prefers Quiet Spaces') ? 'social-related' :
+                      (pref === 'Homebody' || pref === 'Goes Out Often' || pref === 'Travels Often' || pref === 'Works from Home') ? 'lifestyle-related' :
+                      (pref === 'Smoker Friendly' || pref === 'Non-Smoker') ? 'smoking-related' :
+                      (pref === 'Vegetarian' || pref === 'Vegan' || pref === 'Pescatarian' || pref === 'Non-Vegetarian') ? 'diet-related' :
+                      (pref === 'Bookworm' || pref === 'Gamer' || pref === 'Fitness Enthusiast') ? 'hobby-related' : ''
+                    }`}
+                    // onClick={() => console.log(`${pref} clicked`)} // Debugging click event
+                    onClick={() => handleBadgeClick(pref)}
+                    style={{ cursor: 'pointer' }} // Ensure the prefs are clickable
+                  >
+                    {pref}
+                  </Badge>
+                ))
+              ) : (
+                <p>No preference tags found.</p> // Show a message if no results
+              )}
+            </div>
+          </Form.Group>
 
-                'Early Riser', 
-                'Late Sleeper', 
-                'Snorer', 
-
-                'Pet Owner', 
-                'No Pets', 
-                'Allergic to Pets',
-
-                'Clean & Tidy',
-                'Messy',
-                'Organized', 
-                'Unorganized', 
-
-                'Likes Socializing',
-                'Prefers Quiet Spaces',
-                
-                'Homebody',
-                'Goes Out Often',
-                'Travels Often',
-                'Works from Home',
-
-                'Smoker Friendly',
-                'Non-Smoker',
-
-                'Vegetarian',
-                'Vegan',
-                'Pescatarian',
-                'Non-Vegetarian',
-
-                'Bookworm',
-                'Fitness Enthusiast',
-                'Gamer'
-
-              ].map((badge) => (
-                <Badge
-                  key={badge}
-                  className={`preference-tag ${
-                    badge.includes('Age') ? 'age-related' :
-                    (badge === 'Early Riser' || badge === 'Late Sleeper' || badge === 'Snorer') ? 'sleep-related' :
-                    (badge === 'Pet Owner' || badge === 'No Pets' || badge === 'Allergic to Pets') ? 'pet-related' :
-                    (badge === 'Clean & Tidy' || badge === 'Messy') ? 'cleanliness-related' :
-                    (badge === 'Organized' || badge === 'Unorganized') ? 'organize-related' :
-                    (badge === 'Likes Socializing' || badge === 'Prefers Quiet Spaces') ? 'social-related' :
-                    (badge === 'Homebody' || badge === 'Goes Out Often' || badge === 'Travels Often' || badge === 'Works from Home') ? 'lifestyle-related' :
-                    (badge === 'Smoker Friendly' || badge === 'Non-Smoker') ? 'smoking-related' :
-                    (badge === 'Vegetarian' || badge === 'Vegan' || badge === 'Pescatarian' || badge === 'Non-Vegetarian') ? 'diet-related' :
-                    (badge === 'Bookworm' || badge === 'Gamer' || badge === 'Fitness Enthusiast') ? 'hobby-related' : ''
-                  }`}
-                  onClick={() => console.log(`${badge} badge clicked`)} // Debugging click event
-                >
-                  {badge}
+          <Form.Group controlId="selectedPreferences" className="mt-3">
+            <Form.Label>Selected Preferences</Form.Label>
+            <div className="selected-preferences">
+              {selectedPreferences.map((pref) => (
+                <Badge key={pref} className={`selected-preference-tag ${
+                  (pref === 'Age 18-24' || pref === 'Age 25-34'  || pref === 'Age 35-44') ? 'age-related' :
+                  (pref === 'Early Riser' || pref === 'Late Sleeper' || pref === 'Snores') ? 'sleep-related' :
+                  (pref === 'Pet Owner' || pref === 'No Pets' || pref === 'Allergic to Pets') ? 'pet-related' :
+                  (pref === 'Clean & Tidy' || pref === 'Messy') ? 'cleanliness-related' :
+                  (pref === 'Organized' || pref === 'Unorganized') ? 'organize-related' :
+                  (pref === 'Likes Socializing' || pref === 'Prefers Quiet Spaces') ? 'social-related' :
+                  (pref === 'Homebody' || pref === 'Goes Out Often' || pref === 'Travels Often' || pref === 'Works from Home') ? 'lifestyle-related' :
+                  (pref === 'Smoker Friendly' || pref === 'Non-Smoker') ? 'smoking-related' :
+                  (pref === 'Vegetarian' || pref === 'Vegan' || pref === 'Pescatarian' || pref === 'Non-Vegetarian') ? 'diet-related' :
+                  (pref === 'Bookworm' || pref === 'Gamer' || pref === 'Fitness Enthusiast') ? 'hobby-related' : ''
+                }`} onClick={() => handleBadgeClick(pref)}>
+                  {pref}
+                  <FaTimes style={{ marginLeft: '5px'}} />
                 </Badge>
               ))}
             </div>
           </Form.Group>
+
         <div className="button-container">
           <Button variant="primary" type="submit" onClick={onClose} className="w-100 mt-3">
             Finish
