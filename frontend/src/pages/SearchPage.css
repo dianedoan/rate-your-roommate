@@ -1,0 +1,16 @@
+.search-content {
+height: 100%;
+}
+
+.search-bar {
+    padding: 1rem 2rem;
+}
+
+.search-bar .form-control {
+    border-radius: 2rem;
+    padding: 0.8rem 1.5rem;
+}
+
+.search-results-container {
+    height: 50vh;
+}

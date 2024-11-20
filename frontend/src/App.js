@@ -6,6 +6,7 @@ import About from "./pages/About";
 import TermsConditions from "./pages/TermsConditions";
 import HomePage from "./pages/HomePage";
 import ReviewPage from "./pages/ReviewPage";
+import SearchPage from "./pages/SearchPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginModal from './components/LoginModal';
@@ -105,9 +106,10 @@ function App() {
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/review" element={<ReviewPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick}/>
-      
+
       {showLogin && <LoginModal 
         onClose={handleCloseLoginModal} 
         onLoginSuccess={handleSuccessfulLogin} 
