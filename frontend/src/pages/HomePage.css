@@ -6,7 +6,6 @@
 
 .top-rated-section, .explore-section {
   width: 100%;
-  /* max-width: 800px; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -27,10 +26,12 @@
   display: flex;
   flex-direction: row; /* Make the card layout horizontal */
   align-items: center;
+  justify-content: space-between;
   margin-top: 1rem;
   width: 100%;
-  max-width: 40rem;
+  max-width: 55rem;
   padding: 2rem;
+
 }
 
 .top-rated-card:hover {
@@ -41,10 +42,12 @@
   display: flex;
   flex-direction: row; /* Make the card layout horizontal */
   align-items: center;
+  justify-content: space-between;
   margin-top: 1rem;
   width: 100%;
-  max-width: 40rem;
-  padding: 2rem;
+  max-width: 55rem;
+  height: 15rem;
+  padding: 2.5rem;
   background-color: #ffffff;
   border: 0.12rem solid #1e1e1e; /* Bottom border */
   border-radius: 0.5rem;
@@ -59,84 +62,102 @@
 
 .profile-image-container, .card-image-container {
   flex-shrink: 0; /* Prevent the image from shrinking */
-  margin-right: 20px; /* Space between image and text */
+  margin-right: 2rem; /* Space between image and text */
 }
 
 .top-rated-profile-image {
-  width: 12rem; /* Adjust image size */
-  height: 12rem;
+  width: 15rem; /* Adjust image size */
+  height: 15rem;
   border-radius: 50%; /* Make the image circular */
   object-fit: cover;
-  padding-right: 1em;
+  /* margin-right: 1em; */
 }
 
 .profile-image {
-  width: 8rem; /* Adjust image size */
-  height: 8rem;
+  width: 10rem; /* Adjust image size */
+  height: 10rem;
   border-radius: 50%; /* Make the image circular */
   object-fit: cover;
+}
+
+.top-rated-profile-info {
+  display: flex;
+  flex-direction: column; /* Stack profile name, description, and score vertically */
+  text-align: left;
+  margin-right: 7rem;
 }
 
 .profile-info {
   display: flex;
   flex-direction: column; /* Stack profile name, description, and score vertically */
   text-align: left;
-  /* margin-left: 1rem; */
+  margin-right: 1rem;
+  width: 30em;
 }
 
 .top-rated-profile-name {
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: bold;
 }
 
 .profile-name {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
 }
 
 .top-rated-profile-occupation {
   margin-top: 0.5rem;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: bold;
-
 }
 
 .profile-occupation {
-  margin-top: 1rem;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
 .top-rated-profile-description {
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .profile-description {
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 .profile-score {
-  margin-top: 0.5rem;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 .location-favorite-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 70px;
+  align-items: right;
+  /* margin-left: 70px; */
+  width: 8em;
+}
+
+.top-rated-location {
+  font-size: 1.5em; /* Smaller font size for location */
+  margin-bottom: 4rem;
+  text-align: right;
 }
 
 .location {
-  font-size: 0.8em; /* Smaller font size for location */
-  margin-top: 5px;
+  font-size: 1.3em; /* Smaller font size for location */
+  margin-bottom: 3rem;
+  text-align: right;
 }
 
 .favorite-icon {
-  font-size: 24px;
-  color: red;
   cursor: pointer;
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+.heart-icon {
+  width: 2.5rem; /* Adjust image size */
+  height: 2.5rem;
 }
 
 .card-image-container {
