@@ -4,7 +4,9 @@ import profile1 from "../assets/images/profile-pics/profile1.jpg";
 import profile2 from "../assets/images/profile-pics/profile2.jpg";
 import profile3 from "../assets/images/profile-pics/profile3.jpg";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
-import heart2clicked from '../assets/images/button-icons/heart2-clicked.svg'; 
+import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
+import starfilled from '../assets/images/button-icons/star2-filled.svg'; 
+import star2filled from '../assets/images/button-icons/star2.svg'; 
 
 
 import "./HomePage.css";
@@ -58,7 +60,9 @@ const HomePage = () => {
           <div className="profile-info">
             <div className="profile-info">
               <div className="profile-name">Dave Jones</div>
-              <div className="profile-score">★★★★☆</div>
+              <div className="profile-score">
+                ★★★★☆
+              </div>
               <div className="profile-occupation">
                 Neurosurgeon
                 </div>
