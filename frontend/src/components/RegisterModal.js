@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
 import './Modal.css';
-import './RegisterModal.css';
 
 const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
   const [formData, setFormData] = useState({
@@ -182,7 +181,7 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
 
           <Form.Group controlId="formSecurityQuestion" className="mb-3">
             <Form.Label>Security Question</Form.Label>
-            <div className="dropdown-wrapper">
+            <div className="icon-container">
             <Form.Control
               as="select"
               name="securityQuestion"

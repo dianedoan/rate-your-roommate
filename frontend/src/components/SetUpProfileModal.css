@@ -1,51 +1,24 @@
-/* SetUpProfileModal.css */
-.setup-profile-modal .modal-content {
-    border-radius: 10px;
-  }
-  
-  .setup-profile-modal .modal-header {
-    border-bottom: none;
-  }
-  
-  .setup-profile-modal .modal-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  
-  .setup-profile-modal .preferences-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 5px;
-    background-color: white; 
-  }
-  
-  .setup-profile-modal .preference-badge {
-    cursor: pointer;
-    margin: 5px;
-    background-color: white; 
-    color: black;
-    transition: background-color 0.3s;
-  }
-  
-  /* .setup-profile-modal .preference-badge.active {
-    background-color: #007bff;
-    color: white;
-  }  */
-  
-  .setup-profile-modal .modal-footer {
-    border-top: none;
-    justify-content: space-between;
-  }
-  
-  .setup-profile-modal .btn-primary {
-    background-color: #28a745;
-    border: none;
-  }
-  
-  .setup-profile-modal .btn-secondary {
-    background-color: #6c757d;
-    border: none;
-  }
-  
+/* Preference Tag Container */
+html .preferences {
+  display: flex;
+  flex-wrap: wrap;
+  border: 0.1rem solid #1e1e1e;
+  border-radius: 0.4rem;
+}
+
+/* Preference Tag */
+html .preference-tag {
+  cursor: pointer;
+  color: white;
+  text-shadow: 0.05rem 0.05rem #1e1e1e;
+  margin: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.7rem;
+  font-weight: normal;
+  /* background-color: white !important;  */
+}
+
+html .preference-tag:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}

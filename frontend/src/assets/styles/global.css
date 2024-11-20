@@ -78,6 +78,12 @@ html .nav-link:hover {
 }
 
 /* BUTTONS */
+.button-container {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem; /* Space between buttons */
+}
+
 .normal-btn {
   text-align: center;
   margin: 0.5rem;
@@ -149,6 +155,12 @@ html .nav-link:hover {
   }
 }
 
+.normal-btn:hover {
+  cursor: pointer;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
 /* Navigation bar button */
 .nav-btn {
   text-align: center;
@@ -159,12 +171,6 @@ html .nav-link:hover {
   border-radius: 0.5rem;
   border: 0.1rem solid #1e1e1e;
   text-shadow: 0.05rem 0.05rem #1e1e1e;
-}
-
-.normal-btn:hover {
-  cursor: pointer;
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
 }
 
 .nav-btn:hover {

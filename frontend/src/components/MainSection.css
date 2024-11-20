@@ -19,12 +19,6 @@
     border-bottom: none;
 }
 
-.button-container {
-    padding-top: 1rem;
-    display: flex;
-    gap: 2rem; /* Space between buttons */
-}
-
 /* Media query for larger screens (2560px) */
 @media (max-width: 2560px) {
     .main-section {

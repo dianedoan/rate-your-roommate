@@ -55,7 +55,7 @@ const LoginModal = ({ onClose, onForgotPasswordClick }) => {
 
           <Form.Group controlId="password" className="mb-3 mt-3">
             <Form.Label>Password</Form.Label>
-            <div className="password-container">
+            <div className="icon-container">
               <Form.Control
                 type={passwordVisible ? 'text' : 'password'}
                 placeholder="Enter password"

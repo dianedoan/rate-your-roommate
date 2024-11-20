@@ -42,7 +42,7 @@ function ForgotPasswordModal({ onClose, onSubmit, isSuccess }) {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit" className="w-100">
+            <Button variant="primary" type="submit" className="w-100 mt-3">
               Submit
             </Button>
           </Form>
@@ -60,6 +60,8 @@ function ForgotPasswordModal({ onClose, onSubmit, isSuccess }) {
           </div>
         )}
       </Modal.Body>
+      <Modal.Footer>
+      </Modal.Footer>
     </Modal>
   );
 }

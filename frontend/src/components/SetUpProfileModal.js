@@ -1,6 +1,8 @@
 // SetUpProfileModal.js
 import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col, Badge } from 'react-bootstrap';
+import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
+import './Modal.css';
 import './SetUpProfileModal.css';
 
 function SetUpProfileModal({ show, onClose }) {
@@ -30,11 +32,15 @@ function SetUpProfileModal({ show, onClose }) {
   return (
     <Modal show={show} onHide={onClose} centered className="setup-profile-modal">
       <Modal.Header closeButton>
-        <Modal.Title>Setup Profile</Modal.Title>
+        <Modal.Title className="w-100 text-center">
+          <div className="modal-title-main">Setup Profile</div>
+          <div className="modal-title-sub">Personalize your profile now or later</div>
+        </Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         <Form>
-          <Form.Group controlId="aboutMe">
+          <Form.Group controlId="aboutMe" className="form-subtitle mt-3">
             <Form.Label>About me</Form.Label>
             <Form.Control
               as="textarea"
@@ -45,7 +51,7 @@ function SetUpProfileModal({ show, onClose }) {
             />
           </Form.Group>
 
-          <Form.Group controlId="occupation">
+          <Form.Group controlId="occupation" className="mb-3 mt-3">
             <Form.Label>Occupation</Form.Label>
             <Form.Control
               type="text"
@@ -57,8 +63,9 @@ function SetUpProfileModal({ show, onClose }) {
 
           <Row>
             <Col>
-              <Form.Group controlId="country">
+              <Form.Group controlId="country" className="mb-3 mt-3">
                 <Form.Label>Country</Form.Label>
+                <div className="icon-container">
                 <Form.Control
                   as="select"
                   value={country}
@@ -68,10 +75,12 @@ function SetUpProfileModal({ show, onClose }) {
                   <option>Canada</option>
                   <option>USA</option>
                 </Form.Control>
+                <FaChevronDown className="dropdown-icon" />
+                </div>
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="state">
+              <Form.Group controlId="state" className="mb-3 mt-3">
                 <Form.Label>State/Province</Form.Label>
                 <Form.Control
                   type="text"
@@ -82,7 +91,7 @@ function SetUpProfileModal({ show, onClose }) {
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="city">
+              <Form.Group controlId="city" className="mb-3 mt-3">
                 <Form.Label>City</Form.Label>
                 <Form.Control
                   type="text"
@@ -94,13 +103,13 @@ function SetUpProfileModal({ show, onClose }) {
             </Col>
           </Row>
 
-          <Form.Group controlId="preferences">
+          <Form.Group controlId="preferences" className="mb-3 mt-3">
             <Form.Label>Preferences & Lifestyle</Form.Label>
-            <div className="preferences-badges">
-              {['Organized', 'Tidy', 'Pet Owner', 'Morning Person', 'Non-smoker', 'Age 18-24'].map((badge) => (
+            <div className="preferences">
+              {['Organized', 'Tidy', 'Pet Owner', 'No Pets', 'Morning Person', 'Night Owl', 'Non-smoker', 'Age 18-24', 'Age 25-34', 'Age 35-44'].map((badge) => (
                 <Badge
                   key={badge}
-                  className="preference-badge" // No active class
+                  className="preference-tag" // No active class
                   onClick={() => console.log(`${badge} badge clicked`)} // Debugging click event
                 //   className={`preference-badge ${activeBadges[badge] ? "active" : ""}`}
                 //   onClick={() => handleBadgeClick(badge)}
@@ -110,15 +119,17 @@ function SetUpProfileModal({ show, onClose }) {
               ))}
             </div>
           </Form.Group>
+        <div className="button-container">
+          <Button variant="primary" type="submit" onClick={onClose} className="w-100 mt-3">
+            Finish
+          </Button>
+          <Button variant="secondary" type="submit" onClick={onClose} className="w-100 mt-3">
+            Skip
+          </Button>
+        </div>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={onClose}>
-          Finish
-        </Button>
-        <Button variant="secondary" onClick={onClose}>
-          Skip
-        </Button>
       </Modal.Footer>
     </Modal>
   );
