@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col, Badge } from 'react-bootstrap';
 import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
 import './Modal.css';
-import './SetUpProfileModal.css';
+import './SetupProfileModal.css';
 
 function SetUpProfileModal({ show, onClose }) {
   const [aboutMe, setAboutMe] = useState('');
@@ -40,7 +40,7 @@ function SetUpProfileModal({ show, onClose }) {
 
       <Modal.Body>
         <Form>
-          <Form.Group controlId="aboutMe" className="form-subtitle mt-3">
+          <Form.Group controlId="aboutMe" className="form-subtitle">
             <Form.Label>About me</Form.Label>
             <Form.Control
               as="textarea"
@@ -51,7 +51,7 @@ function SetUpProfileModal({ show, onClose }) {
             />
           </Form.Group>
 
-          <Form.Group controlId="occupation" className="mb-3 mt-3">
+          <Form.Group controlId="occupation" className="mt-3">
             <Form.Label>Occupation</Form.Label>
             <Form.Control
               type="text"
@@ -63,7 +63,7 @@ function SetUpProfileModal({ show, onClose }) {
 
           <Row>
             <Col>
-              <Form.Group controlId="country" className="mb-3 mt-3">
+              <Form.Group controlId="country" className="mt-3">
                 <Form.Label>Country</Form.Label>
                 <div className="icon-container">
                 <Form.Control
@@ -80,7 +80,7 @@ function SetUpProfileModal({ show, onClose }) {
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="state" className="mb-3 mt-3">
+              <Form.Group controlId="state" className="mt-3">
                 <Form.Label>State/Province</Form.Label>
                 <Form.Control
                   type="text"
@@ -91,7 +91,7 @@ function SetUpProfileModal({ show, onClose }) {
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="city" className="mb-3 mt-3">
+              <Form.Group controlId="city" className="mt-3">
                 <Form.Label>City</Form.Label>
                 <Form.Control
                   type="text"
@@ -103,16 +103,63 @@ function SetUpProfileModal({ show, onClose }) {
             </Col>
           </Row>
 
-          <Form.Group controlId="preferences" className="mb-3 mt-3">
+          <Form.Group controlId="preferences" className="mt-3">
             <Form.Label>Preferences & Lifestyle</Form.Label>
             <div className="preferences">
-              {['Organized', 'Tidy', 'Pet Owner', 'No Pets', 'Morning Person', 'Night Owl', 'Non-smoker', 'Age 18-24', 'Age 25-34', 'Age 35-44'].map((badge) => (
+              {[
+                'Age 18-24', 
+                'Age 25-34', 
+                'Age 35-44',
+
+                'Early Riser', 
+                'Late Sleeper', 
+                'Snorer', 
+
+                'Pet Owner', 
+                'No Pets', 
+                'Allergic to Pets',
+
+                'Clean & Tidy',
+                'Messy',
+                'Organized', 
+                'Unorganized', 
+
+                'Likes Socializing',
+                'Prefers Quiet Spaces',
+                
+                'Homebody',
+                'Goes Out Often',
+                'Travels Often',
+                'Works from Home',
+
+                'Smoker Friendly',
+                'Non-Smoker',
+
+                'Vegetarian',
+                'Vegan',
+                'Pescatarian',
+                'Non-Vegetarian',
+
+                'Bookworm',
+                'Fitness Enthusiast',
+                'Gamer'
+
+              ].map((badge) => (
                 <Badge
                   key={badge}
-                  className="preference-tag" // No active class
+                  className={`preference-tag ${
+                    badge.includes('Age') ? 'age-related' :
+                    (badge === 'Early Riser' || badge === 'Late Sleeper' || badge === 'Snorer') ? 'sleep-related' :
+                    (badge === 'Pet Owner' || badge === 'No Pets' || badge === 'Allergic to Pets') ? 'pet-related' :
+                    (badge === 'Clean & Tidy' || badge === 'Messy') ? 'cleanliness-related' :
+                    (badge === 'Organized' || badge === 'Unorganized') ? 'organize-related' :
+                    (badge === 'Likes Socializing' || badge === 'Prefers Quiet Spaces') ? 'social-related' :
+                    (badge === 'Homebody' || badge === 'Goes Out Often' || badge === 'Travels Often' || badge === 'Works from Home') ? 'lifestyle-related' :
+                    (badge === 'Smoker Friendly' || badge === 'Non-Smoker') ? 'smoking-related' :
+                    (badge === 'Vegetarian' || badge === 'Vegan' || badge === 'Pescatarian' || badge === 'Non-Vegetarian') ? 'diet-related' :
+                    (badge === 'Bookworm' || badge === 'Gamer' || badge === 'Fitness Enthusiast') ? 'hobby-related' : ''
+                  }`}
                   onClick={() => console.log(`${badge} badge clicked`)} // Debugging click event
-                //   className={`preference-badge ${activeBadges[badge] ? "active" : ""}`}
-                //   onClick={() => handleBadgeClick(badge)}
                 >
                   {badge}
                 </Badge>
@@ -129,8 +176,8 @@ function SetUpProfileModal({ show, onClose }) {
         </div>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-      </Modal.Footer>
+      {/* <Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 }

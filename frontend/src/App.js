@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
-import SetUpProfileModal from './components/SetUpProfileModal';
+import SetupProfileModal from './components/SetupProfileModal';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './assets/styles/global.css';
 
@@ -20,7 +20,7 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null); 
-  const [showSetUpProfile, setShowSetUpProfile] = useState(false);
+  const [showSetupProfile, setShowSetupProfile] = useState(false);
 
   // Functions to toggle log in/register modal
   const handleLoginClick = () => setShowLogin(true);
@@ -50,10 +50,10 @@ function App() {
 
     const handleSuccessfulRegistration = () => {
       setShowRegister(false); 
-      setShowSetUpProfile(true); 
+      setShowSetupProfile(true); 
     };
 
-    const handleCloseSetUpProfileModal = () => setShowSetUpProfile(false);
+    const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
 
     const handleSuccessfulLogin = () => {
       setShowLogin(false);
@@ -98,7 +98,7 @@ function App() {
         isSuccess={isSuccess}  
          />
          )} 
-      {showSetUpProfile && <SetUpProfileModal show={showSetUpProfile} onClose={handleCloseSetUpProfileModal} />}
+      {showSetupProfile && <SetupProfileModal show={showSetupProfile} onClose={handleCloseSetupProfileModal} />}
     </Router>
   );
 }

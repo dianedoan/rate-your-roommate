@@ -9,10 +9,12 @@ html .preferences {
 /* Preference Tag */
 html .preference-tag {
   cursor: pointer;
-  color: white;
-  text-shadow: 0.05rem 0.05rem #1e1e1e;
+  color: #ffffff;
+  /* color: #1e1e1e; */
+  /* text-shadow: 0.05rem 0.05rem #000000; */
   margin: 0.4rem;
   padding: 0.4rem 0.6rem;
+  /* border: 0.1rem solid #1e1e1e; */
   border-radius: 0.7rem;
   font-weight: normal;
   /* background-color: white !important;  */
@@ -21,4 +23,70 @@ html .preference-tag {
 html .preference-tag:hover {
   transform: translateY(0.1rem);
   transition: transform 150ms;
+}
+
+/* Age Group Tags */
+html .preference-tag.age-related {
+  background-color: #4171e1 !important;
+  border: 0.1rem solid #3864cc;
+}
+
+/* Pet Related Tags (Pet Owner & No Pets) */
+html .preference-tag.pet-related {
+  background-color: #59cf8e !important;
+  border: 0.1rem solid #4bc381;
+}
+
+/* Smoking Related Tags (Smoker/Non-Smoker)*/
+html .preference-tag.smoking-related {
+  background-color: #8a5633 !important;
+  border: 0.1rem solid #7e451e;
+}
+
+/* Cleanliness Related Tags (Clean & Tidy/Messy)*/
+html .preference-tag.cleanliness-related {
+  background-color: #6747a1 !important;
+  border: 0.1rem solid #4e3184;
+}
+
+/* Organize Related Tags (Organized/Unorganized)*/
+html .preference-tag.organize-related {
+  background-color: #cacaca !important;
+  border: 0.1rem solid #b5b5b5;
+}
+
+/* Sleep-related Tags */
+html .preference-tag.sleep-related {
+  background-color: #71dcf1 !important;
+  border: 0.1rem solid #61cadf;
+}
+
+/* Social-related Tags */
+html .preference-tag.social-related {
+  background-color: #7ee3d5 !important;
+  border: 0.1rem solid #63d8c9;
+}
+
+/* Lifestyle-related Tags */
+html .preference-tag.lifestyle-related {
+  background-color: #8f8f8f !important;
+  border: 0.1rem solid #707070;
+}
+
+/* Diet Related Tags */
+html .preference-tag.diet-related {
+  background-color: #91cd6c !important;
+  border: 0.1rem solid #79b553;
+}
+
+/* Lifestyle-related Tags */
+html .preference-tag.hobby-related {
+  background-color: #f35c7a !important;
+  border: 0.1rem solid #e24867;
+}
+
+/* Other related Tags */
+html .preference-tag.other-related {
+  background-color: #121364 !important;
+  border: 0.1rem solid #0a0b43;
 }
