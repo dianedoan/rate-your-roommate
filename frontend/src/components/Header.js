@@ -1,9 +1,24 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import Logo from '../assets/images/RYR_logo.svg'; 
+import bell from '../assets/images/button-icons/bell.svg'; 
+import search from '../assets/images/button-icons/search.svg';
+import messages from '../assets/images/button-icons/messages.svg'; 
+import heart from '../assets/images/button-icons/heart.svg'; 
+import profile from '../assets/images/button-icons/profile.svg'; 
+
 import './Header.css';
 
-function Header ({onLoginClick, onRegisterClick}) {
+function Header({ onLoginClick, onRegisterClick }) {
+  const location = useLocation(); // Get the current route
+
+  // Check current routes
+  const isLandingPage = location.pathname === '/';
+  const isTermsPage = location.pathname === '/terms';
+  const isAboutPage = location.pathname === '/about';
+  const isHomePage = location.pathname === '/home';
+
   return (
     <Navbar bg="white" expand="lg" className="navbar" sticky="top">
       <Navbar.Brand href="/">
@@ -12,8 +27,37 @@ function Header ({onLoginClick, onRegisterClick}) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto d-flex">
-          <button className="nav-btn primary-btn" onClick={onLoginClick}>Login</button>
-          <button className="nav-btn secondary-btn" onClick={onRegisterClick}>Register</button>
+          {/* Conditionally render buttons based on the current route */}
+          {(isLandingPage || isTermsPage || isAboutPage) && (
+            <>
+              <button className="nav-btn primary-btn" onClick={onLoginClick}>
+                Login
+              </button>
+              <button className="nav-btn secondary-btn" onClick={onRegisterClick}>
+                Register
+              </button>
+            </>
+          )}
+          {isHomePage && (
+            <>
+              <Navbar.Brand>
+                <img src={bell} alt="bell-icon" className="navbar-bell" />
+              </Navbar.Brand>
+              <Navbar.Brand href="/home">
+                <img src={search} alt="search-icon" className="navbar-search" />
+              </Navbar.Brand>
+              <Navbar.Brand href="/home">
+                <img src={messages} alt="messages-icon" className="navbar-messages" />
+              </Navbar.Brand>
+              <Navbar.Brand href="/home">
+                <img src={heart} alt="heart-icon" className="navbar-heart" />
+              </Navbar.Brand>
+              <Navbar.Brand href="/home">
+                <img src={profile} alt="messages-icon" className="navbar-profile" />
+              </Navbar.Brand>
+            </>
+          )}
+
         </Nav>
       </Navbar.Collapse>
     </Navbar>
