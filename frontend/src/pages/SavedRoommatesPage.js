@@ -9,7 +9,6 @@ function SavedRoommatesPage() {
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
     const navigate = useNavigate(); // Hook for navigation
 
-    // Filter the saved roommates based on the search input (name, city)
     const filteredUsers = Object.values(likedProfiles).filter((user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -46,9 +45,9 @@ function SavedRoommatesPage() {
             {filteredUsers.length > 0 ? (
                 filteredUsers.map((user) => (
                     <div 
-                        className="profile-card" 
-                        key={user.name}
-                        onClick={() => goToUserProfile(user.id)} // Make card clickable
+                    key={user.name}
+                    className="profile-card" 
+                    onClick={() => goToUserProfile(user.id)} // Make card clickable
                     >
                         <div className="profile-image-container">
                             <img
@@ -60,15 +59,15 @@ function SavedRoommatesPage() {
                         <div className="profile-info">
                             <div className="profile-name">{user.name}</div>
                             <div className="profile-score">
-                                <span className="highlight5">{user.rating}/5</span> Rating
+                                <span className="highlight5">
+                                    {user.rating === 0 ? "N/A" : `${user.rating}/5`}
+                                </span> Rating
                             </div>
                             <div className="profile-occupation">{user.occupation}</div>
                             <div className="profile-description">{user.description}</div>
                         </div>
                         <div className="location-favorite-container">
-                            <p className="profile-location">
-                                {user.city}, {user.state}
-                            </p>
+                            <p className="profile-location">{user.city}, {user.state}</p>
                             <div className="favorite-icon">
                                 <img
                                     src={likedProfiles[user.name] ? heart2filled : heart2}

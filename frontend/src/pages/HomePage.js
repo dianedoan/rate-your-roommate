@@ -113,8 +113,8 @@ const HomePage = () => {
                             <div className="profile-info">
                                 <div className="profile-name">{user.name}</div>
                                 <div className="profile-score">
-                                    <span className="highlight5">{user.rating === 0 ? "N/A" : `${user.rating}/5`}</span>
-                                    {user.rating !== 0 && " Rating"}
+                                    <span className="highlight5">{user.rating === 0 ? "N/A " : `${user.rating}/5 `}</span>
+                                    Rating
                                 </div>
                                 <div className="profile-occupation">{user.occupation}</div>
                                 <div className="profile-description">{user.description}</div>

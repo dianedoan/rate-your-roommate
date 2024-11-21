@@ -81,7 +81,7 @@ export const reviewsData = [
     },
     {
         id: 'review2',
-        userId: 'sally-smith', // The user the review is for
+        userId: 'alice-wang', // The user the review is for
         score: 4.0, // Numeric score
         title: 'Good roommate',
         description: 'Great cook, very respectful.',
@@ -135,7 +135,7 @@ export const reviewsData = [
     },
     {
         id: 'review8',
-        userId: 'sally-smith',
+        userId: 'alice-wang',
         score: 4.5,
         title: 'Wonderful roommate',
         description: 'Sally always respected my privacy and shared her amazing meals!',
@@ -171,7 +171,7 @@ export const reviewsData = [
     },
     {
         id: 'review12',
-        userId: 'sally-smith',
+        userId: 'alice-wang',
         score: 4.0,
         title: 'Pleasant to live with',
         description: 'Very friendly and kind, always open to solving issues cooperatively.',
@@ -211,7 +211,7 @@ export const reviewsData = [
 // Set initial liked/saved profiles
 export const getInitialLikedProfiles = () => {
     return {
-        "Alice Wang": userList.find(user => user.name === "Alice Wang"),
+        "Alice Wang": userListWithRatings.find(user => user.name === "Alice Wang"),
         "Bob Brown": userListWithRatings.find(user => user.name === "Bob Brown"),
     };
 };

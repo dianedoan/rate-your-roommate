@@ -4,24 +4,22 @@ import { userList, userListWithRatings, reviewsData, calculateAverageRating, gen
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import { Badge } from 'react-bootstrap'; // Assuming you're using react-bootstrap
-import { FaTimes } from 'react-icons/fa'; // For the close button
 import './ReviewPage.css';
 
 const ReviewPage = () => {
     const { userId } = useParams(); // Extract the user ID from the URL
     const user = userList.find((u) => u.id === userId); // Find the matching user
     const userReviews = reviewsData.filter(review => review.userId === userId); // Filter reviews by userId
-
-    // Calculate the average rating dynamically based on reviews
-    const averageRating = calculateAverageRating(userId);
-
-    // Initialize liked profiles state
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+    
+    // Calculate average rating based on reviews
+    const averageRating = userReviews.length > 0 ? calculateAverageRating(userId) : null; // If no reviews, set averageRating to null
 
-    // Function to toggle the liked status of a profile
+    // Function to toggle the liked status of a profile (removing or re-adding profiles)
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
             const user = userListWithRatings.find(u => u.name === userName);
+            
             if (!user) return prevLikes;
 
             const updatedLikes = { ...prevLikes };
@@ -39,14 +37,7 @@ const ReviewPage = () => {
     // Scroll to the top when the page is rendered
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []); // Empty dependency array ensures it runs only once when the component is mounted
-
-    // Handle removing selected preferences when clicking the 'X' button
-    const handleBadgeClick = (pref) => {
-        // Handle preference removal logic here (e.g., update state)
-        // For now, assuming you're toggling the list of selected preferences:
-        setSelectedPreferences((prev) => prev.filter((p) => p !== pref));
-    };
+    }, []); // Ensures it runs only once when the component is mounted
 
     if (!user) {
         return (
@@ -57,7 +48,6 @@ const ReviewPage = () => {
         );
     }
     
-
     // Render preferences from the user object
     const preferences = user.preferences || [];
 
@@ -80,7 +70,10 @@ const ReviewPage = () => {
                             ))}
                         </div>
                         <div className="review-profile-score">
-                            <span className="highlight4">{averageRating}/5</span> Rating
+                            <span className="highlight4">
+                                {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
+                            </span> 
+                            Rating
                         </div>
                     </div>
                     <div className="profile-favorite-icon">

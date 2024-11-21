@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for dynamic routing
-import { userList, getInitialLikedProfiles } from "../data/userData";
+import { useNavigate } from 'react-router-dom';
+import { userListWithRatings, getInitialLikedProfiles } from "../data/userData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import "./SearchPage.css";
@@ -11,14 +11,14 @@ function SearchPage() {
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
     const navigate = useNavigate(); // Hook for navigation
 
-    // Filter the users based on search input (name, city)
-    const filteredUsers = userList.filter((user) =>
+    // Filter the users based on search input (name, state/province, city)
+    const filteredUsers = userListWithRatings.filter((user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.state.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Function to toggle the liked status
+    // Function to toggle the liked status (removing or re-adding profiles)
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
             const updatedLikes = { ...prevLikes };
@@ -28,7 +28,7 @@ function SearchPage() {
                 delete updatedLikes[userName];
             } else {
                 // If not liked yet, find the user and add to liked profiles
-                const user = userList.find((u) => u.name === userName);
+                const user = userListWithRatings.find((u) => u.name === userName);
                 updatedLikes[userName] = user;
             }
 
@@ -62,19 +62,26 @@ function SearchPage() {
                     <></> // Render nothing if searchQuery is empty
                 ) : filteredUsers.length > 0 ? (
                     <div className="search-results">
-                        {filteredUsers.map((user, index) => (
-                            <div key={index} className="profile-card" onClick={() => goToUserProfile(user.id)}> {/* Make card clickable */}
+                        {filteredUsers.map((user) => (
+                            <div 
+                            key={user.name} 
+                            className="profile-card" 
+                            onClick={() => goToUserProfile(user.id)} // Make card clickable
+                            >
                                 <div className="profile-image-container">
-                                    <img
-                                        src={user.image} // Use the imported image
-                                        alt={user.name}
-                                        className="profile-image"
-                                    />
+                                <img
+                                    src={user.image}
+                                    alt={user.name}
+                                    className="profile-image"
+                                />
                                 </div>
                                 <div className="profile-info">
                                     <div className="profile-name">{user.firstName} {user.lastName}</div>
                                     <div className="profile-score">
-                                        <span className="highlight5">{user.rating}/5</span> Rating
+                                        <span className="highlight5">
+                                            {user.rating === 0 ? "N/A" : `${user.rating}/5`}
+                                        </span>
+                                        {user.rating !== 0 && " Rating"}
                                     </div>
                                     <div className="profile-occupation">{user.occupation}</div>
                                     <div className="profile-description">{user.description}</div>
