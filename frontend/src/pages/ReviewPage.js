@@ -2,7 +2,6 @@ import React from "react";
 import profile4 from "../assets/images/profile-pics/profile4.jpg";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
-
 import "./ReviewPage.css";
 
 const ReviewPage = () => {
@@ -21,7 +20,7 @@ const ReviewPage = () => {
               <div className="selected-preferences">
                 
               </div>
-              <div className="review-profile-score"><span className="highlight4">4.5/5</span> Overall Score</div>
+              <div className="review-profile-score"><span className="highlight4">4.5/5</span> Rating</div>
             </div>
             <div className="profile-favorite-icon">
             <img

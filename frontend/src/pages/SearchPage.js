@@ -1,101 +1,13 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import profile1 from "../assets/images/profile-pics/profile1.jpg";
-import profile2 from "../assets/images/profile-pics/profile2.jpg";
-import profile3 from "../assets/images/profile-pics/profile3.jpg";
-import profile4 from "../assets/images/profile-pics/profile4.jpg";
-import profile5 from "../assets/images/profile-pics/profile5.jpg";
+import { userList, getInitialLikedProfiles, getTopRatedList } from "../data/TestUserData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
-import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
-import starfilled from '../assets/images/button-icons/star2-filled.svg'; 
-import star2filled from '../assets/images/button-icons/star2.svg';  
+import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import "./SearchPage.css";
 
 function SearchPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
-    // Initialize likedRoommates to simulate saved roommates
-    const [likedProfiles, setLikedProfiles] = useState({
-        'Alice Wang': {
-            name: 'Alice Wang',
-            firstName: 'Alice',
-            lastName: 'Wang',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Athlete',
-            rating: '4.5',
-            description: 'I love skating and sleeping',
-            image: profile1
-        },
-        'Bob Brown': {
-            name: 'Bob Brown',
-            firstName: 'Bob',
-            lastName: 'Brown',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Student',
-            rating: '4.0',
-            description: 'NEED a roommate ASAP',
-            image: profile3
-        }
-    });
-    
-    const userList = [
-        {
-            name: 'Alice Wang',
-            firstName: 'Alice',
-            lastName: 'Wang',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Athlete',
-            rating: '4.5',
-            description: 'I love skating and sleeping',
-            image: profile1
-        },
-        {
-            name: 'Dave Jones',
-            firstName: 'Dave',
-            lastName: 'Jones',
-            city: 'Airdrie',
-            state: 'AB',
-            occupation: 'Neurosurgeon',
-            rating: '4.0',
-            description: 'I have a passion for biking',
-            image: profile2
-        },
-        {
-            name: 'Bob Brown',
-            firstName: 'Bob',
-            lastName: 'Brown',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Student',
-            rating: '4.0',
-            description: 'NEED a roommate ASAP',
-            image: profile3
-        },
-        {
-            name: 'John Fitzgerald',
-            firstName: 'John',
-            lastName: 'Fitzgerald',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Software Engineer',
-            rating: '3.5',
-            description: 'I own a lot of cats',
-            image: profile4
-        },
-        {
-            name: 'Sally Smith',
-            firstName: 'Sally',
-            lastName: 'Smith',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Teacher',
-            rating: '4.0',
-            description: 'I like cooking',
-            image: profile5
-        },
-    ];
+    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
 
     // Filter the users based on search input (name, city)
     const filteredUsers = userList.filter((user) =>

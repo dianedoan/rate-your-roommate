@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import profile1 from "../assets/images/profile-pics/profile1.jpg";
-import profile3 from "../assets/images/profile-pics/profile3.jpg";
+import { userList, getInitialLikedProfiles, getTopRatedList } from "../data/TestUserData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
 import "./SearchPage.css";
@@ -8,31 +7,7 @@ import "./SearchPage.css";
 function SavedRoommatesPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
     
-    // Initialize likedProfiles with saved roommates
-    const [likedProfiles, setLikedProfiles] = useState({
-        'Alice Wang': {
-            name: 'Alice Wang',
-            firstName: 'Alice',
-            lastName: 'Wang',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Athlete',
-            rating: '4.5',
-            description: 'I love skating and sleeping',
-            image: profile1
-        },
-        'Bob Brown': {
-            name: 'Bob Brown',
-            firstName: 'Bob',
-            lastName: 'Brown',
-            city: 'Calgary',
-            state: 'AB',
-            occupation: 'Student',
-            rating: '4.0',
-            description: 'NEED a roommate ASAP',
-            image: profile3
-        }
-    });
+    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
 
     // Filter the saved roommates based on the search input (name, city)
     const filteredUsers = Object.values(likedProfiles).filter((user) =>
