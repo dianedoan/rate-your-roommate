@@ -60,10 +60,16 @@ html h5 {
   -webkit-text-stroke-color: #1e1e1e;
 }
 
-/* Explore Roommates text */
 .highlight5 {
   color: #e4fff5;
   -webkit-text-stroke-width: 0.05rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+/* Rating Stars  */
+.highlight6 {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.01rem;
   -webkit-text-stroke-color: #1e1e1e;
 }
 

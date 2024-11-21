@@ -1,5 +1,5 @@
 // App.js
-import React, {useState, useEffect}from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
@@ -85,8 +85,7 @@ function App() {
     setShowLogin(false);
     window.location.href = '/home';
   };
-
-
+  
   return (
     <Router>
       <Header

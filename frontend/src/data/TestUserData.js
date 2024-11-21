@@ -14,7 +14,6 @@ export const userList = [
         city: 'Calgary',
         state: 'AB',
         occupation: 'Athlete',
-        rating: '4.5',
         description: 'I love skating and sleeping',
         image: profile1,
     },
@@ -26,7 +25,6 @@ export const userList = [
         city: 'Airdrie',
         state: 'AB',
         occupation: 'Neurosurgeon',
-        rating: '4.0',
         description: 'I have a passion for biking',
         image: profile2,
     },
@@ -38,7 +36,6 @@ export const userList = [
         city: 'Calgary',
         state: 'AB',
         occupation: 'Student',
-        rating: '4.0',
         description: 'NEED a roommate ASAP',
         image: profile3,
     },
@@ -50,7 +47,6 @@ export const userList = [
         city: 'Calgary',
         state: 'AB',
         occupation: 'Software Engineer',
-        rating: '3.5',
         description: 'I own a lot of cats',
         image: profile4,
     },
@@ -62,20 +58,67 @@ export const userList = [
         city: 'Calgary',
         state: 'AB',
         occupation: 'Teacher',
-        rating: '4.0',
         description: 'I like cooking',
         image: profile5,
     },
 ];
 
-// Utility functions
+// Review Cards Data with dynamic stars based on score
+export const reviewsData = [
+    {
+        id: 'review1',
+        userId: 'john-fitzgerald', // The user the review is for
+        score: 3.0, // Numeric score
+        title: 'Too many cats',
+        description: 'cat hair everywhere :(',
+        username: 'Anonymous',
+        date: 'September 27, 2024',
+    },
+    {
+        id: 'review2',
+        userId: 'sally-smith', // The user the review is for
+        score: 4.0, // Numeric score
+        title: 'Good roommate',
+        description: 'Great cook, very respectful.',
+        username: 'Anonymous',
+        date: 'October 2, 2024',
+    },
+];
+
+// Set initial liked/saved profiles
 export const getInitialLikedProfiles = () => {
     return {
         "Alice Wang": userList.find(user => user.name === "Alice Wang"),
-        "Bob Brown": userList.find(user => user.name === "Bob Brown"),
+        "Bob Brown": userListWithRatings.find(user => user.name === "Bob Brown"),
     };
 };
 
+// Calculate average rating for a user based on their reviews
+export const calculateAverageRating = (userId) => {
+    // Filter reviews by the user
+    const userReviews = reviewsData.filter(review => review.userId === userId);
+    
+    // Calculate the sum of the scores and the number of reviews
+    const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+    const averageRating = totalScore / userReviews.length;
+
+    // Round to 1 decimal place
+    return averageRating ? Math.round(averageRating * 10) / 10 : 0;
+};
+
+// Add dynamic rating calculation to each user
+export const userListWithRatings = userList.map(user => ({
+    ...user,
+    rating: calculateAverageRating(user.id), // Calculate and add the average rating
+}));
+
+// Filter users with a rating of 4.0 or higher
 export const getTopRatedList = () => {
-    return userList.filter(user => user.rating >= 4.0);
+    return userListWithRatings.filter(user => user.rating >= 4.0);
+};
+
+// Function to generate the star rating based on score
+export const generateStarRating = (score) => {
+    const filledStars = '★'.repeat(Math.floor(score));
+    return filledStars;
 };
