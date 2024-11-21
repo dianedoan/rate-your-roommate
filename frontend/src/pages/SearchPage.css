@@ -1,9 +1,10 @@
 .search-content {
-height: 100%;
+    height: 100%;
 }
 
 .search-bar {
     padding: 1rem 2rem;
+    margin: 2rem;
 }
 
 .search-bar .form-control {
@@ -12,5 +13,21 @@ height: 100%;
 }
 
 .search-results-container {
-    height: 50vh;
+    min-height: 60vh;
+    padding-bottom: 2rem;
+}
+
+.search-results {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.search-results-container h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 2rem;
 }

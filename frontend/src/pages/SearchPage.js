@@ -1,32 +1,136 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Row, Col, Badge } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import profile1 from "../assets/images/profile-pics/profile1.jpg";
+import profile2 from "../assets/images/profile-pics/profile2.jpg";
+import profile3 from "../assets/images/profile-pics/profile3.jpg";
 import profile4 from "../assets/images/profile-pics/profile4.jpg";
+import profile5 from "../assets/images/profile-pics/profile5.jpg";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
-import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
+import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
+import starfilled from '../assets/images/button-icons/star2-filled.svg'; 
+import star2filled from '../assets/images/button-icons/star2.svg';  
 import "./SearchPage.css";
+
 function SearchPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
-    const preferencesList = []
+    const userList = [
+        {
+            name: 'Alice Wang',
+            firstName: 'Alice',
+            lastName: 'Wang',
+            city: 'Calgary',
+            state: 'AB',
+            occupation: 'Athlete',
+            rating: '4.5',
+            description: 'I love skating and sleeping',
+            image: profile1
+        },
+        {
+            name: 'Dave Jones',
+            firstName: 'Dave',
+            lastName: 'Jones',
+            city: 'Airdrie',
+            state: 'AB',
+            occupation: 'Student',
+            rating: '4.0',
+            description: 'NEED a roommate ASAP',
+            image: profile2
+        },
+        {
+            name: 'Bob Brown',
+            firstName: 'Bob',
+            lastName: 'Brown',
+            city: 'Calgary',
+            state: 'AB',
+            occupation: 'Student',
+            rating: '4.0',
+            description: 'NEED a roommate ASAP',
+            image: profile3
+        },
+        {
+            name: 'John Fitzgerald',
+            firstName: 'John',
+            lastName: 'Fitzgerald',
+            city: 'Calgary',
+            state: 'AB',
+            occupation: 'Software Engineer',
+            rating: '3.5',
+            description: 'I own a lot of cats',
+            image: profile4
+        },
+        {
+            name: 'Sally Smith',
+            firstName: 'Sally',
+            lastName: 'Smith',
+            city: 'Calgary',
+            state: 'AB',
+            occupation: 'Teacher',
+            rating: '4.0',
+            description: 'I like cooking',
+            image: profile5
+        },
+    ];
 
+    // Filter the users based on search input (name, city)
+    const filteredUsers = userList.filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.state.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    
     return (
         <div className="search-content">
-            <div className="search-bar">
-                <Form.Group controlId="search" className="search-bar">
+            <Form.Group controlId="search" className="search-bar">
                 <Form.Label></Form.Label>
                 <Form.Control
-                type="text"
-                placeholder="Search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
-                className="mb-3"
+                    type="text"
+                    placeholder="Search by name, state/province, or city"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
+                    className="mb-3"
                 />
-                </Form.Group>
-            </div>
+            </Form.Group>
             <div className="search-results-container">
-                <br/>
+                {searchQuery.trim() === '' ? ( // Check if searchQuery is empty
+                    <></> // Render nothing if searchQuery is empty
+                ) : filteredUsers.length > 0 ? (
+                    <div className="search-results">
+                        {filteredUsers.map((user, index) => (
+                            <div key={index} className="profile-card">
+                                <div className="profile-image-container">
+                                    <img
+                                        src={user.image} // Use the imported image
+                                        alt={user.name}
+                                        className="profile-image"
+                                    />
+                                </div>
+                                <div className="profile-info">
+                                    <div className="profile-name">{user.firstName} {user.lastName}</div>
+                                    <div className="profile-score">
+                                        <span className="highlight5">{user.rating}/5</span> Rating
+                                    </div>
+                                    <div className="profile-occupation">{user.occupation}</div>
+                                    <div className="profile-description">{user.description}</div>
+                                </div>
+                                <div className="location-favorite-container">
+                                    <p className="profile-location">{user.city}, {user.state}</p>
+                                    <div className="favorite-icon">
+                                        <img
+                                            src={heart2}
+                                            alt="heart2"
+                                            className="heart-icon"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <h3>Sorry, we couldn't find any results.</h3>
+                )}
             </div>
         </div>
     );
-};
-  
+}
+
 export default SearchPage;
