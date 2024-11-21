@@ -31,38 +31,10 @@
   width: 100%;
   max-width: 55rem;
   padding: 2rem;
-
 }
 
 .top-rated-card:hover {
   cursor: pointer;
-}
-
-.explore-card {
-  display: flex;
-  flex-direction: row; /* Make the card layout horizontal */
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-  width: 100%;
-  max-width: 55rem;
-  height: 15rem;
-  padding: 2.5rem;
-  background-color: #ffffff;
-  border: 0.12rem solid #1e1e1e; /* Bottom border */
-  border-radius: 0.5rem;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.explore-card:hover {
-  cursor: pointer;
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
-}
-
-.profile-image-container, .card-image-container {
-  flex-shrink: 0; /* Prevent the image from shrinking */
-  margin-right: 2rem; /* Space between image and text */
 }
 
 .top-rated-profile-image {
@@ -73,13 +45,6 @@
   /* margin-right: 1em; */
 }
 
-.profile-image {
-  width: 10rem; /* Adjust image size */
-  height: 10rem;
-  border-radius: 50%; /* Make the image circular */
-  object-fit: cover;
-}
-
 .top-rated-profile-info {
   display: flex;
   flex-direction: column; /* Stack profile name, description, and score vertically */
@@ -87,21 +52,8 @@
   margin-right: 7rem;
 }
 
-.profile-info {
-  display: flex;
-  flex-direction: column; /* Stack profile name, description, and score vertically */
-  text-align: left;
-  margin-right: 1rem;
-  width: 30em;
-}
-
 .top-rated-profile-name {
   font-size: 2.5em;
-  font-weight: bold;
-}
-
-.profile-name {
-  font-size: 2em;
   font-weight: bold;
 }
 
@@ -111,30 +63,8 @@
   font-weight: bold;
 }
 
-.profile-occupation {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
 .top-rated-profile-description {
   font-size: 1.5em;
-}
-
-.profile-description {
-  font-size: 1.5em;
-}
-
-.profile-score {
-  font-weight: bold;
-  font-size: 1.8em;
-}
-
-.location-favorite-container {
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  /* margin-left: 70px; */
-  width: 8em;
 }
 
 .top-rated-location {
@@ -142,31 +72,3 @@
   margin-bottom: 4rem;
   text-align: right;
 }
-
-.location {
-  font-size: 1.3em; /* Smaller font size for location */
-  margin-bottom: 3rem;
-  text-align: right;
-}
-
-.favorite-icon {
-  cursor: pointer;
-  text-align: right;
-  margin-bottom: 2rem;
-}
-
-.heart-icon {
-  width: 2.5rem; /* Adjust image size */
-  height: 2.5rem;
-}
-
-.card-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-body {
-  text-align: center;
-}
-

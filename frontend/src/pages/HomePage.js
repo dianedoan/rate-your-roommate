@@ -1,134 +1,154 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+import React, { useState } from "react";
 import profile1 from "../assets/images/profile-pics/profile1.jpg";
 import profile2 from "../assets/images/profile-pics/profile2.jpg";
 import profile3 from "../assets/images/profile-pics/profile3.jpg";
-import heart2 from '../assets/images/button-icons/heart2.svg'; 
-import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
-import starfilled from '../assets/images/button-icons/star2-filled.svg'; 
-import star2filled from '../assets/images/button-icons/star2.svg'; 
+import profile4 from "../assets/images/profile-pics/profile4.jpg";
+import profile5 from "../assets/images/profile-pics/profile5.jpg";
+import heart2 from "../assets/images/button-icons/heart2.svg";
+import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
+import starfilled from "../assets/images/button-icons/star2-filled.svg";
+import star2filled from "../assets/images/button-icons/star2.svg";
 import "./HomePage.css";
 
 const HomePage = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const topRatedList = [
+    {
+      name: "Alice Wang",
+      firstName: "Alice",
+      lastName: "Wang",
+      city: "Calgary",
+      state: "AB",
+      occupation: "Athlete",
+      rating: "4.5",
+      description: "I love skating and sleeping",
+      image: profile1,
+    },
+  ];
+
+  const exploreList = [
+    {
+      name: "Dave Jones",
+      firstName: "Dave",
+      lastName: "Jones",
+      city: "Airdrie",
+      state: "AB",
+      occupation: "Student",
+      rating: "4.0",
+      description: "NEED a roommate ASAP",
+      image: profile2,
+    },
+    {
+      name: "Bob Brown",
+      firstName: "Bob",
+      lastName: "Brown",
+      city: "Calgary",
+      state: "AB",
+      occupation: "Student",
+      rating: "4.0",
+      description: "NEED a roommate ASAP",
+      image: profile3,
+    },
+    {
+      name: "John Fitzgerald",
+      firstName: "John",
+      lastName: "Fitzgerald",
+      city: "Calgary",
+      state: "AB",
+      occupation: "Software Engineer",
+      rating: "3.5",
+      description: "I own a lot of cats",
+      image: profile4,
+    },
+    {
+      name: "Sally Smith",
+      firstName: "Sally",
+      lastName: "Smith",
+      city: "Calgary",
+      state: "AB",
+      occupation: "Teacher",
+      rating: "4.0",
+      description: "I like cooking",
+      image: profile5,
+    },
+  ];
+
+  // Filter users based on the search query
+  const filteredUsers = exploreList.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    user.state.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="homepage-content">
       <div className="top-rated-section">
-        <h2>Top-Rated <span className="highlight2">Roommates</span></h2>
-        <div className="top-rated-card">
-          <div className="profile-image-container">
-            <img
-              src={profile1} // Use the imported image
-              alt="Alice Wang"
-              className="top-rated-profile-image"
-            />
-          </div>
-          <div className="top-rated-profile-info">
-            <div className="top-rated-profile-name">Alice Wang</div>
-            <div className="top-rated-profile-occupation">
-              Athlete
-            </div>
-            <div className="top-rated-profile-description">
-              I love skating and sleeping
-            </div>
-            <div className="profile-score"><span className="highlight4">4.5/5</span> Overall Score</div>
-          </div>
-          <div className="location-favorite-container">
-            <p className="top-rated-location">Calgary, AB</p>
-            <div className="favorite-icon">
+        <h2>
+          Top-Rated <span className="highlight2">Roommates</span>
+        </h2>
+        {topRatedList.map((user) => (
+          <div className="top-rated-card" key={user.name}>
+            <div className="profile-image-container">
               <img
-                src={heart2}
-                alt="heart2"
-                className="heart-icon"
+                src={user.image}
+                alt={user.name}
+                className="top-rated-profile-image"
               />
             </div>
+            <div className="top-rated-profile-info">
+              <div className="top-rated-profile-name">{user.name}</div>
+              <div className="top-rated-profile-occupation">
+                {user.occupation}
+              </div>
+              <div className="top-rated-profile-description">
+                {user.description}
+              </div>
+              <div className="profile-score">
+                <span className="highlight4">{user.rating}/5</span> Rating
+              </div>
+            </div>
+            <div className="location-favorite-container">
+              <p className="top-rated-location">
+                {user.city}, {user.state}
+              </p>
+              <div className="favorite-icon">
+                <img src={heart2} alt="heart2" className="heart-icon" />
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
       <div className="explore-section">
-        <h2>Explore <span className="highlight3">Roommates</span></h2>
-        <div className="explore-card">
-          <div className="profile-image-container">
-            <img
-              src={profile2} // Use the imported image
-              alt="Dave Jones"
-              className="profile-image"
-            />
-          </div>
-          <div className="profile-info">
-            <div className="profile-name">Dave Jones</div>
-            <div className="profile-score">
-              ★★★★☆
-            </div>
-            <div className="profile-occupation">
-              Neurosurgeon
-              </div>
-            <div className="profile-description">
-              I have a passion for biking
-            </div>
-          </div>
-          <div className="location-favorite-container">
-            <p className="location">Airdrie, AB</p>
-            <div className="favorite-icon">
-              <img
-                src={heart2}
-                alt="heart2"
-                className="heart-icon"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="explore-card">
-          <div className="profile-image-container">
-            <img
-              src={profile3} // Use the imported image
-              alt="Bob Brown"
-              className="profile-image"
-            />
-          </div>
-          <div className="profile-info">
-            <div className="profile-name">Bob Brown</div>
-            <div className="profile-score">★★★★☆</div>
-            <div className="profile-occupation">
-              Student
-            </div>
-            <div className="profile-description">
-              NEED a roommate ASAP
-            </div>
-          </div>
-          <div className="location-favorite-container">
-            <p className="location">Calgary, AB</p>
-            <div className="favorite-icon">
-              <img
-                src={heart2}
-                alt="heart2"
-                className="heart-icon"
-              />
-            </div>
-          </div>
-        </div>
-          {/* <Card className="explore-card">
+        <h2>
+          Explore <span className="highlight3">Roommates</span>
+        </h2>
+        {filteredUsers.map((user) => (
+          <div className="profile-card" key={user.name}>
             <div className="profile-image-container">
               <img
-                src={profile1} // Use the imported image
-                alt="Bob Brown"
+                src={user.image}
+                alt={user.name}
                 className="profile-image"
               />
             </div>
             <div className="profile-info">
-              <div className="profile-name">Bob Brown</div>
-              <div className="profile-description">
-              Student
-                <br />NEED a roommate ASAP
-              </div>
-              <div className="profile-score">★★★★☆☆</div>
+              <div className="profile-name">{user.name}</div>
+              <div className="profile-score"><span className="highlight5">{user.rating}/5</span> Rating</div>
+              <div className="profile-occupation">{user.occupation}</div>
+              <div className="profile-description">{user.description}</div>
             </div>
             <div className="location-favorite-container">
-              <p className="location">Calgary, AB</p>
-              <div className="favorite-icon">&#9825;</div>
+              <p className="profile-location">
+                {user.city}, {user.state}
+              </p>
+              <div className="favorite-icon">
+                <img src={heart2} alt="heart2" className="heart-icon" />
+              </div>
             </div>
-          </Card> */}
+          </div>
+        ))}
       </div>
     </div>
   );
