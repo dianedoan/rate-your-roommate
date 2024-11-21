@@ -24,8 +24,19 @@ const HomePage = () => {
       description: "I love skating and sleeping",
       image: profile1,
     },
+    'Bob Brown': {
+        name: 'Bob Brown',
+        firstName: 'Bob',
+        lastName: 'Brown',
+        city: 'Calgary',
+        state: 'AB',
+        occupation: 'Student',
+        rating: '4.0',
+        description: 'NEED a roommate ASAP',
+        image: profile3
+    }
   });
-  
+
   const topRatedList = [
     {
       name: "Alice Wang",

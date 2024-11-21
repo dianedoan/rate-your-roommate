@@ -1,4 +1,4 @@
-/* Default logo styling */
+/* Logo Icon */
 .navbar-logo {
   height: 75px;
 }
@@ -42,4 +42,7 @@
   }
 }
 
-  
+.navbar-home:hover , .navbar-search:hover, .navbar-messages:hover, .navbar-heart:hover, .navbar-profile:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}

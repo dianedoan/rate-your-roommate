@@ -1,6 +1,6 @@
 .search-content {
-    height: 100%;
     width: 100%;
+    height: 100vh;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -8,18 +8,17 @@
 }
 
 .search-bar {
-    padding: 1rem 2rem;
-    margin: 2rem;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 55rem;
+    display: flex;
+    flex-direction: row; /* Make the card layout horizontal */
+    align-items: center;
 }
 
 .search-bar .form-control {
     border-radius: 2rem;
     padding: 0.8rem 1.5rem;
-}
-
-.search-results-container {
-    min-height: 60vh;
-    padding-bottom: 2rem;
 }
 
 .search-results {
@@ -29,10 +28,4 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 2rem;
-}
-
-.search-results-container h3 {
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 2rem;
 }

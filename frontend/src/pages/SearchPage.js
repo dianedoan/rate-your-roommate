@@ -128,17 +128,17 @@ function SearchPage() {
     return (
         <div className="search-content">
             <h2>Search</h2>
-            <Form.Group controlId="search" className="search-bar">
-                <Form.Label></Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Search by name, state/province, or city"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
-                    className="mb-3"
-                />
-            </Form.Group>
-            <div className="search-results-container">
+            <div className="search-results">
+                <Form.Group controlId="search" className="search-bar">
+                    <Form.Label></Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Search by name, state/province, or city"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
+                        className="mb-3"
+                    />
+                </Form.Group>
                 {searchQuery.trim() === '' ? ( // Check if searchQuery is empty
                     <></> // Render nothing if searchQuery is empty
                 ) : filteredUsers.length > 0 ? (
