@@ -91,6 +91,16 @@ html h5 {
   }
 }
 
+/* CONTAINER */
+.general-content {
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+}
 
 /* BUTTONS */
 .button-container {
@@ -235,6 +245,19 @@ html h5 {
 }
 
 /* LINKS */
+/* Remove default link styles */
+html a {
+  color: inherit; /* Inherit text color from the parent */
+  text-decoration: none;
+}
+
+html a:hover {
+  text-decoration: none;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+
 html .nav-link {
   color: #1E1E1E; /* Almost black */
   text-decoration: none;

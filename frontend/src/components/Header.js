@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useMatch } from 'react-router-dom';
 import Logo from '../assets/images/RYR_logo.svg'; 
 import home from '../assets/images/button-icons/home.svg'; 
 import search from '../assets/images/button-icons/search.svg';
@@ -18,7 +18,7 @@ function Header({ onLoginClick, onRegisterClick }) {
   const isTermsPage = location.pathname === '/terms';
   const isAboutPage = location.pathname === '/about';
   const isHomePage = location.pathname === '/home';
-  const isReviewPage = location.pathname === '/review';
+  const isReviewPage = useMatch('/review/:userId');
   const isSearchPage = location.pathname === '/search';
   const isSavedRoommatesPage = location.pathname === '/saved';
 

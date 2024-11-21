@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { userList, getInitialLikedProfiles, getTopRatedList } from "../data/TestUserData";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for dynamic routing
+import { userList, getInitialLikedProfiles } from "../data/TestUserData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import "./SearchPage.css";
@@ -8,6 +9,7 @@ import "./SearchPage.css";
 function SearchPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+    const navigate = useNavigate(); // Hook for navigation
 
     // Filter the users based on search input (name, city)
     const filteredUsers = userList.filter((user) =>
@@ -37,8 +39,13 @@ function SearchPage() {
         });
     };
 
+    // Function to navigate to the user's review page
+    const goToUserProfile = (userId) => {
+        navigate(`/review/${userId}`); // Navigate to the review page of the clicked user
+    };
+
     return (
-        <div className="search-content">
+        <div className="general-content">
             <h2>Search</h2>
             <div className="search-results">
                 <Form.Group controlId="search" className="search-bar">
@@ -56,7 +63,7 @@ function SearchPage() {
                 ) : filteredUsers.length > 0 ? (
                     <div className="search-results">
                         {filteredUsers.map((user, index) => (
-                            <div key={index} className="profile-card">
+                            <div key={index} className="profile-card" onClick={() => goToUserProfile(user.id)}> {/* Make card clickable */}
                                 <div className="profile-image-container">
                                     <img
                                         src={user.image} // Use the imported image
@@ -79,7 +86,10 @@ function SearchPage() {
                                             src={likedProfiles[user.name] ? heart2filled : heart2}
                                             alt="heart icon"
                                             className="heart-icon"
-                                            onClick={() => toggleLike(user.name)} // Toggle like on click
+                                            onClick={(e) => {
+                                                e.stopPropagation(); // Prevent navigation when clicking the heart icon
+                                                toggleLike(user.name); // Toggle like on click
+                                            }}
                                         />
                                     </div>
                                 </div>

@@ -106,7 +106,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/review/:userId" element={<ReviewPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/saved" element={<SavedRoommatesPage />} />
       </Routes>

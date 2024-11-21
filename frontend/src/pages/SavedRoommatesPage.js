@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { userList, getInitialLikedProfiles, getTopRatedList } from "../data/TestUserData";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for dynamic routing
+import { getInitialLikedProfiles } from "../data/TestUserData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
-import "./SearchPage.css";
 
 function SavedRoommatesPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
-    
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+    const navigate = useNavigate(); // Hook for navigation
 
     // Filter the saved roommates based on the search input (name, city)
     const filteredUsers = Object.values(likedProfiles).filter((user) =>
@@ -35,12 +35,21 @@ function SavedRoommatesPage() {
         });
     };
 
+    // Function to navigate to the user's review page
+    const goToUserProfile = (userId) => {
+        navigate(`/review/${userId}`); // Navigate to the review page of the clicked user
+    };
+
     return (
-        <div className="search-content">
+        <div className="general-content">
             <h2>Saved <span className="highlight3">Roommates</span></h2>
             {filteredUsers.length > 0 ? (
                 filteredUsers.map((user) => (
-                    <div className="profile-card" key={user.name}>
+                    <div 
+                        className="profile-card" 
+                        key={user.name}
+                        onClick={() => goToUserProfile(user.id)} // Make card clickable
+                    >
                         <div className="profile-image-container">
                             <img
                                 src={user.image}
@@ -65,7 +74,10 @@ function SavedRoommatesPage() {
                                     src={likedProfiles[user.name] ? heart2filled : heart2}
                                     alt="heart icon"
                                     className="heart-icon"
-                                    onClick={() => toggleLike(user.name)} // Toggle like on click
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent navigation when clicking the heart icon
+                                        toggleLike(user.name); // Toggle like on click
+                                    }}
                                 />
                             </div>
                         </div>

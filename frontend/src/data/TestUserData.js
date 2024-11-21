@@ -7,6 +7,7 @@ import profile5 from "../assets/images/profile-pics/profile5.jpg";
 // Centralized list of all users
 export const userList = [
     {
+        id: 'alice-wang',
         name: 'Alice Wang',
         firstName: 'Alice',
         lastName: 'Wang',
@@ -15,9 +16,10 @@ export const userList = [
         occupation: 'Athlete',
         rating: '4.5',
         description: 'I love skating and sleeping',
-        image: profile1
+        image: profile1,
     },
     {
+        id: 'dave-jones',
         name: 'Dave Jones',
         firstName: 'Dave',
         lastName: 'Jones',
@@ -26,9 +28,10 @@ export const userList = [
         occupation: 'Neurosurgeon',
         rating: '4.0',
         description: 'I have a passion for biking',
-        image: profile2
+        image: profile2,
     },
     {
+        id: 'bob-brown',
         name: 'Bob Brown',
         firstName: 'Bob',
         lastName: 'Brown',
@@ -37,9 +40,10 @@ export const userList = [
         occupation: 'Student',
         rating: '4.0',
         description: 'NEED a roommate ASAP',
-        image: profile3
+        image: profile3,
     },
     {
+        id: 'john-fitzgerald',
         name: 'John Fitzgerald',
         firstName: 'John',
         lastName: 'Fitzgerald',
@@ -48,9 +52,10 @@ export const userList = [
         occupation: 'Software Engineer',
         rating: '3.5',
         description: 'I own a lot of cats',
-        image: profile4
+        image: profile4,
     },
     {
+        id: 'sally-smith',
         name: 'Sally Smith',
         firstName: 'Sally',
         lastName: 'Smith',
@@ -59,7 +64,7 @@ export const userList = [
         occupation: 'Teacher',
         rating: '4.0',
         description: 'I like cooking',
-        image: profile5
+        image: profile5,
     },
 ];
 
