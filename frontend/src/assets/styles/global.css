@@ -22,6 +22,10 @@ html h2 {
   padding: 0rem 2rem;
 }
 
+html h3 {
+  margin-top: 3rem;
+}
+
 html h4 {
   margin-bottom: 2rem;
 }

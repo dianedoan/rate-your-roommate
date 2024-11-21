@@ -49,8 +49,14 @@ const ReviewPage = () => {
     };
 
     if (!user) {
-        return <h2>User not found!</h2>;
+        return (
+            <div className="general-content">
+                <h2>Page Not Found!</h2>
+                <h3>The user review page you are trying to access does not exist.</h3>
+            </div>
+        );
     }
+    
 
     // Render preferences from the user object
     const preferences = user.preferences || [];
