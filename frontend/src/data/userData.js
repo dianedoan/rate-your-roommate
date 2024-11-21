@@ -243,6 +243,6 @@ export const getTopRatedList = () => {
 // Function to generate the star rating based on score
 export const generateStarRating = (score) => {
     const filledStars = '★'.repeat(Math.floor(score));
-    return filledStars; 
-    // TO-DO: Add '½' for 0.5
+    const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
+    return filledStars + halfStar;
 };

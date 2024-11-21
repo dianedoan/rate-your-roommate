@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { userList, userListWithRatings, reviewsData, calculateAverageRating, generateStarRating, getInitialLikedProfiles } from "../data/userData";
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
@@ -14,6 +14,9 @@ const ReviewPage = () => {
     
     // Calculate average rating based on reviews
     const averageRating = userReviews.length > 0 ? calculateAverageRating(userId) : null; // If no reviews, set averageRating to null
+    
+    // Use navigate for redirection
+    const navigate = useNavigate();
 
     // Function to toggle the liked status of a profile (removing or re-adding profiles)
     const toggleLike = (userName) => {
@@ -74,6 +77,12 @@ const ReviewPage = () => {
                                 {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
                             </span> 
                             Rating
+                            <button
+                                className="rate-btn primary-btn"
+                                onClick={() => navigate(`/create-review/${userId}`)} // Redirect to CreateReviewPage
+                            >
+                                Rate
+                            </button>
                         </div>
                     </div>
                     <div className="profile-favorite-icon">
@@ -107,7 +116,7 @@ const ReviewPage = () => {
                             <div className="review-info">
                                 <div className="review-score">
                                     <span className="highlight5">{review.score}/5 </span>
-                                    <span className="highlight6">{generateStarRating(review.score)}</span>
+                                    <span className="highlight5">{generateStarRating(review.score)}</span>
                                 </div>
                                 <div className="review-title">{review.title}</div>
                                 <div className="review-description">{review.description}</div>

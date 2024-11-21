@@ -30,24 +30,19 @@
   /* margin-top: 1rem; */
   width: 100%;
   max-width: 65rem;
-  padding: 3rem 1rem;
+  padding: 3rem 0rem;
+  flex-wrap: wrap;
 }
 
 .review-profile-card:hover {
 
 }
 
-.image-container, .card-image-container {
-    flex-shrink: 0; /* Prevent the image from shrinking */
-}
-
-
 .review-profile-info {
     display: flex;
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: left;
-    /* margin-right: 2rem; */
-    width: 30rem;
+    max-width: 55%;
 }
 
 .review-profile-name {
@@ -63,11 +58,17 @@
 
 .review-profile-description {
     font-size: 2em;
+    padding-bottom: 1rem;
+}
+
+.review-score-container {
+    font-size: 3em;
 }
 
 .review-profile-score {
     font-weight: bold;
     font-size: 2.5em;
+    padding-top: 2rem;
 }
 
 .profile-favorite-icon {
@@ -78,7 +79,6 @@
 .heart-icon {
     width: 3rem; /* Adjust image size */
     height: 3rem;
-    margin: 0rem 2rem;
 }
 
 .image-location-container {
@@ -89,8 +89,8 @@
 }
 
 .review-profile-image {
-    width: 15rem; /* Adjust image size */
-    height: 15rem;
+    width: 20rem; /* Adjust image size */
+    height: 20rem;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
     margin-bottom: 1rem;
