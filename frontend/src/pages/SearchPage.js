@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for dynamic routing
-import { userList, getInitialLikedProfiles } from "../data/TestUserData";
+import { userList, getInitialLikedProfiles } from "../data/userData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import "./SearchPage.css";

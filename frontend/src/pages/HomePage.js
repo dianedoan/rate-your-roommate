@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { userList, getInitialLikedProfiles, getTopRatedList } from "../data/TestUserData";
+import { userListWithRatings, getInitialLikedProfiles, getTopRatedList } from "../data/userData";
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import leftarrow from "../assets/images/button-icons/left-arrow.svg";
@@ -14,7 +14,7 @@ const HomePage = () => {
 
     const topRatedList = getTopRatedList();
 
-    const filteredUsers = userList.filter(user =>
+    const filteredUsers = userListWithRatings.filter(user =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.state.toLowerCase().includes(searchQuery.toLowerCase())
@@ -22,7 +22,7 @@ const HomePage = () => {
 
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const user = userList.find(u => u.name === userName);
+            const user = userListWithRatings.find(u => u.name === userName);
             if (!user) return prevLikes;
 
             const updatedLikes = { ...prevLikes };
@@ -113,7 +113,8 @@ const HomePage = () => {
                             <div className="profile-info">
                                 <div className="profile-name">{user.name}</div>
                                 <div className="profile-score">
-                                    <span className="highlight5">{user.rating}/5</span> Rating
+                                    <span className="highlight5">{user.rating === 0 ? "N/A" : `${user.rating}/5`}</span>
+                                    {user.rating !== 0 && " Rating"}
                                 </div>
                                 <div className="profile-occupation">{user.occupation}</div>
                                 <div className="profile-description">{user.description}</div>

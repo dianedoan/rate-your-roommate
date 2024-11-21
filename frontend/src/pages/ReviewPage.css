@@ -129,7 +129,7 @@
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: left;
     margin-right: 1rem;
-    width: 30em;
+    width: 100%;
 }
 
 .review-title {
@@ -157,15 +157,10 @@
   text-align: right;
 }
 
-
-
-.card-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.preferences-section .preference-tag {
+    cursor: default;
 }
 
-.card-body {
-  text-align: center;
+.preferences-section .preference-tag:hover {
+    transform: translateY(0rem);
 }
-
