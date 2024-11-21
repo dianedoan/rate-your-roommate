@@ -22,6 +22,12 @@
   background-color: #f2ffe1;
 }
 
+.top-rated-container {
+  display: flex;
+  flex-direction:row;
+  margin: 2rem;
+}
+
 .top-rated-card {
   display: flex;
   flex-direction: row; /* Make the card layout horizontal */
@@ -29,8 +35,8 @@
   justify-content: space-between;
   margin-top: 1rem;
   width: 100%;
-  max-width: 55rem;
-  padding: 2rem;
+  /* max-width: 55rem; */
+  padding: 0rem 3rem;
 }
 
 .top-rated-card:hover {
@@ -47,9 +53,9 @@
 
 .top-rated-profile-info {
   display: flex;
-  flex-direction: column; /* Stack profile name, description, and score vertically */
+  flex-direction: column; /* Stack profile name, occupation, description, and score vertically */
   text-align: left;
-  margin-right: 7rem;
+  /* margin-right: 7rem; */
 }
 
 .top-rated-profile-name {
@@ -64,6 +70,12 @@
 }
 
 .top-rated-profile-description {
+  width: 15rem;
+  font-size: 1.5em;
+}
+
+.top-rated-profile-score {
+  font-weight: bold;
   font-size: 1.5em;
 }
 
@@ -71,4 +83,14 @@
   font-size: 1.5em; /* Smaller font size for location */
   margin-bottom: 4rem;
   text-align: right;
+}
+
+.navigation-button {
+  border: none;
+  background: none;
+}
+
+.navigation-button:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
