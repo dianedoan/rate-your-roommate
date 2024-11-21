@@ -80,6 +80,7 @@ function SearchPage() {
     
     return (
         <div className="search-content">
+            <h2>Search</h2>
             <Form.Group controlId="search" className="search-bar">
                 <Form.Label></Form.Label>
                 <Form.Control

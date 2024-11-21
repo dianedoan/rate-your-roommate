@@ -20,6 +20,7 @@ function Header({ onLoginClick, onRegisterClick }) {
   const isHomePage = location.pathname === '/home';
   const isReviewPage = location.pathname === '/review';
   const isSearchPage = location.pathname === '/search';
+  const isSavedRoommatesPage = location.pathname === '/saved';
 
   return (
     <Navbar bg="white" expand="lg" className="navbar" sticky="top">
@@ -40,7 +41,7 @@ function Header({ onLoginClick, onRegisterClick }) {
               </button>
             </>
           )}
-          {(isHomePage || isReviewPage || isSearchPage) && (
+          {(isHomePage || isReviewPage || isSearchPage || isSavedRoommatesPage) && (
             <>
               <Navbar.Brand>
                 <img src={bell} alt="bell-icon" className="navbar-bell" />
@@ -51,11 +52,11 @@ function Header({ onLoginClick, onRegisterClick }) {
               <Navbar.Brand href="/home">
                 <img src={messages} alt="messages-icon" className="navbar-messages" />
               </Navbar.Brand>
-              <Navbar.Brand href="/home">
+              <Navbar.Brand href="/saved">
                 <img src={heart} alt="heart-icon" className="navbar-heart" />
               </Navbar.Brand>
               <Navbar.Brand href="/home">
-                <img src={profile} alt="messages-icon" className="navbar-profile" />
+                <img src={profile} alt="home-icon" className="navbar-profile" />
               </Navbar.Brand>
             </>
           )}
