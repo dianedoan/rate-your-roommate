@@ -13,16 +13,16 @@ import "./HomePage.css";
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [likedProfiles, setLikedProfiles] = useState({
-    "Alice Wang": {
-      name: "Alice Wang",
-      firstName: "Alice",
-      lastName: "Wang",
-      city: "Calgary",
-      state: "AB",
-      occupation: "Athlete",
-      rating: "4.5",
-      description: "I love skating and sleeping",
-      image: profile1,
+    'Alice Wang': {
+        name: 'Alice Wang',
+        firstName: 'Alice',
+        lastName: 'Wang',
+        city: 'Calgary',
+        state: 'AB',
+        occupation: 'Athlete',
+        rating: '4.5',
+        description: 'I love skating and sleeping',
+        image: profile1
     },
     'Bob Brown': {
         name: 'Bob Brown',
@@ -35,67 +35,67 @@ const HomePage = () => {
         description: 'NEED a roommate ASAP',
         image: profile3
     }
-  });
+});
 
   const topRatedList = [
     {
-      name: "Alice Wang",
-      firstName: "Alice",
-      lastName: "Wang",
-      city: "Calgary",
-      state: "AB",
-      occupation: "Athlete",
-      rating: "4.5",
-      description: "I love skating and sleeping",
-      image: profile1,
-    },
+      name: 'Alice Wang',
+      firstName: 'Alice',
+      lastName: 'Wang',
+      city: 'Calgary',
+      state: 'AB',
+      occupation: 'Athlete',
+      rating: '4.5',
+      description: 'I love skating and sleeping',
+      image: profile1
+  },
   ];
 
   const exploreList = [
     {
-      name: "Dave Jones",
-      firstName: "Dave",
-      lastName: "Jones",
-      city: "Airdrie",
-      state: "AB",
-      occupation: "Software Engineer",
-      rating: "4.0",
-      description: "I have a passion for biking",
-      image: profile2,
-    },
-    {
-      name: "Bob Brown",
-      firstName: "Bob",
-      lastName: "Brown",
-      city: "Calgary",
-      state: "AB",
-      occupation: "Student",
-      rating: "4.0",
-      description: "NEED a roommate ASAP",
-      image: profile3,
-    },
-    {
-      name: "John Fitzgerald",
-      firstName: "John",
-      lastName: "Fitzgerald",
-      city: "Calgary",
-      state: "AB",
-      occupation: "Software Engineer",
-      rating: "3.5",
-      description: "I own a lot of cats",
-      image: profile4,
-    },
-    {
-      name: "Sally Smith",
-      firstName: "Sally",
-      lastName: "Smith",
-      city: "Calgary",
-      state: "AB",
-      occupation: "Teacher",
-      rating: "4.0",
-      description: "I like cooking",
-      image: profile5,
-    },
+      name: 'Dave Jones',
+      firstName: 'Dave',
+      lastName: 'Jones',
+      city: 'Airdrie',
+      state: 'AB',
+      occupation: 'Neurosurgeon',
+      rating: '4.0',
+      description: 'I have a passion for biking',
+      image: profile2
+  },
+  {
+      name: 'Bob Brown',
+      firstName: 'Bob',
+      lastName: 'Brown',
+      city: 'Calgary',
+      state: 'AB',
+      occupation: 'Student',
+      rating: '4.0',
+      description: 'NEED a roommate ASAP',
+      image: profile3
+  },
+  {
+      name: 'John Fitzgerald',
+      firstName: 'John',
+      lastName: 'Fitzgerald',
+      city: 'Calgary',
+      state: 'AB',
+      occupation: 'Software Engineer',
+      rating: '3.5',
+      description: 'I own a lot of cats',
+      image: profile4
+  },
+  {
+      name: 'Sally Smith',
+      firstName: 'Sally',
+      lastName: 'Smith',
+      city: 'Calgary',
+      state: 'AB',
+      occupation: 'Teacher',
+      rating: '4.0',
+      description: 'I like cooking',
+      image: profile5
+  },
   ];
 
   // Filter users based on the search query

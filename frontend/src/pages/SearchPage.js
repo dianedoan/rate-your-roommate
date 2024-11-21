@@ -57,7 +57,7 @@ function SearchPage() {
             lastName: 'Jones',
             city: 'Airdrie',
             state: 'AB',
-            occupation: 'Software Engineer',
+            occupation: 'Neurosurgeon',
             rating: '4.0',
             description: 'I have a passion for biking',
             image: profile2
