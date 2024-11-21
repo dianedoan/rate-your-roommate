@@ -58,9 +58,9 @@ const HomePage = () => {
       lastName: "Jones",
       city: "Airdrie",
       state: "AB",
-      occupation: "Student",
+      occupation: "Software Engineer",
       rating: "4.0",
-      description: "NEED a roommate ASAP",
+      description: "I have a passion for biking",
       image: profile2,
     },
     {
