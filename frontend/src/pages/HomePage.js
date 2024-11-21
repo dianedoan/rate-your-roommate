@@ -12,7 +12,20 @@ import "./HomePage.css";
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [likedProfiles, setLikedProfiles] = useState({
+    "Alice Wang": {
+      name: "Alice Wang",
+      firstName: "Alice",
+      lastName: "Wang",
+      city: "Calgary",
+      state: "AB",
+      occupation: "Athlete",
+      rating: "4.5",
+      description: "I love skating and sleeping",
+      image: profile1,
+    },
+  });
+  
   const topRatedList = [
     {
       name: "Alice Wang",
@@ -81,6 +94,32 @@ const HomePage = () => {
     user.state.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const toggleLike = (userName) => {
+    setLikedProfiles((prevLikes) => {
+      // Find the user object from either topRatedList or exploreList
+      const user =
+        [...topRatedList, ...exploreList].find((u) => u.name === userName);
+
+      // If the user doesn't exist, do nothing
+      if (!user) return prevLikes;
+
+      const updatedLikes = { ...prevLikes };
+
+      if (updatedLikes[userName]) {
+        // If already liked, remove from the saved profiles
+        delete updatedLikes[userName];
+      } else {
+        // If not liked yet, add to the saved profiles
+        updatedLikes[userName] = user;  // Save the entire user object
+      }
+
+      // Log the list of liked profiles to the console
+      console.log('Liked Profiles:', Object.values(updatedLikes));
+
+      return updatedLikes;
+    });
+  };
+
   return (
     <div className="homepage-content">
       <div className="top-rated-section">
@@ -113,7 +152,12 @@ const HomePage = () => {
                 {user.city}, {user.state}
               </p>
               <div className="favorite-icon">
-                <img src={heart2} alt="heart2" className="heart-icon" />
+                <img
+                  src={likedProfiles[user.name] ? heart2filled : heart2}
+                  alt="heart icon"
+                  className="heart-icon"
+                  onClick={() => toggleLike(user.name)} // Toggle like on click
+                />
               </div>
             </div>
           </div>
@@ -144,7 +188,12 @@ const HomePage = () => {
                 {user.city}, {user.state}
               </p>
               <div className="favorite-icon">
-                <img src={heart2} alt="heart2" className="heart-icon" />
+                <img
+                  src={likedProfiles[user.name] ? heart2filled : heart2}
+                  alt="heart icon"
+                  className="heart-icon"
+                  onClick={() => toggleLike(user.name)} // Toggle like on click
+                />
               </div>
             </div>
           </div>

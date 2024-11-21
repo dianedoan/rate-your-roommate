@@ -13,6 +13,32 @@ import "./SearchPage.css";
 
 function SearchPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
+    // Initialize likedRoommates to simulate saved roommates
+    const [likedProfiles, setLikedProfiles] = useState({
+        'Alice Wang': {
+            name: 'Alice Wang',
+            firstName: 'Alice',
+            lastName: 'Wang',
+            city: 'Calgary',
+            state: 'AB',
+            occupation: 'Athlete',
+            rating: '4.5',
+            description: 'I love skating and sleeping',
+            image: profile1
+        },
+        'Bob Brown': {
+            name: 'Bob Brown',
+            firstName: 'Bob',
+            lastName: 'Brown',
+            city: 'Calgary',
+            state: 'AB',
+            occupation: 'Student',
+            rating: '4.0',
+            description: 'NEED a roommate ASAP',
+            image: profile3
+        }
+    });
+    
     const userList = [
         {
             name: 'Alice Wang',
@@ -77,7 +103,28 @@ function SearchPage() {
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.state.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    
+
+    // Function to toggle the liked status
+    const toggleLike = (userName) => {
+        setLikedProfiles((prevLikes) => {
+            const updatedLikes = { ...prevLikes };
+
+            if (updatedLikes[userName]) {
+                // If already liked, remove from liked profiles
+                delete updatedLikes[userName];
+            } else {
+                // If not liked yet, find the user and add to liked profiles
+                const user = userList.find((u) => u.name === userName);
+                updatedLikes[userName] = user;
+            }
+
+            // Log the list of liked profiles to the console
+            console.log('Liked Profiles:', Object.values(updatedLikes));
+
+            return updatedLikes;
+        });
+    };
+
     return (
         <div className="search-content">
             <h2>Search</h2>
@@ -117,9 +164,10 @@ function SearchPage() {
                                     <p className="profile-location">{user.city}, {user.state}</p>
                                     <div className="favorite-icon">
                                         <img
-                                            src={heart2}
-                                            alt="heart2"
+                                            src={likedProfiles[user.name] ? heart2filled : heart2}
+                                            alt="heart icon"
                                             className="heart-icon"
+                                            onClick={() => toggleLike(user.name)} // Toggle like on click
                                         />
                                     </div>
                                 </div>

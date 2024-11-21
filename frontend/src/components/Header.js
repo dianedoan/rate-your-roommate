@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import Logo from '../assets/images/RYR_logo.svg'; 
-import bell from '../assets/images/button-icons/bell.svg'; 
+import home from '../assets/images/button-icons/home.svg'; 
 import search from '../assets/images/button-icons/search.svg';
 import messages from '../assets/images/button-icons/messages.svg'; 
 import heart from '../assets/images/button-icons/heart.svg'; 
@@ -43,8 +43,8 @@ function Header({ onLoginClick, onRegisterClick }) {
           )}
           {(isHomePage || isReviewPage || isSearchPage || isSavedRoommatesPage) && (
             <>
-              <Navbar.Brand>
-                <img src={bell} alt="bell-icon" className="navbar-bell" />
+              <Navbar.Brand href="/home">
+                <img src={home} alt="home-icon" className="navbar-home" />
               </Navbar.Brand>
               <Navbar.Brand href="/search">
                 <img src={search} alt="search-icon" className="navbar-search" />
