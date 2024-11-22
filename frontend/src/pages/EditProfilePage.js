@@ -7,11 +7,11 @@ import './EditProfilePage.css';
 
 const EditProfilePage = () => {
     // Manually set logged in user
-    const loggedInUser = userList.find(user => user.username === 'alicewang');
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
     const navigate = useNavigate();
 
-    // Filter reviews for the current user
-    const userReviews = reviewsData.filter(review => review.userId === loggedInUser.id);
+    // Filter reviews made by the current user
+    const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
 
     const preferencesList = [
         'Age 18-24', 'Age 25-34', 'Age 35-44',

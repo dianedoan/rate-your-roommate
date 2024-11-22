@@ -90,8 +90,9 @@ export const userList = [
 
 export const reviewsData = [
     {
-        id: 'review-1',
+        reviewId: 'review-1',
         userId: 'john-fitzgerald',
+        authorId: 'alice-wang',
         username: 'Anonymous',
         ratings: {
             cleanliness: 3,
@@ -111,9 +112,10 @@ export const reviewsData = [
         date: '09/27/2024',
     },
     {
-        id: 'review-2',
+        reviewId: 'review-2',
         userId: 'alice-wang',
-        username: 'Anonymous',
+        authorId: 'john-fitzgerald',
+        username: 'johnfitz', 
         ratings: {
             cleanliness: 4,
             communication: 4,
@@ -132,9 +134,10 @@ export const reviewsData = [
         date: '10/02/2024',
     },
     {
-        id: 'review-3',
+        reviewId: 'review-3',
         userId: 'alice-wang',
-        username: 'Tom H.',
+        authorId: 'bob-brown',
+        username: 'Anonymous',
         ratings: {
             cleanliness: 4,
             communication: 5,
@@ -153,9 +156,10 @@ export const reviewsData = [
         date: '11/12/2024',
     },
     {
-        id: 'review-4',
+        reviewId: 'review-4',
         userId: 'dave-jones',
-        username: 'Sarah L.',
+        authorId: 'sally-smith',
+        username: 'sallysmith',
         ratings: {
             cleanliness: 5,
             communication: 5,
@@ -174,9 +178,10 @@ export const reviewsData = [
         date: '08/18/2024',
     },
     {
-        id: 'review-5',
+        reviewId: 'review-5',
         userId: 'bob-brown',
-        username: 'Chris M.',
+        authorId: 'alice-wang',
+        username: 'Anonymous',
         ratings: {
             cleanliness: 2,
             communication: 3,
@@ -195,9 +200,10 @@ export const reviewsData = [
         date: '10/08/2024',
     },
     {
-        id: 'review-6',
+        reviewId: 'review-6',
         userId: 'alice-wang',
-        username: 'Emily W.',
+        authorId: 'dave-jones',
+        username: 'davejones',
         ratings: {
             cleanliness: 5,
             communication: 5,
@@ -216,9 +222,10 @@ export const reviewsData = [
         date: '07/05/2024',
     },
     {
-        id: 'review-7',
+        reviewId: 'review-7',
         userId: 'john-fitzgerald',
-        username: 'Sam K.',
+        authorId: 'bob-brown',
+        username: 'bobbrown',
         ratings: {
             cleanliness: 2,
             communication: 3,
@@ -237,9 +244,10 @@ export const reviewsData = [
         date: '09/30/2024',
     },
     {
-        id: 'review-8',
+        reviewId: 'review-8',
         userId: 'alice-wang',
-        username: 'Jenna R.',
+        authorId: 'john-fitzgerald',
+        username: 'johnfitz',
         ratings: {
             cleanliness: 4,
             communication: 5,
@@ -258,9 +266,10 @@ export const reviewsData = [
         date: '06/20/2024',
     },
     {
-        id: 'review-9',
+        reviewId: 'review-9',
         userId: 'bob-brown',
-        username: 'Tony B.',
+        authorId: 'alice-wang',
+        username: 'alicewang',
         ratings: {
             cleanliness: 3,
             communication: 3,
@@ -279,9 +288,10 @@ export const reviewsData = [
         date: '05/15/2024',
     },
     {
-        id: 'review-10',
+        reviewId: 'review-10',
         userId: 'dave-jones',
-        username: 'Anna F.',
+        authorId: 'alice-wang',
+        username: 'alicewang',
         ratings: {
             cleanliness: 5,
             communication: 5,
@@ -300,111 +310,51 @@ export const reviewsData = [
         date: '12/01/2024',
     },
     {
-        id: 'review-11',
+        reviewId: 'review-11',
         userId: 'john-fitzgerald',
-        username: 'Laura T.',
+        authorId: 'bob-brown',
+        username: 'bobbrown',
         ratings: {
             cleanliness: 3,
             communication: 4,
             timeliness: 3,
-            noiseLevel: 4,
+            noiseLevel: 5,
             etiquette: 3,
         },
-        score: 3.4,
-        title: 'Cat lover’s dream',
-        description: 'If you love cats, John is a great roommate. Just be ready to vacuum!',
+        score: 3.6,
+        title: 'Not for everyone',
+        description: 'Great person, but didn’t respect personal space as much as I would have liked.',
         yesNoAnswers: [
-            { question: 'Was this roommate respectful of your space?', answer: 'Yes' },
+            { question: 'Was this roommate respectful of your space?', answer: 'No' },
             { question: 'Was this roommate punctual with paying their living fees?', answer: 'Yes' },
             { question: 'Would you be roommates again?', answer: 'No' }
         ],
-        date: '11/09/2024',
+        date: '10/18/2024',
     },
     {
-        id: 'review-12',
+        reviewId: 'review-12',
         userId: 'alice-wang',
-        username: 'Mike D.',
-        ratings: {
-            cleanliness: 4,
-            communication: 4,
-            timeliness: 4,
-            noiseLevel: 3,
-            etiquette: 4,
-        },
-        score: 4.0,
-        title: 'Pleasant to live with',
-        description: 'Very friendly and kind, always open to solving issues cooperatively.',
-        yesNoAnswers: [
-            { question: 'Was this roommate respectful of your space?', answer: 'Yes' },
-            { question: 'Was this roommate punctual with paying their living fees?', answer: 'Unsure' },
-            { question: 'Would you be roommates again?', answer: 'Yes' }
-        ],
-        date: '04/17/2024',
-    },
-    {
-        id: 'review-13',
-        userId: 'bob-brown',
-        username: 'Riley S.',
-        ratings: {
-            cleanliness: 2,
-            communication: 2,
-            timeliness: 1,
-            noiseLevel: 4,
-            etiquette: 2,
-        },
-        score: 2.2,
-        title: 'Needs improvement',
-        description: 'Messy, noisy, and often late on bills. Tough to live with.',
-        yesNoAnswers: [
-            { question: 'Was this roommate respectful of your space?', answer: 'No' },
-            { question: 'Was this roommate punctual with paying their living fees?', answer: 'Unsure' },
-            { question: 'Would you be roommates again?', answer: 'No' }
-        ],
-        date: '03/23/2024',
-    },
-    {
-        id: 'review-14',
-        userId: 'dave-jones',
-        username: 'Patricia K.',
+        authorId: 'john-fitzgerald',
+        username: 'johnfitz',
         ratings: {
             cleanliness: 5,
-            communication: 5,
+            communication: 4,
             timeliness: 5,
-            noiseLevel: 2,
+            noiseLevel: 3,
             etiquette: 5,
         },
         score: 4.6,
-        title: 'Perfect roommate!',
-        description: 'Dave is thoughtful and respectful of others. A dream roommate.',
+        title: 'Perfect roommate',
+        description: 'Alice was always courteous and kept everything in order.',
         yesNoAnswers: [
             { question: 'Was this roommate respectful of your space?', answer: 'Yes' },
             { question: 'Was this roommate punctual with paying their living fees?', answer: 'Yes' },
             { question: 'Would you be roommates again?', answer: 'Yes' }
         ],
-        date: '10/25/2024',
-    },
-    {
-        id: 'review-15',
-        userId: 'alice-wang',
-        username: 'Nathan P.',
-        ratings: {
-            cleanliness: 4,
-            communication: 4,
-            timeliness: 4,
-            noiseLevel: 3,
-            etiquette: 5,
-        },
-        score: 4.2,
-        title: 'Great balance',
-        description: 'Alice is fun but knows when to respect personal space. Highly recommend.',
-        yesNoAnswers: [
-            { question: 'Was this roommate respectful of your space?', answer: 'Yes' },
-            { question: 'Was this roommate punctual with paying their living fees?', answer: 'Unsure' },
-            { question: 'Would you be roommates again?', answer: 'Yes' }
-        ],
-        date: '08/12/2024',
+        date: '08/25/2024',
     },
 ];
+
 
 // Set initial liked/saved profiles
 export const getInitialLikedProfiles = () => {

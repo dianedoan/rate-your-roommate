@@ -6,12 +6,12 @@ import './UserProfilePage.css';
 
 const UserProfilePage = () => {
     // Manually set logged in user
-    const loggedInUser = userList.find(user => user.username === 'alicewang');
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
     const navigate = useNavigate();
 
-    // Filter reviews for the current user
-    const userReviews = reviewsData.filter(review => review.userId === loggedInUser.id);
-    
+    // Filter reviews made by the current user
+    const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
+
     // Handle logout
     const handleLogout = () => {
         const confirmation = window.confirm(
@@ -23,6 +23,41 @@ const UserProfilePage = () => {
         } else {
             console.log("Logout canceled.");
         }
+    };
+
+    // Helper function to categorize preferences
+    const getPreferenceCategoryClass = (pref) => {
+        if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
+            return 'age-related';
+        }
+        if (['Early Riser', 'Late Sleeper', 'Snores'].includes(pref)) {
+            return 'sleep-related';
+        }
+        if (['Pet Owner', 'No Pets', 'Allergic to Pets'].includes(pref)) {
+            return 'pet-related';
+        }
+        if (['Clean & Tidy', 'Messy'].includes(pref)) {
+            return 'cleanliness-related';
+        }
+        if (['Organized', 'Unorganized'].includes(pref)) {
+            return 'organize-related';
+        }
+        if (['Likes Socializing', 'Prefers Quiet Spaces'].includes(pref)) {
+            return 'social-related';
+        }
+        if (['Homebody', 'Goes Out Often', 'Travels Often', 'Works from Home'].includes(pref)) {
+            return 'lifestyle-related';
+        }
+        if (['Smoker Friendly', 'Non-Smoker'].includes(pref)) {
+            return 'smoking-related';
+        }
+        if (['Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian'].includes(pref)) {
+            return 'diet-related';
+        }
+        if (['Bookworm', 'Gamer', 'Fitness Enthusiast'].includes(pref)) {
+            return 'hobby-related';
+        }
+        return '';
     };
 
     // Handle deactivate account
@@ -39,7 +74,6 @@ const UserProfilePage = () => {
             console.log("Account deactivation canceled.");
         }
     };
-
 
     // Render preferences from the user object
     const preferences = loggedInUser.preferences || [];
@@ -123,41 +157,6 @@ const UserProfilePage = () => {
             </div>
         </div>
     );
-};
-
-// Helper function to categorize preferences
-const getPreferenceCategoryClass = (pref) => {
-    if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
-        return 'age-related';
-    }
-    if (['Early Riser', 'Late Sleeper', 'Snores'].includes(pref)) {
-        return 'sleep-related';
-    }
-    if (['Pet Owner', 'No Pets', 'Allergic to Pets'].includes(pref)) {
-        return 'pet-related';
-    }
-    if (['Clean & Tidy', 'Messy'].includes(pref)) {
-        return 'cleanliness-related';
-    }
-    if (['Organized', 'Unorganized'].includes(pref)) {
-        return 'organize-related';
-    }
-    if (['Likes Socializing', 'Prefers Quiet Spaces'].includes(pref)) {
-        return 'social-related';
-    }
-    if (['Homebody', 'Goes Out Often', 'Travels Often', 'Works from Home'].includes(pref)) {
-        return 'lifestyle-related';
-    }
-    if (['Smoker Friendly', 'Non-Smoker'].includes(pref)) {
-        return 'smoking-related';
-    }
-    if (['Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian'].includes(pref)) {
-        return 'diet-related';
-    }
-    if (['Bookworm', 'Gamer', 'Fitness Enthusiast'].includes(pref)) {
-        return 'hobby-related';
-    }
-    return '';
 };
 
 export default UserProfilePage;

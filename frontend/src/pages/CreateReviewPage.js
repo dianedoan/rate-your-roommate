@@ -45,14 +45,18 @@ const CreateReviewPage = () => {
         }));
     };
 
-    // Handle form submission
+    // Assuming the current user ID is available (e.g., from context or props)
+    const currentUserId = "sally-smith"; // Replace with actual logic to fetch current user's ID
+
+    // Handle submit form
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Create the new review object
         const newReview = {
-            id: `review-${Date.now()}`, // Unique ID for the review
+            reviewId: `review-${Date.now()}`, // Unique ID for the review
             userId,
+            authorId: currentUserId, 
             username: isAnonymous ? "Anonymous" : "Current User", // Check if user chose to submit anonymously
             ratings,
             score: parseFloat(
@@ -91,6 +95,7 @@ const CreateReviewPage = () => {
         // Redirect back to the user review page
         navigate(`/reviews/${userId}`);
     };
+
 
     // Render star icons for rating
     const renderStars = (category, labelBefore, labelAfter) => {

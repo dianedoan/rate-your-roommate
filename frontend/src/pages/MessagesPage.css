@@ -1,0 +1,86 @@
+/* Container for the entire page */
+.messages-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+.messages-header {
+    padding: 1rem;
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Message container styling */
+.messages-container {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: white;
+}
+
+/* Message bubbles */
+.message {
+    max-width: 70%;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Sent message styling */
+.message.sent {
+    align-self: flex-end;
+    background-color: #8cad63;
+    color: white;
+}
+
+/* Received message styling */
+.message.received {
+    align-self: flex-start;
+    background-color: #e0e0e0;
+    color: #1e1e1e;
+}
+
+/* Input container */
+.message-input-container {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-top: 2px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Input field */
+.message-input-container input {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+}
+
+/* Send button */
+.message-input-container button {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: #8cad63;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.message-input-container button:hover {
+    background-color: #6a8f4c;
+}
