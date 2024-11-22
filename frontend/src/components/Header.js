@@ -21,8 +21,10 @@ function Header({ onLoginClick, onRegisterClick }) {
   const isReviewPage = useMatch('/reviews/:userId');
   const isCreateReviewPage = useMatch('/create-review/:userId');
   const isSearchPage = location.pathname === '/search';
+  const isMessagesPage = location.pathname === '/messages';
   const isSavedRoommatesPage = location.pathname === '/saved';
   const isUserProfilePage = location.pathname === '/profile';
+  const isEditProfilePage = location.pathname === '/edit-profile';
 
   return (
     <Navbar bg="white" expand="lg" className="navbar" sticky="top">
@@ -43,7 +45,7 @@ function Header({ onLoginClick, onRegisterClick }) {
               </button>
             </>
           )}
-          {(isHomePage || isReviewPage || isCreateReviewPage || isSearchPage || isSavedRoommatesPage || isUserProfilePage) && (
+          {(isHomePage || isReviewPage || isCreateReviewPage || isSearchPage || isMessagesPage || isSavedRoommatesPage || isUserProfilePage || isEditProfilePage ) && (
             <>
               <Navbar.Brand href="/home">
                 <img src={home} alt="home-icon" className="navbar-home" />

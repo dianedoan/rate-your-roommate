@@ -6,7 +6,7 @@ import './UserProfilePage.css';
 
 const UserProfilePage = () => {
     // Manually set logged in user
-    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    const loggedInUser = userList.find(user => user.username === 'alicewang');
     const navigate = useNavigate();
 
     // Filter reviews for the current user
@@ -14,16 +14,32 @@ const UserProfilePage = () => {
     
     // Handle logout
     const handleLogout = () => {
-        console.log("User logged out.");
-        navigate('/');
+        const confirmation = window.confirm(
+            "Are you sure you want to logout?"
+        );
+        if (confirmation) {
+            console.log(loggedInUser.name, "logged out.");
+            navigate('/');
+        } else {
+            console.log("Logout canceled.");
+        }
     };
 
     // Handle deactivate account
     const handleDeactivateAccount = () => {
-        console.log("Account deactivated for user:", loggedInUser.name);
-        alert("Your account has been deactivated.");
-        navigate('/');
+        const confirmation = window.confirm(
+            "Are you sure you want to deactivate your account? This action is permanent and cannot be undone."
+        );
+
+        if (confirmation) {
+            console.log("Account deactivated for user:", loggedInUser.name);
+            alert("Your account has been deactivated.");
+            navigate('/');
+        } else {
+            console.log("Account deactivation canceled.");
+        }
     };
+
 
     // Render preferences from the user object
     const preferences = loggedInUser.preferences || [];
@@ -43,7 +59,7 @@ const UserProfilePage = () => {
                     <div className="user-profile-occupation">{loggedInUser.occupation}</div>
                     <div className="user-profile-location">{loggedInUser.city}, {loggedInUser.state}</div>
                     <Link
-                        to={`/edit-profile/${loggedInUser.id}`}
+                        to={`/edit-profile`}
                         className="edit-profile-btn"
                     >
                         Edit Profile

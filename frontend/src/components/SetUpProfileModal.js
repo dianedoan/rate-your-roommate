@@ -11,8 +11,6 @@ function SetUpProfileModal({ show, onClose }) {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
-  const [preferences, setPreferences] = useState([]);
-  const [activeBadges, setActiveBadges] = useState({});
   const [searchQuery, setSearchQuery] = useState(''); // Search input state
   const [selectedPreferences, setSelectedPreferences] = useState([]); // State to track selected preferences
   const preferencesList = [

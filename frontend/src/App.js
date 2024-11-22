@@ -7,8 +7,10 @@ import HomePage from "./pages/HomePage";
 import ReviewPage from "./pages/ReviewPage";
 import CreateReviewPage from "./pages/CreateReviewPage";
 import SearchPage from "./pages/SearchPage";
+import MessagesPage from "./pages/MessagesPage";
 import SavedRoommatesPage from "./pages/SavedRoommatesPage";
 import UserProfilePage from "./pages/UserProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginModal from './components/LoginModal';
@@ -109,8 +111,10 @@ function App() {
         <Route path="/reviews/:userId" element={<ReviewPage />} />
         <Route path="/create-review/:userId" element={<CreateReviewPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/messages" element={<MessagesPage />} />
         <Route path="/saved" element={<SavedRoommatesPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick}/>
 
