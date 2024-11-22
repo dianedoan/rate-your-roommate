@@ -1,5 +1,5 @@
 # Use Node.js LTS image
-FROM node:16
+FROM node:18
 
 # Set the working directory
 WORKDIR /app
@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
+RUN npm install -g nodemon
 
 # Copy the entire backend source code
 COPY . .
