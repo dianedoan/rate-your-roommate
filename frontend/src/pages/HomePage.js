@@ -58,7 +58,7 @@ const HomePage = () => {
                     </button>
 
                     {/* Active Top-Rated Card */}
-                    <Link to={`/review/${topRatedList[activeTopRatedIndex].id}`} className="top-rated-card-link">
+                    <Link to={`/reviews/${topRatedList[activeTopRatedIndex].id}`} className="top-rated-card-link">
                         <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].name}>
                             <div className="profile-image-container">
                                 <img
@@ -105,7 +105,7 @@ const HomePage = () => {
             <div className="explore-section">
                 <h2>Explore <span className="highlight3">Roommates</span></h2>
                 {filteredUsers.map((user) => (
-                    <Link to={`/review/${user.id}`} key={user.id} className="profile-card-link">
+                    <Link to={`/reviews/${user.id}`} key={user.id} className="profile-card-link">
                         <div className="profile-card">
                             <div className="profile-image-container">
                                 <img src={user.image} alt={user.name} className="profile-image" />

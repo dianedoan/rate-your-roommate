@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { userList, userListWithRatings, reviewsData, calculateAverageRating, generateStarRating, getInitialLikedProfiles } from "../data/userData";
+import { Badge } from 'react-bootstrap';
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
-import { Badge } from 'react-bootstrap'; // Assuming you're using react-bootstrap
 import './ReviewPage.css';
 
 const ReviewPage = () => {

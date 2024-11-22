@@ -4,6 +4,20 @@ import profile3 from "../assets/images/profile-pics/profile3.jpg";
 import profile4 from "../assets/images/profile-pics/profile4.jpg";
 import profile5 from "../assets/images/profile-pics/profile5.jpg";
 
+// Registered Users
+export const registeredUsers = [
+    {
+        id: 'sally-smith',
+        username: 'sallysmith',
+        password: 'password123', 
+    },
+    {
+        id: 'john-fitzgerald',
+        username: 'johnfitz',
+        password: 'john123',
+    },
+];
+
 // Centralized list of all users
 export const userList = [
     {

@@ -18,7 +18,8 @@ function Header({ onLoginClick, onRegisterClick }) {
   const isTermsPage = location.pathname === '/terms';
   const isAboutPage = location.pathname === '/about';
   const isHomePage = location.pathname === '/home';
-  const isReviewPage = useMatch('/review/:userId');
+  const isReviewPage = useMatch('/reviews/:userId');
+  const isCreateReviewPage = useMatch('/create-review/:userId');
   const isSearchPage = location.pathname === '/search';
   const isSavedRoommatesPage = location.pathname === '/saved';
 
@@ -41,7 +42,7 @@ function Header({ onLoginClick, onRegisterClick }) {
               </button>
             </>
           )}
-          {(isHomePage || isReviewPage || isSearchPage || isSavedRoommatesPage) && (
+          {(isHomePage || isReviewPage || isCreateReviewPage || isSearchPage || isSavedRoommatesPage) && (
             <>
               <Navbar.Brand href="/home">
                 <img src={home} alt="home-icon" className="navbar-home" />
@@ -49,14 +50,14 @@ function Header({ onLoginClick, onRegisterClick }) {
               <Navbar.Brand href="/search">
                 <img src={search} alt="search-icon" className="navbar-search" />
               </Navbar.Brand>
-              <Navbar.Brand href="/home">
+              <Navbar.Brand href="/messages">
                 <img src={messages} alt="messages-icon" className="navbar-messages" />
               </Navbar.Brand>
               <Navbar.Brand href="/saved">
                 <img src={heart} alt="heart-icon" className="navbar-heart" />
               </Navbar.Brand>
-              <Navbar.Brand href="/home">
-                <img src={profile} alt="home-icon" className="navbar-profile" />
+              <Navbar.Brand href="/profile">
+                <img src={profile} alt="profile-icon" className="navbar-profile" />
               </Navbar.Brand>
             </>
           )}

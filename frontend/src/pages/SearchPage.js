@@ -41,7 +41,7 @@ function SearchPage() {
 
     // Function to navigate to the user's review page
     const goToUserProfile = (userId) => {
-        navigate(`/review/${userId}`); // Navigate to the review page of the clicked user
+        navigate(`/reviews/${userId}`); // Navigate to the review page of the clicked user
     };
 
     return (

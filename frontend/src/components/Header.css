@@ -46,3 +46,10 @@
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }
+
+.navbar-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure the image fits the circle */
+}

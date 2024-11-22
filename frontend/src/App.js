@@ -6,6 +6,7 @@ import About from "./pages/About";
 import TermsConditions from "./pages/TermsConditions";
 import HomePage from "./pages/HomePage";
 import ReviewPage from "./pages/ReviewPage";
+import CreateReviewPage from "./pages/CreateReviewPage";
 import SearchPage from "./pages/SearchPage";
 import SavedRoommatesPage from "./pages/SavedRoommatesPage";
 import Header from "./components/Header";
@@ -105,7 +106,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/review/:userId" element={<ReviewPage />} />
+        <Route path="/reviews/:userId" element={<ReviewPage />} />
+        <Route path="/create-review/:userId" element={<CreateReviewPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/saved" element={<SavedRoommatesPage />} />
       </Routes>
