@@ -93,24 +93,27 @@ const EditProfilePage = () => {
             setSelectedPreferences(prev => [...prev, pref]); // Add preference
         }
     };
-
+    
     // Handle the editing mode toggle for preferences
     const handleEditPreferencesClick = () => {
         setIsEditingPreferences(!isEditingPreferences);
     };
-
+    
     // Save preferences (simulating updating the loggedInUser's preferences)
     const handleSavePreferences = () => {
         loggedInUser.preferences = selectedPreferences; // Update the preferences
         setIsEditingPreferences(false);
     };
-
+    
     // Cancel editing preferences and revert to the original preferences
     const handleCancelPreferencesEdit = () => {
         setSelectedPreferences(loggedInUser.preferences); // Revert to original preferences
         setIsEditingPreferences(false);
     };
 
+    // Filter out selected preferences from the available preferences list
+    const availablePreferences = preferencesList.filter(pref => !selectedPreferences.includes(pref));
+    
     // Handle editing reviews (delete reviews)
     const handleDeleteReview = (reviewId) => {
         const confirmation = window.confirm(
@@ -124,8 +127,48 @@ const EditProfilePage = () => {
         }
     };
 
-    // Filter out selected preferences from the available preferences list
-    const availablePreferences = preferencesList.filter(pref => !selectedPreferences.includes(pref));
+    // State for editing Account Details
+    const [isEditingAccount, setIsEditingAccount] = useState(false);
+    const [accountDetails, setAccountDetails] = useState({
+        username: loggedInUser.username,
+        email: loggedInUser.email,
+        password: loggedInUser.password,
+        firstName: loggedInUser.firstName,
+        lastName: loggedInUser.lastName,
+        occupation: loggedInUser.occupation,
+        country: loggedInUser.country,
+        state: loggedInUser.state,
+        city: loggedInUser.city,
+    });
+
+    // Save changes to Account Details
+    const handleSaveAccountDetails = () => {
+        // Update loggedInUser object with the new values
+        loggedInUser.username = accountDetails.username;
+        loggedInUser.email = accountDetails.email;
+        loggedInUser.password = accountDetails.password;
+        loggedInUser.firstName = accountDetails.firstName;
+        loggedInUser.lastName = accountDetails.lastName;
+        loggedInUser.occupation = accountDetails.occupation;
+        loggedInUser.country = accountDetails.country;
+        loggedInUser.state = accountDetails.state;
+        loggedInUser.city = accountDetails.city;
+        setIsEditingAccount(false); // Close the edit mode
+    };
+
+    // Handle cancel editing and revert the changes
+    const handleCancelAccountEdit = () => {
+        setAccountDetails({
+            firstName: loggedInUser.firstName,
+            lastName: loggedInUser.lastName,
+            email: loggedInUser.email,
+            occupation: loggedInUser.occupation,
+            country: loggedInUser.country,
+            state: loggedInUser.state,
+            city: loggedInUser.city
+        });
+        setIsEditingAccount(false);
+    };
 
     return (
         <div className="edit-profile-content">
@@ -138,14 +181,14 @@ const EditProfilePage = () => {
                     />
                 </div>
                 <div className="edit-profile-info">
-                    <div className="edit-profile-name">{loggedInUser.name}</div>
+                    <div className="edit-profile-name">{loggedInUser.firstName} {loggedInUser.lastName}</div>
                     <div className="edit-profile-occupation">{loggedInUser.occupation}</div>
                     <div className="edit-profile-location">{loggedInUser.city}, {loggedInUser.state}</div>
                     <Link
                         to={`/profile`}
                         className="goback-profile-btn"
                     >
-                        Go back to Profile
+                        View Profile
                     </Link>
                 </div>
             </div>
@@ -268,7 +311,115 @@ const EditProfilePage = () => {
                         </div>
                     )}
                 </div>
+                <div className="edit-profile-card">
+                    <div className="edit-profile-account-details">
+                        <div className="edit-profile-settings">
+                        <p><span className="edit-highlight">Edit </span>Account Details</p>
+                        </div>
+                        <button className="edit-button" onClick={() => setIsEditingAccount(!isEditingAccount)}>
+                            <img src={edit} alt="Edit" />
+                        </button>
+                    </div>
+                    {isEditingAccount ? (
+                        <div className="account-details-form">
+                            <div className="form-group">
+                                <label>Username</label>
+                                <input type="text" value={loggedInUser.username} disabled />
+                            </div>
+                            <div className="form-group">
+                                <label>First Name</label>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    value={accountDetails.firstName}
+                                    onChange={(e) => setAccountDetails({ ...accountDetails, firstName: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Last Name</label>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    value={accountDetails.lastName}
+                                    onChange={(e) => setAccountDetails({ ...accountDetails, lastName: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={accountDetails.email}
+                                    onChange={(e) => setAccountDetails({ ...accountDetails, email: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Occupation</label>
+                                <input
+                                    type="text"
+                                    name="occupation"
+                                    value={accountDetails.occupation}
+                                    onChange={(e) => setAccountDetails({ ...accountDetails, occupation: e.target.value })}
+                                />
+                            </div>
+                            <div className="location">
+                                <div className="form-group">
+                                    <label>Country</label>
+                                    <select
+                                        name="country"
+                                        value={accountDetails.country}
+                                        onChange={(e) => setAccountDetails({ ...accountDetails, country: e.target.value })}
+                                    >
+                                        <option>Choose...</option>
+                                        <option>Canada</option>
+                                        <option>USA</option>
+                                    </select>
+                                </div>
 
+                                <div className="form-group">
+                                    <label>State/Province</label>
+                                    <input
+                                        type="text"
+                                        name="state"
+                                        value={accountDetails.state}
+                                        onChange={(e) => setAccountDetails({ ...accountDetails, state: e.target.value })}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>City</label>
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        value={accountDetails.city}
+                                        onChange={(e) => setAccountDetails({ ...accountDetails, city: e.target.value })}
+                                    />
+                                </div>
+                            </div>
+                            <div className="button-container">
+                                <button className="primary-btn save-button" onClick={handleSaveAccountDetails}>
+                                    Save
+                                </button>
+                                <button className="secondary-btn cancel-button" onClick={handleCancelAccountEdit}>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="account-details">
+                            <div className="account-username"><strong>Username: </strong> {loggedInUser.username}</div>
+                            <div className="account-email"><strong>Email: </strong> {loggedInUser.email}</div>
+                            <div className="account-first-name"><strong>First Name: </strong> {loggedInUser.firstName}</div>
+                            <div className="account-last-name"><strong>Last Name: </strong> {loggedInUser.lastName}</div>
+                            <div className="account-occupation"><strong>Occupation: </strong> {loggedInUser.occupation}</div>
+                            <div className="location">
+                                <div className="account-country"><strong>Country: </strong>  {loggedInUser.country}</div>
+                                <div className="account-country"><strong>State/Province: </strong>  {loggedInUser.state}</div>
+                                <div className="account-country"><strong>City: </strong> {loggedInUser.city}</div>
+                            </div>
+                        </div>
+                    )}
+                </div>
                 <div className="edit-profile-card">
                     <div className="edit-profile-reviews">
                         <p><span className="edit-highlight">Remove </span>Past Reviews</p>
@@ -340,12 +491,6 @@ const EditProfilePage = () => {
                             <h5>No reviews yet.</h5>
                         )
                     )}
-                </div>
-                <div className="edit-profile-card">
-                    <div className="edit-profile-settings">Account Settings</div>
-                </div>
-                <div className="edit-profile-card">
-                    <div className="edit-profile-account-details">Account Details</div>
                 </div>
             </div>
         </div>

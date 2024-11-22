@@ -47,7 +47,6 @@
     padding: 2rem;
 }
 
-
 /* User Profile Cards (about me, preferences, past reviews) */
 .edit-profile-card {
     display: flex;
@@ -282,6 +281,16 @@ border: 0.1rem solid #0a0b43;
     height: 2.5rem;;
 }
 
+.occupation-input {
+    width: 100%;
+    height: 3.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    resize: none;
+    font-size: 1.5rem;
+}
+
+
 /* Edit About Me Form */
 .edit-about-me-form {
     width: 100%;
@@ -296,7 +305,73 @@ border: 0.1rem solid #0a0b43;
     border-radius: 0.5rem;
     resize: none;
     font-size: 1.8rem;
+}
 
+/* Account Details */
+.account-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.5rem;
+    width: 100%;
+    justify-content: left;
+    margin-top: 1rem;
+}
+
+.account-details div {
+    display: flex;
+}
+
+.account-details div strong {
+    margin-right: 0.5rem;
+}
+
+.account-country , .account-state , .account-city {
+    margin-right: 1rem;
+}
+
+.account-details-form {
+    width: 100%;
+    padding: 1rem;
+    justify-content: left;
+}
+
+.account-details-form .form-group {
+    margin-bottom: 0.5rem; /* Adds space between each input field */
+}
+
+.account-details-form .form-group label {
+    display: block;
+    text-align: left;
+    margin: 1rem 0rem;
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #1e1e1e;
+}
+
+.account-details-form .form-group input,
+.account-details-form .form-group select {
+    width: 100%;
+    padding: 0.7rem; 
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+    font-size: 1.5rem;
+}
+
+.account-details-form .form-group select {
+    padding: 0.85rem;
+}
+
+/* Location fields */
+.account-details-form .location {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Individual form group */
+.account-details-form .location .form-group {
+    flex: 1; /* Allows each form group to take equal space */
 }
 
 /* Submit and Cancel Buttons */

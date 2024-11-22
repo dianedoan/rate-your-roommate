@@ -50,12 +50,12 @@ const UserProfilePage = () => {
                 <div className="user-profile-image">
                     <img
                         src={loggedInUser.image}
-                        alt={`${loggedInUser.name}'s profile`}
+                        alt={`${loggedInUser.firstName} ${loggedInUser.lastName}'s profile`}
                         className="user-profile-image"
                     />
                 </div>
                 <div className="user-profile-info">
-                    <div className="user-profile-name">{loggedInUser.name}</div>
+                    <div className="user-profile-name">{loggedInUser.firstName} {loggedInUser.lastName}</div>
                     <div className="user-profile-occupation">{loggedInUser.occupation}</div>
                     <div className="user-profile-location">{loggedInUser.city}, {loggedInUser.state}</div>
                     <Link
