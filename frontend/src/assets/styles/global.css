@@ -275,7 +275,6 @@ html a:hover {
   transition: transform 150ms;
 }
 
-
 html .nav-link {
   color: #1E1E1E; /* Almost black */
   text-decoration: none;
@@ -397,30 +396,3 @@ html .navbar {
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }
-
-/* Logo */
-.logo {
-  color: #8CAD63; /* Green for main logo text */
-  background-color: #1E1E1E; /* Almost black */
-  color: #FFFFFF; /* White text */
-  text-align: center;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-/* Social Media Buttons */
-.social-button {
-  background-color: #1E1E1E; /* Almost black */
-  color: #FFFFFF; /* White text */
-  font-size: 16px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.social-button.twitter { /* Specific styling for Twitter button if needed */ }
-.social-button.instagram { /* Specific styling for Instagram button if needed */ }
-.social-button.tiktok { /* Specific styling for TikTok button if needed */ }

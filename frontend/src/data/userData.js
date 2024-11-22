@@ -355,6 +355,26 @@ export const reviewsData = [
     },
 ];
 
+export const messagesData = [
+    {
+        userId: 'alice-wang',
+        conversation: [
+            { sender: 'sallysmith', content: 'Hey Alice!' },
+            { sender: 'alicewang', content: 'Hi Sally!' },
+            { sender: 'sallysmith', content: 'How\'s it going?' },
+            { sender: 'alicewang', content: 'Good, thanks!' }
+        ]
+    },
+    {
+        userId: 'dave-jones',
+        conversation: [
+            { sender: 'sallysmith', content: 'Hey Dave!' },
+            { sender: 'davejones', content: 'Hello Sally!' },
+            { sender: 'sallysmith', content: 'What\'s new?' },
+            { sender: 'davejones', content: 'Not much, you?' }
+        ]
+    },
+];
 
 // Set initial liked/saved profiles
 export const getInitialLikedProfiles = () => {
