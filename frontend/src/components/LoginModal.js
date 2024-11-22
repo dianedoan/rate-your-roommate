@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { registeredUsers } from '../data/userData'; // Import registered users
+import { userList } from '../data/userData'; // Import registered users
 import './Modal.css';
 
 const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
@@ -18,7 +18,7 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
     e.preventDefault();
 
     // Validate credentials
-    const user = registeredUsers.find(
+    const user = userList.find(
       (u) => u.username === username && u.password === password
     );
 

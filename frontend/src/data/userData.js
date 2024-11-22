@@ -4,24 +4,12 @@ import profile3 from "../assets/images/profile-pics/profile3.jpg";
 import profile4 from "../assets/images/profile-pics/profile4.jpg";
 import profile5 from "../assets/images/profile-pics/profile5.jpg";
 
-// Registered Users
-export const registeredUsers = [
-    {
-        id: 'sally-smith',
-        username: 'sallysmith',
-        password: 'password123', 
-    },
-    {
-        id: 'john-fitzgerald',
-        username: 'johnfitz',
-        password: 'john123',
-    },
-];
-
-// Centralized list of all users
+// Centralized list of all registered users
 export const userList = [
     {
         id: 'alice-wang',
+        username: 'alicewang',
+        password: '123456',
         name: 'Alice Wang',
         firstName: 'Alice',
         lastName: 'Wang',
@@ -34,6 +22,8 @@ export const userList = [
     },
     {
         id: 'dave-jones',
+        username: 'davejones',
+        password: '123456',
         name: 'Dave Jones',
         firstName: 'Dave',
         lastName: 'Jones',
@@ -46,6 +36,8 @@ export const userList = [
     },
     {
         id: 'bob-brown',
+        username: 'bobbrown',
+        password: '123456',
         name: 'Bob Brown',
         firstName: 'Bob',
         lastName: 'Brown',
@@ -58,6 +50,8 @@ export const userList = [
     },
     {
         id: 'john-fitzgerald',
+        username: 'johnfitz',
+        password: '123456',
         name: 'John Fitzgerald',
         firstName: 'John',
         lastName: 'Fitzgerald',
@@ -70,6 +64,8 @@ export const userList = [
     },
     {
         id: 'sally-smith',
+        username: 'sallysmith',
+        password: '123456',
         name: 'Sally Smith',
         firstName: 'Sally',
         lastName: 'Smith',
