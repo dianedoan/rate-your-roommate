@@ -66,7 +66,7 @@ const ReviewPage = () => {
                             {preferences.map((pref) => (
                                 <Badge
                                     key={pref}
-                                    className={`preference-tag profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
+                                    className={`profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
                                 >
                                     {pref}
                                 </Badge>

@@ -128,18 +128,17 @@
     display: flex;
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: left;
-    margin-right: 1rem;
     width: 100%;
-}
-
-.review-title {
-    font-size: 2em;
-    font-weight: bold;
 }
 
 .review-score {
     font-weight: bold;
     font-size: 1.8em;
+}
+
+.review-title {
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .review-description {
@@ -156,12 +155,11 @@
     font-weight: bold;
 }
 
-.review-location {
-  font-size: 1.3em; /* Smaller font size for location */
-  margin-bottom: 3rem;
-  text-align: right;
+.review-date {
+    font-size: 1.5em;
 }
 
+/* Preference tags */
 .preferences-section .preference-tag {
     cursor: default;
 }
