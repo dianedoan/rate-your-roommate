@@ -7,7 +7,7 @@ import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
 function SavedRoommatesPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
     const filteredUsers = Object.values(likedProfiles).filter((user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||

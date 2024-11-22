@@ -20,6 +20,10 @@
 
 .explore-section {
   background-color: #f2ffe1;
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap */
+  gap: 2rem; /* Add spacing between cards */
+  justify-content: center; /* Center the cards */
 }
 
 .top-rated-container {

@@ -396,3 +396,15 @@ html .navbar {
   transform: translateY(0.1rem);
   transition: transform 150ms;
 }
+
+/* Social Media Buttons */
+.social-button {
+  background-color: #1E1E1E; /* Almost black */
+  color: #FFFFFF; /* White text */
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
