@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { userList, reviewsData } from "../data/userData";
+import star2 from "../assets/images/button-icons/star2.svg";
+import star2filled from "../assets/images/button-icons/star2-filled.svg";
 import './CreateReviewPage.css';
 
 const CreateReviewPage = () => {
@@ -30,7 +32,7 @@ const CreateReviewPage = () => {
     const handleRatingChange = (category, value) => {
         setRatings((prevRatings) => ({
             ...prevRatings,
-            [category]: parseInt(value),
+            [category]: value,
         }));
     };
 
@@ -75,6 +77,36 @@ const CreateReviewPage = () => {
         navigate(`/reviews/${userId}`);
     };
 
+    // Render star icons for rating
+    const renderStars = (category, labelBefore, labelAfter) => {
+        const rating = ratings[category];
+        const stars = [];
+
+        // Create the stars based on the rating value (filled and unfilled stars)
+        for (let i = 1; i <= 5; i++) {
+            const starIcon = i <= rating ? star2filled : star2;
+            stars.push(
+                <div key={i} className="star-container">
+                    <img
+                        src={starIcon}
+                        alt={`star ${i}`}
+                        className="star-icon"
+                        onClick={() => handleRatingChange(category, i)} // Set the rating when a star is clicked
+                    />
+                    <div className="star-number">{i}</div> {/* Display number beneath each star */}
+                </div>
+            );
+        }
+
+        return (
+            <div className="star-rating">
+                <div className="star-label">{labelBefore}</div>
+                <div className="stars-container">{stars}</div>
+                <div className="star-label">{labelAfter}</div>
+            </div>
+        );
+    };
+
     return (
         <div className="create-review-content">
             <div className="create-review-header">
@@ -87,21 +119,16 @@ const CreateReviewPage = () => {
 
             <form onSubmit={handleSubmit} className="review-form">
                 <div className="questions-section">
-                    {['cleanliness', 'communication', 'timeliness', 'noiseLevel', 'etiquette'].map((category) => (
+                    {['Cleanliness', 'Communication', 'Timeliness', 'Noise Level', 'Etiquette & Manners'].map((category) => (
                         <div key={category} className="question-card rating-category">
-                            <label htmlFor={category}>{category.charAt(0).toUpperCase() + category.slice(1)}:</label>
-                            <select
-                                id={category}
-                                value={ratings[category]}
-                                onChange={(e) => handleRatingChange(category, e.target.value)}
-                            >
-                                <option value="0">Select</option>
-                                {[1, 2, 3, 4, 5].map((rating) => (
-                                    <option key={rating} value={rating}>
-                                        {rating}
-                                    </option>
-                                ))}
-                            </select>
+                            <label className="question-label" htmlFor={category}>{category}</label>
+                            <div className="stars-container">
+                                {category === 'Cleanliness' && renderStars(category, 'Messy', 'Clean')}
+                                {category === 'Communication' && renderStars(category, 'Non-existent', 'Active')}
+                                {category === 'Timeliness' && renderStars(category, 'Late', 'On-time')}
+                                {category === 'Noise Level' && renderStars(category, 'Quiet', 'Loud')}
+                                {category === 'Etiquette & Manners' && renderStars(category, 'Rude', 'Polite')}
+                            </div>
                         </div>
                     ))}
 
@@ -116,25 +143,27 @@ const CreateReviewPage = () => {
                         question: 'Would you be roommates again?',
                     }].map(({ id, question }) => (
                         <div key={id} className="question-card yes-no-question">
-                            <label>{question}</label>
+                            <label className="question-label">{question}</label>
                             <div>
-                                <label>
+                                <label className="radio-label">
                                     <input
                                         type="radio"
                                         name={id}
                                         value="Yes"
                                         checked={yesNoQuestions[id] === 'Yes'}
                                         onChange={(e) => handleYesNoChange(id, e.target.value)}
+                                        className="radio-button"
                                     />
                                     Yes
                                 </label>
-                                <label>
+                                <label className="radio-label">
                                     <input
                                         type="radio"
                                         name={id}
                                         value="No"
                                         checked={yesNoQuestions[id] === 'No'}
                                         onChange={(e) => handleYesNoChange(id, e.target.value)}
+                                        className="radio-button"
                                     />
                                     No
                                 </label>
@@ -143,9 +172,9 @@ const CreateReviewPage = () => {
                     ))}
 
                     <div className="question-card open-ended-section">
-                        <label htmlFor="openEnded">What do you want other users to know about this roommate?</label>
+                        <label className="question-label" htmlFor="openEnded">What do you want other users to know about this roommate?</label>
                         <textarea
-                            id="openEnded"
+                            className="comments-form"
                             value={openEnded}
                             onChange={(e) => setOpenEnded(e.target.value)}
                             rows="5"
@@ -154,13 +183,14 @@ const CreateReviewPage = () => {
                     </div>
 
                     <div className="question-card anonymous-toggle">
-                        <label>
+                        <label className="anonymous-label">
                             <input
+                                className="anonymous-checkbox"
                                 type="checkbox"
                                 checked={isAnonymous}
                                 onChange={() => setIsAnonymous((prev) => !prev)}
                             />
-                            Submit as Anonymous
+                            Submit as Anonymous?
                         </label>
                     </div>
 
