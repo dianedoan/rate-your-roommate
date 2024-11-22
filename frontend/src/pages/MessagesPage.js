@@ -72,14 +72,15 @@ const MessagesPage = () => {
 
     // Load messages for selected user
     useEffect(() => {
-        if (selectedUser) {
+        if (selectedUser && !messages[selectedUser.id]) {
             const userMessages = messagesData.find(convo => convo.userId === selectedUser.id)?.conversation || [];
             setMessages(prevMessages => ({
                 ...prevMessages,
                 [selectedUser.id]: userMessages
             }));
         }
-    }, [selectedUser]);
+    }, [selectedUser, messages]);
+    
 
     const handleSendMessage = () => {
         if (messageInput.trim() === "") return;
