@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { registeredUsers } from '../data/userData'; // Import registered users
 import './Modal.css';
 
-const LoginModal = ({ onClose, onForgotPasswordClick }) => {
-  const [passwordVisible, setPasswordVisible] = useState(false); // To toggle password visibility
+const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // Track error messages
 
   const handlePasswordToggle = () => {
     setPasswordVisible(!passwordVisible);
@@ -14,21 +16,20 @@ const LoginModal = ({ onClose, onForgotPasswordClick }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add login logic here
-    console.log('Logging in with', { username, password });
 
-    // Error messages
-    // if (!username) {
-    //   setError('Please enter a username.');
-    //   return;
-    // }
+    // Validate credentials
+    const user = registeredUsers.find(
+      (u) => u.username === username && u.password === password
+    );
 
-    // if (!formData.password) {
-    //   setError('Please enter a password.');
-    //   return;
-    // }
-
-    onClose(); // Close the modal after login attempt
+    if (user) {
+      console.log('Login successful for user:', user);
+      setError('');
+      onClose(); // Close the modal
+      onLoginSuccess(user); // Trigger the login success callback
+    } else {
+      setError('Invalid username or password');
+    }
   };
 
   return (
@@ -63,18 +64,20 @@ const LoginModal = ({ onClose, onForgotPasswordClick }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <div
-                className="password-icon"
-                onClick={handlePasswordToggle}
-              >
+              <div className="password-icon" onClick={handlePasswordToggle}>
                 {passwordVisible ? <FaEyeSlash /> : <FaEye />}
               </div>
             </div>
           </Form.Group>
-          <Button 
-            className="link-btn" variant="link" onClick={() => {
-              onForgotPasswordClick(); // Call the prop function
-            }}>Forgot Password?
+
+          {error && <div className="text-danger mb-3">{error}</div>}
+
+          <Button
+            className="link-btn"
+            variant="link"
+            onClick={onForgotPasswordClick}
+          >
+            Forgot Password?
           </Button>
 
           <Button variant="primary" type="submit" className="w-100 mt-3">
@@ -82,10 +85,10 @@ const LoginModal = ({ onClose, onForgotPasswordClick }) => {
           </Button>
         </Form>
         <div className="separator">
-            <div className="flex-grow-1 border-top"></div>
-              <span className="mx-2 text-center small">or sign in with</span>
-            <div className="flex-grow-1 border-top"></div>
-          </div>
+          <div className="flex-grow-1 border-top"></div>
+          <span className="mx-2 text-center small">or sign in with</span>
+          <div className="flex-grow-1 border-top"></div>
+        </div>
         <div className="social-login d-flex flex-column align-items-center">
           <Button className="social-button" variant="outline-danger" block>
             <FaGoogle /> Login with Google
