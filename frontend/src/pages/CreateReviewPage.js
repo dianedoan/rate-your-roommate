@@ -20,11 +20,12 @@ const CreateReviewPage = () => {
     });
 
     const [yesNoQuestions, setYesNoQuestions] = useState({
-        respectful: 'Yes',
-        wouldRecommend: 'Yes',
-        goodExperience: 'Yes',
+        respectful: '',
+        wouldRecommend: '',
+        goodExperience: '',
     });
 
+    const [openEndedTitle, setTitle] = useState('');
     const [openEnded, setOpenEnded] = useState('');
     const [isAnonymous, setIsAnonymous] = useState(false); // State to track anonymous submission
 
@@ -63,8 +64,22 @@ const CreateReviewPage = () => {
                         ratings.etiquette) / 5
                 ).toFixed(1)
             ), // Calculate the average score rounded to 1 decimal place
-            title: "User Feedback", // You can customize this or add a title input field
+            title: openEndedTitle,
             description: openEnded,
+            yesNoAnswers: [
+                {
+                    question: 'Was this roommate respectful of your space?',
+                    answer: yesNoQuestions.respectful
+                },
+                {
+                    question: 'Was this roommate punctual with paying their living fees?',
+                    answer: yesNoQuestions.punctualFees
+                },
+                {
+                    question: 'Would you be roommates again?',
+                    answer: yesNoQuestions.roommatesAgain
+                }
+            ],
             date: new Date().toLocaleDateString(),
         };
 
@@ -119,19 +134,32 @@ const CreateReviewPage = () => {
 
             <form onSubmit={handleSubmit} className="review-form">
                 <div className="questions-section">
-                    {['Cleanliness', 'Communication', 'Timeliness', 'Noise Level', 'Etiquette & Manners'].map((category) => (
-                        <div key={category} className="question-card rating-category">
-                            <label className="question-label" htmlFor={category}>{category}</label>
-                            <div className="stars-container">
-                                {category === 'Cleanliness' && renderStars(category, 'Messy', 'Clean')}
-                                {category === 'Communication' && renderStars(category, 'Non-existent', 'Active')}
-                                {category === 'Timeliness' && renderStars(category, 'Late', 'On-time')}
-                                {category === 'Noise Level' && renderStars(category, 'Quiet', 'Loud')}
-                                {category === 'Etiquette & Manners' && renderStars(category, 'Rude', 'Polite')}
-                            </div>
-                        </div>
-                    ))}
+                    {['cleanliness', 'communication', 'timeliness', 'noiseLevel', 'etiquette'].map((category) => {
+                        // Update category labels for special cases
+                        const categoryLabel = 
+                            category === 'noiseLevel' ? 'Noise Level' : 
+                            category === 'etiquette' ? 'Etiquette & Manners' :
+                            category.charAt(0).toUpperCase() + category.slice(1); // Capitalize the rest
+                        
+                        const labelMapping = {
+                            cleanliness: ['Messy', 'Clean'],
+                            communication: ['Non-existent', 'Active'],
+                            timeliness: ['Late', 'On-time'],
+                            noiseLevel: ['Quiet', 'Loud'], // Special case for noiseLevel
+                            etiquette: ['Rude', 'Polite'], // Special case for etiquette
+                        };
 
+                        return (
+                            <div key={category} className="question-card rating-category">
+                                <label className="question-label" htmlFor={categoryLabel}>{categoryLabel}</label>
+                                <div className="stars-container">
+                                    {renderStars(category, labelMapping[category][0], labelMapping[category][1])}
+                                </div>
+                            </div>
+                        );
+                    })}
+
+                    {/* Additional yes/no questions */}
                     {[{
                         id: 'respectful',
                         question: 'Was this roommate respectful of your space?',
@@ -167,12 +195,33 @@ const CreateReviewPage = () => {
                                     />
                                     No
                                 </label>
+                                <label className="radio-label">
+                                    <input
+                                        type="radio"
+                                        name={id}
+                                        value="Unsure"
+                                        checked={yesNoQuestions[id] === 'Unsure'}
+                                        onChange={(e) => handleYesNoChange(id, e.target.value)}
+                                        className="radio-button"
+                                    />
+                                    Unsure
+                                </label>
                             </div>
                         </div>
                     ))}
 
                     <div className="question-card open-ended-section">
-                        <label className="question-label" htmlFor="openEnded">What do you want other users to know about this roommate?</label>
+                    <label className="question-label" htmlFor="title">What do you want other users to know about this roommate?</label>
+                        <input
+                            className="comments-form-title"
+                            type="text"
+                            id="title"
+                            value={openEndedTitle}
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder="Enter a title..."
+                        />
+
+                        <label className="question-label" htmlFor="openEnded"></label>
                         <textarea
                             className="comments-form"
                             value={openEnded}

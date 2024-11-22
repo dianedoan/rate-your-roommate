@@ -118,7 +118,7 @@
 }
 
 /* Comments Form */
-.comments-form {
+.comments-form-title , .comments-form {
     width: 100%;
     border-radius: 0.5rem;
     padding: 1rem;
@@ -145,3 +145,12 @@
     border-radius: 0.8rem;
     border: 0.1rem solid #1e1e1e;
 }
+
+.error-message {
+    text-align: center;
+    color: red;
+    font-size: 1.5rem;
+    /* font-weight: bold; */
+    /* margin: 2rem 0rem; */
+}
+

@@ -146,6 +146,11 @@
     font-size: 1.5em;
 }
 
+.review-questions {
+    font-size: 1em;
+    margin: 1rem 0rem;
+}
+
 .review-username {
     font-size: 1.5em;
     font-weight: bold;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { userList, userListWithRatings, reviewsData, calculateAverageRating, generateStarRating, getInitialLikedProfiles } from "../data/userData";
+import { userList, reviewsData, calculateAverageRating, generateStarRating, getInitialLikedProfiles } from "../data/userData";
 import { Badge } from 'react-bootstrap';
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
@@ -21,7 +21,7 @@ const ReviewPage = () => {
     // Function to toggle the liked status of a profile (removing or re-adding profiles)
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const user = userListWithRatings.find(u => u.name === userName);
+            const user = userList.find(u => u.name === userName);
             
             if (!user) return prevLikes;
 
@@ -120,6 +120,17 @@ const ReviewPage = () => {
                                 </div>
                                 <div className="review-title">{review.title}</div>
                                 <div className="review-description">{review.description}</div>
+
+                                {review.yesNoAnswers && (
+                                    <div className="review-questions">
+                                        {review.yesNoAnswers.map((item, index) => (
+                                            <div key={index} className="review-question-answer">
+                                                <strong>{item.question}</strong> {item.answer}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                
                                 <div className="review-username">{review.username}</div>
                                 <div className="review-date">{review.date}</div>
                             </div>
