@@ -15,10 +15,12 @@ export const userList = [
         lastName: 'Wang',
         city: 'Calgary',
         state: 'AB',
+        country: 'Canada',
         occupation: 'Athlete',
         description: 'I love skating and sleeping',
         image: profile1,
-        preferences: ['Early Riser', 'Pet Owner', 'Clean & Tidy', 'Likes Socializing', 'Vegetarian']
+        preferences: ['Early Riser', 'Pet Owner', 'Clean & Tidy', 'Likes Socializing', 'Vegetarian'],
+        email: 'alicewang@example.com'
     },
     {
         id: 'dave-jones',
@@ -29,10 +31,12 @@ export const userList = [
         lastName: 'Jones',
         city: 'Airdrie',
         state: 'AB',
+        country: 'Canada',
         occupation: 'Neurosurgeon',
         description: 'I have a passion for biking',
         image: profile2,
-        preferences: ['Late Sleeper', 'Smoker Friendly', 'Fitness Enthusiast', 'Non-Vegetarian']
+        preferences: ['Late Sleeper', 'Smoker Friendly', 'Fitness Enthusiast', 'Non-Vegetarian'],
+        email: 'davejones@example.com'
     },
     {
         id: 'bob-brown',
@@ -43,10 +47,12 @@ export const userList = [
         lastName: 'Brown',
         city: 'Calgary',
         state: 'AB',
+        country: 'Canada',
         occupation: 'Student',
         description: 'NEED a roommate ASAP',
         image: profile3,
-        preferences: ['Messy', 'Organized', 'Homebody', 'Non-Smoker']
+        preferences: ['Messy', 'Organized', 'Homebody', 'Non-Smoker'],
+        email: 'bobbrown@example.com'
     },
     {
         id: 'john-fitzgerald',
@@ -57,10 +63,12 @@ export const userList = [
         lastName: 'Fitzgerald',
         city: 'Calgary',
         state: 'AB',
+        country: 'Canada',
         occupation: 'Software Engineer',
         description: 'I own a lot of cats',
         image: profile4,
-        preferences: ['Pet Owner', 'Smoker Friendly', 'Goes Out Often', 'Vegetarian']
+        preferences: ['Pet Owner', 'Smoker Friendly', 'Goes Out Often', 'Vegetarian'],
+        email: 'johnfitzgerald@example.com'
     },
     {
         id: 'sally-smith',
@@ -71,10 +79,12 @@ export const userList = [
         lastName: 'Smith',
         city: 'Calgary',
         state: 'AB',
+        country: 'Canada',
         occupation: 'Teacher',
         description: 'I like cooking',
         image: profile5,
-        preferences: ['Clean & Tidy', 'Organized', 'Likes Socializing', 'Vegan']
+        preferences: ['Clean & Tidy', 'Organized', 'Likes Socializing', 'Vegan'],
+        email: 'sallysmith@example.com'
     },
 ];
 
