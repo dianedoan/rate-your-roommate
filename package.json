@@ -3,6 +3,8 @@
     "nodemon": "^3.1.7"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.699.0",
+    "@aws-sdk/lib-dynamodb": "^3.699.0",
     "bootstrap": "^5.3.3",
     "firebase": "^11.0.1",
     "react-bootstrap": "^2.10.5",

@@ -19,6 +19,7 @@ import ForgotPasswordModal from './components/ForgotPasswordModal';
 import SetupProfileModal from './components/SetupProfileModal';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './assets/styles/global.css';
+import { isAuthenticated, getCurrentUser } from './components/auth';
 
 function App() {
   // State to control the visibility of the login and register modals

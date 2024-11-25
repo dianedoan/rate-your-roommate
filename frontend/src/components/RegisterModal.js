@@ -29,7 +29,7 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // You can add form validation here and submit logic
     console.log('Form submitted:', formData);
@@ -85,13 +85,52 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
       return;
     }
 
+    try{
+      setIsSubmitting(true);
+      
+      // Call the registration API endpoint
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          password: formData.password,
+          securityQuestion: formData.securityQuestion,
+          securityAnswer: formData.securityAnswer
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+
+      // Store the JWT token and user data
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Close modal and trigger success callback
+      onRegisterSuccess();
+      onClose();
+    }catch (error) {
+      setError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+
     // Faking submission, to test set profile modal
-    setIsSubmitting(true);
+    /*setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       onRegisterSuccess();  
       onClose();  
-    }, 1000); 
+    }, 1000); */
     // setIsSubmitting(false);
     // onRegisterSuccess(); 
   };
