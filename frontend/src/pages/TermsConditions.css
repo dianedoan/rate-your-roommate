@@ -1,0 +1,99 @@
+/* Main container setup */
+.terms-container {
+    background-image: url('../assets/images/Picture1.svg');
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    height: 88rem;
+    border: inset 15rem transparent;
+    border-top: none;
+    border-bottom: none;
+}
+
+/* Title styling - on top of background image */
+.terms-title {
+    padding-top: 5rem;
+}
+
+.terms-content {
+    background-color: white;
+    padding: 5rem;
+    font-size: 2rem;
+}
+
+/* Media query for larger screens (2560px) */
+@media (max-width: 2560px) {
+    .terms-container {
+        height: 82rem;
+    }
+
+    .terms-content {
+        padding: 4rem;
+        font-size: 1.5rem;
+    }
+}
+
+/* Media query for larger screens (2560px) */
+@media (max-width: 2200px) {
+    .terms-container {
+        height: 70rem;
+    }
+}
+
+/* Media query for larger screens (1900px) */
+@media (max-width: 1900px) {
+    .terms-container {
+        height: 60rem;
+        border: inset 8rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+}
+
+/* Media query for laptop screens (1440px) */
+@media (max-width: 1440px) {
+    .terms-container {
+        height: 55rem;
+        border: inset 8rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+}
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 1024px) {
+    .terms-container {
+        height: 45rem;
+        border: inset 3rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .terms-content {
+        padding: 3rem;
+        font-size: 1rem;
+    }
+}
+
+/* Media Query for Small Screens (Mobile) */
+@media (max-width: 768px) {
+    .terms-container {
+        height: 35rem;
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+    .terms-container{
+        height: 30rem;
+    }
+    
+    .terms-title {
+        padding-top: 3rem;
+    }
+}

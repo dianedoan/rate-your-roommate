@@ -1,16 +1,16 @@
 # Use Node.js LTS image
 FROM node:18
 
-# Set the working directory
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy the package.json and package-lock.json into the container
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install && npm install react-bootstrap bootstrap react-icons
 
-# Copy the entire frontend source code
+# Copy the entire frontend directory (including public, src, etc.) into the container
 COPY . .
 
 # Expose the port for the React development server

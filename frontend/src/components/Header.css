@@ -1,0 +1,55 @@
+/* Logo Icon */
+.navbar-logo {
+  height: 75px;
+}
+
+.navbar-logo:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+/* Smaller size for mobile screens (navbar toggle is shown) */
+@media (max-width: 991px) {
+  .navbar-logo {
+      height: 50px; /* Mobile size */
+      width: auto;  /* Maintain aspect ratio */
+  }
+
+  .nav-btn {
+    text-align: left;
+    margin: 0rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: #1E1E1E;
+    font-weight: bold;
+    text-shadow: none;
+  }
+
+  .nav-btn:hover {
+    background-color: transparent;
+    color: #1E1E1E;
+    text-shadow: 2px 2px #e4fff5;
+    border: 0.1rem solid #1e1e1e;
+  }
+
+  /* Nav Button when clicked */
+  .nav-btn:active {
+    background-color: #e4fff5;
+  }
+}
+
+.navbar-home:hover , .navbar-search:hover, .navbar-messages:hover, .navbar-heart:hover, .navbar-profile:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.navbar-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure the image fits the circle */
+}

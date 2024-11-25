@@ -1,0 +1,36 @@
+.features-section {
+    background-color: white;
+    padding: 1rem 0rem;
+}
+
+.feature {
+    padding: 0rem 4rem;
+}
+
+/* Media query for laptop screens (1440px) */
+@media (max-width: 1440px) {
+    .feature {
+        padding: 0rem 3rem;
+    }
+}
+
+/* Media Query for Tablet Screens (1024px) */
+@media (max-width: 1024px) {
+    .feature {
+        padding: 0rem 1rem;
+    }
+}
+
+/* Media Query for Small Screens (768px) */
+@media (max-width: 768px) {
+    .feature {
+        padding: 0rem 2rem;
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+    .feature {
+        padding: 0rem 1rem;
+    }
+}
