@@ -1,0 +1,265 @@
+.user-profile-content {
+    text-align: center;
+    align-items: center;
+}
+
+.user-profile-header {
+    background-color: #ffffff;
+    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.user-profile-image {
+    width: 20rem; /* Adjust image size */
+    height: 20rem;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+}
+
+.user-profile-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: left;
+    max-width: 55%;
+    margin-left: 4rem;
+}
+
+.user-profile-name {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.user-profile-occupation , .user-profile-location {
+    font-size: 2.2rem;
+}
+
+.user-profile-occupation {
+    font-weight: bold;
+}
+
+.user-profile-cards-section {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+
+/* User Profile Cards (about me, preferences, past reviews) */
+.user-profile-card {
+    display: flex;
+    flex-direction: column; /* Make the card layout horizontal */
+    align-items: center;
+    margin: 1rem 0%;
+    width: 100%;
+    max-width: 80rem;
+    height: 100%;
+    padding: 3rem;
+    background-color: #ffffff;
+    border: 0.12rem solid #1e1e1e;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-profile-about-me , .user-profile-preferences , .user-profile-reviews {
+    font-size: 2rem;
+    font-weight: bold;
+    align-self: baseline;
+    color: #8CAD63;
+    -webkit-text-stroke-width: 0.07rem;
+    -webkit-text-stroke-color: #1e1e1e;
+    /* text-shadow: 0.05rem 0.05rem #1e1e1e; */
+}
+
+.user-profile-description {
+    align-self: baseline;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+}
+
+/* Preference Tag */
+.preferences-section {
+    align-self: baseline;
+    margin-top: 1rem;
+}
+
+html .profile-preference-tag {
+    color: #ffffff;
+    margin: 0.4rem;
+    padding: 0.7rem 1rem;
+    border-radius: 1.3rem;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* Age Group Tags */
+html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-related {
+    background-color: #4171e1 !important;
+    border: 0.1rem solid #3864cc;
+  }
+  
+  /* Pet Related Tags (Pet Owner & No Pets) */
+  html .profile-preference-tag.pet-related , .selected-profile-preference-tag.pet-related {
+    background-color: #59cf8e !important;
+    border: 0.1rem solid #4bc381;
+  }
+  
+  /* Smoking Related Tags (Smoker/Non-Smoker)*/
+  html .profile-preference-tag.smoking-related , .selected-profile-preference-tag.smoking-related {
+    background-color: #8a5633 !important;
+    border: 0.1rem solid #7e451e;
+  }
+  
+  /* Cleanliness Related Tags (Clean & Tidy/Messy)*/
+  html .profile-preference-tag.cleanliness-related , .selected-profile-preference-tag.cleanliness-related {
+    background-color: #6747a1 !important;
+    border: 0.1rem solid #4e3184;
+  }
+  
+  /* Organize Related Tags (Organized/Unorganized)*/
+  html .profile-preference-tag.organize-related , .selected-profile-preference-tag.organize-related {
+    background-color: #ff5da9 !important;
+    border: 0.1rem solid #ec4a95;
+  }
+  
+  /* Sleep-related Tags */
+  html .profile-preference-tag.sleep-related , .selected-profile-preference-tag.sleep-related {
+    background-color: #71dcf1 !important;
+    border: 0.1rem solid #61cadf;
+  }
+  
+  /* Social-related Tags */
+  html .profile-preference-tag.social-related , .selected-profile-preference-tag.social-related {
+    background-color: #7ee3d5 !important;
+    border: 0.1rem solid #63d8c9;
+  }
+  
+  /* Lifestyle-related Tags */
+  html .profile-preference-tag.lifestyle-related , .selected-profile-preference-tag.lifestyle-related {
+    background-color: #8f8f8f !important;
+    border: 0.1rem solid #707070;
+  }
+  
+  /* Diet Related Tags */
+  html .profile-preference-tag.diet-related , .selected-profile-preference-tag.diet-related {
+    background-color: #7ab953 !important;
+    border: 0.1rem solid rgb(106, 166, 69);
+  }
+  
+  /* Lifestyle-related Tags */
+  html .profile-preference-tag.hobby-related , .selected-profile-preference-tag.hobby-related {
+    background-color: #ffce48 !important;
+    border: 0.1rem solid #ffc82f;
+  }
+  
+  /* Other related Tags */
+  html .profile-preference-tag.other-related , .selected-profile-preference-tag.other-related {
+    background-color: #121364 !important;
+    border: 0.1rem solid #0a0b43;
+  }
+
+/* Past Reviews */
+.past-review-card {
+    display: flex;
+    flex-direction: row; /* Make the card layout horizontal */
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+    width: 100%;
+    max-width: 55rem;
+    height: 100%;
+    padding: 3rem;
+    background-color: #ffffff;
+    border: 0.12rem solid #1e1e1e; /* Bottom border */
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.past-review-card:hover {
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
+.past-review-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: left;
+    width: 95%;
+    margin: 1rem;
+    padding: 1rem 0rem;
+    border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
+}
+
+.past-review-info:last-child {
+    border-bottom: none; /* Remove border from last review */
+}
+
+.past-review-score {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.past-review-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.past-review-description {
+    font-size: 1.5em;
+}
+
+.past-review-questions {
+    font-size: 1em;
+    margin: 1rem 0rem;
+}
+
+.past-review-username {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.past-review-date {
+    font-size: 1.5em;
+}
+
+/* Buttons */
+.edit-profile-btn {
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    color: #8CAD63;
+    text-decoration: underline;
+}
+
+.profile-buttons-container {
+    margin-bottom: 2rem;
+    justify-content: space-between;
+}
+
+.profile-btn {
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f44336;
+    padding: 1rem 2rem;
+    border: none;
+    background-color: transparent;
+}
+
+.profile-btn:hover {
+    color: #8CAD63;
+    text-shadow: 2px 2px #e4fff5;
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
+.profile-btn:active {
+    color: #878787;
+}

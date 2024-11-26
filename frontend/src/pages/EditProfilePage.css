@@ -1,0 +1,416 @@
+.edit-profile-content {
+    text-align: center;
+    align-items: center;
+}
+
+.edit-profile-header {
+    background-color: #ffffff;
+    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-profile-image {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+}
+
+.edit-profile-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: center;
+}
+
+.edit-profile-name {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.edit-profile-occupation , .edit-profile-location {
+    font-size: 2.2rem;
+}
+
+.edit-profile-occupation {
+    font-weight: bold;
+}
+
+.edit-profile-cards-section {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* User Profile Cards (about me, preferences, past reviews) */
+.edit-profile-card {
+    display: flex;
+    flex-direction: column; /* Make the card layout horizontal */
+    align-items: center;
+    margin: 1rem 0%;
+    width: 100%;
+    max-width: 80rem;
+    height: 100%;
+    padding: 3rem;
+    background-color: #ffffff;
+    border: 0.12rem solid #1e1e1e;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    font-size: 2rem;
+    font-weight: bold;
+    -webkit-text-stroke-width: 0.07rem;
+    -webkit-text-stroke-color: #1e1e1e;
+    color: #8CAD63;
+}
+
+.edit-highlight {
+    color: #1e1e1e;
+}
+
+.edit-profile-description {
+    align-self: baseline;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
+    word-wrap: break-word; /* Breaks words if they are too long */
+    overflow-wrap: break-word; /* Compatibility for older browsers */
+    max-width: 100%; /* Ensures it stays within the container */
+    box-sizing: border-box; /* Includes padding in width calculations */
+}
+
+/* Preference Tag */
+.preferences-section {
+    align-self: baseline;
+    margin-top: 1rem;
+}
+
+.current-preferences , .available-preferences {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.selected-profile-preferences {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    width: 100%;
+    /* justify-content: center; */
+}
+
+.selected-profile-preferences h5 {
+    font-weight: normal;
+    font-size: 1.8rem;
+}
+
+html .selected-profile-preference-tag {
+    color: #ffffff;
+    margin: 0.4rem;
+    padding: 0.7rem 1rem;
+    border-radius: 1.3rem;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* Age Group Tags */
+html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-related {
+    background-color: #4171e1 !important;
+    border: 0.1rem solid #3864cc;
+}
+
+/* Pet Related Tags (Pet Owner & No Pets) */
+html .profile-preference-tag.pet-related , .selected-profile-preference-tag.pet-related {
+background-color: #59cf8e !important;
+border: 0.1rem solid #4bc381;
+}
+
+/* Smoking Related Tags (Smoker/Non-Smoker)*/
+html .profile-preference-tag.smoking-related , .selected-profile-preference-tag.smoking-related {
+background-color: #8a5633 !important;
+border: 0.1rem solid #7e451e;
+}
+
+/* Cleanliness Related Tags (Clean & Tidy/Messy)*/
+html .profile-preference-tag.cleanliness-related , .selected-profile-preference-tag.cleanliness-related {
+background-color: #6747a1 !important;
+border: 0.1rem solid #4e3184;
+}
+
+/* Organize Related Tags (Organized/Unorganized)*/
+html .profile-preference-tag.organize-related , .selected-profile-preference-tag.organize-related {
+background-color: #ff5da9 !important;
+border: 0.1rem solid #ec4a95;
+}
+
+/* Sleep-related Tags */
+html .profile-preference-tag.sleep-related , .selected-profile-preference-tag.sleep-related {
+background-color: #71dcf1 !important;
+border: 0.1rem solid #61cadf;
+}
+
+/* Social-related Tags */
+html .profile-preference-tag.social-related , .selected-profile-preference-tag.social-related {
+background-color: #7ee3d5 !important;
+border: 0.1rem solid #63d8c9;
+}
+
+/* Lifestyle-related Tags */
+html .profile-preference-tag.lifestyle-related , .selected-profile-preference-tag.lifestyle-related {
+background-color: #8f8f8f !important;
+border: 0.1rem solid #707070;
+}
+
+/* Diet Related Tags */
+html .profile-preference-tag.diet-related , .selected-profile-preference-tag.diet-related {
+background-color: #7ab953 !important;
+border: 0.1rem solid rgb(106, 166, 69);
+}
+
+/* Lifestyle-related Tags */
+html .profile-preference-tag.hobby-related , .selected-profile-preference-tag.hobby-related {
+background-color: #ffce48 !important;
+border: 0.1rem solid #ffc82f;
+}
+
+/* Other related Tags */
+html .profile-preference-tag.other-related , .selected-profile-preference-tag.other-related {
+background-color: #121364 !important;
+border: 0.1rem solid #0a0b43;
+}
+
+/* Past Reviews */
+.past-review-card {
+    display: flex;
+    flex-direction: row; /* Make the card layout horizontal */
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+    width: 100%;
+    max-width: 55rem;
+    height: 100%;
+    padding: 3rem;
+    background-color: #ffffff;
+    border: 0.12rem solid #1e1e1e; /* Bottom border */
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.past-review-card:hover {
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
+.past-review-info {
+    display: flex;
+    flex-direction: column; /* Stack profile name, description, and score vertically */
+    text-align: left;
+    width: 95%;
+    margin: 1rem;
+    padding: 1rem 0rem;
+    border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
+}
+
+.past-review-info:last-child {
+    border-bottom: none; /* Remove border from last review */
+}
+
+.past-review-score {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.past-review-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.past-review-description {
+    font-size: 1.5em;
+}
+
+.past-review-questions {
+    font-size: 1em;
+    margin: 1rem 0rem;
+}
+
+.past-review-username {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.past-review-date {
+    font-size: 1.5em;
+}
+
+.edit-reviews-list {
+    width: 95%;
+}
+
+/* Buttons */
+.goback-profile-btn {
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    color: #8CAD63;
+    text-decoration: underline;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-button img {
+    width: 2.5rem;
+    height: 2.5rem;;
+}
+
+.occupation-input {
+    width: 100%;
+    height: 3.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    resize: none;
+    font-size: 1.5rem;
+}
+
+
+/* Edit About Me Form */
+.edit-about-me-form {
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem 0rem;
+}
+
+.about-me-textarea {
+    width: 100%;
+    height: 10rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    resize: none;
+    font-size: 1.8rem;
+}
+
+/* Account Details */
+.account-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.5rem;
+    width: 100%;
+    justify-content: left;
+    margin-top: 1rem;
+}
+
+.account-details div {
+    display: flex;
+}
+
+.account-details div strong {
+    margin-right: 0.5rem;
+}
+
+.account-country , .account-state , .account-city {
+    margin-right: 1rem;
+}
+
+.account-details-form {
+    width: 100%;
+    padding: 1rem;
+    justify-content: left;
+}
+
+.account-details-form .form-group {
+    margin-bottom: 0.5rem; /* Adds space between each input field */
+}
+
+.account-details-form .form-group label {
+    display: block;
+    text-align: left;
+    margin: 1rem 0rem;
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #1e1e1e;
+}
+
+.account-details-form .form-group input,
+.account-details-form .form-group select {
+    width: 100%;
+    padding: 0.7rem; 
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+    font-size: 1.5rem;
+}
+
+.account-details-form .form-group select {
+    padding: 0.85rem;
+}
+
+/* Location fields */
+.account-details-form .location {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Individual form group */
+.account-details-form .location .form-group {
+    flex: 1; /* Allows each form group to take equal space */
+}
+
+/* Submit and Cancel Buttons */
+.create-review-btn {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+    width: 14rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid #1e1e1e;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.save-button, .cancel-button , .delete-review-button {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    width: 8rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid #1e1e1e;
+}
+
+.delete-review-button {
+    width: 10rem;
+    background-color: #8CAD63;
+    color: #ffffff;
+    text-shadow: 0.05rem 0.05rem #1e1e1e;
+    margin: 1rem 0rem;
+}
+
+.delete-review-button:hover {
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+    text-shadow: none;
+}

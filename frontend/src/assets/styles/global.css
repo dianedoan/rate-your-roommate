@@ -14,10 +14,76 @@ html h1 {
   padding: 0rem 2rem;
 }
 
+html h2 {
+  font-size: 4rem; /* Default size */
+  margin: 2rem 0rem;
+  text-align: center;
+  font-weight: bold;
+  padding: 0rem 2rem;
+}
+
+html h3 {
+  margin-top: 3rem;
+}
+
+html h4 {
+  margin-bottom: 2rem;
+}
+
+html h5 {
+  font-size: 1.5rem;
+  margin: 2rem 0rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.highlight {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.15rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+/* Top-rated Roommates text */
+.highlight2 {
+  color: #fefefe;
+  -webkit-text-stroke-width: 0.1rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+/* Explore Roommates text */
+.highlight3 {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.1rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+.highlight4 {
+  color: #fefefe;
+  font-size: 3.5rem;
+  -webkit-text-stroke-width: 0.1rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+.highlight5 {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.05rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
+/* Rating Stars  */
+.highlight6 {
+  color: #e4fff5;
+  -webkit-text-stroke-width: 0.01rem;
+  -webkit-text-stroke-color: #1e1e1e;
+}
+
 /* Media Query for Tablet Screens (1024px) */
 @media (max-width: 1024px) {
   html h1 {
     font-size: 5rem; /* Reduce title font size */
+  }
+  .highlight {
+    -webkit-text-stroke-width: 0.1rem;
   }
 }
 
@@ -35,46 +101,15 @@ html h1 {
   }
 }
 
-html h5 {
-  font-size: 1.5rem; /* Default size */
-  margin: 2rem 0rem;
+/* CONTAINER */
+.general-content {
+  width: 100%;
+  min-height: 100vh;
   text-align: center;
-  font-weight: bold;
-}
-
-.highlight {
-  color: #e4fff5;
-  -webkit-text-stroke-width: 0.15rem;
-  -webkit-text-stroke-color: #1e1e1e;
-}
-
-/* LINKS */
-html .nav-link {
-  color: #1E1E1E; /* Almost black */
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-html .nav-link:hover {
-  color: #1E1E1E; /* Almost black */
-  text-shadow: 2px 2px #e4fff5;
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
-}
-
-/* Specific Links */
-.terms-link, .about-link, .forgot-password-link {
-  color: #1E1E1E; /* Almost black */
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.terms-link:hover,
-.about-link:hover,
-.forgot-password-link:hover {
-  text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
 }
 
 /* BUTTONS */
@@ -92,7 +127,6 @@ html .nav-link:hover {
   width: 16rem;
   border-radius: 0.8rem;
   border: 0.2rem solid #1e1e1e;
-  text-shadow: 0.1rem 0.1rem #1e1e1e;
 }
 
 /* Media query for laptop screens (1440px) */
@@ -105,7 +139,6 @@ html .nav-link:hover {
     width: 15rem;
     border-radius: 0.7rem;
     border: 0.15rem solid #1e1e1e;
-    text-shadow: 0.1rem 0.1rem #1e1e1e;
   }
 }
 
@@ -119,10 +152,6 @@ html .nav-link:hover {
     width: 15rem;
     border-radius: 0.7rem;
     border: 0.15rem solid #1e1e1e;
-    text-shadow: 0.1rem 0.1rem #1e1e1e;
-  }
-  .highlight {
-    -webkit-text-stroke-width: 0.1rem;
   }
 }
 
@@ -136,7 +165,6 @@ html .nav-link:hover {
       width: 14rem;
       border-radius: 0.6rem;
       border: 0.1rem solid #1e1e1e;
-      text-shadow: 0.1rem 0.1rem #1e1e1e;
   }
 }
 
@@ -150,7 +178,6 @@ html .nav-link:hover {
     width: 10rem;
     border-radius: 0.5rem;
     border: 0.1rem solid #1e1e1e;
-    text-shadow: 0.1rem 0.1rem #1e1e1e;
   }
 }
 
@@ -182,11 +209,18 @@ html .nav-link:hover {
 .primary-btn {
   background-color: #559CD0; /* Sky blue */
   color: #FFFFFF; /* White text */
+  text-shadow: 0.1rem 0.1rem #1e1e1e;
 }
 
 .primary-btn:hover {
   background-color: #6db2e3; /* Lighter blue */
   color: #FFFFFF; /* White text */
+  text-shadow: 0.1rem 0.1rem #1e1e1e;
+}
+
+/* Primary Button when clicked */
+.primary-btn:active {
+  background-color: #559CD0;
 }
 
 /* Secondary Button (e.g., register button) */
@@ -202,6 +236,22 @@ html .nav-link:hover {
   text-shadow: 0.05rem 0.05rem #9e9e9e;
 }
 
+/* Secondary Button when clicked */
+.secondary-btn:active {
+  background-color: #E3E3E3;
+}
+
+.rate-btn {
+  text-align: center;
+  margin-left: 2rem;
+  font-size: 2rem;
+  height: 5rem;
+  width: 8rem;
+  border-radius: 1.2rem;
+  border: 0.15rem solid #1e1e1e;
+  text-shadow: 0.1rem 0.1rem #1e1e1e;
+}
+
 /* Menu Selector Button */
 .menu-button {
   background-color: #1E1E1E; /* Almost black */
@@ -210,6 +260,141 @@ html .nav-link:hover {
   padding: 10px;
   border: none;
   cursor: pointer;
+}
+
+/* LINKS */
+/* Remove default link styles */
+html a {
+  color: inherit; /* Inherit text color from the parent */
+  text-decoration: none;
+}
+
+html a:hover {
+  text-decoration: none;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+html .nav-link {
+  color: #1E1E1E; /* Almost black */
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+html .nav-link:hover {
+  color: #1E1E1E; /* Almost black */
+  text-shadow: 2px 2px #e4fff5;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+html .nav-link:active {
+  color: #878787;
+}
+
+/* NAVIGATION BAR */
+html .navbar {
+  border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+  padding: 1rem 1.5rem;
+}
+
+/* PROFILE CARD */
+.profile-card {
+  display: flex;
+  flex-direction: row; /* Make the card layout horizontal */
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 55rem;
+  height: 15rem;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border: 0.12rem solid #1e1e1e; /* Bottom border */
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card:hover {
+  cursor: pointer;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.search-results-container h3 {
+  text-align: center;
+  padding: 4rem 5.5rem;
+  font-size: 2rem;
+}
+
+.profile-image-container {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  margin-right: 2rem; /* Space between image and text */
+}
+
+.profile-image {
+  width: 10rem; /* Adjust image size */
+  height: 10rem;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column; /* Stack profile name, description, and score vertically */
+  text-align: left;
+  margin-right: 1rem;
+  width: 30em;
+}
+
+.profile-name {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.profile-score {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.profile-occupation {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.profile-description {
+  font-size: 1.5em;
+}
+
+.location-favorite-container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  width: 8em;
+}
+
+.profile-location {
+  font-size: 1.3em; /* Smaller font size for location */
+  margin-bottom: 3rem;
+  text-align: right;
+}
+
+.favorite-icon {
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+/* Like/Save Roommate button */
+.heart-icon {
+  width: 2.5rem; /* Adjust image size */
+  height: 2.5rem;
+}
+
+.heart-icon:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 /* Social Media Buttons */
@@ -222,25 +407,4 @@ html .nav-link:hover {
   border-radius: 5px;
   cursor: pointer;
   margin: 5px;
-}
-
-.social-button.twitter { /* Specific styling for Twitter button if needed */ }
-.social-button.instagram { /* Specific styling for Instagram button if needed */ }
-.social-button.tiktok { /* Specific styling for TikTok button if needed */ }
-
-/* NAVIGATION BAR */
-html .navbar {
-  border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
-  padding: 1rem 1.5rem;
-}
-
-/* Logo */
-.logo {
-  color: #8CAD63; /* Green for main logo text */
-  background-color: #1E1E1E; /* Almost black */
-  color: #FFFFFF; /* White text */
-  text-align: center;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
 }

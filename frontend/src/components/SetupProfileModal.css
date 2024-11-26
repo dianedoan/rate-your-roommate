@@ -1,0 +1,102 @@
+/* Preference Tag Container */
+.preferences , .selected-preferences {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0rem 1rem;
+  width: 100%;
+}
+
+html p {
+  margin: 0rem;
+}
+
+html .form-control {
+  padding: 0.7rem;
+}
+
+/* Preference Tag */
+html .preference-tag , html .selected-preference-tag {
+  cursor: pointer;
+  color: #ffffff;
+  margin: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.7rem;
+  font-weight: normal;
+}
+
+html .preference-tag:hover , html .selected-preference-tag:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+html .selected-preference-tag:hover {
+  background-color: #ff0000 !important;
+  border: 0.1rem solid #df0000;
+}
+
+/* Age Group Tags */
+html .preference-tag.age-related , .selected-preference-tag.age-related {
+  background-color: #4171e1 !important;
+  border: 0.1rem solid #3864cc;
+}
+
+/* Pet Related Tags (Pet Owner & No Pets) */
+html .preference-tag.pet-related , .selected-preference-tag.pet-related {
+  background-color: #59cf8e !important;
+  border: 0.1rem solid #4bc381;
+}
+
+/* Smoking Related Tags (Smoker/Non-Smoker)*/
+html .preference-tag.smoking-related , .selected-preference-tag.smoking-related {
+  background-color: #8a5633 !important;
+  border: 0.1rem solid #7e451e;
+}
+
+/* Cleanliness Related Tags (Clean & Tidy/Messy)*/
+html .preference-tag.cleanliness-related , .selected-preference-tag.cleanliness-related {
+  background-color: #6747a1 !important;
+  border: 0.1rem solid #4e3184;
+}
+
+/* Organize Related Tags (Organized/Unorganized)*/
+html .preference-tag.organize-related , .selected-preference-tag.organize-related {
+  background-color: #ff5da9 !important;
+  border: 0.1rem solid #ec4a95;
+}
+
+/* Sleep-related Tags */
+html .preference-tag.sleep-related , .selected-preference-tag.sleep-related {
+  background-color: #71dcf1 !important;
+  border: 0.1rem solid #61cadf;
+}
+
+/* Social-related Tags */
+html .preference-tag.social-related , .selected-preference-tag.social-related {
+  background-color: #7ee3d5 !important;
+  border: 0.1rem solid #63d8c9;
+}
+
+/* Lifestyle-related Tags */
+html .preference-tag.lifestyle-related , .selected-preference-tag.lifestyle-related {
+  background-color: #8f8f8f !important;
+  border: 0.1rem solid #707070;
+}
+
+/* Diet Related Tags */
+html .preference-tag.diet-related , .selected-preference-tag.diet-related {
+  background-color: #7ab953 !important;
+  border: 0.1rem solid rgb(106, 166, 69);
+}
+
+/* Lifestyle-related Tags */
+html .preference-tag.hobby-related , .selected-preference-tag.hobby-related {
+  background-color: #ffce48 !important;
+  border: 0.1rem solid #ffc82f;
+}
+
+/* Other related Tags */
+html .preference-tag.other-related , .selected-preference-tag.other-related {
+  background-color: #121364 !important;
+  border: 0.1rem solid #0a0b43;
+}

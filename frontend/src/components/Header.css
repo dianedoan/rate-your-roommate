@@ -1,4 +1,4 @@
-/* Default logo styling */
+/* Logo Icon */
 .navbar-logo {
   height: 75px;
 }
@@ -35,6 +35,21 @@
     text-shadow: 2px 2px #e4fff5;
     border: 0.1rem solid #1e1e1e;
   }
+
+  /* Nav Button when clicked */
+  .nav-btn:active {
+    background-color: #e4fff5;
+  }
 }
 
-  
+.navbar-home:hover , .navbar-search:hover, .navbar-messages:hover, .navbar-heart:hover, .navbar-profile:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+}
+
+.navbar-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure the image fits the circle */
+}

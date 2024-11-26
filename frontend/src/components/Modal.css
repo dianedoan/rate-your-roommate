@@ -13,6 +13,7 @@ html .modal-content {
 /* Modal Header */
 html .modal-header {
   border-bottom: none;
+  margin-top: 1rem;
 }
 
 /* Modal Footer */
@@ -76,21 +77,31 @@ html .btn-primary:hover {
   transition: transform 150ms;
 }
 
+html .modal .btn-primary:active {
+  background-color: #559CD0;
+  border: 0.1rem solid #1e1e1e;
+}
+
 /* Secondary Button */
 html .btn-secondary {
-  background-color: #E3E3E3; /* Sky blue */
+  background-color: #E3E3E3;
   color: #1e1e1e; /* White text */
   border: 0.1rem solid #1e1e1e;
   text-shadow: 0.05rem 0.05rem #9e9e9e;
 }
 
 html .btn-secondary:hover {
-  background-color: #f0f0f0; /* Lighter blue */
+  background-color: #f0f0f0;
   color: #1e1e1e; /* White text */
   border: 0.1rem solid #1e1e1e;
   text-shadow: 0.05rem 0.05rem #9e9e9e;
   transform: translateY(0.1rem);
   transition: transform 150ms;
+}
+
+html .modal .btn-secondary:active {
+  background-color: #E3E3E3;
+  border: 0.1rem solid #1e1e1e;
 }
 
 /* Close Button */
