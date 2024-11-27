@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
+import { authService } from './authService';
 import './Modal.css';
 
 const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
@@ -31,10 +32,9 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can add form validation here and submit logic
-    console.log('Form submitted:', formData);
+    //console.log('Form submitted:', formData);
 
-    // Error messages
+    // Validation checks
     if (!formData.username) {
       setError('Please enter a username.');
       return;
@@ -89,12 +89,7 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
       setIsSubmitting(true);
       
       // Call the registration API endpoint
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const response = await authService.register({
           username: formData.username,
           email: formData.email,
           firstName: formData.firstName,
@@ -102,24 +97,27 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
           password: formData.password,
           securityQuestion: formData.securityQuestion,
           securityAnswer: formData.securityAnswer
-        })
       });
 
-      const data = await response.json();
+      const userData = response.body ? JSON.parse(response.body) : response;
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+      if (userData.user) {
+        onRegisterSuccess(userData.user);
+        onClose();
+      }else {
+        throw new Error('Invalid response format from server');
       }
 
-      // Store the JWT token and user data
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
 
-      // Close modal and trigger success callback
-      onRegisterSuccess();
-      onClose();
     }catch (error) {
-      setError(error.message);
+      // Handle specific Lambda error codes
+      if (error.statusCode === 409) {
+        setError('Username or email already exists');
+      } else if (error.statusCode === 400) {
+        setError(error.message || 'Invalid input data');
+      } else {
+        setError(error.message || 'Registration failed. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }

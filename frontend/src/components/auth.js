@@ -1,26 +1,24 @@
+import { authService } from './authService';
+
 // Helper functions for authentication
 export const isAuthenticated = () => {
-    const token = localStorage.getItem('token');
-    return !!token;
-  };
+    return authService.getCurrentAuthState().isAuthenticated;
+};
   
-  export const getAuthToken = () => {
-    return localStorage.getItem('token');
-  };
+export const getAuthToken = () => {
+    return authService.getCurrentAuthState().token;
+};
   
-  export const getCurrentUser = () => {
-    const userStr = localStorage.getItem('user');
-    return userStr ? JSON.parse(userStr) : null;
-  };
+export const getCurrentUser = () => {
+    return authService.getCurrentAuthState().user;
+};
   
-  export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/';
-  };
+export const logout = () => {
+    authService.logout();
+};
   
-  // Add this to your API calls
-  export const authHeader = () => {
+//API calls
+export const authHeader = () => {
     const token = getAuthToken();
     return token ? { 'Authorization': `Bearer ${token}` } : {};
-  };
+};

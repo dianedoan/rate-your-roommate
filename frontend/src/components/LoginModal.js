@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { userList } from '../data/userData'; // Import registered users
+import { authService } from './authService';
 import './Modal.css';
 
 const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
@@ -21,29 +22,17 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password })
+      const response = await authService.login({
+        username,
+        password
       });
 
-      const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
-      }
-
-      // Store auth token and user data
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-
-      onLoginSuccess();
+      onLoginSuccess(response.user);
       onClose();
 
     } catch (error) {
-      setError(error.message);
+      setError(error.message || 'Login failed. Please check your credentials.');
     } finally {
       setIsLoading(false);
     }
