@@ -16,7 +16,8 @@ backend/build/
 
 venv
 
-backend/functions/sign-up/__pycache__
+backend/functions/*/__pycache__
 backend/functions/sign-up/package
-backend/functions/sign-up/artifact.zip
+backend/functions/*/artifact.zip
 backend/functions/sign-up/requirements.txt
+frontend/src/components/config.json

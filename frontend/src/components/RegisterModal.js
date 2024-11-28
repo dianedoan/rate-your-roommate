@@ -1,99 +1,107 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import { FaChevronDown } from "react-icons/fa"; // Import the down arrow icon
-import './Modal.css';
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import { FaChevronDown } from "react-icons/fa";
+import "./Modal.css";
+import config from "./config.json";
+
+const API_BASE_URL = config.apiBaseUrl;
 
 const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    confirmPassword: '',
-    securityQuestion: '',
-    securityAnswer: '',
+    username: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    confirmPassword: "",
+    securityQuestion: "",
+    securityAnswer: "",
     agreeToTerms: false,
   });
 
-  const [error, setError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Handle form field changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // You can add form validation here and submit logic
-    console.log('Form submitted:', formData);
 
-    // Error messages
-    if (!formData.username) {
-      setError('Please enter a username.');
-      return;
-    }
+    // Clear previous error
+    setError("");
 
-    if (!formData.email.includes('@')) {
-      setError('Please enter a valid email.');
-      return;
-    }
-
-    if (!formData.firstName) {
-      setError('Please enter your first name.');
-      return;
-    }
-
-    if (!formData.lastName) {
-      setError('Please enter your last name.');
-      return;
-    }
-
-    if (!formData.password) {
-      setError('Please enter a password.');
+    // Frontend validation
+    if (
+      !formData.username ||
+      !formData.email ||
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.password ||
+      !formData.confirmPassword ||
+      !formData.securityQuestion ||
+      !formData.securityAnswer ||
+      !formData.agreeToTerms
+    ) {
+      setError("All fields are required!");
       return;
     }
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters.');
+      setError("Password must be at least 6 characters.");
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match.');
+      setError("Passwords do not match.");
       return;
     }
 
-    if (!formData.securityQuestion) {
-      setError('Please choose your security question.');
-      return;
-    }
-
-    if (!formData.securityAnswer) {
-      setError('Please enter your security answer.');
-      return;
-    }
-
-    if (formData.agreeToTerms == false) {
-      setError('You must agree to the Terms and Conditions.');
-      return;
-    }
-
-    // Faking submission, to test set profile modal
+    // Show loading state
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          password: formData.password,
+          security_question: formData.securityQuestion,
+          security_answer: formData.securityAnswer,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Registration successful
+        console.log("User registered:", result);
+        onRegisterSuccess(result.UserId); // Call the success handler
+        onClose(); // Close the modal
+      } else {
+        // Handle error response from Lambda
+        console.error("Registration failed:", result.message);
+        setError(result.message || "Failed to register user.");
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+      setError("An unexpected error occurred. Please try again later.");
+    } finally {
       setIsSubmitting(false);
-      onRegisterSuccess();  
-      onClose();  
-    }, 1000); 
-    // setIsSubmitting(false);
-    // onRegisterSuccess(); 
+    }
   };
 
   return (
@@ -182,30 +190,30 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
           <Form.Group controlId="formSecurityQuestion" className="mb-3">
             <Form.Label>Security Question</Form.Label>
             <div className="icon-container">
-            <Form.Control
-              as="select"
-              name="securityQuestion"
-              value={formData.securityQuestion}
-              onChange={handleChange}
-              required
-            >
-              <option value="" disabled>
-                Select a security question
-              </option>
-              <option value="What is your pet's name?">
-                What is your pet's name?
-              </option>
-              <option value="What is your mother's maiden name?">
-                What is your mother's maiden name?
-              </option>
-              <option value="What was your first car?">
-                What was your first car?
-              </option>
-              <option value="What is the name of your favorite teacher?">
-                What is the name of your favorite teacher?
-              </option>
-            </Form.Control>
-            <FaChevronDown className="dropdown-icon" />
+              <Form.Control
+                as="select"
+                name="securityQuestion"
+                value={formData.securityQuestion}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Select a security question
+                </option>
+                <option value="What is your pet's name?">
+                  What is your pet's name?
+                </option>
+                <option value="What is your mother's maiden name?">
+                  What is your mother's maiden name?
+                </option>
+                <option value="What was your first car?">
+                  What was your first car?
+                </option>
+                <option value="What is the name of your favorite teacher?">
+                  What is the name of your favorite teacher?
+                </option>
+              </Form.Control>
+              <FaChevronDown className="dropdown-icon" />
             </div>
           </Form.Group>
 
@@ -231,9 +239,18 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
               required
             />
           </Form.Group>
-          {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
-          <Button variant="primary" type="submit" onClick={handleSubmit} className="w-100" disabled={isSubmitting}>
-            {isSubmitting ? 'Registering...' : 'Register'}
+          {error && (
+            <p className="error-message" style={{ color: "red" }}>
+              {error}
+            </p>
+          )}
+          <Button
+            variant="primary"
+            type="submit"
+            className="w-100"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Registering..." : "Register"}
           </Button>
         </Form>
       </Modal.Body>
