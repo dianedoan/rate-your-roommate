@@ -204,12 +204,6 @@ html .nav-link:active {
     color: #878787;
 }
 
-/* NAVIGATION BAR */
-html .navbar {
-    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
-    padding: 1rem 1.5rem;
-}
-
 /* PROFILE CARD */
 .profile-card {
     display: flex;
@@ -332,6 +326,11 @@ html .navbar {
 
 /* Media Query for Medium Screens (Laptop) */
 @media (max-width: 1024px) {
+    .general-content {
+        gap: 2rem; /* Add spacing between cards */
+        padding: 3rem;
+    }
+
     html h1 {
         font-size: 5rem; /* Reduce title font size */
     }
@@ -362,6 +361,11 @@ html .navbar {
 }
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
+    .general-content {
+        gap: 1.5rem; /* Add spacing between cards */
+        padding: 2.5rem;
+    }
+    
     html h1 {
         font-size: 4rem; /* Further reduce title font size */
     }
@@ -453,6 +457,11 @@ html .navbar {
 }
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
     html h1 {
         font-size: 3rem;
     }

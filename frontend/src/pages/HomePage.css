@@ -208,7 +208,7 @@
     }
     
     .explore-section {
-        gap: 2rem; /* Add spacing between cards */
+        gap: 1.5rem; /* Add spacing between cards */
     }
     
     .top-rated-container {
@@ -358,7 +358,7 @@
     }
     
     .explore-section {
-        gap: 1.5rem; /* Add spacing between cards */
+        gap: 1rem; /* Add spacing between cards */
     }
     
     .top-rated-container {

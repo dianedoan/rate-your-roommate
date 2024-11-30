@@ -1,6 +1,12 @@
+/* NAVIGATION BAR */
+html .navbar {
+  border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+  padding: 1rem 1.5rem;
+}
+
 /* Logo Icon */
 .navbar-logo {
-  height: 75px;
+  height: 5rem;
 }
 
 .navbar-logo:hover {
@@ -10,9 +16,18 @@
 
 /* Smaller size for mobile screens (navbar toggle is shown) */
 @media (max-width: 991px) {
+  .bottom-navbar .navbar {
+    padding: 1.5rem 7rem;
+    border-bottom: none;
+  }
+
   .navbar-logo {
-    height: 50px; /* Mobile size */
+    height: 4rem; /* Mobile size */
     width: auto;  /* Maintain aspect ratio */
+  }
+
+  .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+    width: 2.5rem;
   }
 
   .nav-btn {
@@ -39,6 +54,27 @@
   /* Nav Button when clicked */
   .nav-btn:active {
     background-color: #e4fff5;
+  }
+}
+
+/* Media Query for Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+  html .navbar {
+    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    padding: 0.8rem 0.8rem;
+  }
+
+  .navbar-logo {
+    height: 2.5rem; /* Mobile size */
+    width: auto;  /* Maintain aspect ratio */
+  }
+
+  .bottom-navbar .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+    width: 2rem;
   }
 }
 
