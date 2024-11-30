@@ -117,10 +117,24 @@ const ReviewPage = () => {
             <div className="review-profile-section">
                 <div className="review-profile-card">
                     <div className="review-profile-info">
-                        <div className="review-profile-name">{user.name}</div>
+                        <div className="name-heart-container">
+                            <div className="review-profile-name">{user.name}</div>
+                            <div className="profile-favorite-icon">
+                                <img
+                                    // Toggle heart icon based on the user's liked profiles
+                                    src={likedProfiles.includes(user.name) ? heart2filled : heart2}
+                                    alt="heart icon"
+                                    className="review-heart-icon"
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent any other actions when clicking the heart
+                                        toggleLike(user.name); // Toggle like on click
+                                    }}
+                                />
+                            </div>
+                        </div>
                         <div className="review-profile-occupation">{user.occupation}</div>
                         <div className="review-profile-description">{user.description}</div>
-                        <div className="preferences-section">
+                        <div className="review-preferences-section">
                             {preferences.map((pref) => (
                                 <Badge
                                     key={pref}
@@ -130,30 +144,6 @@ const ReviewPage = () => {
                                 </Badge>
                             ))}
                         </div>
-                        <div className="review-profile-score">
-                            <span className="highlight4">
-                                {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
-                            </span> 
-                            Rating
-                            <button
-                                className="rate-btn primary-btn"
-                                onClick={() => navigate(`/create-review/${userId}`)} // Redirect to CreateReviewPage
-                            >
-                                Rate
-                            </button>
-                        </div>
-                    </div>
-                    <div className="profile-favorite-icon">
-                        <img
-                            // Toggle heart icon based on the user's liked profiles
-                            src={likedProfiles.includes(user.name) ? heart2filled : heart2}
-                            alt="heart icon"
-                            className="heart-icon"
-                            onClick={(e) => {
-                                e.stopPropagation(); // Prevent any other actions when clicking the heart
-                                toggleLike(user.name); // Toggle like on click
-                            }}
-                        />
                     </div>
                     <div className="image-location-container">
                         <div className="image-container">
@@ -164,6 +154,18 @@ const ReviewPage = () => {
                             />
                         </div>
                         <p className="review-profile-location">{user.city}, {user.state}</p>
+                    </div>
+                    <div className="review-profile-score">
+                        <span className="highlight4">
+                            {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
+                        </span> 
+                        Rating
+                        <button
+                            className="rate-btn primary-btn"
+                            onClick={() => navigate(`/create-review/${userId}`)} // Redirect to CreateReviewPage
+                        >
+                            Rate
+                        </button>
                     </div>
                 </div>
             </div>

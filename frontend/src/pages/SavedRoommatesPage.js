@@ -77,22 +77,24 @@ function SavedRoommatesPage() {
                     className="profile-card" 
                     onClick={() => goToUserProfile(user.id)} // Make card clickable
                     >
-                        <div className="profile-image-container">
-                            <img
-                                src={user.image}
-                                alt={user.name}
-                                className="profile-image"
-                            />
-                        </div>
-                        <div className="profile-info">
-                            <div className="profile-name">{user.name}</div>
-                            <div className="profile-score">
-                                <span className="highlight5">
-                                    {user.rating === 0 ? "N/A" : `${user.rating}/5`}
-                                </span> Rating
+                        <div className="profile-info-container">
+                            <div className="profile-image-container">
+                                <img
+                                    src={user.image}
+                                    alt={user.name}
+                                    className="profile-image"
+                                />
                             </div>
-                            <div className="profile-occupation">{user.occupation}</div>
-                            <div className="profile-description">{user.description}</div>
+                            <div className="profile-info">
+                                <div className="profile-name">{user.name}</div>
+                                <div className="profile-score">
+                                    <span className="highlight5">
+                                        {user.rating === 0 ? "N/A" : `${user.rating}/5`}
+                                    </span> Rating
+                                </div>
+                                <div className="profile-occupation">{user.occupation}</div>
+                                <div className="profile-description">{user.description}</div>
+                            </div>
                         </div>
                         <div className="location-favorite-container">
                             <p className="profile-location">{user.city}, {user.state}</p>

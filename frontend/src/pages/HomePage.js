@@ -95,22 +95,46 @@ const HomePage = () => {
                             onClick={() => navigate(`/reviews/${topRatedList[activeTopRatedIndex].id}`)}
                         >
                             <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].name}>
-                                <div className="profile-image-container">
+                                <div className="top-rated-profile-image-container">
                                     <img
                                         src={topRatedList[activeTopRatedIndex].image}
                                         alt={topRatedList[activeTopRatedIndex].name}
                                         className="top-rated-profile-image"
                                     />
                                 </div>
-                                <div className="top-rated-profile-info">
-                                    <div className="top-rated-profile-name">
-                                        {topRatedList[activeTopRatedIndex].name}
-                                    </div>
-                                    <div className="top-rated-profile-occupation">
-                                        {topRatedList[activeTopRatedIndex].occupation}
-                                    </div>
-                                    <div className="top-rated-profile-description">
-                                        {topRatedList[activeTopRatedIndex].description}
+                                <div className="top-rated-card-container">
+                                    <div className="top-rated-profile-info-container">
+                                        <div className="top-rated-profile-info">
+                                            <div className="top-rated-profile-name">
+                                                {topRatedList[activeTopRatedIndex].name}
+                                            </div>
+                                            <div className="top-rated-profile-occupation">
+                                                {topRatedList[activeTopRatedIndex].occupation}
+                                            </div>
+                                            <div className="top-rated-profile-description">
+                                                {topRatedList[activeTopRatedIndex].description}
+                                            </div>
+                                        </div>
+                                    
+                                        <div className="top-rated-location-favorite-container">
+                                            <div className="top-rated-location">
+                                                {topRatedList[activeTopRatedIndex].city},{" "}
+                                                {topRatedList[activeTopRatedIndex].state}
+                                            </div>
+                                            <div className="favorite-icon">
+                                                <img
+                                                    src={likedProfiles.includes(topRatedList[activeTopRatedIndex].name)
+                                                        ? heart2filled
+                                                        : heart2}
+                                                    alt="heart icon"
+                                                    className="heart-icon"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
+                                                        toggleLike(topRatedList[activeTopRatedIndex].name); // Toggle like
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="top-rated-profile-score">
                                         <span className="highlight4">
@@ -118,26 +142,7 @@ const HomePage = () => {
                                         </span>{" "}
                                         Rating
                                     </div>
-                                </div>
-                                <div className="location-favorite-container">
-                                    <p className="top-rated-location">
-                                        {topRatedList[activeTopRatedIndex].city},{" "}
-                                        {topRatedList[activeTopRatedIndex].state}
-                                    </p>
-                                    <div className="favorite-icon">
-                                        <img
-                                            src={likedProfiles.includes(topRatedList[activeTopRatedIndex].name)
-                                                ? heart2filled
-                                                : heart2}
-                                            alt="heart icon"
-                                            className="heart-icon"
-                                            onClick={(e) => {
-                                                e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
-                                                toggleLike(topRatedList[activeTopRatedIndex].name); // Toggle like
-                                            }}
-                                        />
-                                    </div>
-                                </div>
+                                </div>                 
                             </div>
                         </div>
                         {/* Next Button */}
@@ -162,24 +167,26 @@ const HomePage = () => {
                             className="profile-card"
                             onClick={() => goToUserProfile(user.id)}
                         >
-                            <div className="profile-image-container">
-                                <img src={user.image} alt={user.name} className="profile-image" />
-                            </div>
-                            <div className="profile-info">
-                                <div className="profile-name">{user.name}</div>
-                                <div className="profile-score">
-                                    <span className="highlight5">
-                                        {user.rating === 0 ? "N/A" : `${user.rating}/5`}
-                                    </span>{" "}
-                                    Rating
+                            <div className="profile-info-container">
+                                <div className="profile-image-container">
+                                    <img src={user.image} alt={user.name} className="profile-image" />
                                 </div>
-                                <div className="profile-occupation">{user.occupation}</div>
-                                <div className="profile-description">{user.description}</div>
+                                <div className="profile-info">
+                                    <div className="profile-name">{user.name}</div>
+                                    <div className="profile-score">
+                                        <span className="highlight5">
+                                            {user.rating === 0 ? "N/A" : `${user.rating}/5`}
+                                        </span>{" "}
+                                        Rating
+                                    </div>
+                                    <div className="profile-occupation">{user.occupation}</div>
+                                    <div className="profile-description">{user.description}</div>
+                                </div>
                             </div>
                             <div className="location-favorite-container">
-                                <p className="profile-location">
+                                <div className="profile-location">
                                     {user.city}, {user.state}
-                                </p>
+                                </div>
                                 <div className="favorite-icon">
                                     <img
                                         src={likedProfiles.includes(user.name)

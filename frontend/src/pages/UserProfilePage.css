@@ -49,7 +49,6 @@
     padding: 2rem;
 }
 
-
 /* User Profile Cards (about me, preferences, past reviews) */
 .user-profile-card {
     display: flex;
@@ -95,6 +94,26 @@ html .profile-preference-tag {
     border-radius: 1.3rem;
     font-size: 1rem;
     font-weight: normal;
+}
+
+/* Media Query for Small Screens (Tablet) */
+@media (max-width: 768px) {
+    html .profile-preference-tag {
+        margin: 0.3rem;
+        padding: 0.4rem 0.6rem;
+        border-radius: 1.3rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+    html .profile-preference-tag {
+        margin: 0.3rem;
+        padding: 0.4rem 0.6rem;
+        border-radius: 1.3rem;
+        font-size: 0.5rem;
+    }
 }
 
 /* Age Group Tags */
