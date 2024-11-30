@@ -140,7 +140,6 @@ const EditProfilePage = () => {
     const [accountDetails, setAccountDetails] = useState({
         username: loggedInUser.username,
         email: loggedInUser.email,
-        password: loggedInUser.password,
         firstName: loggedInUser.firstName,
         lastName: loggedInUser.lastName,
         occupation: loggedInUser.occupation,
@@ -154,7 +153,6 @@ const EditProfilePage = () => {
         // Update loggedInUser object with the new values
         loggedInUser.username = accountDetails.username;
         loggedInUser.email = accountDetails.email;
-        loggedInUser.password = accountDetails.password;
         loggedInUser.firstName = accountDetails.firstName;
         loggedInUser.lastName = accountDetails.lastName;
         loggedInUser.occupation = accountDetails.occupation;

@@ -88,6 +88,13 @@
 }
 
 .top-rated-profile-description {
+    align-self: baseline;
+    text-align: left;
+    white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
+    word-wrap: break-word; /* Breaks words if they are too long */
+    overflow-wrap: break-word; /* Compatibility for older browsers */
+    max-width: 100%; /* Ensures it stays within the container */
+    box-sizing: border-box; /* Includes padding in width calculations */
     width: 15rem;
     font-size: 1.5em;
 }

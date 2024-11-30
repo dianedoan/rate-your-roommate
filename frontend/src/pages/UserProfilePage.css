@@ -77,8 +77,14 @@
 
 .user-profile-description {
     align-self: baseline;
+    text-align: left;
     margin-top: 1rem;
     font-size: 1.8rem;
+    white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
+    word-wrap: break-word; /* Breaks words if they are too long */
+    overflow-wrap: break-word; /* Compatibility for older browsers */
+    max-width: 100%; /* Ensures it stays within the container */
+    box-sizing: border-box; /* Includes padding in width calculations */
 }
 
 /* Preference Tag */

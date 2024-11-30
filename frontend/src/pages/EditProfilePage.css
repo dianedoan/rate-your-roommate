@@ -81,6 +81,7 @@
 
 .edit-profile-description {
     align-self: baseline;
+    text-align: left;
     margin-top: 1rem;
     font-size: 1.8rem;
     white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
