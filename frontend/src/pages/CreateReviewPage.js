@@ -6,6 +6,9 @@ import star2filled from "../assets/images/button-icons/star2-filled.svg";
 import './CreateReviewPage.css';
 
 const CreateReviewPage = () => {
+    // Manually set logged in user
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const { userId } = useParams(); // Get user ID from URL
     const user = userList.find((u) => u.id === userId); // Find the matching user
     const navigate = useNavigate();
@@ -45,9 +48,6 @@ const CreateReviewPage = () => {
         }));
     };
 
-    // Assuming the current user ID is available (e.g., from context or props)
-    const currentUserId = "sally-smith"; // Replace with actual logic to fetch current user's ID
-
     // Handle submit form
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -56,8 +56,8 @@ const CreateReviewPage = () => {
         const newReview = {
             reviewId: `review-${Date.now()}`, // Unique ID for the review
             userId,
-            authorId: currentUserId, 
-            username: isAnonymous ? "Anonymous" : "Current User", // Check if user chose to submit anonymously
+            authorId: user.username, 
+            username: isAnonymous ? "Anonymous" : user.username, // Check if user chose to submit anonymously
             ratings,
             score: parseFloat(
                 (
@@ -248,11 +248,11 @@ const CreateReviewPage = () => {
                         </label>
                     </div>
 
-                    <div className="button-container">
-                        <button type="submit" className="primary-btn create-review-btn">Submit Review</button>
+                    <div className="create-review-button-container">
+                        <button type="submit" className="primary-btn submit-review-btn">Submit Review</button>
                         <button
                             type="button"
-                            className="secondary-btn create-review-btn"
+                            className="secondary-btn submit-review-btn"
                             onClick={() => navigate(`/reviews/${userId}`)} // Navigate back to the user's review page
                         >
                             Cancel
