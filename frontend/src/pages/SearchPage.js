@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { userListWithRatings, getInitialLikedProfiles } from "../data/userData";
+import { getInitialLikedProfiles } from "../data/userData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import "./SearchPage.css";
@@ -9,7 +9,14 @@ import "./SearchPage.css";
 function SearchPage() {
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+
     const navigate = useNavigate(); // Hook for navigation
+
+    // Add dynamic rating calculation to each user
+    const userListWithRatings = userList.map(user => ({
+        ...user,
+        rating: calculateAverageRating(user.id), // Calculate and add the average rating
+    }));
 
     // Filter the users based on search input (name, state/province, city)
     const filteredUsers = userListWithRatings.filter((user) =>

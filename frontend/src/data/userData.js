@@ -379,38 +379,7 @@ export const messagesData = [
 // Set initial liked/saved profiles
 export const getInitialLikedProfiles = () => {
     return {
-        "Alice Wang": userListWithRatings.find(user => user.name === "Alice Wang"),
-        "Bob Brown": userListWithRatings.find(user => user.name === "Bob Brown"),
+        // "Alice Wang": userListWithRatings.find(user => user.name === "Alice Wang"),
+        // "Bob Brown": userListWithRatings.find(user => user.name === "Bob Brown"),
     };
-};
-
-// Calculate average rating for a user based on their reviews
-export const calculateAverageRating = (userId) => {
-    // Filter reviews by the user
-    const userReviews = reviewsData.filter(review => review.userId === userId);
-    
-    // Calculate the sum of the scores and the number of reviews
-    const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
-    const averageRating = totalScore / userReviews.length;
-
-    // Round to 1 decimal place
-    return averageRating ? Math.round(averageRating * 10) / 10 : 0;
-};
-
-// Add dynamic rating calculation to each user
-export const userListWithRatings = userList.map(user => ({
-    ...user,
-    rating: calculateAverageRating(user.id), // Calculate and add the average rating
-}));
-
-// Filter users with a rating of 4.0 or higher
-export const getTopRatedList = () => {
-    return userListWithRatings.filter(user => user.rating >= 4.0);
-};
-
-// Function to generate the star rating based on score
-export const generateStarRating = (score) => {
-    const filledStars = '★'.repeat(Math.floor(score));
-    const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
-    return filledStars + halfStar;
 };

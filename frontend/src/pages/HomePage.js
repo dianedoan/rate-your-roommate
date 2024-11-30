@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userListWithRatings, getInitialLikedProfiles, getTopRatedList } from "../data/userData";
+import { userList, reviewsData, getInitialLikedProfiles } from "../data/userData";
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import leftarrow from "../assets/images/button-icons/left-arrow.svg";
@@ -9,10 +9,32 @@ import "./HomePage.css";
 
 const HomePage = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
     const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
+    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+
     const navigate = useNavigate();
-    const topRatedList = getTopRatedList();
+
+    // Calculate average rating for a user based on their reviews
+    const calculateAverageRating = (userId) => {
+        // Filter reviews by the user
+        const userReviews = reviewsData.filter(review => review.userId === userId);
+        
+        // Calculate the sum of the scores and the number of reviews
+        const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+        const averageRating = totalScore / userReviews.length;
+
+        // Round to 1 decimal place
+        return averageRating ? Math.round(averageRating * 10) / 10 : 0;
+    };
+
+    // Add dynamic rating calculation to each user
+    const userListWithRatings = userList.map(user => ({
+        ...user,
+        rating: calculateAverageRating(user.id), // Calculate and add the average rating
+    }));
+
+    // Filter users with a rating of 4.0 or higher for top-rated roommates
+    const topRatedList = userListWithRatings.filter(user => user.rating >= 4.0);
 
     const filteredUsers = userListWithRatings.filter((user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||

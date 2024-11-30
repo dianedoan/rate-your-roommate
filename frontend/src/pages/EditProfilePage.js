@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
-import { userList, reviewsData, generateStarRating } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import edit from "../assets/images/button-icons/edit.svg";
 import './EditProfilePage.css';
 
 const EditProfilePage = () => {
     // Manually set logged in user
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const navigate = useNavigate();
 
     // Filter reviews made by the current user
@@ -50,7 +51,7 @@ const EditProfilePage = () => {
         setIsEditingAboutMe(false);
     };
 
-    // Helper function to categorize preferences
+    // Function to categorize preferences
     const getPreferenceCategoryClass = (pref) => {
         if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
             return 'age-related';
@@ -113,6 +114,13 @@ const EditProfilePage = () => {
 
     // Filter out selected preferences from the available preferences list
     const availablePreferences = preferencesList.filter(pref => !selectedPreferences.includes(pref));
+
+    // Function to generate the star rating based on score
+    const generateStarRating = (score) => {
+        const filledStars = '★'.repeat(Math.floor(score));
+        const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
+        return filledStars + halfStar;
+    };
     
     // Handle editing reviews (delete reviews)
     const handleDeleteReview = (reviewId) => {

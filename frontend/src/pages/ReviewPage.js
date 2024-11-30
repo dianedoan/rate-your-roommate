@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { userList, reviewsData, calculateAverageRating, generateStarRating, getInitialLikedProfiles } from "../data/userData";
+import { userList, reviewsData, getInitialLikedProfiles } from "../data/userData";
 import { Badge } from 'react-bootstrap';
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
@@ -12,11 +12,31 @@ const ReviewPage = () => {
     const userReviews = reviewsData.filter(review => review.userId === userId); // Filter reviews by userId
     const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
     
+    // Use navigate for redirection
+    const navigate = useNavigate();
+
+    // Calculate average rating for a user based on their reviews
+    const calculateAverageRating = (userId) => {
+        // Filter reviews by the user
+        const userReviews = reviewsData.filter(review => review.userId === userId);
+        
+        // Calculate the sum of the scores and the number of reviews
+        const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+        const averageRating = totalScore / userReviews.length;
+
+        // Round to 1 decimal place
+        return averageRating ? Math.round(averageRating * 10) / 10 : 0;
+    };
+
     // Calculate average rating based on reviews
     const averageRating = userReviews.length > 0 ? calculateAverageRating(userId) : null; // If no reviews, set averageRating to null
     
-    // Use navigate for redirection
-    const navigate = useNavigate();
+    // Function to generate the star rating based on score
+    const generateStarRating = (score) => {
+        const filledStars = '★'.repeat(Math.floor(score));
+        const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
+        return filledStars + halfStar;
+    };
 
     // Function to toggle the liked status of a profile (removing or re-adding profiles)
     const toggleLike = (userName) => {
