@@ -6,14 +6,11 @@ import star2filled from "../assets/images/button-icons/star2-filled.svg";
 import './CreateReviewPage.css';
 
 const CreateReviewPage = () => {
-    // Manually set logged in user
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
-    
-    const { userId } = useParams(); // Get user ID from URL
-    const user = userList.find((u) => u.id === userId); // Find the matching user
+    const { userId } = useParams();
+    const user = userList.find((u) => u.id === userId);
     const navigate = useNavigate();
 
-    // State to manage form inputs
     const [ratings, setRatings] = useState({
         cleanliness: 0,
         communication: 0,
@@ -24,15 +21,15 @@ const CreateReviewPage = () => {
 
     const [yesNoQuestions, setYesNoQuestions] = useState({
         respectful: '',
-        wouldRecommend: '',
-        goodExperience: '',
+        punctualFees: '', 
+        roommatesAgain: '',
     });
 
     const [openEndedTitle, setTitle] = useState('');
     const [openEnded, setOpenEnded] = useState('');
-    const [isAnonymous, setIsAnonymous] = useState(false); // State to track anonymous submission
+    const [isAnonymous, setIsAnonymous] = useState(false);
+    const [error, setError] = useState(''); // State for error messages
 
-    // Handle rating change
     const handleRatingChange = (category, value) => {
         setRatings((prevRatings) => ({
             ...prevRatings,
@@ -40,7 +37,6 @@ const CreateReviewPage = () => {
         }));
     };
 
-    // Handle Y/N question change
     const handleYesNoChange = (question, value) => {
         setYesNoQuestions((prevQuestions) => ({
             ...prevQuestions,
@@ -48,16 +44,39 @@ const CreateReviewPage = () => {
         }));
     };
 
-    // Handle submit form
+    const validateForm = () => {
+        // Check all ratings
+        const allRatingsAnswered = Object.values(ratings).every((rating) => rating > 0);
+
+        // Check all yes/no questions
+        const allYesNoAnswered = Object.values(yesNoQuestions).every((answer) => answer !== '');
+
+        if (!allRatingsAnswered) {
+            setError('Please provide a rating for all categories.');
+            return false;
+        }
+
+        if (!allYesNoAnswered) {
+            setError('Please answer all yes/no questions.');
+            return false;
+        }
+
+        setError(''); // Clear error if validation passes
+        return true;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Create the new review object
+        if (!validateForm()) {
+            return;
+        }
+
         const newReview = {
-            reviewId: `review-${Date.now()}`, // Unique ID for the review
+            reviewId: `review-${Date.now()}`,
             userId,
-            authorId: user.username, 
-            username: isAnonymous ? "Anonymous" : user.username, // Check if user chose to submit anonymously
+            authorId: user.username,
+            username: isAnonymous ? "Anonymous" : user.username,
             ratings,
             score: parseFloat(
                 (
@@ -67,7 +86,7 @@ const CreateReviewPage = () => {
                         ratings.noiseLevel +
                         ratings.etiquette) / 5
                 ).toFixed(1)
-            ), // Calculate the average score rounded to 1 decimal place
+            ),
             title: openEndedTitle,
             description: openEnded,
             yesNoAnswers: [
@@ -87,22 +106,15 @@ const CreateReviewPage = () => {
             date: new Date().toLocaleDateString(),
         };
 
-        // Add the new review to the beginning of the reviewsData array
         reviewsData.unshift(newReview);
-
         console.log("New Review Submitted:", newReview);
-
-        // Redirect back to the user review page
         navigate(`/reviews/${userId}`);
     };
 
-
-    // Render star icons for rating
     const renderStars = (category, labelBefore, labelAfter) => {
         const rating = ratings[category];
         const stars = [];
 
-        // Create the stars based on the rating value (filled and unfilled stars)
         for (let i = 1; i <= 5; i++) {
             const starIcon = i <= rating ? star2filled : star2;
             stars.push(
@@ -111,9 +123,9 @@ const CreateReviewPage = () => {
                         src={starIcon}
                         alt={`star ${i}`}
                         className="star-icon"
-                        onClick={() => handleRatingChange(category, i)} // Set the rating when a star is clicked
+                        onClick={() => handleRatingChange(category, i)}
                     />
-                    <div className="star-number">{i}</div> {/* Display number beneath each star */}
+                    <div className="star-number">{i}</div>
                 </div>
             );
         }
@@ -140,18 +152,17 @@ const CreateReviewPage = () => {
             <form onSubmit={handleSubmit} className="review-form">
                 <div className="questions-section">
                     {['cleanliness', 'communication', 'timeliness', 'noiseLevel', 'etiquette'].map((category) => {
-                        // Update category labels for special cases
                         const categoryLabel = 
                             category === 'noiseLevel' ? 'Noise Level' : 
                             category === 'etiquette' ? 'Etiquette & Manners' :
-                            category.charAt(0).toUpperCase() + category.slice(1); // Capitalize the rest
-                        
+                            category.charAt(0).toUpperCase() + category.slice(1);
+
                         const labelMapping = {
                             cleanliness: ['Messy', 'Clean'],
                             communication: ['Non-existent', 'Active'],
                             timeliness: ['Late', 'On-time'],
-                            noiseLevel: ['Quiet', 'Loud'], // Special case for noiseLevel
-                            etiquette: ['Rude', 'Polite'], // Special case for etiquette
+                            noiseLevel: ['Quiet', 'Loud'],
+                            etiquette: ['Rude', 'Polite'],
                         };
 
                         return (
@@ -164,7 +175,6 @@ const CreateReviewPage = () => {
                         );
                     })}
 
-                    {/* Additional yes/no questions */}
                     {[{
                         id: 'respectful',
                         question: 'Was this roommate respectful of your space?',
@@ -216,7 +226,7 @@ const CreateReviewPage = () => {
                     ))}
 
                     <div className="question-card open-ended-section">
-                    <label className="question-label" htmlFor="title">What do you want other users to know about this roommate?</label>
+                        <label className="question-label" htmlFor="title">What do you want other users to know about this roommate?</label>
                         <input
                             className="comments-form-title"
                             type="text"
@@ -248,12 +258,14 @@ const CreateReviewPage = () => {
                         </label>
                     </div>
 
+                    {error && <div className="error-message">{error}</div>} {/* Display error message */}
+
                     <div className="create-review-button-container">
                         <button type="submit" className="primary-btn submit-review-btn">Submit Review</button>
                         <button
                             type="button"
                             className="secondary-btn submit-review-btn"
-                            onClick={() => navigate(`/reviews/${userId}`)} // Navigate back to the user's review page
+                            onClick={() => navigate(`/reviews/${userId}`)}
                         >
                             Cancel
                         </button>
