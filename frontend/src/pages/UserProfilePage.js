@@ -7,6 +7,7 @@ import './UserProfilePage.css';
 const UserProfilePage = () => {
     // Manually set logged in user
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const navigate = useNavigate();
 
     // Filter reviews made by the current user

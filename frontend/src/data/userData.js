@@ -20,7 +20,8 @@ export const userList = [
         description: 'I love skating and sleeping',
         image: profile1,
         preferences: ['Early Riser', 'Pet Owner', 'Clean & Tidy', 'Likes Socializing', 'Vegetarian'],
-        email: 'alicewang@example.com'
+        email: 'alicewang@example.com',
+        likedProfiles: ['Sally Smith', 'Dave Jones', 'Bob Brown']
     },
     {
         id: 'dave-jones',
@@ -36,7 +37,8 @@ export const userList = [
         description: 'I have a passion for biking',
         image: profile2,
         preferences: ['Late Sleeper', 'Smoker Friendly', 'Fitness Enthusiast', 'Non-Vegetarian'],
-        email: 'davejones@example.com'
+        email: 'davejones@example.com',
+        likedProfiles: ['Sally Smith', 'Alice Wang', 'Bob Brown']
     },
     {
         id: 'bob-brown',
@@ -52,7 +54,8 @@ export const userList = [
         description: 'NEED a roommate ASAP',
         image: profile3,
         preferences: ['Messy', 'Organized', 'Homebody', 'Non-Smoker'],
-        email: 'bobbrown@example.com'
+        email: 'bobbrown@example.com',
+        likedProfiles: ['Sally Smith', 'Alice Wang', 'Dave Jones']
     },
     {
         id: 'john-fitzgerald',
@@ -68,7 +71,8 @@ export const userList = [
         description: 'I own a lot of cats',
         image: profile4,
         preferences: ['Pet Owner', 'Smoker Friendly', 'Goes Out Often', 'Vegetarian'],
-        email: 'johnfitzgerald@example.com'
+        email: 'johnfitzgerald@example.com',
+        likedProfiles: ['Sally Smith', 'Alice Wang']
     },
     {
         id: 'sally-smith',
@@ -84,7 +88,8 @@ export const userList = [
         description: 'I like cooking',
         image: profile5,
         preferences: ['Clean & Tidy', 'Organized', 'Likes Socializing', 'Vegan'],
-        email: 'sallysmith@example.com'
+        email: 'sallysmith@example.com',
+        likedProfiles: ['Dave Jones', 'Alice Wang', 'Bob Brown']
     },
 ];
 
@@ -375,11 +380,3 @@ export const messagesData = [
         ]
     },
 ];
-
-// Set initial liked/saved profiles
-export const getInitialLikedProfiles = () => {
-    return {
-        // "Alice Wang": userListWithRatings.find(user => user.name === "Alice Wang"),
-        // "Bob Brown": userListWithRatings.find(user => user.name === "Bob Brown"),
-    };
-};

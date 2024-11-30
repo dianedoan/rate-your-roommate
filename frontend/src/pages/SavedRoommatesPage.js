@@ -1,34 +1,62 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for dynamic routing
-import { getInitialLikedProfiles } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
 
 function SavedRoommatesPage() {
+    // Manually set logged in user
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
+    // Manage the list of liked profiles based on the logged-in user
+    const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
+    
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
-    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
     const navigate = useNavigate();
 
-    const filteredUsers = Object.values(likedProfiles).filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.state.toLowerCase().includes(searchQuery.toLowerCase())
+    // Function to calculate average rating for a user based on their reviews
+    const calculateAverageRating = (userId) => {
+        // Filter reviews by the user
+        const userReviews = reviewsData.filter(review => review.userId === userId);
+        
+        // Calculate the sum of the scores and the number of reviews
+        const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+        const averageRating = totalScore / userReviews.length;
+
+        // Round to 1 decimal place
+        return averageRating ? Math.round(averageRating * 10) / 10 : 0;
+    };
+
+    // Add dynamic rating calculation to each user
+    const usersWithRatings = userList.map(user => ({
+        ...user,
+        rating: calculateAverageRating(user.id), // Calculate and add the average rating
+    }));
+
+    // Filter the users from likedProfiles by matching with search query
+    const filteredUsers = usersWithRatings.filter((user) =>
+        likedProfiles.includes(user.name) && (
+            user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            user.state.toLowerCase().includes(searchQuery.toLowerCase())
+        )
     );
-    
+
     // Function to toggle the liked status (removing or re-adding profiles)
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const updatedLikes = { ...prevLikes };
+            const updatedLikes = [...prevLikes];  // Copy the current list of liked profiles
 
-            if (updatedLikes[userName]) {
+            if (updatedLikes.includes(userName)) {
                 // If already liked, remove from the saved profiles
-                delete updatedLikes[userName];
+                const index = updatedLikes.indexOf(userName);
+                updatedLikes.splice(index, 1);
             } else {
-                console.warn(`${userName} cannot be re-added here. This is the saved list.`);
+                // Add user to likedProfiles if not already liked
+                updatedLikes.push(userName);
             }
 
-            // Log the list of liked profiles to the console
-            console.log('Liked Profiles:', Object.values(updatedLikes));
+            console.log('Liked Profiles:', updatedLikes); // Log the updated liked profiles
 
             return updatedLikes;
         });
@@ -70,7 +98,7 @@ function SavedRoommatesPage() {
                             <p className="profile-location">{user.city}, {user.state}</p>
                             <div className="favorite-icon">
                                 <img
-                                    src={likedProfiles[user.name] ? heart2filled : heart2}
+                                    src={likedProfiles.includes(user.name) ? heart2filled : heart2}
                                     alt="heart icon"
                                     className="heart-icon"
                                     onClick={(e) => {

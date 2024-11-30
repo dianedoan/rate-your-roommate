@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userList, reviewsData, getInitialLikedProfiles } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import leftarrow from "../assets/images/button-icons/left-arrow.svg";
@@ -8,9 +8,12 @@ import rightarrow from "../assets/images/button-icons/right-arrow.svg";
 import "./HomePage.css";
 
 const HomePage = () => {
+    // Manually set logged in user
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const [searchQuery, setSearchQuery] = useState("");
     const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
-    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+    const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
 
     const navigate = useNavigate();
 
@@ -44,17 +47,18 @@ const HomePage = () => {
 
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const user = userListWithRatings.find((u) => u.name === userName);
-            if (!user) return prevLikes;
-
-            const updatedLikes = { ...prevLikes };
-            if (updatedLikes[userName]) {
-                delete updatedLikes[userName];
+            const updatedLikes = [...prevLikes];
+            if (updatedLikes.includes(userName)) {
+                // If the user is already liked, remove them
+                const index = updatedLikes.indexOf(userName);
+                updatedLikes.splice(index, 1);
             } else {
-                updatedLikes[userName] = user;
+                // If the user is not liked, add them
+                updatedLikes.push(userName);
             }
 
             console.log("Liked Profiles:", Object.values(updatedLikes));
+
             return updatedLikes;
         });
     };
@@ -122,16 +126,14 @@ const HomePage = () => {
                                     </p>
                                     <div className="favorite-icon">
                                         <img
-                                            src={
-                                                likedProfiles[topRatedList[activeTopRatedIndex].name]
-                                                    ? heart2filled
-                                                    : heart2
-                                            }
+                                            src={likedProfiles.includes(topRatedList[activeTopRatedIndex].name)
+                                                ? heart2filled
+                                                : heart2}
                                             alt="heart icon"
                                             className="heart-icon"
                                             onClick={(e) => {
                                                 e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
-                                                toggleLike(topRatedList[activeTopRatedIndex].name); // Use the name of the active top-rated user
+                                                toggleLike(topRatedList[activeTopRatedIndex].name); // Toggle like
                                             }}
                                         />
                                     </div>
@@ -180,7 +182,9 @@ const HomePage = () => {
                                 </p>
                                 <div className="favorite-icon">
                                     <img
-                                        src={likedProfiles[user.name] ? heart2filled : heart2}
+                                        src={likedProfiles.includes(user.name)
+                                            ? heart2filled
+                                            : heart2}
                                         alt="heart icon"
                                         className="heart-icon"
                                         onClick={(e) => {

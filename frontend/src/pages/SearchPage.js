@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { getInitialLikedProfiles } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";  // Ensure you import necessary data
 import heart2 from '../assets/images/button-icons/heart2.svg'; 
 import heart2filled from '../assets/images/button-icons/heart2-filled.svg'; 
 import "./SearchPage.css";
 
+// Function to calculate average rating
+const calculateAverageRating = (userId) => {
+    const userReviews = reviewsData.filter(review => review.userId === userId);
+    const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+    const averageRating = totalScore / userReviews.length;
+    return averageRating ? Math.round(averageRating * 10) / 10 : 0;  // Round to 1 decimal place
+};
+
 function SearchPage() {
+    // Manually set logged in user
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
-    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
+    const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
 
     const navigate = useNavigate(); // Hook for navigation
 
     // Add dynamic rating calculation to each user
     const userListWithRatings = userList.map(user => ({
         ...user,
-        rating: calculateAverageRating(user.id), // Calculate and add the average rating
+        rating: calculateAverageRating(user.id), // Calculate and add the average rating for each user
     }));
 
     // Filter the users based on search input (name, state/province, city)
@@ -28,19 +39,18 @@ function SearchPage() {
     // Function to toggle the liked status (removing or re-adding profiles)
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const updatedLikes = { ...prevLikes };
+            const updatedLikes = [...prevLikes]; // Copy the current list of liked profiles
 
-            if (updatedLikes[userName]) {
-                // If already liked, remove from liked profiles
-                delete updatedLikes[userName];
+            if (updatedLikes.includes(userName)) {
+                // If the user is already liked, remove them
+                const index = updatedLikes.indexOf(userName);
+                updatedLikes.splice(index, 1);
             } else {
-                // If not liked yet, find the user and add to liked profiles
-                const user = userListWithRatings.find((u) => u.name === userName);
-                updatedLikes[userName] = user;
+                // If the user is not liked, add them
+                updatedLikes.push(userName);
             }
 
-            // Log the list of liked profiles to the console
-            console.log('Liked Profiles:', Object.values(updatedLikes));
+            console.log("Liked Profiles:", updatedLikes); // Log the updated liked profiles
 
             return updatedLikes;
         });
@@ -97,7 +107,8 @@ function SearchPage() {
                                     <p className="profile-location">{user.city}, {user.state}</p>
                                     <div className="favorite-icon">
                                         <img
-                                            src={likedProfiles[user.name] ? heart2filled : heart2}
+                                            // Change heart icon based on whether the profile is liked
+                                            src={likedProfiles.includes(user.name) ? heart2filled : heart2}
                                             alt="heart icon"
                                             className="heart-icon"
                                             onClick={(e) => {
