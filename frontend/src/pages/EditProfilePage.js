@@ -510,7 +510,7 @@ const EditProfilePage = () => {
                                         <div className="past-review-username">{review.username}</div>
                                         <div className="past-review-date">{review.date}</div>
                                             <button 
-                                                className="delete-review-button"
+                                                className="delete-review-btn"
                                                 onClick={() => handleDeleteReview(review.id)}
                                             >
                                                 Delete
