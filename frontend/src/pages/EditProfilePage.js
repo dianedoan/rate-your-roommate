@@ -177,7 +177,7 @@ const EditProfilePage = () => {
     };
 
     return (
-        <div className="edit-profile-content">
+        <div className="user-profile-content">
             <div className="edit-profile-header">
                 <div className="edit-profile-image">
                     <img
@@ -199,8 +199,8 @@ const EditProfilePage = () => {
                 </div>
             </div>
 
-            <div className="edit-profile-cards-section">
-                <div className="edit-profile-card">
+            <div className="user-profile-cards-section">
+                <div className="user-profile-card">
                     <div className="edit-profile-about-me">
                         <p><span className="edit-highlight">Edit </span>About Me</p>
                         <button 
@@ -217,7 +217,7 @@ const EditProfilePage = () => {
                                 value={aboutMeText}
                                 onChange={(e) => setAboutMeText(e.target.value)}
                             />
-                            <div className="button-container">
+                            <div className="edit-profile-button-container">
                                 <button className="primary-btn save-button" onClick={handleSaveAboutMe}>
                                     Save
                                 </button>
@@ -230,13 +230,13 @@ const EditProfilePage = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="edit-profile-description">
+                        <div className="user-profile-description">
                             {originalAboutMe || 'No description provided.'}
                         </div>
                     )}
                 </div>
 
-                <div className="edit-profile-card">
+                <div className="user-profile-card">
                     <div className="edit-profile-preferences">
                         <p><span className="edit-highlight">Edit </span>Preferences & Lifestyle</p>
                         <button 
@@ -286,7 +286,7 @@ const EditProfilePage = () => {
                                     )}
                                 </div>
                             </div>
-                            <div className="button-container">
+                            <div className="edit-profile-button-container">
                                 <button className="primary-btn save-button" onClick={handleSavePreferences}>
                                     Save
                                 </button>
@@ -317,7 +317,7 @@ const EditProfilePage = () => {
                         </div>
                     )}
                 </div>
-                <div className="edit-profile-card">
+                <div className="user-profile-card">
                     <div className="edit-profile-account-details">
                         <div className="edit-profile-settings">
                         <p><span className="edit-highlight">Edit </span>Account Details</p>
@@ -402,7 +402,7 @@ const EditProfilePage = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="button-container">
+                            <div className="edit-profile-button-container">
                                 <button className="primary-btn save-button" onClick={handleSaveAccountDetails}>
                                     Save
                                 </button>
@@ -418,15 +418,15 @@ const EditProfilePage = () => {
                             <div className="account-first-name"><strong>First Name: </strong> {loggedInUser.firstName}</div>
                             <div className="account-last-name"><strong>Last Name: </strong> {loggedInUser.lastName}</div>
                             <div className="account-occupation"><strong>Occupation: </strong> {loggedInUser.occupation}</div>
-                            <div className="location">
+                            <div className="account-location">
                                 <div className="account-country"><strong>Country: </strong>  {loggedInUser.country}</div>
-                                <div className="account-country"><strong>State/Province: </strong>  {loggedInUser.state}</div>
-                                <div className="account-country"><strong>City: </strong> {loggedInUser.city}</div>
+                                <div className="account-state"><strong>State/Province: </strong>  {loggedInUser.state}</div>
+                                <div className="account-city"><strong>City: </strong> {loggedInUser.city}</div>
                             </div>
                         </div>
                     )}
                 </div>
-                <div className="edit-profile-card">
+                <div className="user-profile-card">
                     <div className="edit-profile-reviews">
                         <p><span className="edit-highlight">Remove </span>Past Reviews</p>
                         <button 
