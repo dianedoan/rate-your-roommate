@@ -46,17 +46,12 @@ const EditProfilePage = () => {
         setImageSelectorOpen(false); // Close the selector after choosing
     };
 
-    
     // State for editing About Me
     const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
     const [aboutMeText, setAboutMeText] = useState(loggedInUser.description || '');
     const [originalAboutMe, setOriginalAboutMe] = useState(loggedInUser.description || '');
     const [selectedPreferences, setSelectedPreferences] = useState(loggedInUser?.preferences || []);
     const [isEditingPreferences, setIsEditingPreferences] = useState(false);
-    
-    // State for editing reviews
-    const [isEditingReviews, setIsEditingReviews] = useState(false);
-    const [userReviewsState, setUserReviewsState] = useState(userReviews); // Store reviews in state
     
     // Save changes to About Me
     const handleSaveAboutMe = () => {
@@ -83,7 +78,7 @@ const EditProfilePage = () => {
         'Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian',
         'Bookworm', 'Fitness Enthusiast', 'Gamer'
     ];
-
+    
     // Function to categorize preferences
     const getPreferenceCategoryClass = (pref) => {
         if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
@@ -118,7 +113,7 @@ const EditProfilePage = () => {
         }
         return '';
     };
-
+    
     // Handle preference badge click to add or remove preferences
     const handleBadgeClick = (pref) => {
         if (selectedPreferences.includes(pref)) {
@@ -144,19 +139,20 @@ const EditProfilePage = () => {
         setSelectedPreferences(loggedInUser.preferences); // Revert to original preferences
         setIsEditingPreferences(false);
     };
-
+    
     // Filter out selected preferences from the available preferences list
     const availablePreferences = preferencesList.filter(pref => !selectedPreferences.includes(pref));
-
+    
     // Function to generate the star rating based on score
     const generateStarRating = (score) => {
         const filledStars = '★'.repeat(Math.floor(score));
         const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
         return filledStars + halfStar;
     };
-
-    // Filter reviews made by the current user
-    const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
+    
+    // State for editing reviews
+    const [isEditingReviews, setIsEditingReviews] = useState(false);
+    const [userReviewsState, setUserReviewsState] = useState(reviewsData.filter(review => review.authorId === loggedInUser.id)); // Store past reviews made by logged in user in state
     
     // Handle editing reviews (delete reviews)
     const handleDeleteReview = (reviewId) => {
@@ -514,7 +510,7 @@ const EditProfilePage = () => {
                                         <div className="past-review-username">{review.username}</div>
                                         <div className="past-review-date">{review.date}</div>
                                             <button 
-                                                className="delete-review-btn"
+                                                className="delete-review-button"
                                                 onClick={() => handleDeleteReview(review.id)}
                                             >
                                                 Delete
