@@ -40,7 +40,8 @@ const HomePage = () => {
     const topRatedList = userListWithRatings.filter(user => user.rating >= 4.0);
 
     const filteredUsers = userListWithRatings.filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.state.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -94,11 +95,11 @@ const HomePage = () => {
                             className="top-rated-card-link"
                             onClick={() => navigate(`/reviews/${topRatedList[activeTopRatedIndex].id}`)}
                         >
-                            <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].name}>
+                            <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].username}>
                                 <div className="top-rated-profile-image-container">
                                     <img
                                         src={topRatedList[activeTopRatedIndex].image}
-                                        alt={topRatedList[activeTopRatedIndex].name}
+                                        alt={topRatedList[activeTopRatedIndex].username}
                                         className="top-rated-profile-image"
                                     />
                                 </div>
@@ -106,7 +107,7 @@ const HomePage = () => {
                                     <div className="top-rated-profile-info-container">
                                         <div className="top-rated-profile-info">
                                             <div className="top-rated-profile-name">
-                                                {topRatedList[activeTopRatedIndex].name}
+                                                {topRatedList[activeTopRatedIndex].firstName} {topRatedList[activeTopRatedIndex].lastName}
                                             </div>
                                             <div className="top-rated-profile-occupation">
                                                 {topRatedList[activeTopRatedIndex].occupation}
@@ -123,14 +124,14 @@ const HomePage = () => {
                                             </div>
                                             <div className="favorite-icon">
                                                 <img
-                                                    src={likedProfiles.includes(topRatedList[activeTopRatedIndex].name)
+                                                    src={likedProfiles.includes(topRatedList[activeTopRatedIndex].username)
                                                         ? heart2filled
                                                         : heart2}
                                                     alt="heart icon"
                                                     className="heart-icon"
                                                     onClick={(e) => {
                                                         e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
-                                                        toggleLike(topRatedList[activeTopRatedIndex].name); // Toggle like
+                                                        toggleLike(topRatedList[activeTopRatedIndex].username); // Toggle like
                                                     }}
                                                 />
                                             </div>
@@ -163,16 +164,16 @@ const HomePage = () => {
                 {filteredUsers.length > 0 ? (
                     filteredUsers.map((user) => (
                         <div
-                            key={user.name}
+                            key={user.username}
                             className="profile-card"
                             onClick={() => goToUserProfile(user.id)}
                         >
                             <div className="profile-info-container">
                                 <div className="profile-image-container">
-                                    <img src={user.image} alt={user.name} className="profile-image" />
+                                    <img src={user.image} alt={user.username} className="profile-image" />
                                 </div>
                                 <div className="profile-info">
-                                    <div className="profile-name">{user.name}</div>
+                                    <div className="profile-name">{user.firstName} {user.lastName}</div>
                                     <div className="profile-score">
                                         <span className="highlight5">
                                             {user.rating === 0 ? "N/A" : `${user.rating}/5`}
@@ -189,14 +190,14 @@ const HomePage = () => {
                                 </div>
                                 <div className="favorite-icon">
                                     <img
-                                        src={likedProfiles.includes(user.name)
+                                        src={likedProfiles.includes(user.username)
                                             ? heart2filled
                                             : heart2}
                                         alt="heart icon"
                                         className="heart-icon"
                                         onClick={(e) => {
                                             e.stopPropagation(); // Prevent navigation when clicking the heart icon
-                                            toggleLike(user.name); // Toggle like on click
+                                            toggleLike(user.username); // Toggle like on click
                                         }}
                                     />
                                 </div>

@@ -35,8 +35,9 @@ function SavedRoommatesPage() {
 
     // Filter the users from likedProfiles by matching with search query
     const filteredUsers = usersWithRatings.filter((user) =>
-        likedProfiles.includes(user.name) && (
-            user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        likedProfiles.includes(user.username) && (
+            user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
             user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
             user.state.toLowerCase().includes(searchQuery.toLowerCase())
         )
@@ -73,7 +74,7 @@ function SavedRoommatesPage() {
             {filteredUsers.length > 0 ? (
                 filteredUsers.map((user) => (
                     <div 
-                    key={user.name}
+                    key={user.username}
                     className="profile-card" 
                     onClick={() => goToUserProfile(user.id)} // Make card clickable
                     >
@@ -81,12 +82,12 @@ function SavedRoommatesPage() {
                             <div className="profile-image-container">
                                 <img
                                     src={user.image}
-                                    alt={user.name}
+                                    alt={user.username}
                                     className="profile-image"
                                 />
                             </div>
                             <div className="profile-info">
-                                <div className="profile-name">{user.name}</div>
+                                <div className="profile-name">{user.firstName} {user.lastName}</div>
                                 <div className="profile-score">
                                     <span className="highlight5">
                                         {user.rating === 0 ? "N/A" : `${user.rating}/5`}
@@ -100,12 +101,12 @@ function SavedRoommatesPage() {
                             <p className="profile-location">{user.city}, {user.state}</p>
                             <div className="favorite-icon">
                                 <img
-                                    src={likedProfiles.includes(user.name) ? heart2filled : heart2}
+                                    src={likedProfiles.includes(user.username) ? heart2filled : heart2}
                                     alt="heart icon"
                                     className="heart-icon"
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent navigation when clicking the heart icon
-                                        toggleLike(user.name); // Toggle like on click
+                                        toggleLike(user.username); // Toggle like on click
                                     }}
                                 />
                             </div>

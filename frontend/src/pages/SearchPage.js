@@ -31,7 +31,8 @@ function SearchPage() {
 
     // Filter the users based on search input (name, state/province, city)
     const filteredUsers = userListWithRatings.filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.state.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -81,7 +82,7 @@ function SearchPage() {
                     <div className="search-results">
                         {filteredUsers.map((user) => (
                             <div 
-                            key={user.name} 
+                            key={user.username} 
                             className="profile-card" 
                             onClick={() => goToUserProfile(user.id)} // Make card clickable
                             >
@@ -89,7 +90,7 @@ function SearchPage() {
                                     <div className="profile-image-container">
                                     <img
                                         src={user.image}
-                                        alt={user.name}
+                                        alt={user.username}
                                         className="profile-image"
                                     />
                                     </div>
@@ -110,12 +111,12 @@ function SearchPage() {
                                     <div className="favorite-icon">
                                         <img
                                             // Change heart icon based on whether the profile is liked
-                                            src={likedProfiles.includes(user.name) ? heart2filled : heart2}
+                                            src={likedProfiles.includes(user.username) ? heart2filled : heart2}
                                             alt="heart icon"
                                             className="heart-icon"
                                             onClick={(e) => {
                                                 e.stopPropagation(); // Prevent navigation when clicking the heart icon
-                                                toggleLike(user.name); // Toggle like on click
+                                                toggleLike(user.username); // Toggle like on click
                                             }}
                                         />
                                     </div>

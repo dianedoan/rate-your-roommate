@@ -9,10 +9,12 @@ export const userList = [
     {
         id: 'alice-wang',
         username: 'alicewang',
-        password: '123456',
-        name: 'Alice Wang',
+        email: 'alicewang@example.com',
         firstName: 'Alice',
         lastName: 'Wang',
+        password: '123456',
+        securityQuestion: "What is your pet's name?",
+        securityAnswer: "Kat",
         city: 'Calgary',
         state: 'AB',
         country: 'Canada',
@@ -20,16 +22,17 @@ export const userList = [
         description: 'I love skating and sleeping',
         image: profile1,
         preferences: ['Early Riser', 'Pet Owner', 'Clean & Tidy', 'Likes Socializing', 'Vegetarian'],
-        email: 'alicewang@example.com',
-        likedProfiles: ['Sally Smith', 'Dave Jones', 'Bob Brown']
+        likedProfiles: ['sallysmith', 'davejones', 'bobbrown']
     },
     {
         id: 'dave-jones',
         username: 'davejones',
-        password: '123456',
-        name: 'Dave Jones',
+        email: 'davejones@example.com',
         firstName: 'Dave',
         lastName: 'Jones',
+        password: '123456',
+        securityQuestion: "What was your first car?",
+        securityAnswer: "Honda civic",
         city: 'Airdrie',
         state: 'AB',
         country: 'Canada',
@@ -37,16 +40,17 @@ export const userList = [
         description: 'I have a passion for biking',
         image: profile2,
         preferences: ['Late Sleeper', 'Smoker Friendly', 'Fitness Enthusiast', 'Non-Vegetarian'],
-        email: 'davejones@example.com',
-        likedProfiles: ['Sally Smith', 'Alice Wang', 'Bob Brown']
+        likedProfiles: ['sallysmith', 'alicewang', 'bobbrown']
     },
     {
         id: 'bob-brown',
         username: 'bobbrown',
-        password: '123456',
-        name: 'Bob Brown',
+        email: 'bobbrown@example.com',
         firstName: 'Bob',
         lastName: 'Brown',
+        password: '123456',
+        securityQuestion: "What is the name of your favorite teacher?",
+        securityAnswer: "Mrs. Park",
         city: 'Calgary',
         state: 'AB',
         country: 'Canada',
@@ -54,16 +58,17 @@ export const userList = [
         description: 'NEED a roommate ASAP',
         image: profile3,
         preferences: ['Messy', 'Organized', 'Homebody', 'Non-Smoker'],
-        email: 'bobbrown@example.com',
-        likedProfiles: ['Sally Smith', 'Alice Wang', 'Dave Jones']
+        likedProfiles: ['sallysmith', 'alicewang', 'davejones']
     },
     {
         id: 'john-fitzgerald',
         username: 'johnfitz',
-        password: '123456',
-        name: 'John Fitzgerald',
+        email: 'johnfitzgerald@example.com',
         firstName: 'John',
         lastName: 'Fitzgerald',
+        password: '123456',
+        securityQuestion: "What is the name of your favorite teacher?",
+        securityAnswer: "idk",
         city: 'Calgary',
         state: 'AB',
         country: 'Canada',
@@ -71,16 +76,17 @@ export const userList = [
         description: 'I own a lot of cats',
         image: profile4,
         preferences: ['Pet Owner', 'Smoker Friendly', 'Goes Out Often', 'Vegetarian'],
-        email: 'johnfitzgerald@example.com',
-        likedProfiles: ['Sally Smith', 'Alice Wang']
+        likedProfiles: ['sallysmith', 'alicewang']
     },
     {
         id: 'sally-smith',
         username: 'sallysmith',
-        password: '123456',
-        name: 'Sally Smith',
+        email: 'sallysmith@example.com',
         firstName: 'Sally',
         lastName: 'Smith',
+        password: '123456',
+        securityQuestion: "What is your pet's name?",
+        securityAnswer: "Meow",
         city: 'Calgary',
         state: 'AB',
         country: 'Canada',
@@ -88,8 +94,7 @@ export const userList = [
         description: 'I like cooking',
         image: profile5,
         preferences: ['Clean & Tidy', 'Organized', 'Likes Socializing', 'Vegan'],
-        email: 'sallysmith@example.com',
-        likedProfiles: ['Dave Jones', 'Alice Wang', 'Bob Brown']
+        likedProfiles: ['davejones', 'alicewang', 'bobbrown']
     },
 ];
 

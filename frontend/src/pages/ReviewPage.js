@@ -118,16 +118,16 @@ const ReviewPage = () => {
                 <div className="review-profile-card">
                     <div className="review-profile-info">
                         <div className="name-heart-container">
-                            <div className="review-profile-name">{user.name}</div>
+                            <div className="review-profile-name">{user.firstName} {user.lastName}</div>
                             <div className="profile-favorite-icon">
                                 <img
                                     // Toggle heart icon based on the user's liked profiles
-                                    src={likedProfiles.includes(user.name) ? heart2filled : heart2}
+                                    src={likedProfiles.includes(user.username) ? heart2filled : heart2}
                                     alt="heart icon"
                                     className="review-heart-icon"
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent any other actions when clicking the heart
-                                        toggleLike(user.name); // Toggle like on click
+                                        toggleLike(user.username); // Toggle like on click
                                     }}
                                 />
                             </div>
@@ -149,7 +149,7 @@ const ReviewPage = () => {
                         <div className="image-container">
                             <img
                                 src={user.image}
-                                alt={user.name}
+                                alt={user.username}
                                 className="review-profile-image"
                             />
                         </div>
