@@ -3,6 +3,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
 import { userList, reviewsData } from "../data/userData";
 import edit from "../assets/images/button-icons/edit.svg";
+import profile0 from "../assets/images/profile-pics/profile0.jpg";
+import profile1 from "../assets/images/profile-pics/profile1.jpg";
+import profile2 from "../assets/images/profile-pics/profile2.jpg";
+import profile3 from "../assets/images/profile-pics/profile3.jpg";
+import profile4 from "../assets/images/profile-pics/profile4.jpg";
+import profile5 from "../assets/images/profile-pics/profile5.jpg";
+import profile6 from "../assets/images/profile-pics/profile6.jpg";
+import profile7 from "../assets/images/profile-pics/profile7.jpg";
+import profile8 from "../assets/images/profile-pics/profile8.jpg";
+import profile9 from "../assets/images/profile-pics/profile9.jpg";
+import profile10 from "../assets/images/profile-pics/profile10.jpg";
+import profile11 from "../assets/images/profile-pics/profile11.jpg";
+import profile12 from "../assets/images/profile-pics/profile12.jpg";
+import profile13 from "../assets/images/profile-pics/profile13.jpg";
+import profile14 from "../assets/images/profile-pics/profile14.jpg";
+import profile15 from "../assets/images/profile-pics/profile15.jpg";
+import profile16 from "../assets/images/profile-pics/profile16.jpg";
+import profile17 from "../assets/images/profile-pics/profile17.jpg";
+import profile18 from "../assets/images/profile-pics/profile18.jpg";
+import profile19 from "../assets/images/profile-pics/profile19.jpg";
+import profile20 from "../assets/images/profile-pics/profile20.jpg";
 import './EditProfilePage.css';
 
 const EditProfilePage = () => {
@@ -10,6 +31,20 @@ const EditProfilePage = () => {
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
     
     const navigate = useNavigate();
+
+    // State for managing selected profile picture
+    const [selectedImage, setSelectedImage] = useState(loggedInUser.image);
+    const [isImageSelectorOpen, setImageSelectorOpen] = useState(false);
+   
+    // List of available profile images
+    const profileImages = [profile0, profile1, profile2, profile3, profile4, profile5, profile6, profile7, profile8, profile9, profile10, profile11, profile12, profile13, profile14, profile15, profile16, profile17, profile18, profile19, profile20];
+
+    const handleImageSelect = (image) => {
+        setSelectedImage(image);
+        loggedInUser.image = image; // Update image property for the logged in user
+        console.log('Updated user object:', loggedInUser);
+        setImageSelectorOpen(false); // Close the selector after choosing
+    };
 
     // Filter reviews made by the current user
     const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
@@ -179,12 +214,31 @@ const EditProfilePage = () => {
     return (
         <div className="user-profile-content">
             <div className="edit-profile-header">
-                <div className="edit-profile-image">
+                <div className="edit-profile-image-wrapper">
                     <img
-                        src={loggedInUser.image}
+                        src={selectedImage}
                         alt={`${loggedInUser.name}'s profile`}
                         className="edit-profile-image"
                     />
+                    <button 
+                        className="edit-profile-image-btn"
+                        onClick={() => setImageSelectorOpen(!isImageSelectorOpen)}
+                    >
+                        ✎
+                    </button>
+                    {isImageSelectorOpen && (
+                        <div className="image-selector-dropdown">
+                            {profileImages.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Profile option ${index + 1}`}
+                                    className="profile-option-image"
+                                    onClick={() => handleImageSelect(image)}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <div className="edit-profile-info">
                     <div className="edit-profile-name">{loggedInUser.firstName} {loggedInUser.lastName}</div>
