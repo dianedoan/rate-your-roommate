@@ -2,8 +2,8 @@ import json
 from lambda_function import lambda_handler 
 
 def test_lambda_handler():
-    test_username = "mary"
-    test_password = "123456"
+    test_username = "..."
+    test_password = "..."
 
     event = {
         "body": json.dumps({
