@@ -92,6 +92,12 @@ const AdminPage = () => {
                                         <strong>Review ID:</strong> {review.reviewId}
                                     </div>
                                     <div>
+                                        <strong>Reviewed for User ID:</strong> {review.userId}
+                                    </div>
+                                    <div>
+                                        <strong>Displayed Username:</strong> {review.username}
+                                    </div>
+                                    <div>
                                         <strong>Score:</strong>{' '}
                                         <span className="highlight5">
                                             {review.score}/5 {generateStarRating(review.score)}
