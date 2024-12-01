@@ -260,7 +260,7 @@
     margin-top: 1.5rem;
 }
 
-.save-button, .cancel-button , .delete-review-button {
+.save-button, .cancel-button , .delete-review-btn {
     text-align: center;
     margin: 0.5rem;
     font-size: 1.2rem;
@@ -270,7 +270,7 @@
     border: 0.1rem solid #1e1e1e;
 }
 
-.delete-review-button {
+.delete-review-btn {
     width: 9rem;
     background-color: #8CAD63;
     color: #ffffff;
@@ -279,7 +279,7 @@
     margin-top: 1rem;
 }
 
-.delete-review-button:hover {
+.delete-review-btn:hover {
     transform: translateY(0.1rem);
     transition: transform 150ms;
     text-shadow: none;

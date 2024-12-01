@@ -46,9 +46,32 @@ const EditProfilePage = () => {
         setImageSelectorOpen(false); // Close the selector after choosing
     };
 
-    // Filter reviews made by the current user
-    const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
-
+    
+    // State for editing About Me
+    const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
+    const [aboutMeText, setAboutMeText] = useState(loggedInUser.description || '');
+    const [originalAboutMe, setOriginalAboutMe] = useState(loggedInUser.description || '');
+    const [selectedPreferences, setSelectedPreferences] = useState(loggedInUser?.preferences || []);
+    const [isEditingPreferences, setIsEditingPreferences] = useState(false);
+    
+    // State for editing reviews
+    const [isEditingReviews, setIsEditingReviews] = useState(false);
+    const [userReviewsState, setUserReviewsState] = useState(userReviews); // Store reviews in state
+    
+    // Save changes to About Me
+    const handleSaveAboutMe = () => {
+        // Update the originalAboutMe state and simulate saving the updated data
+        setOriginalAboutMe(aboutMeText);
+        loggedInUser.description = aboutMeText; // Example update (update the actual data as needed)
+        setIsEditingAboutMe(false);
+    };
+    
+    // Cancel editing and revert the state
+    const handleCancelEdit = () => {
+        setAboutMeText(originalAboutMe); // Revert to the original description
+        setIsEditingAboutMe(false);
+    };
+    
     const preferencesList = [
         'Age 18-24', 'Age 25-34', 'Age 35-44',
         'Early Riser', 'Late Sleeper', 'Snores',
@@ -60,31 +83,6 @@ const EditProfilePage = () => {
         'Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian',
         'Bookworm', 'Fitness Enthusiast', 'Gamer'
     ];
-
-    // State for editing About Me
-    const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
-    const [aboutMeText, setAboutMeText] = useState(loggedInUser.description || '');
-    const [originalAboutMe, setOriginalAboutMe] = useState(loggedInUser.description || '');
-    const [selectedPreferences, setSelectedPreferences] = useState(loggedInUser?.preferences || []);
-    const [isEditingPreferences, setIsEditingPreferences] = useState(false);
-
-    // State for editing reviews
-    const [isEditingReviews, setIsEditingReviews] = useState(false);
-    const [userReviewsState, setUserReviewsState] = useState(userReviews); // Store reviews in state
-
-    // Save changes to About Me
-    const handleSaveAboutMe = () => {
-        // Update the originalAboutMe state and simulate saving the updated data
-        setOriginalAboutMe(aboutMeText);
-        loggedInUser.description = aboutMeText; // Example update (update the actual data as needed)
-        setIsEditingAboutMe(false);
-    };
-
-    // Cancel editing and revert the state
-    const handleCancelEdit = () => {
-        setAboutMeText(originalAboutMe); // Revert to the original description
-        setIsEditingAboutMe(false);
-    };
 
     // Function to categorize preferences
     const getPreferenceCategoryClass = (pref) => {
@@ -156,6 +154,9 @@ const EditProfilePage = () => {
         const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
         return filledStars + halfStar;
     };
+
+    // Filter reviews made by the current user
+    const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
     
     // Handle editing reviews (delete reviews)
     const handleDeleteReview = (reviewId) => {
@@ -513,7 +514,7 @@ const EditProfilePage = () => {
                                         <div className="past-review-username">{review.username}</div>
                                         <div className="past-review-date">{review.date}</div>
                                             <button 
-                                                className="delete-review-button"
+                                                className="delete-review-btn"
                                                 onClick={() => handleDeleteReview(review.id)}
                                             >
                                                 Delete

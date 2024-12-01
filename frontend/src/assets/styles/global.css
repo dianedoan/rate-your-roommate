@@ -69,9 +69,10 @@ html h5 {
 
 /* Review Score + Stars */
 .highlight5 {
-    color: #e4fff5;
-    text-shadow: 0rem 0rem 0.15rem #1e1e1e;
-
+    color: #8CAD63;
+    /* text-shadow: 0rem 0rem 0.15rem #1e1e1e; */
+    text-shadow: 0.05rem 0.05rem #1e1e1e;
+    
 }
 
 /* CONTAINER */
