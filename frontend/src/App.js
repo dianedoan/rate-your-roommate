@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
@@ -26,46 +26,81 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showSetupProfile, setShowSetupProfile] = useState(false);
-  const [userId, setUserId] = useState(null); // New state to store the userId
-  const [isSuccess, setIsSuccess] = useState(null);
-  const [securityQuestion, setSecurityQuestion] = useState("");
+  const [userId, setUserId] = useState(null);
+  const [sortKey, setSortKey] = useState(null);
+  // const [isSuccess, setIsSuccess] = useState(null);
+  // const [securityQuestion, setSecurityQuestion] = useState("");
   const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    const storedSortKey = localStorage.getItem("sortKey");
+    if (storedUserId && storedSortKey) {
+      setUserId(storedUserId);
+      setSortKey(storedSortKey);
+    }
+  }, []);
 
   // Functions to toggle login/register modal
   const handleLoginClick = () => setShowLogin(true);
   const handleRegisterClick = () => setShowRegister(true);
   const handleRegisterToLoginClick = () => {
-    setShowRegister(false); // Close RegisterModal
-    setShowLogin(true); // Open LoginModal
+    setShowRegister(false);
+    setShowLogin(true);
   };
 
   const handleForgotPasswordClick = () => {
     setIsSuccess(null);
     setShowForgotPassword(true);
-    setShowLogin(false); // Close LoginModal
+    setShowLogin(false);
   };
 
   const handleCloseLoginModal = () => setShowLogin(false);
   const handleCloseRegisterModal = () => setShowRegister(false);
-
   const handleCloseForgotPasswordModal = () => {
     setShowForgotPassword(false);
     setIsSuccess(null);
     setShowPasswordResetForm(false);
   };
 
-  // Handle successful registration
-  const handleSuccessfulRegistration = (newUserId) => {
-    setUserId(newUserId); // Save the userId
-    setShowRegister(false); // Close the RegisterModal
-    setShowSetupProfile(true); // Show the SetupProfileModal
-  };
-
   const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
 
-  const handleSuccessfulLogin = () => {
-    setShowLogin(false);
-    window.location.href = "/home";
+  // Updated handleSuccessfulLogin to use the JSON response directly
+  const handleSuccessfulLogin = (response) => {
+    try {
+      // Log the response to debug its structure
+      console.log("Login response:", response);
+
+      // Ensure the body is parsed
+      const parsedBody = response.body
+        ? JSON.parse(response.body) // Parse stringified body
+        : response;
+
+      // Extract UserId and SortKey from the parsed body
+      const { UserId, SortKey } = parsedBody;
+
+      // Validate the extracted values
+      if (!UserId || !SortKey) {
+        throw new Error("Invalid login response format.");
+      }
+
+      // Set the values in state
+      setUserId(UserId);
+      setSortKey(SortKey);
+      console.log("Hello");
+      console.log("App.js: Set UserId and SortKey:", UserId, SortKey);
+
+      // persist in localStorage
+      localStorage.setItem("userId", UserId);
+      localStorage.setItem("sortKey", SortKey);
+
+      // Navigate to the home page
+      setShowLogin(false);
+      window.location.href = "/home";
+    } catch (error) {
+      console.error("Login response error:", error.message);
+      alert("Failed to log in. Please try again.");
+    }
   };
 
   return (
@@ -92,12 +127,16 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/saved" element={<SavedRoommatesPage />} />
-        <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/edit-profile" element={<EditProfilePage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route
+          path="/profile"
+          element={<UserProfilePage userId={userId} sortKey={sortKey} />}
+        />
+        <Route
+          path="/edit-profile"
+          element={<EditProfilePage userId={userId} sortKey={sortKey} />}
+        />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick} />
-
       {showLogin && (
         <LoginModal
           onClose={handleCloseLoginModal}
@@ -108,28 +147,18 @@ function App() {
       {showRegister && (
         <RegisterModal
           onClose={handleCloseRegisterModal}
-          onRegisterSuccess={handleSuccessfulRegistration} // Pass the handler
+          onRegisterSuccess={() => setShowSetupProfile(true)} // Simpler registration success
           onLoginClick={handleRegisterToLoginClick}
         />
       )}
       {showForgotPassword && (
-        <ForgotPasswordModal
-          onClose={handleCloseForgotPasswordModal}
-          onSubmit={handleSubmitForgotPassword}
-          isSuccess={isSuccess}
-          securityQuestion={securityQuestion}
-          showPasswordResetForm={showPasswordResetForm}
-          onSecuritySubmit={handleSecuritySubmit}
-          onPasswordReset={handlePasswordReset}
-          onForgotPasswordClick={handleForgotPasswordClick}
-        />
+        <ForgotPasswordModal onClose={handleCloseForgotPasswordModal} />
       )}
       {showSetupProfile && (
         <SetupProfileModal
           show={showSetupProfile}
           onClose={handleCloseSetupProfileModal}
-          userId={userId} // Pass the userId to SetupProfileModal
-          onLoginSuccess={handleSuccessfulLogin}
+          userId={userId}
         />
       )}
     </Router>
@@ -137,3 +166,4 @@ function App() {
 }
 
 export default App;
+
