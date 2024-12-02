@@ -108,6 +108,8 @@ function App() {
       <Header
         onLoginClick={handleLoginClick}
         onRegisterClick={handleRegisterClick}
+        userId={userId}
+        sortKey={sortKey}
       />
       <Routes>
         <Route
