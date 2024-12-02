@@ -142,7 +142,7 @@ const CreateReviewPage = () => {
     return (
         <div className="create-review-content">
             <div className="create-review-header">
-                <div className="create-review-name">Rate: {user.username}</div>
+                <div className="create-review-name">Rate: {user.firstName} {user.lastName}</div>
                 <div className="occupation-location-container">
                     <div className="create-review-occupation">{user.occupation}</div>
                     <div className="create-review-location">{user.city}, {user.state}</div>
