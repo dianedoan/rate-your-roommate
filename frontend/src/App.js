@@ -11,6 +11,7 @@ import MessagesPage from "./pages/MessagesPage";
 import SavedRoommatesPage from "./pages/SavedRoommatesPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import AdminPage from "./pages/AdminPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginModal from "./components/LoginModal";
@@ -93,6 +94,7 @@ function App() {
         <Route path="/saved" element={<SavedRoommatesPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick} />
 

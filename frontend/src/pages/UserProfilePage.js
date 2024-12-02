@@ -1,31 +1,29 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
-import { userList, reviewsData, generateStarRating } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import './UserProfilePage.css';
 
 const UserProfilePage = () => {
     // Manually set logged in user
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const navigate = useNavigate();
 
     // Filter reviews made by the current user
     const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
 
-    // Handle logout
-    const handleLogout = () => {
-        const confirmation = window.confirm(
-            "Are you sure you want to logout?"
-        );
-        if (confirmation) {
-            console.log(loggedInUser.name, "logged out.");
-            navigate('/');
-        } else {
-            console.log("Logout canceled.");
-        }
+    // Function to generate the star rating based on score
+    const generateStarRating = (score) => {
+        const filledStars = '★'.repeat(Math.floor(score));
+        const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
+        return filledStars + halfStar;
     };
-
-    // Helper function to categorize preferences
+    
+    // Render preferences from the user object
+    const preferences = loggedInUser.preferences || [];
+    
+    // Function to categorize preferences
     const getPreferenceCategoryClass = (pref) => {
         if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
             return 'age-related';
@@ -59,6 +57,19 @@ const UserProfilePage = () => {
         }
         return '';
     };
+    
+    // Handle logout
+    const handleLogout = () => {
+        const confirmation = window.confirm(
+            "Are you sure you want to logout?"
+        );
+        if (confirmation) {
+            console.log(loggedInUser.name, "logged out.");
+            navigate('/');
+        } else {
+            console.log("Logout canceled.");
+        }
+    };
 
     // Handle deactivate account
     const handleDeactivateAccount = () => {
@@ -74,9 +85,6 @@ const UserProfilePage = () => {
             console.log("Account deactivation canceled.");
         }
     };
-
-    // Render preferences from the user object
-    const preferences = loggedInUser.preferences || [];
 
     return (
         <div className="user-profile-content">

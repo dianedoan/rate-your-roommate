@@ -2,4 +2,12 @@
     background-color: white;
     border-top: 0.1rem solid #1e1e1e;
     padding: 4rem 0rem;
+    padding-bottom: 10rem;
+}
+
+/* Media Query for Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+    .footer-section {
+        padding-bottom: 8rem;
+    }
 }

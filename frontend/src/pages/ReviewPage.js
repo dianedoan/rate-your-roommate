@@ -1,38 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { userList, reviewsData, calculateAverageRating, generateStarRating, getInitialLikedProfiles } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import { Badge } from 'react-bootstrap';
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import './ReviewPage.css';
 
 const ReviewPage = () => {
+    // Manually set logged in user
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+
     const { userId } = useParams(); // Extract the user ID from the URL
     const user = userList.find((u) => u.id === userId); // Find the matching user
     const userReviews = reviewsData.filter(review => review.userId === userId); // Filter reviews by userId
-    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
-    
+    const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
+
+    // Use navigate for redirection
+    const navigate = useNavigate();
+
+    // Calculate average rating for a user based on their reviews
+    const calculateAverageRating = (userId) => {
+        // Filter reviews by the user
+        const userReviews = reviewsData.filter(review => review.userId === userId);
+        
+        // Calculate the sum of the scores and the number of reviews
+        const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+        const averageRating = totalScore / userReviews.length;
+
+        // Round to 1 decimal place
+        return averageRating ? Math.round(averageRating * 10) / 10 : 0;
+    };
+
     // Calculate average rating based on reviews
     const averageRating = userReviews.length > 0 ? calculateAverageRating(userId) : null; // If no reviews, set averageRating to null
     
-    // Use navigate for redirection
-    const navigate = useNavigate();
+    // Function to generate the star rating based on score
+    const generateStarRating = (score) => {
+        const filledStars = '★'.repeat(Math.floor(score));
+        const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
+        return filledStars + halfStar;
+    };
 
     // Function to toggle the liked status of a profile (removing or re-adding profiles)
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const user = userList.find(u => u.name === userName);
-            
-            if (!user) return prevLikes;
+            const updatedLikes = [...prevLikes]; // Create a copy of the liked profiles array
 
-            const updatedLikes = { ...prevLikes };
-            if (updatedLikes[userName]) {
-                delete updatedLikes[userName];
+            if (updatedLikes.includes(userName)) {
+                // If the user is already liked, remove them
+                const index = updatedLikes.indexOf(userName);
+                updatedLikes.splice(index, 1);
             } else {
-                updatedLikes[userName] = user;
+                // If the user is not liked, add them
+                updatedLikes.push(userName);
             }
 
-            console.log("Liked Profiles:", Object.values(updatedLikes));
+            console.log("Liked Profiles:", updatedLikes);
             return updatedLikes;
         });
     };
@@ -50,19 +73,68 @@ const ReviewPage = () => {
             </div>
         );
     }
-    
+
     // Render preferences from the user object
     const preferences = user.preferences || [];
+
+    // Function to categorize preferences
+    const getPreferenceCategoryClass = (pref) => {
+        if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
+            return 'age-related';
+        }
+        if (['Early Riser', 'Late Sleeper', 'Snores'].includes(pref)) {
+            return 'sleep-related';
+        }
+        if (['Pet Owner', 'No Pets', 'Allergic to Pets'].includes(pref)) {
+            return 'pet-related';
+        }
+        if (['Clean & Tidy', 'Messy'].includes(pref)) {
+            return 'cleanliness-related';
+        }
+        if (['Organized', 'Unorganized'].includes(pref)) {
+            return 'organize-related';
+        }
+        if (['Likes Socializing', 'Prefers Quiet Spaces'].includes(pref)) {
+            return 'social-related';
+        }
+        if (['Homebody', 'Goes Out Often', 'Travels Often', 'Works from Home'].includes(pref)) {
+            return 'lifestyle-related';
+        }
+        if (['Smoker Friendly', 'Non-Smoker'].includes(pref)) {
+            return 'smoking-related';
+        }
+        if (['Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian'].includes(pref)) {
+            return 'diet-related';
+        }
+        if (['Bookworm', 'Gamer', 'Fitness Enthusiast'].includes(pref)) {
+            return 'hobby-related';
+        }
+        return '';
+    };
 
     return (
         <div className="review-content">
             <div className="review-profile-section">
                 <div className="review-profile-card">
                     <div className="review-profile-info">
-                        <div className="review-profile-name">{user.name}</div>
+                        <div className="name-heart-container">
+                            <div className="review-profile-name">{user.firstName} {user.lastName}</div>
+                            <div className="profile-favorite-icon">
+                                <img
+                                    // Toggle heart icon based on the user's liked profiles
+                                    src={likedProfiles.includes(user.username) ? heart2filled : heart2}
+                                    alt="heart icon"
+                                    className="review-heart-icon"
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent any other actions when clicking the heart
+                                        toggleLike(user.username); // Toggle like on click
+                                    }}
+                                />
+                            </div>
+                        </div>
                         <div className="review-profile-occupation">{user.occupation}</div>
                         <div className="review-profile-description">{user.description}</div>
-                        <div className="preferences-section">
+                        <div className="review-preferences-section">
                             {preferences.map((pref) => (
                                 <Badge
                                     key={pref}
@@ -72,39 +144,28 @@ const ReviewPage = () => {
                                 </Badge>
                             ))}
                         </div>
-                        <div className="review-profile-score">
-                            <span className="highlight4">
-                                {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
-                            </span> 
-                            Rating
-                            <button
-                                className="rate-btn primary-btn"
-                                onClick={() => navigate(`/create-review/${userId}`)} // Redirect to CreateReviewPage
-                            >
-                                Rate
-                            </button>
-                        </div>
-                    </div>
-                    <div className="profile-favorite-icon">
-                        <img
-                            src={likedProfiles[user.name] ? heart2filled : heart2}
-                            alt="heart icon"
-                            className="heart-icon"
-                            onClick={(e) => {
-                                e.stopPropagation(); // Prevent any other actions when clicking the heart
-                                toggleLike(user.name); // Toggle like on click
-                            }}
-                        />
                     </div>
                     <div className="image-location-container">
                         <div className="image-container">
                             <img
                                 src={user.image}
-                                alt={user.name}
+                                alt={user.username}
                                 className="review-profile-image"
                             />
                         </div>
                         <p className="review-profile-location">{user.city}, {user.state}</p>
+                    </div>
+                    <div className="review-profile-score">
+                        <span className="highlight4">
+                            {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
+                        </span> 
+                        Rating
+                        <button
+                            className="rate-btn primary-btn"
+                            onClick={() => navigate(`/create-review/${userId}`)} // Redirect to CreateReviewPage
+                        >
+                            Rate
+                        </button>
                     </div>
                 </div>
             </div>
@@ -142,41 +203,6 @@ const ReviewPage = () => {
             </div>
         </div>
     );
-};
-
-// Helper function to categorize preferences
-const getPreferenceCategoryClass = (pref) => {
-    if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
-        return 'age-related';
-    }
-    if (['Early Riser', 'Late Sleeper', 'Snores'].includes(pref)) {
-        return 'sleep-related';
-    }
-    if (['Pet Owner', 'No Pets', 'Allergic to Pets'].includes(pref)) {
-        return 'pet-related';
-    }
-    if (['Clean & Tidy', 'Messy'].includes(pref)) {
-        return 'cleanliness-related';
-    }
-    if (['Organized', 'Unorganized'].includes(pref)) {
-        return 'organize-related';
-    }
-    if (['Likes Socializing', 'Prefers Quiet Spaces'].includes(pref)) {
-        return 'social-related';
-    }
-    if (['Homebody', 'Goes Out Often', 'Travels Often', 'Works from Home'].includes(pref)) {
-        return 'lifestyle-related';
-    }
-    if (['Smoker Friendly', 'Non-Smoker'].includes(pref)) {
-        return 'smoking-related';
-    }
-    if (['Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian'].includes(pref)) {
-        return 'diet-related';
-    }
-    if (['Bookworm', 'Gamer', 'Fitness Enthusiast'].includes(pref)) {
-        return 'hobby-related';
-    }
-    return '';
 };
 
 export default ReviewPage;
