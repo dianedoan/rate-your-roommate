@@ -127,6 +127,7 @@ function App() {
           show={showSetupProfile}
           onClose={handleCloseSetupProfileModal}
           userId={userId} // Pass the userId to SetupProfileModal
+          onLoginSuccess={handleSuccessfulLogin}
         />
       )}
     </Router>

@@ -239,11 +239,9 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
               required
             />
           </Form.Group>
-          {error && (
-            <p className="error-message" style={{ color: "red" }}>
-              {error}
-            </p>
-          )}
+        
+          {error && <div className="text-danger mb-3">{error}</div>}
+          
           <Button
             variant="primary"
             type="submit"

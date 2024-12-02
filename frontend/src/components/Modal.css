@@ -126,11 +126,6 @@ html .link-btn:hover {
   color: #559CD0;
 }
 
-/* Error Message */
-.error-message {
-  margin-top: 1rem;
-}
-
 /* Container for icons inside input field (e.g., hide/show password, dropdown selector) */
 .icon-container {
   position: relative;
