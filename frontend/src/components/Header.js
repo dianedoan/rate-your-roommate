@@ -36,7 +36,7 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
                 }
 
                 const url = `${config.apiBaseUrl}/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`;
-                // const url = '';
+                // const url = ''; // for testing
                 console.log("Constructed URL:", url);
 
                 try {
@@ -77,15 +77,15 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
             <Navbar.Brand href={isLoggedIn ? "/home" : "/"}>
                 <img src={Logo} alt="Rate Your Roommate" className="navbar-logo" />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            {!isMobile && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto d-flex">
-                    {isLoggedIn && (
+                    {/* {isLoggedIn && (
                         <span className="navbar-username">
                             Welcome, {userProfile?.username}
                         </span>
                         
-                    )}
+                    )} */}
 
                     {!isLoggedIn && (
                         <>
