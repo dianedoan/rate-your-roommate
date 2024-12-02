@@ -5,7 +5,7 @@ import "./Modal.css";
 import "./SetupProfileModal.css";
 import config from "./config.json";
 
-function SetUpProfileModal({ show, onClose, userId, onLoginSuccess }) {
+function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
   const [aboutMe, setAboutMe] = useState("");
   const [occupation, setOccupation] = useState("");
   const [country, setCountry] = useState("");
@@ -70,6 +70,7 @@ function SetUpProfileModal({ show, onClose, userId, onLoginSuccess }) {
 
     const profileData = {
       UserId: userId,
+      "DataType#Timestamp": sortKey,
       aboutMe,
       occupation,
       country,

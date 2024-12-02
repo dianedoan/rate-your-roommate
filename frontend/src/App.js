@@ -159,6 +159,8 @@ function App() {
           show={showSetupProfile}
           onClose={handleCloseSetupProfileModal}
           userId={userId}
+          sortKey={sortKey}
+          onLoginSuccess={handleSuccessfulLogin}
         />
       )}
     </Router>
