@@ -1,12 +1,14 @@
 import json
-from lambda_function_fetch_profile import lambda_handler  # Replace with the actual name of your fetch-profile Lambda file
+from lambda_function import lambda_handler
 
-def test_fetch_profile_handler():
-    test_user_id = "12345"  # Replace with an actual UserId in your DynamoDB table
+def test_lambda_handler():
+    test_user_id = "...."  # Replace with a valid UserId
+    test_sort_key = "...."  # Replace with a valid DataType#Timestamp
 
     event = {
         "queryStringParameters": {
-            "UserId": test_user_id
+            "UserId": test_user_id,
+            "SortKey": test_sort_key
         }
     }
 
@@ -19,11 +21,11 @@ def test_fetch_profile_handler():
     assert response["statusCode"] == 200, f"Expected 200, got {response['statusCode']}"
     assert "UserId" in response_body, "Response body missing 'UserId' key"
     assert response_body["UserId"] == test_user_id, f"Unexpected UserId: {response_body['UserId']}"
-    assert "description" in response_body, "Response body missing 'description' key"
-    assert "preferences" in response_body, "Response body missing 'preferences' key"
+    assert "DataType#Timestamp" in response_body, "Response body missing 'DataType#Timestamp' key"
+    assert response_body["DataType#Timestamp"] == test_sort_key, f"Unexpected SortKey: {response_body['DataType#Timestamp']}"
 
     print("Response:")
     print(json.dumps(response, indent=4))
 
 if __name__ == "__main__":
-    test_fetch_profile_handler()
+    test_lambda_handler()

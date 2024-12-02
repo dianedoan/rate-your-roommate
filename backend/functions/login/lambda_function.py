@@ -22,7 +22,6 @@ def lambda_handler(event, context):
             }
 
         # Query the table by scanning for the username
-        # If you have a secondary index on `username`, use `IndexName` instead of `Scan`
         response = table.scan(
             FilterExpression=boto3.dynamodb.conditions.Attr("username").eq(username) &
                              boto3.dynamodb.conditions.Attr("DataType#Timestamp").begins_with("SignUp")
@@ -36,7 +35,7 @@ def lambda_handler(event, context):
                 'body': json.dumps({'message': 'Invalid username or password.'})
             }
 
-        user = user_items[0]  # Take the first result (assuming one sign-up record per user)
+        user = user_items[0]  # Assuming one sign-up record per user
 
         # Verify the password
         hashed_password = user.get('password')
@@ -46,9 +45,14 @@ def lambda_handler(event, context):
                 'body': json.dumps({'message': 'Invalid username or password.'})
             }
 
+        # Return the UserId and SortKey
         return {
             'statusCode': 200,
-            'body': json.dumps({'message': 'Login successful!', 'UserId': user.get('UserId')})
+            'body': json.dumps({
+                'message': 'Login successful!',
+                'UserId': user.get('UserId'),
+                'SortKey': user.get('DataType#Timestamp')
+            })
         }
 
     except ClientError as e:
