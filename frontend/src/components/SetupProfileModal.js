@@ -5,7 +5,7 @@ import "./Modal.css";
 import "./SetupProfileModal.css";
 import config from "./config.json";
 
-function SetUpProfileModal({ show, onClose, userId }) {
+function SetUpProfileModal({ show, onClose, userId, onLoginSuccess }) {
   const [aboutMe, setAboutMe] = useState("");
   const [occupation, setOccupation] = useState("");
   const [country, setCountry] = useState("");
@@ -98,6 +98,11 @@ function SetUpProfileModal({ show, onClose, userId }) {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleSkip = () => {
+    onClose(); 
+    onLoginSuccess(); // Log the user in without setting up the profile
   };
 
   return (
@@ -196,7 +201,18 @@ function SetUpProfileModal({ show, onClose, userId }) {
                 filteredPreferences.map((pref) => (
                   <Badge
                     key={pref}
-                    className="preference-tag"
+                    className={`preference-tag ${
+                      (pref === 'Age 18-24' || pref === 'Age 25-34'  || pref === 'Age 35-44') ? 'age-related' :       
+                      (pref === 'Early Riser' || pref === 'Late Sleeper' || pref === 'Snores') ? 'sleep-related' :
+                      (pref === 'Pet Owner' || pref === 'No Pets' || pref === 'Allergic to Pets') ? 'pet-related' :
+                      (pref === 'Clean & Tidy' || pref === 'Messy') ? 'cleanliness-related' :
+                      (pref === 'Organized' || pref === 'Unorganized') ? 'organize-related' :
+                      (pref === 'Likes Socializing' || pref === 'Prefers Quiet Spaces') ? 'social-related' :
+                      (pref === 'Homebody' || pref === 'Goes Out Often' || pref === 'Travels Often' || pref === 'Works from Home') ? 'lifestyle-related' :
+                      (pref === 'Smoker Friendly' || pref === 'Non-Smoker') ? 'smoking-related' :
+                      (pref === 'Vegetarian' || pref === 'Vegan' || pref === 'Pescatarian' || pref === 'Non-Vegetarian') ? 'diet-related' :
+                      (pref === 'Bookworm' || pref === 'Gamer' || pref === 'Fitness Enthusiast') ? 'hobby-related' : ''
+                    }`}
                     onClick={() => handleBadgeClick(pref)}
                     style={{ cursor: "pointer" }}
                   >
@@ -215,7 +231,18 @@ function SetUpProfileModal({ show, onClose, userId }) {
               {selectedPreferences.map((pref) => (
                 <Badge
                   key={pref}
-                  className="selected-preference-tag"
+                  className={`selected-preference-tag ${
+                    (pref === 'Age 18-24' || pref === 'Age 25-34'  || pref === 'Age 35-44') ? 'age-related' :
+                    (pref === 'Early Riser' || pref === 'Late Sleeper' || pref === 'Snores') ? 'sleep-related' :
+                    (pref === 'Pet Owner' || pref === 'No Pets' || pref === 'Allergic to Pets') ? 'pet-related' :
+                    (pref === 'Clean & Tidy' || pref === 'Messy') ? 'cleanliness-related' :
+                    (pref === 'Organized' || pref === 'Unorganized') ? 'organize-related' :
+                    (pref === 'Likes Socializing' || pref === 'Prefers Quiet Spaces') ? 'social-related' :
+                    (pref === 'Homebody' || pref === 'Goes Out Often' || pref === 'Travels Often' || pref === 'Works from Home') ? 'lifestyle-related' :
+                    (pref === 'Smoker Friendly' || pref === 'Non-Smoker') ? 'smoking-related' :
+                    (pref === 'Vegetarian' || pref === 'Vegan' || pref === 'Pescatarian' || pref === 'Non-Vegetarian') ? 'diet-related' :
+                    (pref === 'Bookworm' || pref === 'Gamer' || pref === 'Fitness Enthusiast') ? 'hobby-related' : ''
+                  }`}  
                   onClick={() => handleBadgeClick(pref)}
                 >
                   {pref}
@@ -238,7 +265,7 @@ function SetUpProfileModal({ show, onClose, userId }) {
             </Button>
             <Button
               variant="secondary"
-              onClick={onClose}
+              onClick={handleSkip}
               className="w-100 mt-3"
             >
               Skip
