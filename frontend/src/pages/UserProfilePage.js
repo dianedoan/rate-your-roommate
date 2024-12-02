@@ -16,51 +16,46 @@ const UserProfilePage = ({ userId, sortKey }) => {
      // Fetch profile data from API
     const fetchProfile = async () => {
         console.log(
-        "fetchProfile triggered with userId:",
-        userId,
-        "and sortKey:",
-        sortKey
+            "fetchProfile triggered with userId:",
+            userId,
+            "and sortKey:",
+            sortKey
         );
         if (!userId || !sortKey) {
-        setError("UserId or SortKey is missing.");
-        return;
+            setError("UserId or SortKey is missing.");
+            return;
         }
 
-        const url = `${
-        config.apiBaseUrl
-        }/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`;
+        const url = `${config.apiBaseUrl}/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`;
         console.log("Constructed URL:", url);
 
         try {
-        const response = await fetch(
-            `${
-            config.apiBaseUrl
-            }/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`
-        );
-        if (!response.ok) throw new Error("Failed to fetch profile data.");
+            const response = await fetch(url);
+            
+            if (!response.ok) throw new Error("Failed to fetch profile data.");
 
-        const data = await response.json();
-        console.log("fetchProfile: Fetched data:", data);
-        setUserProfile(data);
-        setLoading(false);
+            const data = await response.json();
+            console.log("fetchProfile: Fetched data:", data);
+            setUserProfile(data);
+            setLoading(false);
         } catch (err) {
-        console.error("fetchProfile: Error fetching data:", err.message);
-        setError("Failed to fetch profile data.");
-        setLoading(false);
+            console.error("fetchProfile: Error fetching data:", err.message);
+            setError("Failed to fetch profile data.");
+            setLoading(false);
         }
     };
 
     useEffect(() => {
-    if (userId && sortKey) {
-        console.log(
-        "useEffect triggered with userId and sortKey:",
-        userId,
-        sortKey
-        );
-        fetchProfile();
-    } else {
-        console.log("useEffect skipped: userId or sortKey is null.");
-    }
+        if (userId && sortKey) {
+            console.log(
+            "useEffect triggered with userId and sortKey:",
+            userId,
+            sortKey
+            );
+            fetchProfile();
+        } else {
+            console.log("useEffect skipped: userId or sortKey is null.");
+        }
     }, [userId, sortKey]);
 
     // Handle logout
