@@ -152,6 +152,11 @@ function App() {
       window.location.href = "/";
     }
   };
+
+  const handleGuestLogin = () => {
+    // Navigate to the landing page
+    window.location.href = "/home";
+  }
   
   return (
     <Router>
@@ -196,6 +201,7 @@ function App() {
           onClose={handleCloseLoginModal}
           onLoginSuccess={handleSuccessfulLogin}
           onForgotPasswordClick={handleForgotPasswordClick}
+          onGuestLogin={handleGuestLogin}
         />
       )}
       {showRegister && (
