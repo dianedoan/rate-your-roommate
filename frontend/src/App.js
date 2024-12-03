@@ -135,6 +135,7 @@ function App() {
             />
           }
         />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />

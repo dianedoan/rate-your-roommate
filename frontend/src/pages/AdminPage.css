@@ -1,5 +1,5 @@
 .admin-dashboard {
-    padding: 8rem 8rem;
+    padding: 0rem 5rem;
 }
 
 .admin-dashboard h5 {
@@ -86,4 +86,167 @@ html .table td {
     transition: transform 150ms;
     background-color: #e05050;
     text-shadow: none;
+}
+
+/* Large Screens (Laptop L) */
+@media (max-width: 1440px) {
+    .admin-dashboard {
+        padding: 0rem 5rem;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    html .table th, html .table td {
+        font-size: 0.8rem;
+        padding: 0.8rem;
+    }
+
+    .admin-profile-pic {
+        width: 4rem;
+        height: auto;
+    }
+
+    .review-id {
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens (Laptop) */
+@media (max-width: 1024px) {
+    .admin-dashboard {
+        padding: 0rem 5rem;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    html .table th, html .table td {
+        font-size: 0.7rem;
+        padding: 0.8rem;
+    }
+
+    .admin-profile-pic {
+        width: 4rem;
+        height: auto;
+    }
+}
+
+/* Small Screens (Tablet) */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    html .table th, html .table td {
+        font-size: 0.85rem;
+        padding: 0.7rem;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+    
+    .d-md-table {
+        display: none !important;
+    }
+
+    .d-block {
+        display: block !important;
+    }
+    
+    .d-md-none {
+        display: block !important;
+    }
+
+    .user-card {
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-card .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .user-card .card-body {
+        margin-top: 1rem;
+    }
+
+    .user-card .card-footer {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .admin-profile-pic {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+
+    .delete-btn, .delete-user-btn {
+        font-size: 0.7rem;
+    }
+}
+
+/* Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    html .table th, html .table td {
+        font-size: 0.75rem;
+        padding: 0.6rem;
+    }
+
+    .delete-btn, .delete-user-btn {
+        font-size: 0.6rem;
+        padding: 0.4rem;
+        width: 4rem;
+    }
+}
+
+/* Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    html .table th, html .table td {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+    }
+
+    .delete-btn, .delete-user-btn {
+        font-size: 0.6rem;
+        padding: 0.3rem;
+        width: 4rem; 
+    }
+}
+
+/* Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    html .table th, html .table td {
+        font-size: 0.65rem;
+        padding: 0.4rem;
+    }
+
+    .delete-btn, .delete-user-btn {
+        font-size: 0.5rem;
+        padding: 0.3rem;
+        width: 3.5rem;
+    }
 }
