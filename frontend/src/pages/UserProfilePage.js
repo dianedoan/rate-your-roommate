@@ -4,7 +4,7 @@ import { Badge } from "react-bootstrap";
 import config from "../components/config.json";
 import "./UserProfilePage.css";
 
-const UserProfilePage = ({ userId, sortKey }) => {
+const UserProfilePage = ({ userId, sortKey, onLogout }) => {
   console.log("UserProfilePage: Received userId and sortKey:", userId, sortKey);
   const navigate = useNavigate();
 
@@ -68,7 +68,8 @@ const UserProfilePage = ({ userId, sortKey }) => {
     const confirmation = window.confirm("Are you sure you want to logout?");
     if (confirmation) {
       console.log(userProfile?.username, "logged out.");
-      navigate("/");
+      //   navigate("/");
+      onLogout(); // Call the logout handler from App.js
     }
   };
 
@@ -81,7 +82,8 @@ const UserProfilePage = ({ userId, sortKey }) => {
     if (confirmation) {
       console.log("Account deactivated for user:", userProfile?.username);
       alert("Your account has been deactivated.");
-      navigate("/");
+      //   navigate("/");
+      onLogout(); // Reset the user state and navigate
     }
   };
 

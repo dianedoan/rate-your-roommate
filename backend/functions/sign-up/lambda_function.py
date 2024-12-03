@@ -2,7 +2,7 @@ import boto3
 import json
 import bcrypt
 import uuid
-import time  
+import time
 from botocore.exceptions import ClientError
 
 # Initialize DynamoDB client
@@ -28,6 +28,21 @@ def lambda_handler(event, context):
                 'body': json.dumps({'message': 'All fields are required!'})
             }
         
+        # Check if username or email already exists
+        existing_user = table.scan(
+            FilterExpression="username = :username OR email = :email",
+            ExpressionAttributeValues={
+                ":username": username,
+                ":email": email
+            }
+        )
+        
+        if existing_user['Count'] > 0:
+            return {
+                'statusCode': 400,
+                'body': json.dumps({'message': 'Username or email already exists!'})
+            }
+        
         # Generate a unique UserId
         user_id = str(uuid.uuid4())
         
@@ -39,11 +54,11 @@ def lambda_handler(event, context):
         timestamp = int(time.time())  # Generate a UNIX timestamp
         sort_key = f"{data_type}#{timestamp}"  # Combine DataType and Timestamp
         
-        # Store user data in table
+        # Store user data in DynamoDB
         table.put_item(
             Item={
-                'UserId': user_id,  
-                'DataType#Timestamp': sort_key,  
+                'UserId': user_id,  # Partition key
+                'DataType#Timestamp': sort_key,  # Sort key
                 'username': username,
                 'email': email,
                 'first_name': first_name,
@@ -56,7 +71,7 @@ def lambda_handler(event, context):
         
         return {
             'statusCode': 200,
-            'body': json.dumps({'message': 'User successfully registered!', 'UserId': user_id})
+            'body': json.dumps({'message': 'User successfully registered!', 'UserId': user_id, 'SortKey': sort_key})
         }
     
     except ClientError as e:
