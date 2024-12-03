@@ -11,6 +11,7 @@ import MessagesPage from "./pages/MessagesPage";
 import SavedRoommatesPage from "./pages/SavedRoommatesPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import AdminPage from "./pages/AdminPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginModal from "./components/LoginModal";
@@ -64,7 +65,6 @@ function App() {
 
   const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
 
-  // Updated handleSuccessfulLogin to use the JSON response directly
   const handleSuccessfulLogin = (response) => {
     try {
       // Log the response to debug its structure
@@ -86,10 +86,9 @@ function App() {
       // Set the values in state
       setUserId(UserId);
       setSortKey(SortKey);
-      console.log("Hello");
       console.log("App.js: Set UserId and SortKey:", UserId, SortKey);
 
-      // persist in localStorage
+      // Persist in localStorage
       localStorage.setItem("userId", UserId);
       localStorage.setItem("sortKey", SortKey);
 
@@ -102,11 +101,65 @@ function App() {
     }
   };
 
+  const handleSuccessRegister = (response) => {
+    try {
+      // Ensure the body is parsed
+      const parsedBody = response.body
+        ? JSON.parse(response.body) // Parse stringified body
+        : response;
+
+      // Extract UserId and SortKey from the parsed body
+      const { UserId, SortKey } = parsedBody;
+
+      // Validate the extracted values
+      if (!UserId || !SortKey) {
+        throw new Error("Invalid registration response format.");
+      }
+
+      // Set the values in state
+      setUserId(UserId);
+      setSortKey(SortKey);
+      console.log(
+        "App.js: Set UserId and SortKey after registration:",
+        UserId,
+        SortKey
+      );
+
+      // Persist in localStorage
+      localStorage.setItem("userId", UserId);
+      localStorage.setItem("sortKey", SortKey);
+
+      // Open the setup profile modal
+      setShowSetupProfile(true);
+    } catch (error) {
+      console.error("Registration response error:", error.message);
+      alert("Failed to register. Please try again.");
+    }
+  };
+
+  const handleLogout = () => {
+    const confirmation = window.confirm("Are you sure you want to logout?");
+    if (confirmation) {
+      // Clear state
+      setUserId(null);
+      setSortKey(null);
+
+      // Remove from localStorage
+      localStorage.removeItem("userId");
+      localStorage.removeItem("sortKey");
+
+      // Navigate to the landing page
+      window.location.href = "/";
+    }
+  };
+
   return (
     <Router>
       <Header
         onLoginClick={handleLoginClick}
         onRegisterClick={handleRegisterClick}
+        userId={userId}
+        sortKey={sortKey}
       />
       <Routes>
         <Route
@@ -115,9 +168,11 @@ function App() {
             <LandingPage
               onLoginClick={handleLoginClick}
               onRegisterClick={handleRegisterClick}
+              userId={userId}
             />
           }
         />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />
@@ -128,7 +183,13 @@ function App() {
         <Route path="/saved" element={<SavedRoommatesPage />} />
         <Route
           path="/profile"
-          element={<UserProfilePage userId={userId} sortKey={sortKey} />}
+          element={
+            <UserProfilePage
+              userId={userId}
+              sortKey={sortKey}
+              onLogoutClick={handleLogout}
+            />
+          }
         />
         <Route
           path="/edit-profile"
@@ -146,7 +207,7 @@ function App() {
       {showRegister && (
         <RegisterModal
           onClose={handleCloseRegisterModal}
-          onRegisterSuccess={() => setShowSetupProfile(true)} // Simpler registration success
+          onRegisterSuccess={handleSuccessRegister}
           onLoginClick={handleRegisterToLoginClick}
         />
       )}
@@ -158,6 +219,8 @@ function App() {
           show={showSetupProfile}
           onClose={handleCloseSetupProfileModal}
           userId={userId}
+          sortKey={sortKey}
+          onLoginSuccess={handleSuccessfulLogin}
         />
       )}
     </Router>

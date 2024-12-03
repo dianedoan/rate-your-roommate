@@ -4,14 +4,29 @@ import '../assets/styles/global.css';
 function TermContent() {
     return (
         <div className="terms-content">
-          <p className="content">
-            THESE TERMS OF USE CONTAIN AN ARBITRATION CLAUSE AND A CLASS ACTION WAIVER CLAUSE.
-            BY USING THIS SITE, YOU ARE ACCEPTING THE TERMS OF USE AND, WHILE YOU MAY STILL PURSUE
-            CLAIMS AGAINST US, WITH A FEW EXCEPTIONS (FOR EXAMPLE, IF YOU SUBMIT A VALID ARBITRATION/CLASS 
-            ACTIONS WAIVER OPT-OUT FORM AS DESCRIBED IN SECTION 15 BELOW), YOU ARE AGREEING THAT YOU MUST PURSUE
-            YOUR CLAIMS IN A BINDING ARBITRATION PROCEEDING (AND NOT IN A COURT) AND ONLY ON AN INDIVIDUAL
-            (AND NOT A CLASS ACTION) BASIS.
-          </p>
+            <h5>Acceptance of Terms</h5>
+            <p className="content">
+                By signing up for or using the Rate Your Roommate platform, you confirm that you have read, understood, and agree to these terms. 
+                If you do not agree, you may not access or use our services.
+            </p>
+            <h5>Eligibility</h5>
+            <p className="content">
+            Users must be at least 18 years of age to create an account or use our services. By signing up, you represent and warrant that you meet this age requirement.
+            </p>
+            <h5>Reviews and Ratings</h5>
+            <p className="content">
+            All ratings and reviews must be truthful, constructive, and free of offensive language or discriminatory remarks.
+            Users are prohibited from posting false reviews, manipulating ratings, or engaging in activities that compromise the integrity of the platform.
+            Rate Your Roommate reserves the right to remove any reviews or ratings that violate these guidelines.
+            </p>
+            <h5>Account Termination</h5>
+            <p className="content">
+            Rate Your Roommate reserves the right to terminate or suspend accounts that violate these terms, post harmful content, or engage in fraudulent or illegal activities.
+            </p>
+            <h5>Modifications to Terms</h5>
+            <p className="content">
+            We may update these terms and conditions from time to time. Any changes will be communicated, and continued use of the platform signifies acceptance of the revised terms.
+            </p>
         </div>
     )
 }

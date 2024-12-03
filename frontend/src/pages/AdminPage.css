@@ -1,89 +1,264 @@
 .admin-dashboard {
-    padding: 8rem 8rem;
+  padding: 0rem 5rem;
 }
 
 .admin-dashboard h5 {
-    text-align: left;
-    font-size: 2rem;
+  text-align: left;
+  font-size: 2rem;
 }
 
 .admin-profile-pic {
-    border-radius: 50%; /* Make the image circular */
-    object-fit: cover;
-    width: 5rem;
-    height: auto;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover;
+  width: 5rem;
+  height: auto;
 }
 
 .admin-user-review {
-    border-bottom: 0.1rem solid #c2c2c2;
-    padding: 0.5rem;
-    padding-bottom: 1rem;
+  border-bottom: 0.1rem solid #c2c2c2;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .admin-user-review:last-child {
-    border-bottom: none; /* Remove border from last review */
+  border-bottom: none; /* Remove border from last review */
 }
 
 .review-id {
-    font-size: 1.2rem;
-    text-decoration: underline;
+  font-size: 1.2rem;
+  text-decoration: underline;
 }
 
 /* Table Styling */
 .table-container {
-    border: 1px solid #1e1e1e; /* Table border color */
-    border-radius: 0.5rem; /* Round the corners */
-    overflow: hidden; /* Ensure the table doesn't overflow the rounded container */
+  border: 1px solid #1e1e1e; /* Table border color */
+  border-radius: 0.5rem; /* Round the corners */
+  overflow: hidden; /* Ensure the table doesn't overflow the rounded container */
 }
 
 html .table-bordered {
-    margin: 0rem;
+  margin: 0rem;
 }
 
 html .table {
-    background-color: #ffffff;
-    border: 1px solid #1e1e1e;
-    border-radius: 0.5rem;
-    overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #1e1e1e;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 html .table th {
-    background-color: rgb(244, 255, 252);
-    color: #1e1e1e;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1rem;
+  background-color: rgb(244, 255, 252);
+  color: #1e1e1e;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
 html .table td {
-    text-align: left;
-    padding: 1rem;
-    font-size: 1rem;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
-.delete-btn , .delete-user-btn {
-    text-align: center;
-    margin: 0.5rem;
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    width: 5rem;
-    border-radius: 0.5rem;
-    border: 0.1rem solid #1e1e1e;
-    background-color: #f05353;
-    color: #ffffff;
-    text-shadow: 0.05rem 0.05rem #1e1e1e;
-    margin: 0.5rem 0rem;
+.delete-btn,
+.delete-user-btn {
+  text-align: center;
+  margin: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #1e1e1e;
+  background-color: #f05353;
+  color: #ffffff;
+  text-shadow: 0.05rem 0.05rem #1e1e1e;
+  margin: 0.5rem 0rem;
 }
 
 .delete-user-btn {
-    width: 6rem;
-    font-size: 1rem;
-    border-radius: 0.6rem;
+  width: 6rem;
+  font-size: 1rem;
+  border-radius: 0.6rem;
 }
 
-.delete-btn:hover , .delete-user-btn:hover {
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
-    background-color: #e05050;
-    text-shadow: none;
+.delete-btn:hover,
+.delete-user-btn:hover {
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
+  background-color: #e05050;
+  text-shadow: none;
+}
+
+/* Large Screens (Laptop L) */
+@media (max-width: 1440px) {
+  .admin-dashboard {
+    padding: 0rem 5rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  html .table th,
+  html .table td {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+  }
+
+  .admin-profile-pic {
+    width: 4rem;
+    height: auto;
+  }
+
+  .review-id {
+    font-size: 1rem;
+  }
+}
+
+/* Medium Screens (Laptop) */
+@media (max-width: 1024px) {
+  .admin-dashboard {
+    padding: 0rem 5rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  html .table th,
+  html .table td {
+    font-size: 0.7rem;
+    padding: 0.8rem;
+  }
+
+  .admin-profile-pic {
+    width: 4rem;
+    height: auto;
+  }
+}
+
+/* Small Screens (Tablet) */
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  html .table th,
+  html .table td {
+    font-size: 0.85rem;
+    padding: 0.7rem;
+  }
+
+  .d-none {
+    display: none !important;
+  }
+
+  .d-md-table {
+    display: none !important;
+  }
+
+  .d-block {
+    display: block !important;
+  }
+
+  .d-md-none {
+    display: block !important;
+  }
+
+  .user-card {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .user-card .card-body {
+    margin-top: 1rem;
+  }
+
+  .user-card .card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .admin-profile-pic {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .delete-btn,
+  .delete-user-btn {
+    font-size: 0.7rem;
+  }
+}
+
+/* Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  html .table th,
+  html .table td {
+    font-size: 0.75rem;
+    padding: 0.6rem;
+  }
+
+  .delete-btn,
+  .delete-user-btn {
+    font-size: 0.6rem;
+    padding: 0.4rem;
+    width: 4rem;
+  }
+}
+
+/* Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  html .table th,
+  html .table td {
+    font-size: 0.7rem;
+    padding: 0.5rem;
+  }
+
+  .delete-btn,
+  .delete-user-btn {
+    font-size: 0.6rem;
+    padding: 0.3rem;
+    width: 4rem;
+  }
+}
+
+/* Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  html .table th,
+  html .table td {
+    font-size: 0.65rem;
+    padding: 0.4rem;
+  }
+
+  .delete-btn,
+  .delete-user-btn {
+    font-size: 0.5rem;
+    padding: 0.3rem;
+    width: 3.5rem;
+  }
 }
