@@ -37,8 +37,7 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
 
       if (response.ok) {
         console.log("Login successful:", result);
-        onClose(); // Close the modal
-        onLoginSuccess(result); // Trigger the login success callback
+        onLoginSuccess(result); // Pass the entire result
       } else {
         console.error("Login failed:", result.message);
         setError(result.message || "Invalid username or password.");

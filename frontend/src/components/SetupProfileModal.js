@@ -93,6 +93,7 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
 
       console.log("Profile setup successful:", result);
       onClose(); // Close the modal after successful submission
+      window.location.href = "/home"; // Navigate to the homepage
     } catch (error) {
       console.error("Error setting up profile:", error);
       setError(error.message || "An error occurred. Please try again.");
@@ -103,7 +104,7 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
 
   const handleSkip = () => {
     onClose(); 
-    onLoginSuccess(); // Log the user in without setting up the profile
+    window.location.href = "/home"; // Navigate to the homepage
   };
 
   return (

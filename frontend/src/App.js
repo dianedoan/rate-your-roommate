@@ -101,6 +101,42 @@ function App() {
     }
   };
 
+  const handleSuccessRegister = (response) => {
+    try {
+      // Ensure the body is parsed
+      const parsedBody = response.body
+        ? JSON.parse(response.body) // Parse stringified body
+        : response;
+
+      // Extract UserId and SortKey from the parsed body
+      const { UserId, SortKey } = parsedBody;
+
+      // Validate the extracted values
+      if (!UserId || !SortKey) {
+        throw new Error("Invalid registration response format.");
+      }
+
+      // Set the values in state
+      setUserId(UserId);
+      setSortKey(SortKey);
+      console.log(
+        "App.js: Set UserId and SortKey after registration:",
+        UserId,
+        SortKey
+      );
+
+      // Persist in localStorage
+      localStorage.setItem("userId", UserId);
+      localStorage.setItem("sortKey", SortKey);
+
+      // Open the setup profile modal
+      setShowSetupProfile(true);
+    } catch (error) {
+      console.error("Registration response error:", error.message);
+      alert("Failed to register. Please try again.");
+    }
+  };
+
   const handleLogout = () => {
     const confirmation = window.confirm("Are you sure you want to logout?");
     if (confirmation) {
@@ -164,7 +200,7 @@ function App() {
       {showRegister && (
         <RegisterModal
           onClose={handleCloseRegisterModal}
-          onRegisterSuccess={() => setShowSetupProfile(true)} // Simpler registration success
+          onRegisterSuccess={handleSuccessRegister}
           onLoginClick={handleRegisterToLoginClick}
         />
       )}
