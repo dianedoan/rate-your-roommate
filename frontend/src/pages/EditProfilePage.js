@@ -261,21 +261,26 @@ const EditProfilePage = ({ userId, sortKey }) => {
                     </button>
                     {isEditingProfilePicture && (
                         <div className="image-selector-modal">
-                            {profileImages.map((imageUrl, index) => (
-                                <img
-                                key={index}
-                                src={imageUrl}
-                                alt={`Profile option ${index}`}
-                                className="profile-image-option"
-                                onClick={() => handleSaveProfilePicture(imageUrl)}
-                                />
-                            ))}
-                            <button
-                                className="secondary-btn cancel-button"
-                                onClick={() => setIsEditingProfilePicture(false)}
-                            >
-                                Cancel
-                            </button>
+                            <div className="profile-image-text">Select Profile Picture</div>
+                            <div className="image-selector-container">
+                                {profileImages.map((imageUrl, index) => (
+                                    <img
+                                    key={index}
+                                    src={imageUrl}
+                                    alt={`Profile option ${index}`}
+                                    className="profile-image-option"
+                                    onClick={() => handleSaveProfilePicture(imageUrl)}
+                                    />
+                                ))}
+                            </div>
+                            <div className="cancel-pic-container">
+                                <button
+                                    className="secondary-btn cancel-button"
+                                    onClick={() => setIsEditingProfilePicture(false)}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

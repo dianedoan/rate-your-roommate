@@ -56,8 +56,26 @@
     border-radius: 0.9rem;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    gap: 1rem;
     z-index: 1000;
+}
+
+.profile-image-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 1rem 0rem;
+}
+
+.cancel-pic-container {
+    margin-top: 1rem;
+}
+
+.image-selector-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .profile-image-option {
@@ -319,8 +337,20 @@
         border-radius: 0.8rem;
         padding: 1rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        gap: 1rem;
         z-index: 1000;
+    }
+
+    .profile-image-text {
+        font-size: 1.5rem;
+        margin: 1rem 0rem;
+    }
+    
+    .cancel-pic-container {
+        margin-top: 1rem;
+    }
+    
+    .image-selector-container {
+        gap: 1rem;
     }
     
     .profile-image-option {
@@ -465,6 +495,15 @@
     
     .edit-profile-info {
         margin-top: 0.8rem;
+    }
+
+    .profile-image-text {
+        font-size: 1.5rem;
+        margin: 1rem 0rem;
+    }
+    
+    .cancel-pic-container {
+        margin-top: 1rem;
     }
     
     .edit-profile-name {
@@ -618,7 +657,6 @@
         width: 22rem;
         padding: 0.5rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        gap: 0.5rem;
         z-index: 1000;
     }
     
@@ -628,6 +666,19 @@
     }
     
     .edit-profile-info {
+        margin-top: 0.5rem;
+    }
+
+    .profile-image-text {
+        font-size: 1.2rem;
+        margin: 0.5rem 0rem;
+    }
+
+    .image-selector-container {
+        gap: 0.5rem;
+    }
+    
+    .cancel-pic-container {
         margin-top: 0.5rem;
     }
     
@@ -781,8 +832,11 @@
         width: 19.5rem;
         padding: 0.8rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        gap: 0.5rem;
         z-index: 1000;
+    }
+
+    .image-selector-container {
+        gap: 0.5rem;
     }
     
     .profile-image-option {
@@ -925,8 +979,16 @@
         width: 13.5rem;
         padding: 0.8rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        gap: 0.5rem;
         z-index: 1000;
+    }
+
+    .profile-image-text {
+        font-size: 1rem;
+        margin: 0.5rem 0rem;
+    }
+    
+    .image-selector-container {
+        gap: 0.5rem;
     }
     
     .profile-image-option {
