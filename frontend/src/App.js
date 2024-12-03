@@ -65,7 +65,6 @@ function App() {
 
   const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
 
-  // Updated handleSuccessfulLogin to use the JSON response directly
   const handleSuccessfulLogin = (response) => {
     try {
       // Log the response to debug its structure
@@ -87,10 +86,9 @@ function App() {
       // Set the values in state
       setUserId(UserId);
       setSortKey(SortKey);
-      console.log("Hello");
       console.log("App.js: Set UserId and SortKey:", UserId, SortKey);
 
-      // persist in localStorage
+      // Persist in localStorage
       localStorage.setItem("userId", UserId);
       localStorage.setItem("sortKey", SortKey);
 
@@ -103,6 +101,22 @@ function App() {
     }
   };
 
+  const handleLogout = () => {
+    const confirmation = window.confirm("Are you sure you want to logout?");
+    if (confirmation) {
+      // Clear state
+      setUserId(null);
+      setSortKey(null);
+
+      // Remove from localStorage
+      localStorage.removeItem("userId");
+      localStorage.removeItem("sortKey");
+
+      // Navigate to the landing page
+      window.location.href = "/";
+    }
+  };
+  
   return (
     <Router>
       <Header
@@ -131,7 +145,7 @@ function App() {
         <Route path="/saved" element={<SavedRoommatesPage />} />
         <Route
           path="/profile"
-          element={<UserProfilePage userId={userId} sortKey={sortKey} />}
+          element={<UserProfilePage userId={userId} sortKey={sortKey} onLogoutClick={handleLogout}/>}
         />
         <Route
           path="/edit-profile"

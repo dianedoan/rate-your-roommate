@@ -4,7 +4,7 @@ import { Badge } from "react-bootstrap";
 import config from "../components/config.json";
 import "./UserProfilePage.css";
 
-const UserProfilePage = ({ userId, sortKey }) => {
+const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     console.log("UserProfilePage: Received userId and sortKey:", userId, sortKey);
     const navigate = useNavigate();
 
@@ -57,15 +57,6 @@ const UserProfilePage = ({ userId, sortKey }) => {
             console.log("useEffect skipped: userId or sortKey is null.");
         }
     }, [userId, sortKey]);
-
-    // Handle logout
-    const handleLogout = () => {
-        const confirmation = window.confirm("Are you sure you want to logout?");
-        if (confirmation) {
-        console.log(userProfile?.username, "logged out.");
-        navigate("/");
-        }
-    };
 
     // Handle deactivate account
     const handleDeactivateAccount = () => {
@@ -206,7 +197,7 @@ const UserProfilePage = ({ userId, sortKey }) => {
                 </div>
             </div>
             <div className="profile-buttons-container">
-                <button className="profile-btn logout-btn" onClick={handleLogout}>Logout</button>
+                <button className="profile-btn logout-btn" onClick={onLogoutClick}>Logout</button>
                 <button className="profile-btn deactivate-btn" onClick={handleDeactivateAccount}>Deactivate Account</button>
             </div>
         </div>
