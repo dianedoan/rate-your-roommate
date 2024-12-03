@@ -9,6 +9,8 @@ const EditProfilePage = ({ userId, sortKey }) => {
     const [userProfile, setUserProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [profilePicture, setProfilePicture] = useState("");
+    const [isEditingProfilePicture, setIsEditingProfilePicture] = useState(false);
     const [aboutMeText, setAboutMeText] = useState("");
     const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
     const [selectedPreferences, setSelectedPreferences] = useState([]);
@@ -16,8 +18,65 @@ const EditProfilePage = ({ userId, sortKey }) => {
     const [accountDetails, setAccountDetails] = useState({});
     const [isEditingAccount, setIsEditingAccount] = useState(false);
     const [isEditingReviews, setIsEditingReviews] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(accountDetails.image);
-    const [isImageSelectorOpen, setImageSelectorOpen] = useState(false);
+    
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const response = await fetch(
+                    `${
+                        config.apiBaseUrl
+                    }/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(
+                        sortKey
+                    )}`
+                );
+                
+                if (!response.ok) throw new Error("Failed to fetch profile data.");
+                
+                const data = await response.json();
+                setUserProfile(data);
+                setProfilePicture(data.profile_picture);
+                setAboutMeText(data?.ProfileData?.aboutMe || "");
+                setSelectedPreferences(data?.ProfileData?.preferences || []);
+                setAccountDetails({
+                    username: data.username,
+                    email: data.email,
+                    firstName: data.first_name,
+                    lastName: data.last_name,
+                    occupation: data.occupation,
+                    country: data.country,
+                    state: data.state,
+                    city: data.city,
+                });
+                setLoading(false);
+            } catch (err) {
+                console.error(err);
+                setError("Failed to fetch profile data.");
+                setLoading(false);
+            }
+        };
+        fetchProfile();
+    }, [userId, sortKey]);
+    
+    const updateProfile = async (updatedFields) => {
+        try {
+            const response = await fetch(`${config.apiBaseUrl}/update-profile`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    UserId: userId,
+                    "DataType#Timestamp": sortKey,
+                    ...updatedFields,
+                }),
+            });
+            
+            if (!response.ok) throw new Error("Failed to update profile.");
+            
+            return response.ok;
+        } catch (err) {
+            console.error(err);
+            throw new Error(err.message || "An error occurred while updating.");
+        }
+    };
     
     // List of available profile images
     const profileImages = [
@@ -44,67 +103,16 @@ const EditProfilePage = ({ userId, sortKey }) => {
         "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile2_uww4pq.jpg"
     ];
     
-    const handleImageSelect = (image) => {
-        setSelectedImage(image);
-        accountDetails.profile_picture = profile_picture;
-        setImageSelectorOpen(false); 
-    };
-    
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const response = await fetch(
-                    `${
-                        config.apiBaseUrl
-                    }/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(
-                        sortKey
-                    )}`
-                );
-                
-                if (!response.ok) throw new Error("Failed to fetch profile data.");
-                
-                const data = await response.json();
-                setUserProfile(data);
-                setAboutMeText(data?.ProfileData?.aboutMe || "");
-                setSelectedPreferences(data?.ProfileData?.preferences || []);
-                setAccountDetails({
-                    username: data.username,
-                    email: data.email,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    occupation: data.occupation,
-                    country: data.country,
-                    state: data.state,
-                    city: data.city,
-                });
-                setLoading(false);
-            } catch (err) {
-                console.error(err);
-                setError("Failed to fetch profile data.");
-                setLoading(false);
-            }
-        };
-        fetchProfile();
-    }, [userId, sortKey]);
-
-    const updateProfile = async (updatedFields) => {
+    const handleSaveProfilePicture = async (profile_picture) => {
         try {
-            const response = await fetch(`${config.apiBaseUrl}/update-profile`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    UserId: userId,
-                    "DataType#Timestamp": sortKey,
-                        ...updatedFields,
-                    }),
-                });
-                
-                if (!response.ok) throw new Error("Failed to update profile.");
-                
-                return response.ok;
+            await updateProfile({
+                profile_picture: accountDetails.profile_picture
+            });
+            
+            setIsEditingProfilePicture(false); 
+            alert("Profile picture updated successfully!");
         } catch (err) {
-            console.error(err);
-            throw new Error(err.message || "An error occurred while updating.");
+            alert(err.message);
         }
     };
 
@@ -235,25 +243,25 @@ const EditProfilePage = ({ userId, sortKey }) => {
             <div className="edit-profile-header">
                 <div className="edit-profile-image-wrapper">
                     <img
-                        src={userProfile?.profile_picture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
-                        alt={`${userProfile?.first_name || "User"}'s profile`}
+                        src={profilePicture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                        alt={`${userProfile?.username || "User"}'s profile`}
                         className="edit-profile-image"
                     />
                     <button 
                         className="edit-profile-image-btn"
-                        onClick={() => setImageSelectorOpen(!isImageSelectorOpen)}
+                        onClick={() => setIsEditingProfilePicture(!isEditingProfilePicture)}
                     >
                         ✎
                     </button>
-                    {isImageSelectorOpen && (
+                    {isEditingProfilePicture && (
                         <div className="image-selector-dropdown">
-                            {profileImages.map((image, index) => (
+                            {profileImages.map((profile_picture, index) => (
                                 <img
                                     key={index}
-                                    src={image}
+                                    src={profile_picture}
                                     alt={`Profile option ${index + 1}`}
                                     className="profile-option-image"
-                                    onClick={() => handleImageSelect(image)}
+                                    onClick={() => handleSaveProfilePicture(profile_picture)}
                                 />
                             ))}
                         </div>
@@ -431,12 +439,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                             </div>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={accountDetails.email}
-                                    onChange={(e) => setAccountDetails({ ...accountDetails, email: e.target.value })}
-                                />
+                                <input type="email"value={accountDetails.email} disabled />
                             </div>
                             <div className="form-group">
                                 <label>First Name</label>
