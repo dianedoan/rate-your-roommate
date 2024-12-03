@@ -41,7 +41,7 @@
     background-color: #7a9954;
 }
 
-.image-selector-dropdown {
+.image-selector-modal {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -60,7 +60,7 @@
     z-index: 1000;
 }
 
-.profile-option-image {
+.profile-image-option {
     cursor: pointer;
     object-fit: cover;
     border-radius: 50%;
@@ -69,7 +69,7 @@
     height: 5rem;
 }
 
-.profile-option-image:hover {
+.profile-image-option:hover {
     transform: scale(1.1);
     border: 2px solid #8CAD63;
 }
@@ -311,7 +311,7 @@
         height: 3.5rem;
     }
     
-    .image-selector-dropdown {
+    .image-selector-modal {
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -323,7 +323,7 @@
         z-index: 1000;
     }
     
-    .profile-option-image {
+    .profile-image-option {
         width: 5rem;
         height: 5rem;
     }
@@ -609,7 +609,7 @@
         height: 2rem;
     }
     
-    .image-selector-dropdown {
+    .image-selector-modal {
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -622,7 +622,7 @@
         z-index: 1000;
     }
     
-    .profile-option-image {
+    .profile-image-option {
         width: 2.5rem;
         height: 2.5rem;
     }
@@ -772,7 +772,7 @@
         height: 1.5rem;
     }
     
-    .image-selector-dropdown {
+    .image-selector-modal {
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -785,7 +785,7 @@
         z-index: 1000;
     }
     
-    .profile-option-image {
+    .profile-image-option {
         width: 2.5rem;
         height: 2.5rem;
     }
@@ -916,7 +916,7 @@
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
-    .image-selector-dropdown {
+    .image-selector-modal {
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -929,7 +929,7 @@
         z-index: 1000;
     }
     
-    .profile-option-image {
+    .profile-image-option {
         width: 2.5rem;
         height: 2.5rem;
     }

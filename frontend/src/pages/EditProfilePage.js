@@ -103,13 +103,14 @@ const EditProfilePage = ({ userId, sortKey }) => {
         "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile2_uww4pq.jpg"
     ];
     
-    const handleSaveProfilePicture = async () => {
+    const handleSaveProfilePicture = async (imageUrl) => {
         try {
             await updateProfile({
-                profile_picture: accountDetails.profile_picture
+                profile_picture: imageUrl
             });
-            
-            setIsEditingProfilePicture(false); 
+
+            setProfilePicture(imageUrl);
+            setIsEditingProfilePicture(false);
             alert("Profile picture updated successfully!");
         } catch (err) {
             alert(err.message);
@@ -259,16 +260,22 @@ const EditProfilePage = ({ userId, sortKey }) => {
                         ✎
                     </button>
                     {isEditingProfilePicture && (
-                        <div className="image-selector-dropdown">
-                            {profileImages.map((profile_picture, index) => (
+                        <div className="image-selector-modal">
+                            {profileImages.map((imageUrl, index) => (
                                 <img
-                                    key={index}
-                                    src={profile_picture}
-                                    alt={`Profile option ${index + 1}`}
-                                    className="profile-option-image"
-                                    onClick={() => handleSaveProfilePicture(profile_picture)}
+                                key={index}
+                                src={imageUrl}
+                                alt={`Profile option ${index}`}
+                                className="profile-image-option"
+                                onClick={() => handleSaveProfilePicture(imageUrl)}
                                 />
                             ))}
+                            <button
+                                className="secondary-btn cancel-button"
+                                onClick={() => setIsEditingProfilePicture(false)}
+                            >
+                                Cancel
+                            </button>
                         </div>
                     )}
                 </div>
