@@ -126,31 +126,29 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
         </Navbar>
 
         {/* Sticky bottom navigation bar for mobile screens */}
-        <div className={`bottom-navbar d-block d-lg-none ${isMobile ? '' : 'd-none'}`}>
-            <Navbar bg="white" className="bottom-navbar-content">
-                <Nav className="w-100 d-flex justify-content-between">
-                    {isLoggedIn && (
-                        <>
-                            <Navbar.Brand href="/home">
-                                <img src={home} alt="home-icon" className="navbar-home" />
-                            </Navbar.Brand>
-                            <Navbar.Brand href="/search">
-                                <img src={search} alt="search-icon" className="navbar-search" />
-                            </Navbar.Brand>
-                            <Navbar.Brand href="/messages">
-                                <img src={messages} alt="messages-icon" className="navbar-messages" />
-                            </Navbar.Brand>
-                            <Navbar.Brand href="/saved">
-                                <img src={heart} alt="heart-icon" className="navbar-heart" />
-                            </Navbar.Brand>
-                            <Navbar.Brand href="/profile">
-                                <img src={profile} alt="profile-icon" className="navbar-profile" />
-                            </Navbar.Brand>
-                        </>
-                    )}
-                </Nav>
-            </Navbar>
-        </div>
+        {isLoggedIn && isMobile && (
+            <div className="bottom-navbar d-block d-lg-none">
+                <Navbar bg="white" className="bottom-navbar-content">
+                    <Nav className="w-100 d-flex justify-content-between">
+                        <Navbar.Brand href="/home">
+                            <img src={home} alt="home-icon" className="navbar-home" />
+                        </Navbar.Brand>
+                        <Navbar.Brand href="/search">
+                            <img src={search} alt="search-icon" className="navbar-search" />
+                        </Navbar.Brand>
+                        <Navbar.Brand href="/messages">
+                            <img src={messages} alt="messages-icon" className="navbar-messages" />
+                        </Navbar.Brand>
+                        <Navbar.Brand href="/saved">
+                            <img src={heart} alt="heart-icon" className="navbar-heart" />
+                        </Navbar.Brand>
+                        <Navbar.Brand href="/profile">
+                            <img src={profile} alt="profile-icon" className="navbar-profile" />
+                        </Navbar.Brand>
+                    </Nav>
+                </Navbar>
+            </div>
+        )}
         </>
     );
 }
