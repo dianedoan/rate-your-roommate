@@ -352,7 +352,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                             </Badge>
                                         ))
                                     ) : (
-                                        <h5>No preferences selected.</h5>
+                                        <h5>No preferences added.</h5>
                                     )}
                                 </div>
                             </div>
@@ -373,7 +373,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                             </Badge>
                                         ))
                                     ) : (
-                                        <h5>No more preferences available.</h5>
+                                        <h5>No more available preferences.</h5>
                                     )}
                                 </div>
                             </div>
@@ -399,17 +399,12 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                     <Badge
                                     key={pref}
                                     className={`selected-profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
-                                    onClick={() =>
-                                        setSelectedPreferences((prev) =>
-                                            prev.filter((p) => p !== pref)
-                                            )
-                                        }
                                     >
                                         {pref}
                                     </Badge>
                                 ))
                             ) : (
-                                <h5>No preferences selected.</h5>
+                                <h5>No preferences added.</h5>
                             )}
                         </div>
                     )}
