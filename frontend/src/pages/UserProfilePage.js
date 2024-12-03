@@ -123,7 +123,7 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
             <div className="user-profile-header">
                 <div className="user-profile-image">
                     <img
-                        src={userProfile?.image || "default-profile.png"}
+                        src={userProfile?.profile_picture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
                         alt={`${userProfile?.firstName || "User"}'s profile`}
                         className="user-profile-image"
                     />

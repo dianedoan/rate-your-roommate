@@ -2,27 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "react-bootstrap";
 import edit from "../assets/images/button-icons/edit.svg";
-import profile0 from "../assets/images/profile-pics/profile0.jpg";
-import profile1 from "../assets/images/profile-pics/profile1.jpg";
-import profile2 from "../assets/images/profile-pics/profile2.jpg";
-import profile3 from "../assets/images/profile-pics/profile3.jpg";
-import profile4 from "../assets/images/profile-pics/profile4.jpg";
-import profile5 from "../assets/images/profile-pics/profile5.jpg";
-import profile6 from "../assets/images/profile-pics/profile6.jpg";
-import profile7 from "../assets/images/profile-pics/profile7.jpg";
-import profile8 from "../assets/images/profile-pics/profile8.jpg";
-import profile9 from "../assets/images/profile-pics/profile9.jpg";
-import profile10 from "../assets/images/profile-pics/profile10.jpg";
-import profile11 from "../assets/images/profile-pics/profile11.jpg";
-import profile12 from "../assets/images/profile-pics/profile12.jpg";
-import profile13 from "../assets/images/profile-pics/profile13.jpg";
-import profile14 from "../assets/images/profile-pics/profile14.jpg";
-import profile15 from "../assets/images/profile-pics/profile15.jpg";
-import profile16 from "../assets/images/profile-pics/profile16.jpg";
-import profile17 from "../assets/images/profile-pics/profile17.jpg";
-import profile18 from "../assets/images/profile-pics/profile18.jpg";
-import profile19 from "../assets/images/profile-pics/profile19.jpg";
-import profile20 from "../assets/images/profile-pics/profile20.jpg";
 import config from "../components/config.json";
 import "./EditProfilePage.css";
 
@@ -37,16 +16,37 @@ const EditProfilePage = ({ userId, sortKey }) => {
     const [accountDetails, setAccountDetails] = useState({});
     const [isEditingAccount, setIsEditingAccount] = useState(false);
     const [isEditingReviews, setIsEditingReviews] = useState(false);
-    
+    const [selectedImage, setSelectedImage] = useState(accountDetails.image);
     const [isImageSelectorOpen, setImageSelectorOpen] = useState(false);
     
     // List of available profile images
-    const profileImages = [profile0, profile1, profile2, profile3, profile4, profile5, profile6, profile7, profile8, profile9, profile10, profile11, profile12, profile13, profile14, profile15, profile16, profile17, profile18, profile19, profile20];
+    const profileImages = [
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile1_d6xrom.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203676/profile19_tege5h.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203678/profile20_rfhn8e.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203674/profile17_lcdwbc.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203676/profile18_nblubv.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203672/profile15_k86rjz.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203673/profile16_n3zprz.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203670/profile13_brhjvi.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203671/profile14_lcgidt.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203668/profile11_dthwri.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203669/profile12_hnmi28.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203666/profile9_aw0wzy.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203667/profile10_svilng.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203664/profile7_c5rcbz.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203665/profile8_mbjvao.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203662/profile5_tap39x.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203663/profile6_nzeod5.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile3_jnri7g.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203661/profile4_oit0aj.jpg",
+        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile2_uww4pq.jpg"
+    ];
     
     const handleImageSelect = (image) => {
         setSelectedImage(image);
-        // loggedInUser.image = image;
-        console.log('Updated user object:', loggedInUser);
+        accountDetails.profile_picture = profile_picture;
         setImageSelectorOpen(false); 
     };
     
@@ -235,7 +235,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
             <div className="edit-profile-header">
                 <div className="edit-profile-image-wrapper">
                     <img
-                        src={userProfile?.image || "default-profile.png"}
+                        src={userProfile?.profile_picture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
                         alt={`${userProfile?.first_name || "User"}'s profile`}
                         className="edit-profile-image"
                     />
