@@ -103,7 +103,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
         "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile2_uww4pq.jpg"
     ];
     
-    const handleSaveProfilePicture = async (profile_picture) => {
+    const handleSaveProfilePicture = async () => {
         try {
             await updateProfile({
                 profile_picture: accountDetails.profile_picture
@@ -156,6 +156,11 @@ const EditProfilePage = ({ userId, sortKey }) => {
     };
 
     const handleSaveAccountDetails = async () => {
+        if (!accountDetails.state || !accountDetails.city) {
+            alert("State/Province and City fields are required.");
+            return;
+        }
+        
         try {
             await updateProfile({
                 username: accountDetails.username,
@@ -476,7 +481,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                         value={accountDetails.country}
                                         onChange={(e) => setAccountDetails({ ...accountDetails, country: e.target.value })}
                                     >
-                                        <option>Choose...</option>
+                                        <option disabled value="">Select...</option>
                                         <option>Canada</option>
                                         <option>USA</option>
                                     </select>

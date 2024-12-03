@@ -41,6 +41,11 @@ html .form-label {
   font-weight: bold;
 }
 
+.modal-error-message {
+  margin-top: 1rem;
+  color: red;
+}
+
 /* Form Input Containers */
 html .form-control {
   border: 0.1rem solid #1e1e1e;
