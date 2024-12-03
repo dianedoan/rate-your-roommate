@@ -74,7 +74,7 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
     return (
         <>
         <Navbar bg="white" expand="lg" className="navbar" sticky="top">
-            <Navbar.Brand href={isLoggedIn ? "/home" : "/"}>
+            <Navbar.Brand href={"/"}>
                 <img src={Logo} alt="Rate Your Roommate" className="navbar-logo" />
             </Navbar.Brand>
             {!isMobile && <Navbar.Toggle aria-controls="basic-navbar-nav" />}

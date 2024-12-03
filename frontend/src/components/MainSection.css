@@ -10,7 +10,7 @@
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;
-    height: 85rem;
+    height: 80rem;
     position: relative;
     text-align: center;
     box-sizing: border-box;
@@ -19,27 +19,39 @@
     border-bottom: none;
 }
 
-/* Media query for larger screens (2560px) */
+.main-section.logged-in {
+    height: 72rem; 
+}
+
+/* Media query for Extra Wide Screens (2560px) */
 @media (max-width: 2560px) {
     .main-section {
-        height: 80rem;
+        height: 83rem;
         border: inset 15rem transparent;
         border-top: none;
         border-bottom: none;
     }
+
+    .main-section.logged-in {
+        height: 72rem; 
+    }
 }
 
-/* Media query for larger screens (2560px) */
-@media (max-width: 2200px) {
+/* Media query for Large Screens (2250px) */
+@media (max-width: 2300px) {
     .main-section {
         height: 70rem;
         border: inset 15rem transparent;
         border-top: none;
         border-bottom: none;
     }
+
+    .main-section.logged-in {
+        height: 60rem;
+    }
 }
 
-/* Media query for larger screens (1900px) */
+/* Media query for Large Screens (1900px) */
 @media (max-width: 1900px) {
     .main-section {
         height: 65rem;
@@ -47,9 +59,27 @@
         border-top: none;
         border-bottom: none;
     }
+
+    .main-section.logged-in {
+        height: 60rem;
+    }
 }
 
-/* Media query for laptop screens (1440px) */
+/* Media query for Large Screens (1900px) */
+@media (max-width: 1650px) {
+    .main-section {
+        height: 65rem;
+        border: inset 10rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .main-section.logged-in {
+        height: 52rem;
+    }
+}
+
+/* Media query for Large Screens (Laptop L) */
 @media (max-width: 1440px) {
     .main-section {
         height: 60rem;
@@ -57,15 +87,21 @@
         border-top: none;
         border-bottom: none;
     }
+    .main-section.logged-in {
+        height: 52rem;
+    }
 }
 
-/* Media Query for Tablet Screens (1024px) */
+/* Media Query for Medium Screens (Laptop) */
 @media (max-width: 1024px) {
     .main-section {
         height: 50rem;
         border: inset 5rem transparent;
         border-top: none;
         border-bottom: none;
+    }
+    .main-section.logged-in {
+        height: 40rem;
     }
 }
 
@@ -78,19 +114,82 @@
         border-bottom: none;
     }
 
+    .main-section.logged-in {
+        height: 35rem;
+    }
+
     .button-container {
         flex-direction: column; /* Stack buttons vertically */
         gap: 10px;
     }
 }
 
-/* Media Query for Extra Small Screens */
-@media (max-width: 480px) {
+/* Media Query for Small Screens (Mobile L)*/
+@media (max-width: 425px) {
     .main-section {
         height: 35rem;
         border: inset 1.5rem transparent;
         border-top: none;
         border-bottom: none;
+    }
+
+    .main-section.logged-in {
+        height: 25rem;
+    }
+
+    .top-content {
+        padding-top: 2rem;
+    }
+
+    .main-section .button-container {
+        padding-top: 0rem;
+    }
+
+    .main-section .normal-btn {
+        width: 8rem;
+        padding: 0.8rem;
+        margin: 0.2rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    .main-section {
+        height: 32rem;
+        border: inset 1.5rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .main-section.logged-in {
+        height: 22rem;
+    }
+
+    .main-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .top-content {
+        padding-top: 2rem;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+    .main-section {
+        height: 30rem;
+        border: inset 1.5rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .main-section.logged-in {
+        height: 20rem;
+    }
+
+    .main-section h1 {
+        font-size: 2.5rem;
     }
 
     .top-content {

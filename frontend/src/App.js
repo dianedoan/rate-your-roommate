@@ -168,6 +168,7 @@ function App() {
             <LandingPage
               onLoginClick={handleLoginClick}
               onRegisterClick={handleRegisterClick}
+              userId={userId}
             />
           }
         />
