@@ -180,7 +180,7 @@ const ReviewPage = () => {
                         Rating
                         <button
                             className="rate-btn primary-btn"
-                            onClick={() => navigate(`/create-review/${userId}`)}
+                            onClick={() => navigate(`/create-review/${recipientId}`)}
                         >
                             Rate
                         </button>
