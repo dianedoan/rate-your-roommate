@@ -226,17 +226,7 @@ const CreateReviewPage = () => {
                     ))}
 
                     <div className="question-card open-ended-section">
-                        <label className="question-label" htmlFor="title">What do you want other users to know about this roommate?</label>
-                        <input
-                            className="comments-form-title"
-                            type="text"
-                            id="title"
-                            value={openEndedTitle}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Enter a title..."
-                        />
-
-                        <label className="question-label" htmlFor="openEnded"></label>
+                        <label className="question-label" htmlFor="openEnded">What do you want other users to know about this roommate?</label>
                         <textarea
                             className="comments-form"
                             value={openEnded}
@@ -244,18 +234,6 @@ const CreateReviewPage = () => {
                             rows="5"
                             placeholder="Write your comments here..."
                         />
-                    </div>
-
-                    <div className="question-card anonymous-toggle">
-                        <label className="anonymous-label">
-                            <input
-                                className="anonymous-checkbox"
-                                type="checkbox"
-                                checked={isAnonymous}
-                                onChange={() => setIsAnonymous((prev) => !prev)}
-                            />
-                            Submit as Anonymous?
-                        </label>
                     </div>
 
                     {error && <div className="error-message">{error}</div>} {/* Display error message */}
