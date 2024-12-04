@@ -54,6 +54,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                 setLoading(false);
             }
         };
+        
         fetchProfile();
     }, [userId, sortKey]);
     
@@ -564,7 +565,6 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                             <span className="highlight5">{review.score}/5 </span>
                                             <span className="highlight5">{generateStarRating(review.score)}</span>
                                         </div>
-                                        <div className="past-review-title">{review.title}</div>
                                         <div className="past-review-description">{review.description}</div>
                                         {review.yesNoAnswers && (
                                             <div className="past-review-questions">
@@ -575,7 +575,6 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                                 ))}
                                             </div>
                                         )}
-                                        <div className="past-review-username">{review.username}</div>
                                         <div className="past-review-date">{review.date}</div>
                                             <button 
                                                 className="delete-review-btn"
@@ -597,7 +596,6 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                         <span className="highlight5">{review.score}/5 </span>
                                         <span className="highlight5">{generateStarRating(review.score)}</span>
                                     </div>
-                                    <div className="past-review-title">{review.title}</div>
                                     <div className="past-review-description">{review.description}</div>
                                     {review.yesNoAnswers && (
                                         <div className="past-review-questions">
@@ -608,12 +606,11 @@ const EditProfilePage = ({ userId, sortKey }) => {
                                             ))}
                                         </div>
                                     )}
-                                    <div className="past-review-username">{review.username}</div>
                                     <div className="past-review-date">{review.date}</div>
                                 </div>
                             ))
                         ) : (
-                            <h5>No reviews yet.</h5>
+                            <h5>No reviews found.</h5>
                         )
                     )}
                 </div>

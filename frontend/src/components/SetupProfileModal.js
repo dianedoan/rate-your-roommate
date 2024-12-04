@@ -120,7 +120,7 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
         <Modal.Title className="w-100 text-center">
           <div className="modal-title-main">Setup Profile</div>
           <div className="modal-title-sub">
-            Personalize your profile now or later
+            Personalize your profile
           </div>
         </Modal.Title>
       </Modal.Header>

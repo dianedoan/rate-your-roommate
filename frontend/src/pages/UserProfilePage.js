@@ -80,7 +80,6 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
         return filledStars + halfStar;
     };
 
-    const reviews = userProfile?.reviews || [];
     const preferences = userProfile?.ProfileData?.preferences || [];
     
     // Function to categorize preferences
@@ -118,15 +117,17 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
         return '';
     };
 
+    const reviews = userProfile?.reviews || [];
+    
     return (
         <div className="user-profile-content">
             <div className="user-profile-header">
                 <div className="user-profile-image">
                     <img
                         src={userProfile?.profile_picture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
-                        alt={`${userProfile?.firstName || "User"}'s profile`}
+                        alt={`${userProfile?.username || "User"}'s profile`}
                         className="user-profile-image"
-                    />
+                        />
                 </div>
                 <div className="user-profile-info">
                     <div className="user-profile-name">
@@ -176,7 +177,6 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
                                     <span className="highlight5">{review.score}/5 </span>
                                     <span className="highlight5">{generateStarRating(review.score)}</span>
                                 </div>
-                                <div className="past-review-title">{review.title}</div>
                                 <div className="past-review-description">{review.description}</div>
                                 {review.yesNoAnswers && (
                                     <div className="past-review-questions">
@@ -187,7 +187,6 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
                                         ))}
                                     </div>
                                 )}
-                                <div className="past-review-username">{review.username}</div>
                                 <div className="past-review-date">{review.date}</div>
                             </div>
                         ))
