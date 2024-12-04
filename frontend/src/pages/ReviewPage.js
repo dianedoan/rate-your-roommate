@@ -201,11 +201,11 @@ const ReviewPage = () => {
                                     {review.ReviewText || "No detailed review provided."}
                                 </div>
 
-                                {review.yesNoAnswers && (
+                                {review.YesNoAnswers && (
                                     <div className="review-questions">
-                                        {review.yesNoAnswers.map((item, index) => (
+                                        {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => (
                                             <div key={index} className="review-question-answer">
-                                                <strong>{item.question}</strong> {item.answer}
+                                                <strong>{questionKey}</strong>: {answerObj || "Not answered"}
                                             </div>
                                         ))}
                                     </div>
