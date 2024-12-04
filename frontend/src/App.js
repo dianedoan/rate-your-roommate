@@ -181,8 +181,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/reviews/:userId" element={<ReviewPage />} />
-        <Route path="/create-review/:userId" element={<CreateReviewPage />} />
+        <Route path="/reviews/:recipientId" element={<ReviewPage />} />
+        <Route path="/create-review/:recipientId" element={<CreateReviewPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/saved" element={<SavedRoommatesPage />} />

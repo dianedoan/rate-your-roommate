@@ -159,6 +159,7 @@
 
 .review-date {
     font-size: 1.5em;
+    font-weight: bold;
 }
 
 /* Preference tags */
@@ -389,7 +390,7 @@
     }
     
     .review-date {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 }
 
