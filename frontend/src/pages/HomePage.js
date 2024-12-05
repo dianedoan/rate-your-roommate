@@ -122,7 +122,7 @@ const HomePage = () => {
                                                 {topRatedList[activeTopRatedIndex].city},{" "}
                                                 {topRatedList[activeTopRatedIndex].state}
                                             </div>
-                                            <div className="favorite-icon">
+                                            {/* <div className="favorite-icon">
                                                 <img
                                                     src={likedProfiles.includes(topRatedList[activeTopRatedIndex].username)
                                                         ? heart2filled
@@ -134,7 +134,7 @@ const HomePage = () => {
                                                         toggleLike(topRatedList[activeTopRatedIndex].username); // Toggle like
                                                     }}
                                                 />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="top-rated-profile-score">
