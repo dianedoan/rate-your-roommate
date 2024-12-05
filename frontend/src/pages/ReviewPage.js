@@ -31,24 +31,26 @@ const ReviewPage = () => {
 
             try {
                 const response = await fetch(url);
+
+                if (response.status === 404) {
+                    throw new Error("User review page not found."); // Handle 404 explicitly
+                }
+
                 if (!response.ok) throw new Error("Failed to fetch review data.");
 
                 const data = await response.json();
                 console.log("Fetched data:", data);
 
-                // // Check if the review profile exists
-                // if (!data.reviewProfile) {
-                //     setError("User not found.");
-                // } else {
-                //     setReviewProfile(data.reviewProfile);
-                //     setReviews(data.reviews);
-                // }
-                
+                setReviewProfile(data.user);
                 setReviews(data.reviews);
                 setLoading(false);
             } catch (err) {
                 console.error("Error fetching review data:", err.message);
-                setError("Failed to fetch review data. Please try again later.");
+                if (err.message === "User review page not found.") {
+                    setError("User review page not found.");
+                } else {
+                    setError("Failed to fetch review data. Please try again later.");
+                }
                 setLoading(false);
             }
         };
@@ -60,51 +62,6 @@ const ReviewPage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    // if (!recipientId) {
-    //     return (
-    //         <div className="general-content">
-    //             <h2>Page Not Found!</h2>
-    //             <h3>The user review page you are trying to access does not exist.</h3>
-    //         </div>
-    //     );
-    // }
-
-    // // Calculate average rating for a user based on their reviews
-    // const calculateAverageRating = (userId) => {
-    //     // Filter reviews by the user
-    //     const userReviews = reviewsData.filter(review => review.userId === userId);
-        
-    //     // Calculate the sum of the scores and the number of reviews
-    //     const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
-    //     const averageRating = totalScore / userReviews.length;
-
-    //     // Round to 1 decimal place
-    //     return averageRating ? Math.round(averageRating * 10) / 10 : 0;
-    // };
-
-    // // Calculate average rating based on reviews
-    // const averageRating = reviews.length > 0 ? calculateAverageRating(userId) : null; // If no reviews, set averageRating to null
-    
-    
-    // // Function to toggle the liked status of a profile (removing or re-adding profiles)
-    // const toggleLike = (userName) => {
-        //     setLikedProfiles((prevLikes) => {
-            //         const updatedLikes = [...prevLikes]; // Create a copy of the liked profiles array
-            
-            //         if (updatedLikes.includes(userName)) {
-                //             // If the user is already liked, remove them
-                //             const index = updatedLikes.indexOf(userName);
-    //             updatedLikes.splice(index, 1);
-    //         } else {
-        //             // If the user is not liked, add them
-        //             updatedLikes.push(userName);
-        //         }
-        
-        //         console.log("Liked Profiles:", updatedLikes);
-        //         return updatedLikes;
-        //     });
-        // };
 
     // Categorize preferences for styling
     const getPreferenceCategoryClass = (pref) => {
@@ -121,6 +78,15 @@ const ReviewPage = () => {
         return '';
     };
 
+    // Calculate average rating
+    const calculateAverageRating = () => {
+        if (reviews.length === 0) return null;
+        const totalScore = reviews.reduce((sum, review) => sum + review.Score, 0);
+        return (totalScore / reviews.length).toFixed(1); // Rounded to 1 decimal place
+    };
+
+    const averageRating = calculateAverageRating();
+
     // Generate star ratings
     const generateStarRating = (score) => {
         const filledStars = '★'.repeat(Math.floor(score));
@@ -128,8 +94,32 @@ const ReviewPage = () => {
         return filledStars + halfStar;
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loading) {
+        return (
+            <div className="general-content">
+                <h2>Loading...</h2>
+            </div>
+        );
+    }
+
+    if (error) {
+        if (error === "User review page not found.") {
+            return (
+                <div className="general-content">
+                    <h2>Page Not Found!</h2>
+                    <h3>The user review page you are trying to access does not exist.</h3>
+                </div>
+            );
+        }
+
+        else {
+            return (
+                <div className="general-content">
+                    <h3>Error: {error}</h3>
+                </div>
+            );
+        }
+    }
 
     return (
         <div className="review-content">
@@ -137,26 +127,15 @@ const ReviewPage = () => {
                 <div className="review-profile-card">
                     <div className="review-profile-info">
                         <div className="name-heart-container">
-                            <div className="review-profile-name">{reviewProfile?.first_name} {reviewProfile?.last_name}</div>
-                            {/* <div className="profile-favorite-icon">
-                                <img
-                                    // Toggle heart icon based on the user's liked profiles
-                                    src={likedProfiles.includes(userProfile?.username) ? heart2filled : heart2}
-                                    alt="heart icon"
-                                    className="review-heart-icon"
-                                    onClick={(e) => {
-                                        e.stopPropagation(); // Prevent any other actions when clicking the heart
-                                        toggleLike(userProfile?.username);
-                                    }}
-                                />
-                            </div> */}
+                            <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
+
                         </div>
-                        <div className="review-profile-occupation">{reviewProfile?.occupation}</div>
+                        <div className="review-profile-occupation">{reviewProfile.Occupation}</div>
                         <div className="review-profile-description">
-                            {reviewProfile?.ProfileData?.aboutMe || "No description provided."}
+                            {reviewProfile.AboutMe || "No description provided."}
                         </div>
                         <div className="review-preferences-section">
-                            {reviewProfile?.ProfileData?.preferences?.map((pref) => (
+                            {reviewProfile.Preferences?.map((pref) => (
                                 <Badge
                                     key={pref}
                                     className={`profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
@@ -169,17 +148,17 @@ const ReviewPage = () => {
                     <div className="image-location-container">
                         <div className="image-container">
                             <img
-                                src={reviewProfile?.profile_picture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
-                                alt={`${reviewProfile?.username || "User"}'s profile`}
+                                src={reviewProfile.ProfilePicture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                                alt={`${reviewProfile.username || "User"}'s profile`}
                                 className="review-profile-image"
                             />
                         </div>
-                        <p className="review-profile-location">{reviewProfile?.city}, {reviewProfile?.state}</p>
+                        <p className="review-profile-location">{reviewProfile.City}, {reviewProfile.State}</p>
                     </div>
                     <div className="review-profile-score">
-                        {/* <span className="highlight4">
+                        <span className="highlight4">
                             {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
-                        </span>  */}
+                        </span> 
                         Rating
                         <button
                             className="rate-btn primary-btn"
@@ -215,8 +194,9 @@ const ReviewPage = () => {
                                 )}
 
                                 <div className="review-date">
-                                    {review.Timestamp || "Date not available"}
+                                    {review.Timestamp ? new Date(review.Timestamp * 1000).toLocaleDateString() : "Date not available"}
                                 </div>
+
                             </div>
                         </div>
                     ))
