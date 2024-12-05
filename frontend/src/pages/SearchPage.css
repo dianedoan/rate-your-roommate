@@ -22,6 +22,22 @@
     gap: 2rem; /* Add spacing between cards */
 }
 
+@media (max-width: 525px) {
+    .search-bar {
+        padding: 0rem 1rem;
+    }
+
+    .search-bar .form-control {
+        border-radius: 2rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .search-results {
+        gap: 1rem; /* Add spacing between cards */
+    }
+}
+
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
     .search-bar {

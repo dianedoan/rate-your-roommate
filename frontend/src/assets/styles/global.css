@@ -210,7 +210,7 @@ html .nav-link:active {
     display: flex;
     flex-direction: row; /* Make the card layout horizontal */
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
     max-width: 55rem;
     padding: 2.5rem;
@@ -229,11 +229,15 @@ html .nav-link:active {
 .profile-info-container {
     display: flex;
     flex-direction: row; 
+    width: 50rem;
+    justify-content: space-between;
+
 }
 
 .profile-image-container {
+    display: flex;
+    flex-direction: row; 
     flex-shrink: 0; /* Prevent the image from shrinking */
-    margin-right: 2rem; /* Space between image and text */
 }
 
 .profile-image {
@@ -241,6 +245,7 @@ html .nav-link:active {
     height: 10rem;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
+    margin-right: 2rem;
 }
 
 .profile-info {
@@ -248,12 +253,16 @@ html .nav-link:active {
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: left;
     margin-right: 1rem;
-    max-width: 30em;
+    /* max-width: 30em; */
 }
 
 .profile-name {
     font-size: 2em;
     font-weight: bold;
+}
+
+.profile-location {
+    font-size: 1.5em;
 }
 
 .profile-score {
@@ -275,20 +284,6 @@ html .nav-link:active {
     max-width: 100%; /* Ensures it stays within the container */
     box-sizing: border-box; /* Includes padding in width calculations */
     font-size: 1.5em;
-}
-
-.location-favorite-container {
-    display: flex;
-    flex-direction: column;
-    align-items: right;
-    max-width: 8em;
-    margin-bottom: 3rem;
-}
-
-.profile-location {
-  font-size: 1.3em; /* Smaller font size for location */
-  margin-bottom: 1rem;
-  text-align: right;
 }
 
 .favorite-icon {
@@ -351,6 +346,14 @@ html .nav-link:active {
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
 
+    .profile-name {
+        font-size: 1.5em;
+    }
+
+    .profile-location {
+        font-size: 1.1em;
+    }
+
     /* Like/Save Roommate button */
     .heart-icon {
         width: 2.5rem; /* Adjust image size */
@@ -393,13 +396,12 @@ html .nav-link:active {
     .profile-image-container {
         flex-shrink: 0; /* Prevent the image from shrinking */
         margin-right: 1rem;
-        display: flex;
-        align-items: center;
     }
     
     .profile-image {
-        width: 6.5rem; /* Adjust image size */
-        height: 6.5rem;
+        width: 6rem; /* Adjust image size */
+        height: 6rem;
+        margin-right: 1.5rem;
     }
     
     .profile-info {
@@ -412,7 +414,10 @@ html .nav-link:active {
     
     .profile-name {
         font-size: 1.2em;
-        font-weight: bold;
+    }
+
+    .profile-location {
+        font-size: 1em;
     }
     
     .profile-score {
@@ -434,12 +439,6 @@ html .nav-link:active {
         margin-bottom: 2rem;
     }
     
-    .profile-location {
-      font-size: 1em; /* Smaller font size for location */
-      margin-bottom: 0.5rem;
-      text-align: right;
-    }
-    
     .favorite-icon {
       cursor: pointer;
       text-align: right;
@@ -452,7 +451,6 @@ html .nav-link:active {
       height: 2rem;
     }
 
-
     .normal-btn {
         text-align: center;
         margin: 0.5rem;
@@ -463,6 +461,102 @@ html .nav-link:active {
         border: 0.1rem solid #1e1e1e;
     }
 }
+
+/* Media Query for Extra Small Screens (Mobile L) */
+@media (max-width: 525px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 3rem;
+    }
+
+    html h2 {
+        font-size: 2.5rem; /* Further reduce title font size */
+    }
+
+    .profile-card {
+        max-width: 55rem;
+        padding: 1rem;
+        border: 0.08rem solid #1e1e1e; /* Bottom border */
+        border-radius: 0.7rem;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .profile-image-container {
+        flex-shrink: 0; /* Prevent the image from shrinking */
+        margin-right: 0.7rem;
+    }
+    
+    .profile-image {
+        width: 4rem; /* Adjust image size */
+        height: 4rem;
+        margin-right: 1rem;
+    }
+    
+    .profile-info {
+        display: flex;
+        flex-direction: column; /* Stack profile name, description, and score vertically */
+        text-align: left;
+        margin-right: 1rem;
+        max-width: 19em;
+    }
+
+    .profile-name {
+        font-size: 1em;
+    }
+
+    .profile-location {
+        font-size: 0.7em;
+    }
+    
+    .profile-score {
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+    
+    .profile-occupation {
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+    
+    .profile-description {
+        font-size: 0.7em;
+    }
+    
+    .location-favorite-container {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        max-width: 5em;
+        margin-bottom: 1rem;
+    }
+    
+    .favorite-icon {
+      cursor: pointer;
+      text-align: right;
+      margin-bottom: 0rem;
+    }
+    
+    /* Like/Save Roommate button */
+    .heart-icon {
+      width: 1.2rem; /* Adjust image size */
+      height: 1.2rem;
+    }
+
+    .normal-btn {
+        text-align: center;
+        margin: 0.5rem;
+        font-size: 1.3rem;
+        padding: 1rem;
+        width: 10rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
     .general-content {
@@ -494,10 +588,7 @@ html .nav-link:active {
     .profile-image {
         width: 4rem; /* Adjust image size */
         height: 4rem;
-    }
-
-    .profile-info-container {
-        max-width: 18rem;
+        margin-right: 1rem;
     }
     
     .profile-info {
@@ -507,10 +598,13 @@ html .nav-link:active {
         margin-right: 1rem;
         max-width: 19em;
     }
-    
+
     .profile-name {
         font-size: 1em;
-        font-weight: bold;
+    }
+
+    .profile-location {
+        font-size: 0.7em;
     }
     
     .profile-score {
@@ -534,12 +628,100 @@ html .nav-link:active {
         max-width: 5em;
         margin-bottom: 1rem;
     }
-
     
-    .profile-location {
-      font-size: 0.6em; /* Smaller font size for location */
-      margin-bottom: 0.5rem;
+    .favorite-icon {
+      cursor: pointer;
       text-align: right;
+      margin-bottom: 0rem;
+    }
+    
+    /* Like/Save Roommate button */
+    .heart-icon {
+      width: 1.2rem; /* Adjust image size */
+      height: 1.2rem;
+    }
+
+    .normal-btn {
+        text-align: center;
+        margin: 0.5rem;
+        font-size: 1.3rem;
+        padding: 1rem;
+        width: 10rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 3rem;
+    }
+
+    html h2 {
+        font-size: 2.5rem; /* Further reduce title font size */
+    }
+
+    .profile-card {
+        max-width: 55rem;
+        padding: 1rem;
+        border: 0.08rem solid #1e1e1e; /* Bottom border */
+        border-radius: 0.7rem;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .profile-image-container {
+        flex-shrink: 0; /* Prevent the image from shrinking */
+        margin-right: 0.7rem;
+    }
+    
+    .profile-image {
+        width: 4rem; /* Adjust image size */
+        height: 4rem;
+        margin-right: 1rem;
+    }
+    
+    .profile-info {
+        display: flex;
+        flex-direction: column; /* Stack profile name, description, and score vertically */
+        text-align: left;
+        margin-right: 1rem;
+        max-width: 19em;
+    }
+    
+    .profile-name {
+        font-size: 0.8em;
+    }
+
+    .profile-location {
+        font-size: 0.6em;
+    }
+    
+    .profile-score {
+        font-weight: bold;
+        font-size: 0.7em;
+    }
+    
+    .profile-occupation {
+        font-size: 0.6em;
+        font-weight: bold;
+    }
+    
+    .profile-description {
+        font-size: 0.6em;
+    }
+    
+    .location-favorite-container {
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        max-width: 5em;
+        margin-bottom: 1rem;
     }
     
     .favorite-icon {
@@ -565,11 +747,28 @@ html .nav-link:active {
       }
 }
 
-/* Media Query for Extra Small Screens (Mobile M) */
-@media (max-width: 375px) {
-}
-
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
+    .profile-name {
+        font-size: 0.7em;
+    }
+
+    .profile-location {
+        font-size: 0.5em;
+    }
+
+    .profile-score {
+        font-weight: bold;
+        font-size: 0.55em;
+    }
+    
+    .profile-occupation {
+        font-size: 0.55em;
+        font-weight: bold;
+    }
+    
+    .profile-description {
+        font-size: 0.55em;
+    }
 }
    

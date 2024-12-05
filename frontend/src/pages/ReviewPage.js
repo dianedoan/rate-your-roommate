@@ -36,12 +36,15 @@ const ReviewPage = () => {
                 const data = await response.json();
                 console.log("Fetched data:", data);
 
-                if (data.reviews.length === 0) {
-                    setError("No reviews found for the specified user.");
-                } else {
-                    setReviewProfile(data.reviewProfile);
-                    setReviews(data.reviews);
-                }
+                // // Check if the review profile exists
+                // if (!data.reviewProfile) {
+                //     setError("User not found.");
+                // } else {
+                //     setReviewProfile(data.reviewProfile);
+                //     setReviews(data.reviews);
+                // }
+                
+                setReviews(data.reviews);
                 setLoading(false);
             } catch (err) {
                 console.error("Error fetching review data:", err.message);

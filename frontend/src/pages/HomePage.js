@@ -166,41 +166,39 @@ const HomePage = () => {
                         <div
                             key={user.username}
                             className="profile-card"
-                            onClick={() => goToUserProfile(user.id)}
+                            onClick={() => navigate(`/reviews/${user.UserId}`)}
                         >
                             <div className="profile-info-container">
                                 <div className="profile-image-container">
-                                    <img src={user.image} alt={user.username} className="profile-image" />
-                                </div>
-                                <div className="profile-info">
-                                    <div className="profile-name">{user.firstName} {user.lastName}</div>
-                                    <div className="profile-score">
-                                        <span className="highlight5">
-                                            {user.rating === 0 ? "N/A" : `${user.rating}/5`}
-                                        </span>{" "}
-                                        Rating
-                                    </div>
-                                    <div className="profile-occupation">{user.occupation}</div>
-                                    <div className="profile-description">{user.description}</div>
-                                </div>
-                            </div>
-                            <div className="location-favorite-container">
-                                <div className="profile-location">
-                                    {user.city}, {user.state}
-                                </div>
-                                <div className="favorite-icon">
                                     <img
-                                        src={likedProfiles.includes(user.username)
-                                            ? heart2filled
-                                            : heart2}
-                                        alt="heart icon"
-                                        className="heart-icon"
-                                        onClick={(e) => {
-                                            e.stopPropagation(); // Prevent navigation when clicking the heart icon
-                                            toggleLike(user.username); // Toggle like on click
-                                        }}
+                                        src={user.profile_picture}
+                                        alt={user.username}
+                                        className="profile-image"
                                     />
+                                    <div className="profile-info">
+                                        <div className="profile-name">{user.first_name} {user.last_name}</div>
+                                        <div className="profile-score">
+                                            <span className="highlight5">
+                                                {user.Score === 0 ? "N/A" : `${user.rating}/5`}
+                                            </span>{" "}
+                                            Rating
+                                        </div>
+                                        <div className="profile-occupation">{user.occupation}</div>
+                                        <div className="profile-description">{user.ProfileData?.aboutMe}</div>
+                                    </div>
                                 </div>
+                                <div className="profile-location">{user.city}, {user.state}</div>
+                                {/* <div className="favorite-icon">
+                                    <img
+                                    src={likedProfiles.includes(user.username) ? heart2filled : heart2}
+                                    alt="heart icon"
+                                    className="heart-icon"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleLike(user.username);
+                                        }}
+                                        />
+                                </div> */}
                             </div>
                         </div>
                     ))
