@@ -1,68 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userList, reviewsData } from "../data/userData";
-import heart2 from "../assets/images/button-icons/heart2.svg";
-import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import leftarrow from "../assets/images/button-icons/left-arrow.svg";
 import rightarrow from "../assets/images/button-icons/right-arrow.svg";
+import heart2 from "../assets/images/button-icons/heart2.svg";
+import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
+import config from "../components/config.json";
 import "./HomePage.css";
 
-const HomePage = () => {
-    // Manually set logged in user
-    const loggedInUser = userList.find(user => user.username === 'sallysmith');
-    
-    const [searchQuery, setSearchQuery] = useState("");
+const HomePage = ({ userId, sortKey }) => {
+    const [topRatedList, setTopRatedList] = useState([]);
     const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
-    const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    // Calculate average rating for a user based on their reviews
-    const calculateAverageRating = (userId) => {
-        // Filter reviews by the user
-        const userReviews = reviewsData.filter(review => review.userId === userId);
-        
-        // Calculate the sum of the scores and the number of reviews
-        const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
-        const averageRating = totalScore / userReviews.length;
+    useEffect(() => {
+        const fetchTopRatedUsers = async () => {
+            const url = `${config.apiBaseUrl}/get-top-users`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
 
-        // Round to 1 decimal place
-        return averageRating ? Math.round(averageRating * 10) / 10 : 0;
-    };
+                if (!response.ok) throw new Error("Failed to fetch review data.");
 
-    // Add dynamic rating calculation to each user
-    const userListWithRatings = userList.map(user => ({
-        ...user,
-        rating: calculateAverageRating(user.id), // Calculate and add the average rating
-    }));
-
-    // Filter users with a rating of 4.0 or higher for top-rated roommates
-    const topRatedList = userListWithRatings.filter(user => user.rating >= 4.0);
-
-    const filteredUsers = userListWithRatings.filter((user) =>
-        user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.state.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const toggleLike = (userName) => {
-        setLikedProfiles((prevLikes) => {
-            const updatedLikes = [...prevLikes];
-            if (updatedLikes.includes(userName)) {
-                // If the user is already liked, remove them
-                const index = updatedLikes.indexOf(userName);
-                updatedLikes.splice(index, 1);
-            } else {
-                // If the user is not liked, add them
-                updatedLikes.push(userName);
+                console.log("Fetched top-rated users:", data);
+                setTopRatedList(data.topRatedUsers || []);
+                setLoading(false);
+            } catch (err) {
+                setError("An error occurred while fetching top-rated users.");
+                setLoading(false);
             }
-
-            console.log("Liked Profiles:", Object.values(updatedLikes));
-
-            return updatedLikes;
-        });
-    };
+        };
+        fetchTopRatedUsers();
+    }, []);
 
     const handleNext = () => {
         setActiveTopRatedIndex((prevIndex) => (prevIndex + 1) % topRatedList.length);
@@ -72,17 +43,18 @@ const HomePage = () => {
         setActiveTopRatedIndex((prevIndex) => (prevIndex - 1 + topRatedList.length) % topRatedList.length);
     };
 
-    const goToUserProfile = (userId) => {
-        navigate(`/reviews/${userId}`);
-    };
-
+    if (loading) {
+        return (
+            <div className="general-content">
+                <h2>Loading...</h2>
+            </div>
+        );
+    }
     return (
         <div className="homepage-content">
-            {/* Top-Rated Section */}
             <div className="top-rated-section">
-                <h2>
-                    Top-Rated <span className="highlight2">Roommates</span>
-                </h2>
+            {/* Top-Rated Section */}
+                <h2>Top-Rated <span className="highlight2">Roommates</span></h2>
                 {topRatedList.length > 0 ? (
                     <div className="top-rated-container">
                         {/* Previous Button */}
@@ -93,12 +65,12 @@ const HomePage = () => {
                         {/* Display Only the Active Top-Rated Card */}
                         <div
                             className="top-rated-card-link"
-                            onClick={() => navigate(`/reviews/${topRatedList[activeTopRatedIndex].id}`)}
+                            onClick={() => navigate(`/reviews/${topRatedList[activeTopRatedIndex].RecipientId}`)}
                         >
-                            <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].username}>
+                            <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].Username}>
                                 <div className="top-rated-profile-image-container">
                                     <img
-                                        src={topRatedList[activeTopRatedIndex].image}
+                                        src={topRatedList[activeTopRatedIndex].ProfilePicture}
                                         alt={topRatedList[activeTopRatedIndex].username}
                                         className="top-rated-profile-image"
                                     />
@@ -107,20 +79,21 @@ const HomePage = () => {
                                     <div className="top-rated-profile-info-container">
                                         <div className="top-rated-profile-info">
                                             <div className="top-rated-profile-name">
-                                                {topRatedList[activeTopRatedIndex].firstName} {topRatedList[activeTopRatedIndex].lastName}
+                                                {topRatedList[activeTopRatedIndex].FirstName}{" "}
+                                                {topRatedList[activeTopRatedIndex].LastName}
                                             </div>
                                             <div className="top-rated-profile-occupation">
-                                                {topRatedList[activeTopRatedIndex].occupation}
+                                                {topRatedList[activeTopRatedIndex].Occupation}
                                             </div>
                                             <div className="top-rated-profile-description">
-                                                {topRatedList[activeTopRatedIndex].description}
+                                                {topRatedList[activeTopRatedIndex].AboutMe}
                                             </div>
                                         </div>
                                     
                                         <div className="top-rated-location-favorite-container">
                                             <div className="top-rated-location">
-                                                {topRatedList[activeTopRatedIndex].city},{" "}
-                                                {topRatedList[activeTopRatedIndex].state}
+                                                {topRatedList[activeTopRatedIndex].City},{" "}
+                                                {topRatedList[activeTopRatedIndex].State}
                                             </div>
                                             {/* <div className="favorite-icon">
                                                 <img
@@ -139,7 +112,7 @@ const HomePage = () => {
                                     </div>
                                     <div className="top-rated-profile-score">
                                         <span className="highlight4">
-                                            {topRatedList[activeTopRatedIndex].rating}/5
+                                            {topRatedList[activeTopRatedIndex].AverageScore}/5
                                         </span>{" "}
                                         Rating
                                     </div>
@@ -161,12 +134,12 @@ const HomePage = () => {
                 <h2>
                     Explore <span className="highlight3">Roommates</span>
                 </h2>
-                {filteredUsers.length > 0 ? (
+                {/* {filteredUsers.length > 0 ? (
                     filteredUsers.map((user) => (
                         <div
                             key={user.username}
                             className="profile-card"
-                            onClick={() => navigate(`/reviews/${user.UserId}`)}
+                            onClick={() => navigate(`/reviews/${recipientId}`)}
                         >
                             <div className="profile-info-container">
                                 <div className="profile-image-container">
@@ -188,7 +161,7 @@ const HomePage = () => {
                                     </div>
                                 </div>
                                 <div className="profile-location">{user.city}, {user.state}</div>
-                                {/* <div className="favorite-icon">
+                                <div className="favorite-icon">
                                     <img
                                     src={likedProfiles.includes(user.username) ? heart2filled : heart2}
                                     alt="heart icon"
@@ -198,13 +171,13 @@ const HomePage = () => {
                                         toggleLike(user.username);
                                         }}
                                         />
-                                </div> */}
+                                </div>
                             </div>
                         </div>
                     ))
                 ) : (
                     <h3>No roommates found.</h3>
-                )}
+                )} */}
             </div>
         </div>
     );

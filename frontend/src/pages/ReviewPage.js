@@ -13,19 +13,11 @@ const ReviewPage = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    // const userReviews = reviewsData.filter(review => review.userId === userId); // Filter reviews by userId
-    // const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
 
     useEffect(() => {
         // Fetch profile and reviews data from the API
         const fetchReviewData = async () => {
             console.log("Fetching profile and reviews for recipientId:", recipientId);
-
-            if (!recipientId) {
-                setError("Recipient ID is missing.");
-                setLoading(false);
-                return;
-            }
 
             const url = `${config.apiBaseUrl}/get-user-reviews?RecipientId=${recipientId}`;
 

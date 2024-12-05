@@ -180,7 +180,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<HomePage userId={userId} sortKey={sortKey}/>} />
         <Route path="/reviews/:recipientId" element={<ReviewPage />} />
         <Route path="/create-review/:recipientId" element={<CreateReviewPage userId={userId} sortKey={sortKey}/>} />
         <Route path="/search" element={<SearchPage />} />
