@@ -68,6 +68,12 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
     setIsSubmitting(true);
     setError(null);
 
+    if (!country || !state || !city) {
+      setError("Country, State/Province, and City are required.");
+      setIsSubmitting(false);
+      return;
+    }
+
     const profileData = {
       UserId: userId,
       "DataType#Timestamp": sortKey,
@@ -102,11 +108,6 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
     }
   };
 
-  const handleSkip = () => {
-    onClose();
-    window.location.href = "/home"; // Navigate to the homepage
-  };
-
   return (
     <Modal
       show={show}
@@ -118,9 +119,7 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
       <Modal.Header>
         <Modal.Title className="w-100 text-center">
           <div className="modal-title-main">Setup Profile</div>
-          <div className="modal-title-sub">
-            Personalize your profile now or later
-          </div>
+          <div className="modal-title-sub">Personalize your profile</div>
         </Modal.Title>
       </Modal.Header>
 
@@ -157,7 +156,9 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                   >
-                    <option>Choose...</option>
+                    <option disabled value="">
+                      Select...
+                    </option>
                     <option>Canada</option>
                     <option>USA</option>
                   </Form.Control>
@@ -306,9 +307,9 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
             </div>
           </Form.Group>
 
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p className="modal-error-message">{error}</p>}
 
-          <div className="button-container">
+          <div>
             <Button
               variant="primary"
               type="submit"
@@ -316,13 +317,6 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Finish"}
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={handleSkip}
-              className="w-100 mt-3"
-            >
-              Skip
             </Button>
           </div>
         </Form>

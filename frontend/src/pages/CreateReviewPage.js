@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { userList, reviewsData } from "../data/userData";
-import star2 from "../assets/images/button-icons/star2.svg";
-import star2filled from "../assets/images/button-icons/star2-filled.svg";
+import star from "../assets/images/button-icons/star.svg";
+import starfilled from "../assets/images/button-icons/star-filled.svg";
+import config from "../components/config.json";
 import './CreateReviewPage.css';
 
-const CreateReviewPage = () => {
-    const loggedInUser = userList.find(user => user.username === 'sallysmith');
-    const { userId } = useParams();
-    const user = userList.find((u) => u.id === userId);
+const CreateReviewPage = ({ userId, sortKey }) => {
+    const { recipientId } = useParams();
     const navigate = useNavigate();
 
     const [ratings, setRatings] = useState({
@@ -18,17 +16,17 @@ const CreateReviewPage = () => {
         noiseLevel: 0,
         etiquette: 0,
     });
-
     const [yesNoQuestions, setYesNoQuestions] = useState({
-        respectful: '',
-        punctualFees: '', 
-        roommatesAgain: '',
+        respectful: "",
+        punctualFees: "",
+        roommatesAgain: "",
     });
+    const [openEnded, setOpenEnded] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const [openEndedTitle, setTitle] = useState('');
-    const [openEnded, setOpenEnded] = useState('');
-    const [isAnonymous, setIsAnonymous] = useState(false);
-    const [error, setError] = useState(''); // State for error messages
+
+
 
     const handleRatingChange = (category, value) => {
         setRatings((prevRatings) => ({
@@ -76,7 +74,6 @@ const CreateReviewPage = () => {
             reviewId: `review-${Date.now()}`,
             userId,
             authorId: user.username,
-            username: isAnonymous ? "Anonymous" : user.username,
             ratings,
             score: parseFloat(
                 (
@@ -87,7 +84,6 @@ const CreateReviewPage = () => {
                         ratings.etiquette) / 5
                 ).toFixed(1)
             ),
-            title: openEndedTitle,
             description: openEnded,
             yesNoAnswers: [
                 {
@@ -116,7 +112,7 @@ const CreateReviewPage = () => {
         const stars = [];
 
         for (let i = 1; i <= 5; i++) {
-            const starIcon = i <= rating ? star2filled : star2;
+            const starIcon = i <= rating ? starfilled : star;
             stars.push(
                 <div key={i} className="star-container">
                     <img
@@ -139,13 +135,30 @@ const CreateReviewPage = () => {
         );
     };
 
+    // if (loading) {
+    //     return (
+    //         <div className="general-content">
+    //             <h2>Loading...</h2>
+    //         </div>
+    //     );
+    // }
+
+    if (!userId) {
+        return (
+            <div className="general-content">
+                <h2>Not Logged In</h2>
+                <h3>Please log in to access this page.</h3>
+            </div>
+        );
+    }
+
     return (
         <div className="create-review-content">
             <div className="create-review-header">
-                <div className="create-review-name">Rate: {user.firstName} {user.lastName}</div>
+                <div className="create-review-name">Rate: {recipientId.first_name || "Name"} {recipientId.last_name}</div>
                 <div className="occupation-location-container">
-                    <div className="create-review-occupation">{user.occupation}</div>
-                    <div className="create-review-location">{user.city}, {user.state}</div>
+                    <div className="create-review-occupation">{recipientId.occupation || "Occupation"}</div>
+                    <div className="create-review-location">{recipientId.city || "City"}, {recipientId.state || "State"}</div>
                 </div>
             </div>
 
@@ -226,17 +239,7 @@ const CreateReviewPage = () => {
                     ))}
 
                     <div className="question-card open-ended-section">
-                        <label className="question-label" htmlFor="title">What do you want other users to know about this roommate?</label>
-                        <input
-                            className="comments-form-title"
-                            type="text"
-                            id="title"
-                            value={openEndedTitle}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Enter a title..."
-                        />
-
-                        <label className="question-label" htmlFor="openEnded"></label>
+                        <label className="question-label" htmlFor="openEnded">What do you want other users to know about this roommate?</label>
                         <textarea
                             className="comments-form"
                             value={openEnded}
@@ -246,18 +249,6 @@ const CreateReviewPage = () => {
                         />
                     </div>
 
-                    <div className="question-card anonymous-toggle">
-                        <label className="anonymous-label">
-                            <input
-                                className="anonymous-checkbox"
-                                type="checkbox"
-                                checked={isAnonymous}
-                                onChange={() => setIsAnonymous((prev) => !prev)}
-                            />
-                            Submit as Anonymous?
-                        </label>
-                    </div>
-
                     {error && <div className="error-message">{error}</div>} {/* Display error message */}
 
                     <div className="create-review-button-container">
@@ -265,7 +256,7 @@ const CreateReviewPage = () => {
                         <button
                             type="button"
                             className="secondary-btn submit-review-btn"
-                            onClick={() => navigate(`/reviews/${userId}`)}
+                            onClick={() => navigate(`/reviews/${recipientId}`)}
                         >
                             Cancel
                         </button>

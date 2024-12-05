@@ -4,7 +4,7 @@ import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Modal.css";
 import config from "./config.json";
 
-const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
+const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess, onGuestLogin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -109,15 +109,17 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
         </Form>
         <div className="separator">
           <div className="flex-grow-1 border-top"></div>
-          <span className="mx-2 text-center small">or sign in with</span>
+          {/* <span className="mx-2 text-center small"></span> */}
           <div className="flex-grow-1 border-top"></div>
         </div>
         <div className="social-login d-flex flex-column align-items-center">
-          <Button className="social-button" variant="outline-danger" block>
-            <FaGoogle /> Login with Google
-          </Button>
-          <Button className="social-button" variant="outline-primary" block>
-            <FaFacebook /> Login with Facebook
+          <Button
+              className="w-100 mt-3 guest-button"
+              variant="outline-secondary"
+              block
+              onClick={onGuestLogin}
+            >
+             Continue as Guest
           </Button>
         </div>
       </Modal.Body>

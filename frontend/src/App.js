@@ -7,8 +7,6 @@ import HomePage from "./pages/HomePage";
 import ReviewPage from "./pages/ReviewPage";
 import CreateReviewPage from "./pages/CreateReviewPage";
 import SearchPage from "./pages/SearchPage";
-import MessagesPage from "./pages/MessagesPage";
-import SavedRoommatesPage from "./pages/SavedRoommatesPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import AdminPage from "./pages/AdminPage";
@@ -28,9 +26,10 @@ function App() {
   const [showSetupProfile, setShowSetupProfile] = useState(false);
   const [userId, setUserId] = useState(null);
   const [sortKey, setSortKey] = useState(null);
+
+  const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
   // const [isSuccess, setIsSuccess] = useState(null);
   // const [securityQuestion, setSecurityQuestion] = useState("");
-  const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -153,6 +152,11 @@ function App() {
     }
   };
 
+  const handleGuestLogin = () => {
+    // Navigate to the landing page
+    window.location.href = "/home";
+  };
+
   return (
     <Router>
       <Header
@@ -175,12 +179,16 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/reviews/:userId" element={<ReviewPage />} />
-        <Route path="/create-review/:userId" element={<CreateReviewPage />} />
+        <Route
+          path="/home"
+          element={<HomePage userId={userId} sortKey={sortKey} />}
+        />
+        <Route path="/reviews/:recipientId" element={<ReviewPage />} />
+        <Route
+          path="/create-review/:recipientId"
+          element={<CreateReviewPage userId={userId} sortKey={sortKey} />}
+        />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/saved" element={<SavedRoommatesPage />} />
         <Route
           path="/profile"
           element={
@@ -202,6 +210,7 @@ function App() {
           onClose={handleCloseLoginModal}
           onLoginSuccess={handleSuccessfulLogin}
           onForgotPasswordClick={handleForgotPasswordClick}
+          onGuestLogin={handleGuestLogin}
         />
       )}
       {showRegister && (

@@ -41,6 +41,11 @@ html .form-label {
   font-weight: bold;
 }
 
+.modal-error-message {
+  margin-top: 1rem;
+  color: red;
+}
+
 /* Form Input Containers */
 html .form-control {
   border: 0.1rem solid #1e1e1e;
@@ -85,14 +90,14 @@ html .modal .btn-primary:active {
 /* Secondary Button */
 html .btn-secondary {
   background-color: #E3E3E3;
-  color: #1e1e1e; /* White text */
+  color: #1e1e1e; 
   border: 0.1rem solid #1e1e1e;
   text-shadow: 0.05rem 0.05rem #9e9e9e;
 }
 
 html .btn-secondary:hover {
   background-color: #f0f0f0;
-  color: #1e1e1e; /* White text */
+  color: #1e1e1e; 
   border: 0.1rem solid #1e1e1e;
   text-shadow: 0.05rem 0.05rem #9e9e9e;
   transform: translateY(0.1rem);
@@ -102,6 +107,13 @@ html .btn-secondary:hover {
 html .modal .btn-secondary:active {
   background-color: #E3E3E3;
   border: 0.1rem solid #1e1e1e;
+}
+
+.modal .guest-button {
+  background-color: #8CAD63;
+  color: #ffffff;
+  border: 0.1rem solid #1e1e1e;
+  text-shadow: 0.05rem 0.05rem #1e1e1e;
 }
 
 /* Close Button */
@@ -176,13 +188,3 @@ html .form-check-input:checked {
   background-color: #559CD0;
 }
 
-/* Social Media Login Buttons Container */
-.social-login {
-  align-items: center;
-  margin-top: 1em;
-}
-
-/* Social Media Login Buttons */
-html .social-button {
-  width: 65%;
-}

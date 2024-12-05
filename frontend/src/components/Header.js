@@ -3,8 +3,6 @@ import { Navbar, Nav } from "react-bootstrap";
 import Logo from "../assets/images/RYR_logo.svg";
 import home from "../assets/images/button-icons/home.svg";
 import search from "../assets/images/button-icons/search.svg";
-import messages from "../assets/images/button-icons/messages.svg";
-import heart from "../assets/images/button-icons/heart.svg";
 import profile from "../assets/images/button-icons/profile.svg";
 import config from "./config.json";
 import "./Header.css";
@@ -16,22 +14,10 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
 
   useEffect(() => {
     if (userId && sortKey) {
-      console.log(
-        "useEffect triggered with userId and sortKey:",
-        userId,
-        sortKey
-      );
-
       // Fetch profile data from API
       const fetchProfile = async () => {
-        console.log(
-          "fetchProfile triggered with userId:",
-          userId,
-          "and sortKey:",
-          sortKey
-        );
         if (!userId || !sortKey) {
-          setError("UserId or SortKey is missing.");
+          setError("Header: UserId or SortKey is missing.");
           return;
         }
 
@@ -80,21 +66,14 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
         <Navbar.Brand href={"/"}>
           <img src={Logo} alt="Rate Your Roommate" className="navbar-logo" />
         </Navbar.Brand>
-        {!isMobile && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
+        {/* Conditionally render Navbar.Toggle */}
+        {!isLoggedIn && isMobile && (
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        )}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-flex">
-            {/* {isLoggedIn && (
-                        <span className="navbar-username">
-                            Welcome, {userProfile?.username}
-                        </span>
-                        
-                    )} */}
-
             {!isLoggedIn && (
               <>
-                {/* <span className="navbar-username">
-                                Welcome, Guest
-                            </span> */}
                 <button className="nav-btn primary-btn" onClick={onLoginClick}>
                   Login
                 </button>
@@ -106,8 +85,6 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
                 </button>
               </>
             )}
-
-            {/* Conditionally render navigation buttons based on login status */}
             {isLoggedIn && !isMobile && (
               <>
                 <Navbar.Brand href="/home">
@@ -119,16 +96,6 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
                     alt="search-icon"
                     className="navbar-search"
                   />
-                </Navbar.Brand>
-                <Navbar.Brand href="/messages">
-                  <img
-                    src={messages}
-                    alt="messages-icon"
-                    className="navbar-messages"
-                  />
-                </Navbar.Brand>
-                <Navbar.Brand href="/saved">
-                  <img src={heart} alt="heart-icon" className="navbar-heart" />
                 </Navbar.Brand>
                 <Navbar.Brand href="/profile">
                   <img
@@ -144,47 +111,27 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
       </Navbar>
 
       {/* Sticky bottom navigation bar for mobile screens */}
-      <div
-        className={`bottom-navbar d-block d-lg-none ${
-          isMobile ? "" : "d-none"
-        }`}
-      >
-        <Navbar bg="white" className="bottom-navbar-content">
-          <Nav className="w-100 d-flex justify-content-between">
-            {isLoggedIn && (
-              <>
-                <Navbar.Brand href="/home">
-                  <img src={home} alt="home-icon" className="navbar-home" />
-                </Navbar.Brand>
-                <Navbar.Brand href="/search">
-                  <img
-                    src={search}
-                    alt="search-icon"
-                    className="navbar-search"
-                  />
-                </Navbar.Brand>
-                <Navbar.Brand href="/messages">
-                  <img
-                    src={messages}
-                    alt="messages-icon"
-                    className="navbar-messages"
-                  />
-                </Navbar.Brand>
-                <Navbar.Brand href="/saved">
-                  <img src={heart} alt="heart-icon" className="navbar-heart" />
-                </Navbar.Brand>
-                <Navbar.Brand href="/profile">
-                  <img
-                    src={profile}
-                    alt="profile-icon"
-                    className="navbar-profile"
-                  />
-                </Navbar.Brand>
-              </>
-            )}
-          </Nav>
-        </Navbar>
-      </div>
+      {isLoggedIn && isMobile && (
+        <div className="bottom-navbar d-block d-lg-none">
+          <Navbar bg="white" className="bottom-navbar-content">
+            <Nav className="w-100 d-flex justify-content-between">
+              <Navbar.Brand href="/home">
+                <img src={home} alt="home-icon" className="navbar-home" />
+              </Navbar.Brand>
+              <Navbar.Brand href="/search">
+                <img src={search} alt="search-icon" className="navbar-search" />
+              </Navbar.Brand>
+              <Navbar.Brand href="/profile">
+                <img
+                  src={profile}
+                  alt="profile-icon"
+                  className="navbar-profile"
+                />
+              </Navbar.Brand>
+            </Nav>
+          </Navbar>
+        </div>
+      )}
     </>
   );
 }
