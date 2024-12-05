@@ -3,13 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { userList, reviewsData } from "../data/userData";
 import star2 from "../assets/images/button-icons/star2.svg";
 import star2filled from "../assets/images/button-icons/star2-filled.svg";
+import config from "../components/config.json";
 import './CreateReviewPage.css';
 
-const CreateReviewPage = () => {
-    const loggedInUser = userList.find(user => user.username === 'sallysmith');
-    const { userId } = useParams();
-    const user = userList.find((u) => u.id === userId);
+const CreateReviewPage = ({ userId, sortKey }) => {
+    const { recipientId } = useParams();
     const navigate = useNavigate();
+    // const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    // const user = userList.find((u) => u.id === userId);
 
     const [ratings, setRatings] = useState({
         cleanliness: 0,
@@ -25,9 +26,7 @@ const CreateReviewPage = () => {
         roommatesAgain: '',
     });
 
-    const [openEndedTitle, setTitle] = useState('');
     const [openEnded, setOpenEnded] = useState('');
-    const [isAnonymous, setIsAnonymous] = useState(false);
     const [error, setError] = useState(''); // State for error messages
 
     const handleRatingChange = (category, value) => {
@@ -142,10 +141,10 @@ const CreateReviewPage = () => {
     return (
         <div className="create-review-content">
             <div className="create-review-header">
-                <div className="create-review-name">Rate: {user.firstName} {user.lastName}</div>
+                <div className="create-review-name">Rate: {recipientId.first_name || "Name"} {recipientId.last_name}</div>
                 <div className="occupation-location-container">
-                    <div className="create-review-occupation">{user.occupation}</div>
-                    <div className="create-review-location">{user.city}, {user.state}</div>
+                    <div className="create-review-occupation">{recipientId.occupation || "Occupation"}</div>
+                    <div className="create-review-location">{recipientId.city || "City"}, {recipientId.state || "State"}</div>
                 </div>
             </div>
 
@@ -243,7 +242,7 @@ const CreateReviewPage = () => {
                         <button
                             type="button"
                             className="secondary-btn submit-review-btn"
-                            onClick={() => navigate(`/reviews/${userId}`)}
+                            onClick={() => navigate(`/reviews/${recipientId}`)}
                         >
                             Cancel
                         </button>
