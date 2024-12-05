@@ -9,6 +9,8 @@ const EditProfilePage = ({ userId, sortKey }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [profilePicture, setProfilePicture] = useState("");
+  const [isEditingProfilePicture, setIsEditingProfilePicture] = useState(false);
   const [aboutMeText, setAboutMeText] = useState("");
   const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
   const [selectedPreferences, setSelectedPreferences] = useState([]);
@@ -16,41 +18,6 @@ const EditProfilePage = ({ userId, sortKey }) => {
   const [accountDetails, setAccountDetails] = useState({});
   const [isEditingAccount, setIsEditingAccount] = useState(false);
   const [isEditingReviews, setIsEditingReviews] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(
-    accountDetails.profile_picture
-  );
-  const [isImageSelectorOpen, setImageSelectorOpen] = useState(false);
-
-  // List of available profile images
-  const profileImages = [
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile1_d6xrom.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203676/profile19_tege5h.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203678/profile20_rfhn8e.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203674/profile17_lcdwbc.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203676/profile18_nblubv.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203672/profile15_k86rjz.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203673/profile16_n3zprz.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203670/profile13_brhjvi.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203671/profile14_lcgidt.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203668/profile11_dthwri.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203669/profile12_hnmi28.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203666/profile9_aw0wzy.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203667/profile10_svilng.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203664/profile7_c5rcbz.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203665/profile8_mbjvao.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203662/profile5_tap39x.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203663/profile6_nzeod5.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile3_jnri7g.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203661/profile4_oit0aj.jpg",
-    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile2_uww4pq.jpg",
-  ];
-
-  const handleImageSelect = (image) => {
-    setSelectedImage(image);
-    accountDetails.profile_picture = profile_picture;
-    setImageSelectorOpen(false);
-  };
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -67,6 +34,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
 
         const data = await response.json();
         setUserProfile(data);
+        setProfilePicture(data.profile_picture);
         setAboutMeText(data?.ProfileData?.aboutMe || "");
         setSelectedPreferences(data?.ProfileData?.preferences || []);
         setAccountDetails({
@@ -110,6 +78,45 @@ const EditProfilePage = ({ userId, sortKey }) => {
     }
   };
 
+  // List of available profile images
+  const profileImages = [
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile1_d6xrom.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203676/profile19_tege5h.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203678/profile20_rfhn8e.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203674/profile17_lcdwbc.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203676/profile18_nblubv.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203672/profile15_k86rjz.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203673/profile16_n3zprz.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203670/profile13_brhjvi.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203671/profile14_lcgidt.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203668/profile11_dthwri.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203669/profile12_hnmi28.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203666/profile9_aw0wzy.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203667/profile10_svilng.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203664/profile7_c5rcbz.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203665/profile8_mbjvao.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203662/profile5_tap39x.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203663/profile6_nzeod5.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile3_jnri7g.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203661/profile4_oit0aj.jpg",
+    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203659/profile2_uww4pq.jpg",
+  ];
+
+  const handleSaveProfilePicture = async (imageUrl) => {
+    try {
+      await updateProfile({
+        profile_picture: imageUrl,
+      });
+
+      setProfilePicture(imageUrl);
+      setIsEditingProfilePicture(false);
+      alert("Profile picture updated successfully!");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   const handleSaveAboutMe = async () => {
     try {
       await updateProfile({
@@ -150,6 +157,11 @@ const EditProfilePage = ({ userId, sortKey }) => {
   };
 
   const handleSaveAccountDetails = async () => {
+    if (!accountDetails.state || !accountDetails.city) {
+      alert("State/Province and City fields are required.");
+      return;
+    }
+
     try {
       await updateProfile({
         username: accountDetails.username,
@@ -268,29 +280,40 @@ const EditProfilePage = ({ userId, sortKey }) => {
         <div className="edit-profile-image-wrapper">
           <img
             src={
-              userProfile?.profile_picture ||
+              profilePicture ||
               "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
             }
-            alt={`${userProfile?.first_name || "User"}'s profile`}
+            alt={`${userProfile?.username || "User"}'s profile`}
             className="edit-profile-image"
           />
           <button
             className="edit-profile-image-btn"
-            onClick={() => setImageSelectorOpen(!isImageSelectorOpen)}
+            onClick={() => setIsEditingProfilePicture(!isEditingProfilePicture)}
           >
             ✎
           </button>
-          {isImageSelectorOpen && (
-            <div className="image-selector-dropdown">
-              {profileImages.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Profile option ${index + 1}`}
-                  className="profile-option-image"
-                  onClick={() => handleImageSelect(image)}
-                />
-              ))}
+          {isEditingProfilePicture && (
+            <div className="image-selector-modal">
+              <div className="profile-image-text">Select Profile Picture</div>
+              <div className="image-selector-container">
+                {profileImages.map((imageUrl, index) => (
+                  <img
+                    key={index}
+                    src={imageUrl}
+                    alt={`Profile option ${index}`}
+                    className="profile-image-option"
+                    onClick={() => handleSaveProfilePicture(imageUrl)}
+                  />
+                ))}
+              </div>
+              <div className="cancel-pic-container">
+                <button
+                  className="secondary-btn cancel-button"
+                  onClick={() => setIsEditingProfilePicture(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -392,7 +415,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                       </Badge>
                     ))
                   ) : (
-                    <h5>No preferences selected.</h5>
+                    <h5>No preferences added.</h5>
                   )}
                 </div>
               </div>
@@ -415,7 +438,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
                       </Badge>
                     ))
                   ) : (
-                    <h5>No more preferences available.</h5>
+                    <h5>No more available preferences.</h5>
                   )}
                 </div>
               </div>
@@ -443,17 +466,12 @@ const EditProfilePage = ({ userId, sortKey }) => {
                     className={`selected-profile-preference-tag ${getPreferenceCategoryClass(
                       pref
                     )}`}
-                    onClick={() =>
-                      setSelectedPreferences((prev) =>
-                        prev.filter((p) => p !== pref)
-                      )
-                    }
                   >
                     {pref}
                   </Badge>
                 ))
               ) : (
-                <h5>No preferences selected.</h5>
+                <h5>No preferences added.</h5>
               )}
             </div>
           )}
@@ -482,17 +500,7 @@ const EditProfilePage = ({ userId, sortKey }) => {
               </div>
               <div className="form-group">
                 <label>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={accountDetails.email}
-                  onChange={(e) =>
-                    setAccountDetails({
-                      ...accountDetails,
-                      email: e.target.value,
-                    })
-                  }
-                />
+                <input type="email" value={accountDetails.email} disabled />
               </div>
               <div className="form-group">
                 <label>First Name</label>
@@ -549,7 +557,9 @@ const EditProfilePage = ({ userId, sortKey }) => {
                       })
                     }
                   >
-                    <option>Choose...</option>
+                    <option disabled value="">
+                      Select...
+                    </option>
                     <option>Canada</option>
                     <option>USA</option>
                   </select>

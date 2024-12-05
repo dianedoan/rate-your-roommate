@@ -54,16 +54,22 @@ def lambda_handler(event, context):
         # Remove the trailing comma and space
         update_expression = update_expression.rstrip(", ")
 
-        # Perform the update
-        table.update_item(
-            Key={
+        # Prepare the update parameters
+        update_params = {
+            "Key": {
                 'UserId': user_id,
                 'DataType#Timestamp': sort_key
             },
-            UpdateExpression=update_expression,
-            ExpressionAttributeValues=expression_attribute_values,
-            ExpressionAttributeNames=expression_attribute_names
-        )
+            "UpdateExpression": update_expression,
+            "ExpressionAttributeValues": expression_attribute_values,
+        }
+
+        # Include ExpressionAttributeNames only if it is non-empty
+        if expression_attribute_names:
+            update_params["ExpressionAttributeNames"] = expression_attribute_names
+
+        # Perform the update
+        table.update_item(**update_params)
 
         return {
             'statusCode': 200,

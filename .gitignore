@@ -21,3 +21,7 @@ backend/functions/*/package
 backend/functions/*/artifact.zip
 backend/functions/*/requirements.txt
 frontend/src/components/config.json
+
+backend/functions/*/*/artifact.zip
+backend/functions/*/*/requirements.txt
+backend/functions/*/*/package
