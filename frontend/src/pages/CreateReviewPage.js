@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { userList, reviewsData } from "../data/userData";
-import star2 from "../assets/images/button-icons/star2.svg";
-import star2filled from "../assets/images/button-icons/star2-filled.svg";
+import star from "../assets/images/button-icons/star.svg";
+import starfilled from "../assets/images/button-icons/star-filled.svg";
 import config from "../components/config.json";
 import './CreateReviewPage.css';
 
 const CreateReviewPage = ({ userId, sortKey }) => {
     const { recipientId } = useParams();
     const navigate = useNavigate();
-    // const loggedInUser = userList.find(user => user.username === 'sallysmith');
-    // const user = userList.find((u) => u.id === userId);
 
     const [ratings, setRatings] = useState({
         cleanliness: 0,
@@ -19,15 +16,17 @@ const CreateReviewPage = ({ userId, sortKey }) => {
         noiseLevel: 0,
         etiquette: 0,
     });
-
     const [yesNoQuestions, setYesNoQuestions] = useState({
-        respectful: '',
-        punctualFees: '', 
-        roommatesAgain: '',
+        respectful: "",
+        punctualFees: "",
+        roommatesAgain: "",
     });
+    const [openEnded, setOpenEnded] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const [openEnded, setOpenEnded] = useState('');
-    const [error, setError] = useState(''); // State for error messages
+
+
 
     const handleRatingChange = (category, value) => {
         setRatings((prevRatings) => ({
@@ -75,7 +74,6 @@ const CreateReviewPage = ({ userId, sortKey }) => {
             reviewId: `review-${Date.now()}`,
             userId,
             authorId: user.username,
-            username: isAnonymous ? "Anonymous" : user.username,
             ratings,
             score: parseFloat(
                 (
@@ -86,7 +84,6 @@ const CreateReviewPage = ({ userId, sortKey }) => {
                         ratings.etiquette) / 5
                 ).toFixed(1)
             ),
-            title: openEndedTitle,
             description: openEnded,
             yesNoAnswers: [
                 {
@@ -115,7 +112,7 @@ const CreateReviewPage = ({ userId, sortKey }) => {
         const stars = [];
 
         for (let i = 1; i <= 5; i++) {
-            const starIcon = i <= rating ? star2filled : star2;
+            const starIcon = i <= rating ? starfilled : star;
             stars.push(
                 <div key={i} className="star-container">
                     <img
@@ -137,6 +134,23 @@ const CreateReviewPage = ({ userId, sortKey }) => {
             </div>
         );
     };
+
+    // if (loading) {
+    //     return (
+    //         <div className="general-content">
+    //             <h2>Loading...</h2>
+    //         </div>
+    //     );
+    // }
+
+    if (!userId) {
+        return (
+            <div className="general-content">
+                <h2>Not Logged In</h2>
+                <h3>Please log in to access this page.</h3>
+            </div>
+        );
+    }
 
     return (
         <div className="create-review-content">

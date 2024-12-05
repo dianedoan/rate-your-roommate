@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { userList, reviewsData } from "../data/userData";
 import leftarrow from "../assets/images/button-icons/left-arrow.svg";
 import rightarrow from "../assets/images/button-icons/right-arrow.svg";
-import heart2 from "../assets/images/button-icons/heart2.svg";
-import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import config from "../components/config.json";
 import "./HomePage.css";
 
 const HomePage = ({ userId, sortKey }) => {
     const [topRatedList, setTopRatedList] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
+
+    const [searchQuery, setSearchQuery] = useState("");
+    
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    // Fetch Top-Rated Users
     useEffect(() => {
         const fetchTopRatedUsers = async () => {
             const url = `${config.apiBaseUrl}/get-top-users`;
@@ -35,6 +37,37 @@ const HomePage = ({ userId, sortKey }) => {
         fetchTopRatedUsers();
     }, []);
 
+    // Fetch Search Results
+    const fetchSearchResults = async (query) => {
+        setLoading(true);
+        setError('');
+        try {
+            const response = await fetch(`${config.apiBaseUrl}/search?searchTerm=${encodeURIComponent(query)}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                setFilteredUsers(data.results || []);
+            } else {
+                setFilteredUsers([]);
+                setError(data.message || 'Error fetching results.');
+            }
+        } catch (err) {
+            setError('An error occurred while fetching search results.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Handle search query changes
+    useEffect(() => {
+        if (searchQuery.trim() !== '') {
+            fetchSearchResults(searchQuery);
+        } else {
+            setFilteredUsers([]);
+        }
+    }, [searchQuery]);
+
+    // Handle next and previous buttons for top-rated users
     const handleNext = () => {
         setActiveTopRatedIndex((prevIndex) => (prevIndex + 1) % topRatedList.length);
     };
@@ -50,14 +83,22 @@ const HomePage = ({ userId, sortKey }) => {
             </div>
         );
     }
+
+    if (error) {
+        return (
+            <div className="general-content">
+                <h3>Error: {error}</h3>
+            </div>
+        );
+    }
+
     return (
         <div className="homepage-content">
-            <div className="top-rated-section">
             {/* Top-Rated Section */}
+            <div className="top-rated-section">
                 <h2>Top-Rated <span className="highlight2">Roommates</span></h2>
                 {topRatedList.length > 0 ? (
                     <div className="top-rated-container">
-                        {/* Previous Button */}
                         <button onClick={handlePrevious} className="navigation-button">
                             <img src={leftarrow} alt="previous" className="arrow-icon" />
                         </button>
@@ -70,8 +111,8 @@ const HomePage = ({ userId, sortKey }) => {
                             <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].Username}>
                                 <div className="top-rated-profile-image-container">
                                     <img
-                                        src={topRatedList[activeTopRatedIndex].ProfilePicture}
-                                        alt={topRatedList[activeTopRatedIndex].username}
+                                        src={topRatedList[activeTopRatedIndex].ProfilePicture  || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                                        alt={`${topRatedList[activeTopRatedIndex] || "User"}'s profile`}
                                         className="top-rated-profile-image"
                                     />
                                 </div>
@@ -89,25 +130,12 @@ const HomePage = ({ userId, sortKey }) => {
                                                 {topRatedList[activeTopRatedIndex].AboutMe}
                                             </div>
                                         </div>
-                                    
+
                                         <div className="top-rated-location-favorite-container">
                                             <div className="top-rated-location">
                                                 {topRatedList[activeTopRatedIndex].City},{" "}
                                                 {topRatedList[activeTopRatedIndex].State}
                                             </div>
-                                            {/* <div className="favorite-icon">
-                                                <img
-                                                    src={likedProfiles.includes(topRatedList[activeTopRatedIndex].username)
-                                                        ? heart2filled
-                                                        : heart2}
-                                                    alt="heart icon"
-                                                    className="heart-icon"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
-                                                        toggleLike(topRatedList[activeTopRatedIndex].username); // Toggle like
-                                                    }}
-                                                />
-                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="top-rated-profile-score">
@@ -116,10 +144,10 @@ const HomePage = ({ userId, sortKey }) => {
                                         </span>{" "}
                                         Rating
                                     </div>
-                                </div>                 
+                                </div>
                             </div>
                         </div>
-                        {/* Next Button */}
+
                         <button onClick={handleNext} className="navigation-button">
                             <img src={rightarrow} alt="next" className="arrow-icon" />
                         </button>
@@ -131,9 +159,7 @@ const HomePage = ({ userId, sortKey }) => {
 
             {/* Explore Section */}
             <div className="explore-section">
-                <h2>
-                    Explore <span className="highlight3">Roommates</span>
-                </h2>
+                <h2>Explore <span className="highlight3">Roommates</span></h2>
                 {/* {filteredUsers.length > 0 ? (
                     filteredUsers.map((user) => (
                         <div
@@ -144,8 +170,8 @@ const HomePage = ({ userId, sortKey }) => {
                             <div className="profile-info-container">
                                 <div className="profile-image-container">
                                     <img
-                                        src={user.profile_picture}
-                                        alt={user.username}
+                                        src={user.profile_picture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                                        alt={`${user.username || "User"}'s profile`}
                                         className="profile-image"
                                     />
                                     <div className="profile-info">
@@ -161,22 +187,11 @@ const HomePage = ({ userId, sortKey }) => {
                                     </div>
                                 </div>
                                 <div className="profile-location">{user.city}, {user.state}</div>
-                                <div className="favorite-icon">
-                                    <img
-                                    src={likedProfiles.includes(user.username) ? heart2filled : heart2}
-                                    alt="heart icon"
-                                    className="heart-icon"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        toggleLike(user.username);
-                                        }}
-                                        />
-                                </div>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <h3>No roommates found.</h3>
+                    <h3>No roommates found near you.</h3>
                 )} */}
             </div>
         </div>

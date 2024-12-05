@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import { useParams, useNavigate } from 'react-router-dom';
-import heart2 from '../assets/images/button-icons/heart2.svg';
-import heart2filled from '../assets/images/button-icons/heart2-filled.svg';
+import { useNavigate } from 'react-router-dom';
 import config from "../components/config.json";
 import './SearchPage.css';
 
@@ -11,9 +9,7 @@ function SearchPage() {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    // const [likedProfiles, setLikedProfiles] = useState([]);
 
-    const { UserId } = useParams();
     const navigate = useNavigate();
 
     // Function to fetch search results from the backend
@@ -46,19 +42,6 @@ function SearchPage() {
         }
     }, [searchQuery]);
 
-    // const toggleLike = (userName) => {
-    //     setLikedProfiles((prevLikes) => {
-    //         const updatedLikes = [...prevLikes];
-    //         if (updatedLikes.includes(userName)) {
-    //             const index = updatedLikes.indexOf(userName);
-    //             updatedLikes.splice(index, 1);
-    //         } else {
-    //             updatedLikes.push(userName);
-    //         }
-    //         return updatedLikes;
-    //     });
-    // };
-
     return (
         <div className="general-content">
             <h2>Search</h2>
@@ -66,17 +49,23 @@ function SearchPage() {
                 <Form.Group controlId="search" className="search-bar">
                     <Form.Control
                         type="text"
-                        placeholder="Search by name, state/province, or city"
+                        placeholder="Search by name or city"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="mb-3"
                     />
                 </Form.Group>
                 {loading ? (
-                    <p>Loading...</p>
+                    <div className="general-content">
+                        <h3>Loading...</h3>
+                    </div>
                 ) : error ? (
-                    <p className="error">{error}</p>
-                ) : filteredUsers.length > 0 ? (
+                    <div className="general-content">
+                        <h3>Error: {error}</h3>
+                    </div>
+                ) : searchQuery.trim() !== '' && filteredUsers.length === 0 ? (
+                    <h3>No results found.</h3>
+                ) : (
                     <div className="search-results">
                         {filteredUsers.map((user) => (
                             <div
@@ -87,8 +76,8 @@ function SearchPage() {
                                 <div className="profile-info-container">
                                     <div className="profile-image-container">
                                         <img
-                                            src={user.profile_picture}
-                                            alt={user.username}
+                                            src={user.profile_picture  || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                                            alt={`${user.username || "User"}'s profile`}
                                             className="profile-image"
                                         />
                                         <div className="profile-info">
@@ -104,27 +93,15 @@ function SearchPage() {
                                         </div>
                                     </div>
                                     <div className="profile-location">{user.city}, {user.state}</div>
-                                    {/* <div className="favorite-icon">
-                                        <img
-                                        src={likedProfiles.includes(user.username) ? heart2filled : heart2}
-                                        alt="heart icon"
-                                        className="heart-icon"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            toggleLike(user.username);
-                                            }}
-                                            />
-                                    </div> */}
                                 </div>
                             </div>
                         ))}
                     </div>
-                ) : (
-                    <h3>No results found.</h3>
                 )}
             </div>
         </div>
     );
+    
 }
 
 export default SearchPage;

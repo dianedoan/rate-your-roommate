@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Badge } from "react-bootstrap";
 import config from "../components/config.json";
 import "./UserProfilePage.css";
 
 const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     console.log("UserProfilePage: Received userId and sortKey:", userId, sortKey);
-    const navigate = useNavigate();
 
     // State variables
     const [userProfile, setUserProfile] = useState(null);
@@ -15,12 +14,8 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
 
      // Fetch profile data from API
     const fetchProfile = async () => {
-        console.log(
-            "fetchProfile triggered with userId:",
-            userId,
-            "and sortKey:",
-            sortKey
-        );
+        console.log("useEffect triggered with userId and sortKey:", userId, sortKey);
+
         if (!userId || !sortKey) {
             setError("UserId or SortKey is missing.");
             return;
@@ -57,21 +52,6 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
             console.log("useEffect skipped: userId or sortKey is null.");
         }
     }, [userId, sortKey]);
-
-    // Handle deactivate account
-    const handleDeactivateAccount = () => {
-        const confirmation = window.confirm(
-            "Are you sure you want to deactivate your account? This action is permanent and cannot be undone."
-        );
-
-        if (confirmation) {
-            console.log("Account deactivated for user:", loggedInUser.name);
-            alert("Your account has been deactivated.");
-            navigate('/');
-        } else {
-            console.log("Account deactivation canceled.");
-        }
-    };
 
     // Function to generate the star rating based on score
     const generateStarRating = (score) => {
@@ -118,6 +98,31 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     };
 
     const reviews = userProfile?.reviews || [];
+
+    if (!userId) {
+        return (
+            <div className="general-content">
+                <h2>Not Logged In</h2>
+                <h3>Please log in to access this page.</h3>
+            </div>
+        );
+    }
+
+    if (loading) {
+        return (
+            <div className="general-content">
+                <h2>Loading...</h2>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="general-content">
+                <h3>Error: {error}</h3>
+            </div>
+        );
+    }
     
     return (
         <div className="user-profile-content">
@@ -196,8 +201,7 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
                 </div>
             </div>
             <div className="profile-buttons-container">
-                <button className="profile-btn logout-btn" onClick={onLogoutClick}>Logout</button>
-                <button className="profile-btn deactivate-btn" onClick={handleDeactivateAccount}>Deactivate Account</button>
+                <button className="profile-btn" onClick={onLogoutClick}>Logout</button>
             </div>
         </div>
     );

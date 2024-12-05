@@ -233,7 +233,6 @@ const EditProfilePage = ({ userId, sortKey }) => {
     };
     
     const reviews = userProfile?.reviews || [];
-    // const [userReviews, setUserReviews] = useState(reviewsData.filter(review => review.authorId === userId));
     
     // Function to generate the star rating based on score
     const generateStarRating = (score) => {
@@ -242,8 +241,30 @@ const EditProfilePage = ({ userId, sortKey }) => {
         return filledStars + halfStar;
     };
     
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (!userId) {
+        return (
+            <div className="general-content">
+                <h2>Not Logged In</h2>
+                <h3>Please log in to access this page.</h3>
+            </div>
+        );
+    }
+
+    if (loading) {
+        return (
+            <div className="general-content">
+                <h2>Loading...</h2>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="general-content">
+                <h3>Error: {error}</h3>
+            </div>
+        );
+    }
 
     return (
         <div className="edit-profile-content">
