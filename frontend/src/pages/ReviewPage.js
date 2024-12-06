@@ -70,12 +70,19 @@ const ReviewPage = () => {
         return '';
     };
 
-    // Calculate average rating
+    // Calculate average user rating
     const calculateAverageRating = () => {
         if (reviews.length === 0) return null;
-        const totalScore = reviews.reduce((sum, review) => sum + review.Score, 0);
-        return (totalScore / reviews.length).toFixed(1); // Rounded to 1 decimal place
+    
+        const totalScore = reviews.reduce((sum, review) => {
+            const score = parseFloat(review.Score); // Convert Score to a number
+            return sum + (isNaN(score) ? 0 : score);
+        }, 0);
+    
+        const average = totalScore / reviews.length
+        return average.toFixed(1); // Round to 1 decimal place
     };
+    
 
     const averageRating = calculateAverageRating();
 
@@ -120,7 +127,6 @@ const ReviewPage = () => {
                     <div className="review-profile-info">
                         <div className="name-heart-container">
                             <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
-
                         </div>
                         <div className="review-profile-occupation">{reviewProfile.Occupation}</div>
                         <div className="review-profile-description">
@@ -164,7 +170,7 @@ const ReviewPage = () => {
 
             <div className="review-section">
                 {reviews.length > 0 ? (
-                    reviews.map((review, index) => (
+                    [...reviews].reverse().map((review, index) => (
                         <div key={index} className="review-card">
                             <div className="review-info">
                                 <div className="review-score">
@@ -172,19 +178,28 @@ const ReviewPage = () => {
                                     <span className="highlight5">{generateStarRating(review.Score)}</span>
                                 </div>
                                 <div className="review-description">
-                                    {review.ReviewText || "No detailed review provided."}
+                                    {review.ReviewText}
                                 </div>
 
                                 {review.YesNoAnswers && (
                                     <div className="review-questions">
-                                        {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => (
-                                            <div key={index} className="review-question-answer">
-                                                <strong>{questionKey}</strong>: {answerObj || "Not answered"}
-                                            </div>
-                                        ))}
+                                        {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => {
+                                            const questionMapping = {
+                                                space_respect: "Was this roommate respectful of your space?",
+                                                punctuality: "Was this roommate punctual with paying their living fees?",
+                                                roommates_again: "Would you be roommates again?",
+                                            };
+
+                                            const questionText = questionMapping[questionKey] || questionKey;
+
+                                            return (
+                                                <div key={index} className="review-question-answer">
+                                                    <strong>{questionText}</strong>: {answerObj || "Not answered"}
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 )}
-
                                 <div className="review-date">
                                     {review.Timestamp ? new Date(review.Timestamp * 1000).toLocaleDateString() : "Date not available"}
                                 </div>

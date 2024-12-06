@@ -9,11 +9,6 @@ const HomePage = ({ userId, sortKey, userCity }) => {
   const [topRatedList, setTopRatedList] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
-
-  //   const city = userCity || "";
-
-  //   const [searchQuery, setSearchQuery] = useState("");
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -44,7 +39,6 @@ const HomePage = ({ userId, sortKey, userCity }) => {
   }, []);
 
   // Fetch Search Results
-  // Fetch Search Results
   const fetchSearchResults = async (query) => {
     setLoading(true);
     setError("");
@@ -53,7 +47,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
         `${config.apiBaseUrl}/search?searchTerm=${encodeURIComponent(query)}`
       );
       const data = await response.json();
-
+      console.log("Fetched explore-section users:", data);
       if (response.ok) {
         // Filter out the logged-in user
         const filtered = data.results?.filter((user) => user.UserId !== userId);
@@ -168,7 +162,10 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                   </div>
                   <div className="top-rated-profile-score">
                     <span className="highlight4">
-                      {topRatedList[activeTopRatedIndex].AverageScore}/5
+                      {(
+                        topRatedList[activeTopRatedIndex].AverageScore || 0
+                      ).toFixed(1)}
+                      /5
                     </span>{" "}
                     Rating
                   </div>

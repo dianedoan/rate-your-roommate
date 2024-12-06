@@ -1,5 +1,5 @@
 .top-content {
-    padding-top: 5rem;
+    padding-top: 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,11 +10,11 @@
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;
-    height: 80rem;
+    height: 60rem;
     position: relative;
     text-align: center;
     box-sizing: border-box;
-    border: inset 25rem transparent;
+    border: inset 40rem transparent;
     border-top: none;
     border-bottom: none;
 }
@@ -26,8 +26,8 @@
 /* Media query for Extra Wide Screens (2560px) */
 @media (max-width: 2560px) {
     .main-section {
-        height: 83rem;
-        border: inset 15rem transparent;
+        height: 55rem;
+        border: inset 40rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -39,9 +39,13 @@
 
 /* Media query for Large Screens (2250px) */
 @media (max-width: 2300px) {
+    .top-content {
+        padding-top: 5rem;
+    }
+    
     .main-section {
-        height: 70rem;
-        border: inset 15rem transparent;
+        height: 45rem;
+        border: inset 30rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -53,9 +57,13 @@
 
 /* Media query for Large Screens (1900px) */
 @media (max-width: 1900px) {
+    .top-content {
+        padding-top: 5rem;
+    }
+    
     .main-section {
-        height: 65rem;
-        border: inset 10rem transparent;
+        height: 45rem;
+        border: inset 25rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -67,9 +75,13 @@
 
 /* Media query for Large Screens (1900px) */
 @media (max-width: 1650px) {
+    .top-content {
+        padding-top: 5rem;
+    }
+
     .main-section {
-        height: 65rem;
-        border: inset 10rem transparent;
+        height: 45rem;
+        border: inset 18rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -81,9 +93,30 @@
 
 /* Media query for Large Screens (Laptop L) */
 @media (max-width: 1440px) {
+    .top-content {
+        padding-top: 4rem;
+    }
+
     .main-section {
-        height: 60rem;
-        border: inset 4rem transparent;
+        height: 40rem;
+        border: inset 15rem transparent;
+        border-top: none;
+        border-bottom: none;
+    }
+    .main-section.logged-in {
+        height: 52rem;
+    }
+}
+
+/* Media query for Large Screens (Laptop L) */
+@media (max-width: 1200px) {
+    .top-content {
+        padding-top: 3.5rem;
+    }
+
+    .main-section {
+        height: 40rem;
+        border: inset 10rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -94,8 +127,12 @@
 
 /* Media Query for Medium Screens (Laptop) */
 @media (max-width: 1024px) {
+    .top-content {
+        padding-top: 3rem;
+    }
+
     .main-section {
-        height: 50rem;
+        height: 35rem;
         border: inset 5rem transparent;
         border-top: none;
         border-bottom: none;
@@ -105,11 +142,16 @@
     }
 }
 
+
 /* Media Query for Small Screens (Mobile) */
 @media (max-width: 768px) {
+    .top-content {
+        padding-top: 3rem;
+    }
+
     .main-section {
-        height: 50rem;
-        border: inset 0.7rem transparent;
+        height: 30rem;
+        border: inset 3rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -117,18 +159,31 @@
     .main-section.logged-in {
         height: 35rem;
     }
+}
 
-    .button-container {
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 10px;
+/* Media Query for Small Screens (Tablet) */
+@media (max-width: 660px) {
+    .top-content {
+        padding-top: 3rem;
+    }
+    
+    .main-section {
+        height: 25rem;
+        border: inset 2rem transparent;
+        border-top: none;
+        border-bottom: none;
     }
 }
 
 /* Media Query for Small Screens (Mobile L)*/
 @media (max-width: 425px) {
+    .top-content {
+        padding-top: 3rem;
+    }
+
     .main-section {
-        height: 35rem;
-        border: inset 1.5rem transparent;
+        height: 24rem;
+        border: inset 2rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -137,27 +192,21 @@
         height: 25rem;
     }
 
-    .top-content {
-        padding-top: 2rem;
-    }
-
     .main-section .button-container {
         padding-top: 0rem;
     }
-
-    .main-section .normal-btn {
-        width: 8rem;
-        padding: 0.8rem;
-        margin: 0.2rem;
-        font-size: 1.1rem;
-    }
+    
 }
 
 /* Media Query for Extra Small Screens (Mobile M) */
 @media (max-width: 375px) {
+    .top-content {
+        padding-top: 2rem;
+    }
+
     .main-section {
-        height: 32rem;
-        border: inset 1.5rem transparent;
+        height: 20rem;
+        border: inset 2rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -166,20 +215,17 @@
         height: 22rem;
     }
 
-    .main-section h1 {
-        font-size: 2.5rem;
-    }
 
-    .top-content {
-        padding-top: 2rem;
+    .top-content .button-container {
+        gap: 0rem;
     }
 }
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
     .main-section {
-        height: 30rem;
-        border: inset 1.5rem transparent;
+        height: 17rem;
+        border: inset 3rem transparent;
         border-top: none;
         border-bottom: none;
     }
@@ -188,11 +234,7 @@
         height: 20rem;
     }
 
-    .main-section h1 {
-        font-size: 2.5rem;
-    }
-
     .top-content {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
     }
 }

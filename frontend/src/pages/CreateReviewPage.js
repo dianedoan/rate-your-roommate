@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import star from "../assets/images/button-icons/star.svg";
 import starfilled from "../assets/images/button-icons/star-filled.svg";
@@ -9,6 +9,7 @@ const CreateReviewPage = ({ userId, sortKey }) => {
     const { recipientId } = useParams();
     const navigate = useNavigate();
 
+    const [reviewProfile, setReviewProfile] = useState(null);
     const [ratings, setRatings] = useState({
         cleanliness: 0,
         communication: 0,
@@ -17,16 +18,99 @@ const CreateReviewPage = ({ userId, sortKey }) => {
         etiquette: 0,
     });
     const [yesNoQuestions, setYesNoQuestions] = useState({
-        respectful: "",
-        punctualFees: "",
-        roommatesAgain: "",
+        space_respect: "",
+        punctuality: "",
+        roommates_again: "",
     });
     const [openEnded, setOpenEnded] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        // Fetch recipient profile from the API
+        const fetchReviewData = async () => {
+            console.log("Fetching profile and reviews for recipientId:", recipientId);
+
+            const url = `${config.apiBaseUrl}/get-user-reviews?RecipientId=${recipientId}`;
+
+            try {
+                const response = await fetch(url);
+
+                if (response.status === 404) {
+                    throw new Error("User review page not found."); // Handle 404 explicitly
+                }
+
+                if (!response.ok) throw new Error("Failed to fetch review data.");
+
+                const data = await response.json();
+                console.log("Fetched data:", data);
+                console.log("Fetched user data:", data.user);
+
+                setReviewProfile(data.user);
+                console.log("Fetched first name:", reviewProfile.FirstName);
+                console.log("Fetched last name:", reviewProfile.LastName);
+                console.log("Fetched user occupation:", reviewProfile.Occupation);
+                console.log("Fetched user city:", reviewProfile.City);
+                console.log("Fetched user state:", reviewProfile.State);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching review data:", err.message);
+                setLoading(false);
+            }
+        };
+        
+        fetchReviewData();
+    }, [recipientId]);
 
 
+    // Scroll to the top when the page is rendered
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
+
+        const reviewData = {
+            reviewerId: userId,
+            recipientId,
+            score: ((ratings.cleanliness +
+                ratings.communication +
+                ratings.timeliness +
+                ratings.noiseLevel +
+                ratings.etiquette) / 5).toFixed(1),
+            reviewText: openEnded,
+            yesNoAnswers: yesNoQuestions,
+            ratings,
+        };
+
+        console.log('Submitting Review Data:', reviewData);
+
+        try {
+            setLoading(true);
+            const response = await fetch(`${config.apiBaseUrl}/write-review?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(reviewData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                navigate(`/reviews/${recipientId}`);
+            } else {
+                setError(result.message || 'Failed to submit review.');
+            }
+        } catch (err) {
+            setError('An error occurred. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleRatingChange = (category, value) => {
         setRatings((prevRatings) => ({
@@ -43,10 +127,7 @@ const CreateReviewPage = ({ userId, sortKey }) => {
     };
 
     const validateForm = () => {
-        // Check all ratings
         const allRatingsAnswered = Object.values(ratings).every((rating) => rating > 0);
-
-        // Check all yes/no questions
         const allYesNoAnswered = Object.values(yesNoQuestions).every((answer) => answer !== '');
 
         if (!allRatingsAnswered) {
@@ -59,52 +140,8 @@ const CreateReviewPage = ({ userId, sortKey }) => {
             return false;
         }
 
-        setError(''); // Clear error if validation passes
+        setError(''); 
         return true;
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (!validateForm()) {
-            return;
-        }
-
-        const newReview = {
-            reviewId: `review-${Date.now()}`,
-            userId,
-            authorId: user.username,
-            ratings,
-            score: parseFloat(
-                (
-                    (ratings.cleanliness +
-                        ratings.communication +
-                        ratings.timeliness +
-                        ratings.noiseLevel +
-                        ratings.etiquette) / 5
-                ).toFixed(1)
-            ),
-            description: openEnded,
-            yesNoAnswers: [
-                {
-                    question: 'Was this roommate respectful of your space?',
-                    answer: yesNoQuestions.respectful
-                },
-                {
-                    question: 'Was this roommate punctual with paying their living fees?',
-                    answer: yesNoQuestions.punctualFees
-                },
-                {
-                    question: 'Would you be roommates again?',
-                    answer: yesNoQuestions.roommatesAgain
-                }
-            ],
-            date: new Date().toLocaleDateString(),
-        };
-
-        reviewsData.unshift(newReview);
-        console.log("New Review Submitted:", newReview);
-        navigate(`/reviews/${userId}`);
     };
 
     const renderStars = (category, labelBefore, labelAfter) => {
@@ -135,14 +172,6 @@ const CreateReviewPage = ({ userId, sortKey }) => {
         );
     };
 
-    // if (loading) {
-    //     return (
-    //         <div className="general-content">
-    //             <h2>Loading...</h2>
-    //         </div>
-    //     );
-    // }
-
     if (!userId) {
         return (
             <div className="general-content">
@@ -155,13 +184,18 @@ const CreateReviewPage = ({ userId, sortKey }) => {
     return (
         <div className="create-review-content">
             <div className="create-review-header">
-                <div className="create-review-name">Rate: {recipientId.first_name || "Name"} {recipientId.last_name}</div>
-                <div className="occupation-location-container">
-                    <div className="create-review-occupation">{recipientId.occupation || "Occupation"}</div>
-                    <div className="create-review-location">{recipientId.city || "City"}, {recipientId.state || "State"}</div>
-                </div>
+                {reviewProfile ? (
+                    <>
+                        <div className="create-review-name">Rate: {reviewProfile.FirstName} {reviewProfile.LastName}</div>
+                        <div className="occupation-location-container">
+                            <div className="create-review-occupation">{reviewProfile.Occupation}</div>
+                            <div className="create-review-location">{reviewProfile.City}, {reviewProfile.State}</div>
+                        </div>
+                    </>
+                ) : (
+                    <h3>Loading...</h3>
+                )}
             </div>
-
             <form onSubmit={handleSubmit} className="review-form">
                 <div className="questions-section">
                     {['cleanliness', 'communication', 'timeliness', 'noiseLevel', 'etiquette'].map((category) => {
@@ -189,13 +223,13 @@ const CreateReviewPage = ({ userId, sortKey }) => {
                     })}
 
                     {[{
-                        id: 'respectful',
+                        id: 'space_respect',
                         question: 'Was this roommate respectful of your space?',
                     }, {
-                        id: 'punctualFees',
+                        id: 'punctuality',
                         question: 'Was this roommate punctual with paying their living fees?',
                     }, {
-                        id: 'roommatesAgain',
+                        id: 'roommates_again',
                         question: 'Would you be roommates again?',
                     }].map(({ id, question }) => (
                         <div key={id} className="question-card yes-no-question">
@@ -249,10 +283,12 @@ const CreateReviewPage = ({ userId, sortKey }) => {
                         />
                     </div>
 
-                    {error && <div className="error-message">{error}</div>} {/* Display error message */}
+                    {error && <div className="error-message">{error}</div>} 
 
                     <div className="create-review-button-container">
-                        <button type="submit" className="primary-btn submit-review-btn">Submit Review</button>
+                        <button type="submit" className="primary-btn submit-review-btn" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit Review'}
+                        </button>
                         <button
                             type="button"
                             className="secondary-btn submit-review-btn"
@@ -267,4 +303,4 @@ const CreateReviewPage = ({ userId, sortKey }) => {
     );
 };
 
-export default CreateReviewPage;
+export default CreateReviewPage; 
