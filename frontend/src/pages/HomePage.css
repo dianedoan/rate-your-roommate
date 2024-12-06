@@ -4,10 +4,6 @@
     align-items: center;
 }
 
-.top-rated-section h2 , .explore-section h2 {
-    padding-top: 2rem;
-}
-
 .top-rated-section, .explore-section {
     width: 100%;
     text-align: center;
@@ -55,8 +51,8 @@
 }
 
 .top-rated-profile-image {
-    width: 15rem; /* Adjust image size */
-    height: 15rem;
+    width: 12rem;
+    height: auto;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
 }
@@ -68,6 +64,7 @@
 
 .top-rated-profile-info-container {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
 }
 
@@ -75,6 +72,11 @@
     display: flex;
     flex-direction: column; /* Stack profile name, occupation, description, and score vertically */
     text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+    max-width: 100%; 
+    width: 15rem;
 }
 
 .top-rated-profile-name {
@@ -90,12 +92,11 @@
 .top-rated-profile-description {
     align-self: baseline;
     text-align: left;
-    white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
-    word-wrap: break-word; /* Breaks words if they are too long */
-    overflow-wrap: break-word; /* Compatibility for older browsers */
-    max-width: 100%; /* Ensures it stays within the container */
-    box-sizing: border-box; /* Includes padding in width calculations */
-    width: 15rem;
+    white-space: pre-wrap;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+    max-width: 100%; 
+    box-sizing: border-box; 
     font-size: 1.5em;
 }
 
@@ -128,13 +129,52 @@
     transition: transform 150ms;
 }
 
-/* Media Query for Medium Screens (Laptop) */
-@media (max-width: 1024px) {
-    .top-rated-section h2 , .explore-section h2 {
-        padding-top: 1.5rem;
-        font-size: 3rem;
+/* Media query for Large Screens (Laptop L) */
+@media (max-width: 1440px) {
+    .top-rated-section, .explore-section {
+        padding: 3rem;
     }
 
+    .top-rated-card {
+        padding: 2rem;
+    }
+    
+    .top-rated-profile-image-container {
+        margin-right: 2rem;
+    }
+    
+    .top-rated-profile-image {
+        width: 9rem;
+        height: auto;
+    }
+    
+    .top-rated-profile-name {
+        font-size: 2em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-occupation {
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-description {
+        width: 23rem;
+        font-size: 1.3em;
+    }
+    
+    .top-rated-profile-score {
+      font-size: 1.7em;
+    } 
+    
+    .top-rated-location {
+        font-size: 1.2em;
+        margin: 0.7rem 0rem;
+    }
+}
+
+/* Media Query for Medium Screens (Laptop) */
+@media (max-width: 1024px) {
     .top-rated-section, .explore-section {
         padding: 3rem;
         width: 100%;
@@ -157,8 +197,8 @@
     }
     
     .top-rated-profile-image {
-        width: 13rem; /* Adjust image size */
-        height: 13rem;
+        width: 10rem;
+        height: auto;
     }
     
     .top-rated-profile-info {
@@ -205,10 +245,7 @@
 
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
-    .top-rated-section h2 , .explore-section h2 {
-        padding-top: 1.2rem;  
-        font-size: 2.2rem;
-    }
+
     .top-rated-section, .explore-section {
         padding: 2.5rem;
         width: 100%;
@@ -231,8 +268,8 @@
     }
     
     .top-rated-profile-image {
-        width: 7rem; /* Adjust image size */
-        height: 7rem;
+        width: 6rem;
+        height: auto;
     }
     
     .top-rated-profile-info {
@@ -280,12 +317,8 @@
 
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
-    .top-rated-section h2 , .explore-section h2 {
-        padding-top: 1.2rem;  
-        font-size: 2rem;
-    }
     .top-rated-section, .explore-section {
-        padding: 2rem;
+        padding: 1.5rem;
         width: 100%;
     }
     
@@ -306,8 +339,8 @@
     }
     
     .top-rated-profile-image {
-        width: 6rem; /* Adjust image size */
-        height: 6rem;
+        width: 4.5rem;
+        height: auto;
     }
     
     .top-rated-profile-info {
@@ -316,29 +349,29 @@
     
     .top-rated-profile-name {
         max-width: 8rem;
-        font-size: 1.2em;
+        font-size: 1.1em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
         max-width: 8rem;
-        font-size: 1em;
+        font-size: 0.9em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
         max-width: 7rem;
-        font-size: 1em;
+        font-size: 0.9em;
     }
     
     .top-rated-profile-score {
         max-width: 10rem;
         font-weight: bold;
-        font-size: 1.1em;
+        font-size: 1em;
     }
     
     .top-rated-location {
-        font-size: 0.8em; /* Smaller font size for location */
+        font-size: 0.7em; /* Smaller font size for location */
         text-align: right;
         margin: 0.3rem 0rem;
     }
@@ -355,17 +388,13 @@
 
 /* Media Query for Extra Small Screens (Mobile M) */
 @media (max-width: 375px) {
-    .top-rated-section h2 , .explore-section h2 {
-        padding-top: 1rem;  
-        font-size: 1.7rem;
-    }
     .top-rated-section, .explore-section {
         padding: 1.5rem;
         width: 100%;
     }
     
     .explore-section {
-        gap: 1rem; /* Add spacing between cards */
+        gap: 0.8rem; /* Add spacing between cards */
     }
     
     .top-rated-container {
@@ -373,16 +402,16 @@
     }
     
     .top-rated-card {
-        padding: 0.5rem;
+        padding: 0.8rem 1rem;
     }
 
     .top-rated-profile-image-container {
-        margin-right: 0.5rem; /* Space between image and text */
+        margin-right: 0.8rem; /* Space between image and text */
     }
     
     .top-rated-profile-image {
-        width: 5rem; /* Adjust image size */
-        height: 5rem;
+        width: 4rem;
+        height: auto;
     }
     
     .top-rated-profile-info {
@@ -409,7 +438,7 @@
     .top-rated-profile-score {
         max-width: 8rem;
         font-weight: bold;
-        font-size: 1em;
+        font-size: 0.8em;
     }
     
     .top-rated-location {

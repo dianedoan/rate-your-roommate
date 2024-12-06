@@ -148,9 +148,6 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                       <div className="top-rated-profile-occupation">
                         {topRatedList[activeTopRatedIndex].Occupation}
                       </div>
-                      <div className="top-rated-profile-description">
-                        {topRatedList[activeTopRatedIndex].AboutMe}
-                      </div>
                     </div>
 
                     <div className="top-rated-location-favorite-container">
@@ -160,6 +157,9 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                       </div>
                     </div>
                   </div>
+                      <div className="top-rated-profile-description">
+                        {topRatedList[activeTopRatedIndex].AboutMe}
+                      </div>
                   <div className="top-rated-profile-score">
                     <span className="highlight4">
                       {(

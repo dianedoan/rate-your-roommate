@@ -13,8 +13,8 @@
 }
 
 .edit-profile-image {
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: auto;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
 }
@@ -97,19 +97,24 @@
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: center;
     margin-top: 1.5rem;
+    max-width: 55%;
 }
 
 .edit-profile-name {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: bold;
 }
 
 .edit-profile-occupation , .edit-profile-location {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
 }
 
 .edit-profile-occupation {
     font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    text-align: center; 
 }
 
 .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
@@ -117,7 +122,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%; 
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-shadow: 0.05rem 0.1rem #1e1e1e;
     color: #8CAD63;
@@ -153,7 +158,7 @@
 /* Buttons */
 .goback-profile-btn {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     background-color: transparent;
     border: none;
@@ -199,7 +204,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     resize: none;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
 /* Account Details */

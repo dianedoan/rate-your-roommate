@@ -58,10 +58,18 @@
 .review-profile-occupation {
     font-size: 2em;
     font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    text-align: left; 
 }
 
 .review-profile-description {
     font-size: 2em;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    text-align: left; 
 }
 
 .review-score-container {

@@ -13,8 +13,8 @@
 }
 
 .user-profile-image {
-    width: 16rem; /* Adjust image size */
-    height: 16rem;
+    width: 12rem; /* Adjust image size */
+    height: auto;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
 }
@@ -24,21 +24,25 @@
     flex-direction: column; /* Stack profile name, description, and score vertically */
     justify-content: center;
     text-align: left;
-    max-width: 55%;
+    max-width: 30rem;
     margin-left: 4rem;
 }
 
 .user-profile-name {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
 .user-profile-occupation , .user-profile-location {
-    font-size: 2.2rem;
+    font-size: 1.3rem;
 }
 
 .user-profile-occupation {
     font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    text-align: left; 
 }
 
 .user-profile-cards-section {
@@ -70,7 +74,7 @@
     font-weight: bold;
     align-self: baseline;
     color: #8CAD63;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-shadow: 0.05rem 0.1rem #1e1e1e;
 }
 
@@ -78,7 +82,7 @@
     align-self: baseline;
     text-align: left;
     margin-top: 1rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
     word-wrap: break-word; /* Breaks words if they are too long */
     overflow-wrap: break-word; /* Compatibility for older browsers */
@@ -214,7 +218,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
 /* Buttons */
 .edit-profile-btn {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     background-color: transparent;
     border: none;
@@ -255,8 +259,8 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
 
     .user-profile-image {
-        width: 14rem; /* Adjust image size */
-        height: 14rem;
+        width: 10rem; /* Adjust image size */
+        height: auto;
     }
 
     .user-profile-info {
@@ -264,11 +268,20 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
-        font-size: 3rem;
+        font-size: 2rem;
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .edit-profile-btn {
+        font-size: 1.3rem;
+    }
+
+    .profile-btn {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
     }
 }
 
@@ -276,28 +289,33 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
     .user-profile-header {
-        padding: 4rem 2rem;
+        padding: 3rem 2rem;
     }
     
     .user-profile-image {
-        width: 13rem; /* Adjust image size */
-        height: 13rem;
+        width: 10rem; /* Adjust image size */
+        height: auto;
     }
-    
+
     .user-profile-info {
         margin-left: 2.5rem;
     }
     
     .user-profile-name {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 1.7rem;
+        font-size: 1.1rem;
     }
-    
+
     .edit-profile-btn {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .profile-btn {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
     }
 
     .user-profile-cards-section {
@@ -315,17 +333,17 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-about-me , .user-profile-preferences , .user-profile-reviews {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         text-shadow: 0.05rem 0.1rem #1e1e1e;
     }
     
-    .user-profile-description {
-        margin-top: 1rem;
-        font-size: 1.5rem;
+    .user-profile-description , .preferences-section , .past-review-info  {
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
     }
 
     .preferences-section {
-        margin-top: 1rem;
+
     }
 
     html .profile-preference-tag , html .selected-profile-preference-tag {
@@ -334,20 +352,13 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
         border-radius: 1.3rem;
         font-size: 0.8rem;
     }
-
     
     .profile-buttons-container {
         margin-bottom: 2rem;
     }
     
-    .profile-btn {
-        font-size: 2rem;
-        padding: 0.5rem 3rem;
-    }
-    
     .past-review-info {
         width: 95%;
-        margin-top: 1rem;
         padding: 0rem 0rem;
     }
     
