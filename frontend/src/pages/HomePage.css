@@ -178,76 +178,50 @@
 @media (max-width: 1024px) {
     .top-rated-section, .explore-section {
         padding: 3rem;
-        width: 100%;
-    }
-    
-    .explore-section {
-        gap: 2rem; /* Add spacing between cards */
-    }
-    
-    .top-rated-container {
-        padding: 0rem 0rem;
-    }
-    
-    .top-rated-card {
-        padding: 2rem 2rem;
     }
 
+    .top-rated-card {
+        padding: 2rem;
+    }
+    
     .top-rated-profile-image-container {
-        margin-right: 2rem; /* Space between image and text */
+        margin-right: 2rem;
     }
     
     .top-rated-profile-image {
-        width: 10rem;
+        width: 9rem;
         height: auto;
     }
     
-    .top-rated-profile-info {
-
-    }
-    
     .top-rated-profile-name {
-        font-size: 1.8em;
+        font-size: 2em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
-
-        font-size: 1.2em;
+        font-size: 1.3em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
-        width: 15rem;
-        font-size: 1.2em;
+        width: 23rem;
+        font-size: 1.3em;
     }
     
     .top-rated-profile-score {
-      font-weight: bold;
-      font-size: 1.5em;
-    }
+      font-size: 1.7em;
+    } 
     
     .top-rated-location {
-        font-size: 1.2em; /* Smaller font size for location */
-        text-align: right;
+        font-size: 1.2em;
         margin: 0.7rem 0rem;
-        
-    }
-
-    .navigation-button {
-
-    }
-
-    .arrow-icon {
-        width: 2.7rem; /* Adjust image size */
-        height: 2.7rem;
     }
 }
 
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
     .top-rated-section, .explore-section {
-        padding: 1.5rem;
+        padding: 3rem;
         width: 100%;
     }
     
@@ -260,7 +234,7 @@
     }
     
     .top-rated-card {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 2rem;
     }
 
     .top-rated-profile-image-container {
@@ -268,7 +242,7 @@
     }
     
     .top-rated-profile-image {
-        width: 4rem;
+        width: 6rem;
         height: auto;
     }
     
@@ -278,29 +252,29 @@
     
     .top-rated-profile-name {
         max-width: 10rem;
-        font-size: 1em;
+        font-size: 1.2em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
         max-width: 10rem;
-        font-size: 0.7em;
+        font-size: 0.9em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
-        max-width: 10rem;
-        font-size: 0.7em;
+        max-width: 12rem;
+        font-size: 0.9em;
     }
     
     .top-rated-profile-score {
         max-width: 10rem;
         font-weight: bold;
-        font-size: 0.8em;
+        font-size: 1.1em;
     }
     
     .top-rated-location {
-        font-size: 0.5em; /* Smaller font size for location */
+        font-size: 0.8em; /* Smaller font size for location */
         text-align: right;
         margin: 0.3rem 0rem;
     }
