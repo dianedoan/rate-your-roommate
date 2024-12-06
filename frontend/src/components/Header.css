@@ -1,118 +1,112 @@
 /* NAVIGATION BAR */
 html .navbar {
-  border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
-  padding: 1rem 1.5rem;
+    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    padding: 0.8rem 1.2rem;
 }
 
 /* Logo Icon */
 .navbar-logo {
-  height: 5rem;
+    height: 3.5rem;
+    width: auto; 
 }
 
 .navbar-logo:hover {
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
 }
 
 .navbar-username {
-  display: inline-flex;
-  vertical-align: middle;
-  align-items: center;
-  justify-content: center;
-  color: #8CAD63;
-  margin-right: 1.3rem;
-  font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 0.05rem 0.05rem #1e1e1e;
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    color: #8CAD63;
+    margin-right: 1.3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0.05rem 0.05rem #1e1e1e;
 }
 
 
 /* Smaller size for mobile screens (navbar toggle is shown) */
 @media (max-width: 991px) {
-  .bottom-navbar .navbar {
-    padding: 1.5rem 7rem;
-    border-bottom: none;
-  }
+    .bottom-navbar .navbar {
+        padding: 1.2rem 7rem;
+        border-bottom: none;
+    }
 
-  .navbar-logo {
-    height: 4rem; /* Mobile size */
-    width: auto;  /* Maintain aspect ratio */
-  }
+    .navbar-logo {
+        height: 4rem;
+        width: auto; 
+    }
 
-  .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
-    width: 2.5rem;
-  }
+    .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+        width: 2.5rem;
+    }
 
-  .nav-btn {
-    text-align: left;
-    margin: 0rem;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    width: 100%;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: transparent;
-    color: #1E1E1E;
-    font-weight: bold;
-    text-shadow: none;
-  }
+    .nav-btn {
+        text-align: left;
+        margin: 0rem;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        width: 100%;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: transparent;
+        color: #1E1E1E;
+        font-weight: bold;
+        text-shadow: none;
+    }
 
-  .nav-btn:hover {
-    background-color: transparent;
-    color: #1E1E1E;
-    text-shadow: 2px 2px #e4fff5;
-    border: 0.1rem solid #1e1e1e;
-  }
+    .nav-btn:hover {
+        background-color: transparent;
+        color: #1E1E1E;
+        text-shadow: 2px 2px #e4fff5;
+        border: 0.1rem solid #1e1e1e;
+    }
 
-  /* Nav Button when clicked */
-  .nav-btn:active {
-    background-color: #e4fff5;
-  }
+    /* Nav Button when clicked */
+    .nav-btn:active {
+        background-color: #e4fff5;
+    }
 }
 
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
-  html .navbar {
-    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
-    padding: 0.8rem 0.8rem;
-  }
+    html .navbar {
+        border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+        padding: 0.8rem 0.8rem;
+    }
 
-  .navbar-logo {
-    height: 2.5rem; /* Mobile size */
-    width: auto;  /* Maintain aspect ratio */
-  }
+    .navbar-logo {
+        height: 2.5rem; /* Mobile size */
+        width: auto;  /* Maintain aspect ratio */
+    }
 
-  .bottom-navbar .navbar {
-    padding: 1rem 2rem;
-  }
+    .bottom-navbar .navbar {
+        padding: 1rem 2rem;
+    }
 
-  .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
-    width: 2rem;
-  }
+    .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+        width: 2rem;
+    }
 }
 
 /* Bottom Sticky Navbar */
 .bottom-navbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 }
 
 .bottom-navbar-content {
-  width: 100%;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-home:hover, .navbar-search:hover, .navbar-messages:hover, .navbar-heart:hover, .navbar-profile:hover {
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
-}
-
-.navbar-profile-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%; /* Make it circular */
-  object-fit: cover; /* Ensure the image fits the circle */
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
 }

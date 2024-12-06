@@ -36,7 +36,7 @@ html h4 {
 
 html h5 {
     font-size: 1.5rem;
-    margin: 1rem 0rem;
+    margin: 0.7rem 0rem;
     text-align: center;
     font-weight: bold;
 }
@@ -308,8 +308,8 @@ html .nav-link:active {
     }
 
     html h5 {
-        font-size: 1.5rem;
-        margin: 1rem 0rem;
+        font-size: 1.4rem;
+        margin: 0.6rem 0rem;
     }
 
     .normal-btn {
@@ -333,8 +333,12 @@ html .nav-link:active {
     html h1 {
         font-size: 3.5rem;
     }
-    
 
+    html h5 {
+        font-size: 1.3rem;
+        margin: 0.6rem 0rem;
+    }
+    
     .profile-card {
         max-width: 55rem;
         padding: 2.2rem;
@@ -381,6 +385,11 @@ html .nav-link:active {
 
     html h2 {
         font-size: 2rem;
+    }
+
+    html h5 {
+        font-size: 1.2rem;
+        margin: 0.6rem 0rem;
     }
 
     .profile-card {

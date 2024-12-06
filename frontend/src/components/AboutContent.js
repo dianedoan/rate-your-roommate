@@ -5,7 +5,6 @@ function AboutContent() {
     return (
         <div className="about-content">
             <p className="content">
-            <h5></h5>
                 Welcome to <span className="highlight5">Rate Your Roommate</span> where we make finding the perfect roommate a seamless and stress-free experience!
             </p>
             <p className="content">
