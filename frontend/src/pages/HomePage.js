@@ -9,7 +9,8 @@ const HomePage = ({ userId, sortKey, userCity }) => {
   const [topRatedList, setTopRatedList] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [topRatedLoading, setTopRatedLoading] = useState(true);
+  const [exploreLoading, setExploreLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
   // Fetch Top-Rated Users
   useEffect(() => {
     const fetchTopRatedUsers = async () => {
+      setTopRatedLoading(true);
       const url = `${config.apiBaseUrl}/get-top-users`;
       try {
         const response = await fetch(url);
@@ -29,10 +31,10 @@ const HomePage = ({ userId, sortKey, userCity }) => {
 
         console.log("Fetched top-rated users:", data);
         setTopRatedList(data.topRatedUsers || []);
-        setLoading(false);
       } catch (err) {
         setError("An error occurred while fetching top-rated users.");
-        setLoading(false);
+      } finally {
+        setTopRatedLoading(false);
       }
     };
     fetchTopRatedUsers();
@@ -40,7 +42,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
 
   // Fetch Search Results
   const fetchSearchResults = async (query) => {
-    setLoading(true);
+    setExploreLoading(true);
     setError("");
     try {
       const response = await fetch(
@@ -59,7 +61,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
     } catch (err) {
       setError("An error occurred while fetching search results.");
     } finally {
-      setLoading(false);
+      setExploreLoading(false);
     }
   };
 
@@ -68,6 +70,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
       fetchSearchResults(userCity);
     } else {
       setFilteredUsers([]);
+      setExploreLoading(false);
     }
   }, [userCity]);
 
@@ -84,22 +87,6 @@ const HomePage = ({ userId, sortKey, userCity }) => {
     );
   };
 
-  if (loading) {
-    return (
-      <div className="general-content">
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="general-content">
-        <h3>Error: {error}</h3>
-      </div>
-    );
-  }
-
   return (
     <div className="homepage-content">
       {/* Top-Rated Section */}
@@ -107,7 +94,9 @@ const HomePage = ({ userId, sortKey, userCity }) => {
         <h2>
           Top-Rated <span className="highlight2">Roommates</span>
         </h2>
-        {topRatedList.length > 0 ? (
+        {topRatedLoading ? (
+          <h3>Loading top-rated roommates...</h3>
+        ) : topRatedList.length > 0 ? (
           <div className="top-rated-container">
             <button onClick={handlePrevious} className="navigation-button">
               <img src={leftarrow} alt="previous" className="arrow-icon" />
@@ -187,7 +176,9 @@ const HomePage = ({ userId, sortKey, userCity }) => {
         <h2>
           Explore <span className="highlight3">Roommates</span>
         </h2>
-        {filteredUsers.length > 0 ? (
+        {exploreLoading ? (
+          <h3>Loading explore results...</h3>
+        ) : filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (
             <div
               key={user.username}

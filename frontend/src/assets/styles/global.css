@@ -228,9 +228,10 @@ html .nav-link:active {
 .profile-info-container {
     display: flex;
     flex-direction: row; 
-    width: 50rem;
     justify-content: space-between;
-
+    flex-wrap: wrap; 
+    width: 50rem;
+    gap: 1rem;
 }
 
 .profile-image-container {

@@ -32,15 +32,6 @@
     max-width: 50rem;
 }
 
-.profile-info-container {
-    display: flex;
-    flex-direction: row; /* Ensure info and image are side by side */
-    flex-wrap: wrap; /* Allow wrapping for small screens */
-    justify-content: space-between;
-    width: 100%;
-    gap: 1rem; /* Space between elements */
-}
-
 .review-profile-info {
     display: flex;
     flex-direction: column; /* Stack name, occupation, etc. */
