@@ -51,7 +51,8 @@ def lambda_handler(event, context):
             'body': json.dumps({
                 'message': 'Login successful!',
                 'UserId': user.get('UserId'),
-                'SortKey': user.get('DataType#Timestamp')
+                'SortKey': user.get('DataType#Timestamp'),
+                'city' : user.get('city')
             })
         }
 

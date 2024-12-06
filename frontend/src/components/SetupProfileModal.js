@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col, Badge } from "react-bootstrap";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
 import "./Modal.css";
@@ -15,6 +15,14 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userCity, setUsercity] = useState(null);
+
+  useEffect(() => {
+    const storedCity = localStorage.getItem("userCity");
+    if (storedCity) {
+      setUsercity(storedCity);
+    }
+  }, []);
 
   const preferencesList = [
     "Age 18-24",
@@ -95,8 +103,12 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
       const result = await response.json();
       if (!response.ok) {
         throw new Error(result.message || "Failed to set up profile.");
+      } else {
+        const { message, userId, city } = result;
+        console.log("City updated:", city);
       }
-
+      setUsercity(city);
+      localStorage.setItem("userCity", city);
       console.log("Profile setup successful:", result);
       onClose(); // Close the modal after successful submission
       window.location.href = "/home"; // Navigate to the homepage

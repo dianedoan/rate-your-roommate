@@ -26,6 +26,7 @@ function App() {
   const [showSetupProfile, setShowSetupProfile] = useState(false);
   const [userId, setUserId] = useState(null);
   const [sortKey, setSortKey] = useState(null);
+  const [userCity, setUsercity] = useState(null);
 
   const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
   // const [isSuccess, setIsSuccess] = useState(null);
@@ -34,9 +35,11 @@ function App() {
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
     const storedSortKey = localStorage.getItem("sortKey");
-    if (storedUserId && storedSortKey) {
+    const storedCity = localStorage.getItem("userCity");
+    if (storedUserId && storedSortKey && storedCity) {
       setUserId(storedUserId);
       setSortKey(storedSortKey);
+      setUsercity(storedCity);
     }
   }, []);
 
@@ -66,30 +69,33 @@ function App() {
 
   const handleSuccessfulLogin = (response) => {
     try {
-      // Log the response to debug its structure
+      // Debugging: log the response structure
       console.log("Login response:", response);
 
-      // Ensure the body is parsed
-      const parsedBody = response.body
-        ? JSON.parse(response.body) // Parse stringified body
-        : response;
+      // Extract values directly from the response
+      const { message, UserId, SortKey, city } = response;
 
-      // Extract UserId and SortKey from the parsed body
-      const { UserId, SortKey } = parsedBody;
-
-      // Validate the extracted values
-      if (!UserId || !SortKey) {
+      // Validate that the necessary fields exist
+      if (!UserId || !SortKey || !city) {
         throw new Error("Invalid login response format.");
       }
 
-      // Set the values in state
+      // Update state with extracted values
       setUserId(UserId);
       setSortKey(SortKey);
-      console.log("App.js: Set UserId and SortKey:", UserId, SortKey);
+      setUsercity(city);
+
+      console.log(
+        "App.js: Set UserId, SortKey, and City:",
+        UserId,
+        SortKey,
+        city
+      );
 
       // Persist in localStorage
       localStorage.setItem("userId", UserId);
       localStorage.setItem("sortKey", SortKey);
+      localStorage.setItem("userCity", city);
 
       // Navigate to the home page
       setShowLogin(false);
@@ -146,6 +152,7 @@ function App() {
       // Remove from localStorage
       localStorage.removeItem("userId");
       localStorage.removeItem("sortKey");
+      localStorage.removeItem("userCity");
 
       // Navigate to the landing page
       window.location.href = "/";
@@ -181,7 +188,9 @@ function App() {
         <Route path="/terms" element={<TermsConditions />} />
         <Route
           path="/home"
-          element={<HomePage userId={userId} sortKey={sortKey} />}
+          element={
+            <HomePage userId={userId} sortKey={sortKey} userCity={userCity} />
+          }
         />
         <Route path="/reviews/:recipientId" element={<ReviewPage />} />
         <Route
