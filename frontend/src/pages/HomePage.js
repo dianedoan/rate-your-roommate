@@ -213,7 +213,9 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                     </div>
                     <div className="profile-score">
                       <span className="highlight5">
-                        {user.Score === 0 ? "N/A" : `${user.rating}/5`}
+                        {user.AverageScore === 0
+                          ? "N/A"
+                          : `${user.AverageScore}/5`}
                       </span>{" "}
                       Rating
                     </div>

@@ -22,9 +22,9 @@ def lambda_handler(event, context):
         # Scan with filter expression
         response = table.scan(
             FilterExpression=(
-                Attr('City').contains(search_term) |
-                Attr('FirstName').contains(search_term) |
-                Attr('LastName').contains(search_term)
+                Attr('city').contains(search_term) |
+                Attr('first_name').contains(search_term) |
+                Attr('last_name').contains(search_term)
             )
         )
 
