@@ -7,10 +7,9 @@ html body {
 
 /* TEXT */
 html h1 {
-    font-size: 6rem; /* Default size */
-    margin: 2rem 0rem;
     text-align: center;
     font-weight: bold;
+    font-size: 5rem; /* Default size */
     padding: 0rem 2rem;
 }
 
@@ -37,7 +36,7 @@ html h4 {
 
 html h5 {
     font-size: 1.5rem;
-    margin: 2rem 0rem;
+    margin: 1rem 0rem;
     text-align: center;
     font-weight: bold;
 }
@@ -89,7 +88,7 @@ html h5 {
 
 /* BUTTONS */
 .button-container {
-    padding-top: 1rem;
+    padding: 1rem;
     display: flex;
     gap: 1rem; /* Space between buttons */
 }
@@ -97,11 +96,11 @@ html h5 {
 .normal-btn {
     text-align: center;
     margin: 0.5rem;
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     padding: 1rem;
-    width: 16rem;
+    width: 12rem;
     border-radius: 0.8rem;
-    border: 0.2rem solid #1e1e1e;
+    border: 0.15rem solid #1e1e1e;
 }
 
 .normal-btn:hover {
@@ -302,28 +301,25 @@ html .nav-link:active {
   transition: transform 150ms;
 }
 
-/* Social Media Buttons */
-.social-button {
-  background-color: #1E1E1E; /* Almost black */
-  color: #FFFFFF; /* White text */
-  font-size: 16px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
-}
-
 /* Media query for Large Screens (Laptop L) */
 @media (max-width: 1440px) {
+    html h1 {
+        font-size: 4rem; /* Reduce title font size */
+    }
+
+    html h5 {
+        font-size: 1.5rem;
+        margin: 1rem 0rem;
+    }
+
     .normal-btn {
-      text-align: center;
-      margin: 0.5rem;
-      font-size: 2rem;
-      padding: 1rem;
-      width: 15rem;
-      border-radius: 0.7rem;
-      border: 0.15rem solid #1e1e1e;
+        text-align: center;
+        margin: 0.5rem;
+        font-size: 1.5rem;
+        padding: 0.9rem;
+        width: 12rem;
+        border-radius: 0.7rem;
+        border: 0.15rem solid #1e1e1e;
     }
 }
 
@@ -335,8 +331,9 @@ html .nav-link:active {
     }
 
     html h1 {
-        font-size: 5rem; /* Reduce title font size */
+        font-size: 3.5rem;
     }
+    
 
     .profile-card {
         max-width: 55rem;
@@ -362,13 +359,14 @@ html .nav-link:active {
 
     .normal-btn {
         text-align: center;
-        margin: 0.5rem;
-        font-size: 1.7rem;
-        padding: 1rem;
-        width: 15rem;
+        margin: 0.3rem;
+        font-size: 1.3rem;
+        padding: 0.8rem;
+        width: 10rem;
         border-radius: 0.7rem;
-        border: 0.15rem solid #1e1e1e;
-      }
+        border: 0.12rem solid #1e1e1e;
+    }
+    
 }
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
@@ -378,11 +376,11 @@ html .nav-link:active {
     }
     
     html h1 {
-        font-size: 4rem; /* Further reduce title font size */
+        font-size: 2.5rem;
     }
 
     html h2 {
-        font-size: 3.5rem; /* Further reduce title font size */
+        font-size: 2rem;
     }
 
     .profile-card {
@@ -451,12 +449,16 @@ html .nav-link:active {
       height: 2rem;
     }
 
+    .button-container {
+        gap: 0.7rem;
+    }
+
     .normal-btn {
         text-align: center;
-        margin: 0.5rem;
-        font-size: 1.5rem;
-        padding: 1rem;
-        width: 14rem;
+        margin: 0.3rem;
+        font-size: 1.1rem;
+        padding: 0.7rem;
+        width: 8.5rem;
         border-radius: 0.6rem;
         border: 0.1rem solid #1e1e1e;
     }
@@ -470,11 +472,11 @@ html .nav-link:active {
     }
 
     html h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     html h2 {
-        font-size: 2.5rem; /* Further reduce title font size */
+        font-size: 2rem; /* Further reduce title font size */
     }
 
     .profile-card {
@@ -546,13 +548,18 @@ html .nav-link:active {
       height: 1.2rem;
     }
 
+    .button-container {
+        gap: 0.2rem;
+        padding-top: 0.5rem;
+    }
+
     .normal-btn {
         text-align: center;
-        margin: 0.5rem;
-        font-size: 1.3rem;
-        padding: 1rem;
-        width: 10rem;
-        border-radius: 0.5rem;
+        margin: 0.3rem;
+        font-size: 1.1rem;
+        padding: 0.7rem;
+        width: 8.5rem;
+        border-radius: 0.6rem;
         border: 0.1rem solid #1e1e1e;
     }
 }
@@ -565,11 +572,11 @@ html .nav-link:active {
     }
 
     html h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     html h2 {
-        font-size: 2.5rem; /* Further reduce title font size */
+        font-size: 2rem; /* Further reduce title font size */
     }
 
     .profile-card {
@@ -641,12 +648,15 @@ html .nav-link:active {
       height: 1.2rem;
     }
 
+    .button-container {
+        gap: 0.2rem;
+    }
+
     .normal-btn {
-        text-align: center;
         margin: 0.5rem;
-        font-size: 1.3rem;
-        padding: 1rem;
-        width: 10rem;
+        font-size: 0.9rem;
+        padding: 0.6rem;
+        width: 6.5rem;
         border-radius: 0.5rem;
         border: 0.1rem solid #1e1e1e;
     }
@@ -660,11 +670,11 @@ html .nav-link:active {
     }
 
     html h1 {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     html h2 {
-        font-size: 2.5rem; /* Further reduce title font size */
+        font-size: 1.5rem; /* Further reduce title font size */
     }
 
     .profile-card {
@@ -737,18 +747,30 @@ html .nav-link:active {
     }
 
     .normal-btn {
-        text-align: center;
         margin: 0.5rem;
-        font-size: 1.3rem;
-        padding: 1rem;
-        width: 10rem;
+        font-size: 0.7rem;
+        padding: 0.4rem;
+        width: 5rem;
         border-radius: 0.5rem;
         border: 0.1rem solid #1e1e1e;
-      }
+    }
 }
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 2rem;
+    }
+
+    html h2 {
+        font-size: 2rem; /* Further reduce title font size */
+    }
+
     .profile-name {
         font-size: 0.7em;
     }
@@ -769,6 +791,15 @@ html .nav-link:active {
     
     .profile-description {
         font-size: 0.55em;
+    }
+
+    .normal-btn {
+        margin: 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.4rem;
+        width: 5rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
     }
 }
    
