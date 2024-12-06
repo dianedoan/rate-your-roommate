@@ -23,29 +23,36 @@
 }
 
 .review-profile-card {
-  display: flex;
-  flex-direction: row; /* Make the card layout horizontal */
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 65rem;
-  flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align items at the start */
+    justify-content: space-between; /* Space out the content */
+    flex-wrap: wrap; /* Allow wrapping */
+    width: 100%;
+    max-width: 50rem;
+}
+
+.profile-info-container {
+    display: flex;
+    flex-direction: row; /* Ensure info and image are side by side */
+    flex-wrap: wrap; /* Allow wrapping for small screens */
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem; /* Space between elements */
 }
 
 .review-profile-info {
     display: flex;
-    flex-direction: column; /* Stack profile name, description, and score vertically */
+    flex-direction: column; /* Stack name, occupation, etc. */
     text-align: left;
-    max-width: 55%;
+    flex: 1; /* Take up available space */
+    min-width: 15rem; /* Ensure a minimum width for responsiveness */
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
 }
-
-.name-heart-container {
-    display: flex;
-    flex-direction: row;
-}
-
 .review-profile-name {
-    font-size: 4em;
+    font-size: 2.5em;
     font-weight: bold;
 }
 
@@ -56,16 +63,17 @@
 }
 
 .review-profile-occupation {
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: bold;
     word-wrap: break-word;
     overflow-wrap: break-word; 
     white-space: normal;
+    width: 100%;
     text-align: left; 
 }
 
 .review-profile-description {
-    font-size: 2em;
+    font-size: 1.8em;
     word-wrap: break-word;
     overflow-wrap: break-word; 
     white-space: normal;
@@ -78,33 +86,26 @@
 
 .review-profile-score {
     font-weight: bold;
-    font-size: 3em;
-    padding-top: 1rem;
-}
-
-.review-heart-icon {
-    width: 3rem; /* Adjust image size */
-    height: 3rem;
+    font-size: 2em;
 }
 
 .image-location-container {
     display: flex;
-    flex-direction: column;
-    align-items: right;
-    width: 20em;
-    max-width: 100%;
+    flex-direction: column; /* Stack image and location */
+    align-items: center;
+    flex: 0 0 auto; /* Prevent the container from growing/shrinking */
 }
 
 .review-profile-image {
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
-    width: 18rem; /* Adjust image size */
-    height: 18rem;
+    width: 11rem; /* Adjust image size */
+    height: auto;
     margin-bottom: 1rem;
 }
 
 .review-profile-location {
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-align: center;
 }
 
@@ -139,6 +140,9 @@
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: left;
     width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
 }
 
 .review-score {
@@ -183,10 +187,10 @@
 .rate-btn {
     text-align: center;
     margin-left: 2rem;
-    font-size: 1.8rem;
-    height: 4.5rem;
-    width: 7rem;
-    border-radius: 1.2rem;
+    font-size: 1.5rem;
+    height: 4rem;
+    width: 6.5rem;
+    border-radius: 1rem;
     border: 0.15rem solid #1e1e1e;
     text-shadow: 0.1rem 0.1rem #1e1e1e;
 }
@@ -196,11 +200,15 @@
     .review-profile-section, .review-section {
         padding: 2.5rem;
     }
+
     .review-profile-card {
-        justify-content: space-between;
-        width: 100%;
-        max-width: 65rem;
         padding: 2rem;
+    }
+
+    .review-profile-info {
+        display: flex;
+        flex-direction: column; /* Stack profile name, description, and score vertically */
+        text-align: left;
     }
     
     .review-profile-name {
@@ -225,8 +233,7 @@
     }
     
     .review-profile-score {
-        font-size: 2.5em;
-        padding-top: 2rem;
+        font-size: 2.2em;
     }
     
     .review-heart-icon {
@@ -234,18 +241,18 @@
         height: 3rem;
     }
     
-    .image-location-container {
-        width: 15em;
-    }
-    
     .review-profile-image {
-        width: 14rem; /* Adjust image size */
-        height: 14rem;
+        width: 10rem; /* Adjust image size */
+        height: auto;
         margin-bottom: 1rem;
     }
     
     .review-profile-location {
         font-size: 1.5em;
+    }
+
+    .review-preferences-section {
+        margin: 0.5rem 0rem;
     }
 
     .rate-btn {
@@ -254,7 +261,7 @@
         height: 4.5rem;
         width: 7rem;
         border-radius: 1.2rem;
-        border: 0.13rem solid #1e1e1e;
+        border: 0.11rem solid #1e1e1e;
         text-shadow: 0.1rem 0.1rem #1e1e1e;
     }
 
@@ -271,7 +278,7 @@
 
     .review-score {
         font-weight: bold;
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     
     .review-title {
@@ -301,51 +308,53 @@
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
     .review-profile-section, .review-section {
-        padding: 2.5rem;
+        padding: 2rem;
     }
 
     .review-profile-card {
-        padding: 0rem;
+        padding: 1.5rem;
+    }
+
+    .review-profile-info {
+        display: flex;
+        flex-direction: column; /* Stack profile name, description, and score vertically */
+        text-align: left;
     }
     
     .review-profile-name {
-        font-size: 2.5em;
+        font-size: 2em;
     }
     
     .profile-favorite-icon {
         margin: 1rem;
+        padding-top: 0rem;
     }
     
-    .review-profile-occupation {
-        font-size: 1.7em;
+    .review-profile-occupation , .review-profile-description {
+        font-size: 1.2em;
     }
     
-    .review-profile-description {
-        font-size: 1.7em;
+    .review-score-container {
+        font-size: 3em;
     }
     
     .review-profile-score {
-        font-size: 2.2em;
-        padding-top: 1rem;
+        font-size: 1.5em;
     }
     
     .review-heart-icon {
-        width: 2rem; /* Adjust image size */
-        height: 2rem;
-    }
-    
-    .image-location-container {
-        width: 10em;
+        width: 3rem; /* Adjust image size */
+        height: 3rem;
     }
     
     .review-profile-image {
-        width: 10rem; /* Adjust image size */
-        height: 10rem;
+        width: 7rem; /* Adjust image size */
+        height: auto;
         margin-bottom: 1rem;
     }
     
     .review-profile-location {
-        font-size: 1.5em;
+        font-size: 1em;
     }
 
     .review-preferences-section {
@@ -353,12 +362,12 @@
     }
 
     .rate-btn {
-        margin-left: 1rem;
-        font-size: 1.3rem;
-        height: 3.5rem;
-        width: 5.5rem;
-        border-radius: 1rem;
-        border: 0.12rem solid #1e1e1e;
+        margin-left: 1.5rem;
+        font-size: 1rem;
+        height: 3rem;
+        width: 4.5rem;
+        border-radius: 0.8rem;
+        border: 0.11rem solid #1e1e1e;
         text-shadow: 0.1rem 0.1rem #1e1e1e;
     }
 
@@ -378,27 +387,17 @@
         font-size: 1.5em;
     }
     
-    .review-title {
-        font-size: 1.8em;
-        font-weight: bold;
-    }
-    
     .review-description {
-        font-size: 1.3em;
+        font-size: 1.1em;
     }
     
     .review-questions {
         font-size: 1.1em;
         margin: 1rem 0rem;
     }
-    
-    .review-username {
-        font-size: 1.3em;
-        font-weight: bold;
-    }
-    
+
     .review-date {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 }
 
@@ -413,7 +412,7 @@
     }
     
     .review-profile-name {
-        font-size: 2.2em;
+        font-size: 2em;
     }
     
     .profile-favorite-icon {
@@ -421,16 +420,15 @@
     }
     
     .review-profile-occupation {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     
     .review-profile-description {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     
     .review-profile-score {
-        font-size: 2em;
-        padding-top: 0.5rem;
+        font-size: 1.5em;
     }
     
     .review-heart-icon {
@@ -438,18 +436,14 @@
         height: 1.8rem;
     }
     
-    .image-location-container {
-        width: 8em;
-    }
-    
     .review-profile-image {
-        width: 8rem; /* Adjust image size */
-        height: 8rem;
+        width: 5.5rem; /* Adjust image size */
+        height: auto;
         margin-bottom: 1rem;
     }
     
     .review-profile-location {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 
     .review-preferences-section {
@@ -458,11 +452,11 @@
 
     .rate-btn {
         margin-left: 1rem;
-        font-size: 1.3rem;
-        height: 3.5rem;
-        width: 5.5rem;
-        border-radius: 1rem;
-        border: 0.12rem solid #1e1e1e;
+        font-size: 0.9rem;
+        height: 2.5rem;
+        width: 4rem;
+        border-radius: 0.7rem;
+        border: 0.11rem solid #1e1e1e;
         text-shadow: 0.1rem 0.1rem #1e1e1e;
     }
 
@@ -488,7 +482,7 @@
     }
     
     .review-description {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     
     .review-questions {
@@ -509,7 +503,7 @@
 /* Media Query for Extra Small Screens (Mobile M) */
 @media (max-width: 375px) {
     .review-profile-section, .review-section {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .review-profile-card {
@@ -534,21 +528,16 @@
     
     .review-profile-score {
         font-size: 1.8em;
-        padding-top: 0.5rem;
     }
     
     .review-heart-icon {
         width: 1.8rem; /* Adjust image size */
         height: 1.8rem;
     }
-    
-    .image-location-container {
-        width: 8em;
-    }
-    
+
     .review-profile-image {
-        width: 8rem; /* Adjust image size */
-        height: 8rem;
+        width: 5rem; /* Adjust image size */
+        height: auto;
         margin-bottom: 0.5rem;
     }
     
@@ -592,7 +581,7 @@
     }
     
     .review-description {
-        font-size: 1.2em;
+        font-size: 1em;
     }
     
     .review-questions {
@@ -613,7 +602,7 @@
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
     .review-profile-section, .review-section {
-        padding: 1.5rem;
+        padding: 1.4rem;
     }
 
     .review-profile-card {
@@ -621,7 +610,7 @@
     }
     
     .review-profile-name {
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     
     .profile-favorite-icon {
@@ -633,19 +622,11 @@
     }
     
     .review-profile-description {
-        align-self: baseline;
-        text-align: left;
-        white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
-        word-wrap: break-word; /* Breaks words if they are too long */
-        overflow-wrap: break-word; /* Compatibility for older browsers */
-        max-width: 100%; /* Ensures it stays within the container */
-        box-sizing: border-box; /* Includes padding in width calculations */
         font-size: 1em;
     }
     
     .review-profile-score {
-        font-size: 1.5em;
-        padding-top: 0.5rem;
+        font-size: 1.3em;
     }
     
     .review-heart-icon {
@@ -653,13 +634,9 @@
         height: 1.8rem;
     }
     
-    .image-location-container {
-        width: 6em;
-    }
-    
     .review-profile-image {
-        width: 6rem; /* Adjust image size */
-        height: 6rem;
+        width: 4.5rem; /* Adjust image size */
+        height: auto;
         margin-bottom: 0.5rem;
     }
     
@@ -668,15 +645,15 @@
     }
 
     .review-preferences-section {
-        margin: 0.5rem 0rem;
+        margin: 0rem 0rem;
     }
 
     .rate-btn {
         margin-left: 1rem;
-        font-size: 1.1rem;
-        height: 3rem;
-        width: 5rem;
-        border-radius: 0.8rem;
+        font-size: 1rem;
+        height: 2.5rem;
+        width: 4rem;
+        border-radius: 0.6rem;
         border: 0.1rem solid #1e1e1e;
         text-shadow: 0.1rem 0.1rem #1e1e1e;
     }
@@ -686,7 +663,7 @@
         width: 100%;
         max-width: 55rem;
         height: 100%;
-        padding: 3rem;
+        padding: 2.2rem;
         border: 0.1rem solid #1e1e1e;
         border-radius: 0.8rem;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -703,11 +680,11 @@
     }
     
     .review-description {
-        font-size: 1.2em;
+        font-size: 0.9em;
     }
     
     .review-questions {
-        font-size: 1em;
+        font-size: 0.9em;
         margin: 1rem 0rem;
     }
     
@@ -719,4 +696,4 @@
     .review-date {
         font-size: 1.2em;
     }
-}
+} 

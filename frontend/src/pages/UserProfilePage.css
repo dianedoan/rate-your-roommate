@@ -83,11 +83,11 @@
     text-align: left;
     margin-top: 1rem;
     font-size: 1.5rem;
-    white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
-    word-wrap: break-word; /* Breaks words if they are too long */
-    overflow-wrap: break-word; /* Compatibility for older browsers */
-    max-width: 100%; /* Ensures it stays within the container */
-    box-sizing: border-box; /* Includes padding in width calculations */
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    max-width: 100%; 
+    box-sizing: border-box; 
 }
 
 /* Preference Tag */
@@ -339,7 +339,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     
     .user-profile-description , .preferences-section , .past-review-info  {
         margin-top: 0.5rem;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .preferences-section {

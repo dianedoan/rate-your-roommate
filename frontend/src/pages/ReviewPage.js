@@ -124,47 +124,47 @@ const ReviewPage = () => {
         <div className="review-content">
             <div className="review-profile-section">
                 <div className="review-profile-card">
-                    <div className="review-profile-info">
-                        <div className="name-heart-container">
-                            <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
+                    <div className="profile-info-container">
+                        <div className="review-profile-info">
+                            <div className="name-heart-container">
+                                <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
+                            </div>
+                            <div className="review-profile-occupation">{reviewProfile.Occupation}</div>
+                            <div className="review-profile-description">
+                                {reviewProfile.AboutMe || "No description provided."}
+                            </div>
+                            <div className="review-preferences-section">
+                                {reviewProfile.Preferences?.map((pref) => (
+                                    <Badge
+                                        key={pref}
+                                        className={`profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
+                                    >
+                                        {pref}
+                                    </Badge>
+                                ))}
+                            </div>
                         </div>
-                        <div className="review-profile-occupation">{reviewProfile.Occupation}</div>
-                        <div className="review-profile-description">
-                            {reviewProfile.AboutMe || "No description provided."}
-                        </div>
-                        <div className="review-preferences-section">
-                            {reviewProfile.Preferences?.map((pref) => (
-                                <Badge
-                                    key={pref}
-                                    className={`profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
-                                >
-                                    {pref}
-                                </Badge>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="image-location-container">
-                        <div className="image-container">
+                        <div className="image-location-container">
                             <img
                                 src={reviewProfile.ProfilePicture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
                                 alt={`${reviewProfile.username || "User"}'s profile`}
                                 className="review-profile-image"
                             />
+                            <p className="review-profile-location">{reviewProfile.City}, {reviewProfile.State}</p>
                         </div>
-                        <p className="review-profile-location">{reviewProfile.City}, {reviewProfile.State}</p>
                     </div>
-                    <div className="review-profile-score">
-                        <span className="highlight4">
-                            {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
-                        </span> 
-                        Rating
-                        <button
-                            className="rate-btn primary-btn"
-                            onClick={() => navigate(`/create-review/${recipientId}`)}
-                        >
-                            Rate
-                        </button>
-                    </div>
+                            <div className="review-profile-score">
+                                <span className="highlight4">
+                                    {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
+                                </span> 
+                                Rating
+                                <button
+                                    className="rate-btn primary-btn"
+                                    onClick={() => navigate(`/create-review/${recipientId}`)}
+                                >
+                                    Rate
+                                </button>
+                            </div>
                 </div>
             </div>
 

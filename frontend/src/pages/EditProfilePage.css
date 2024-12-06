@@ -1,7 +1,7 @@
 .edit-profile-header {
     background-color: #ffffff;
     border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
-    padding: 5rem 3rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -316,12 +316,12 @@
 /* Media Query for Medium Screens (Laptop) */
 @media (max-width: 1024px) {
     .edit-profile-header {
-        padding: 4rem 2rem;
+        padding: 2rem;
     }
     
     .edit-profile-image {
-        width: 16rem;
-        height: 16rem;
+        width: 13rem;
+        height: auto;
     }
 
     .edit-profile-image-btn {
@@ -368,15 +368,15 @@
     }
     
     .edit-profile-name {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     
     .edit-profile-occupation , .edit-profile-location {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
-        font-size: 2rem;
+        font-size: 1.8rem;
         text-shadow: 0.05rem 0.1rem #1e1e1e;
     }
     
@@ -494,8 +494,8 @@
     }
     
     .edit-profile-image {
-        width: 14rem;
-        height: 14rem;
+        width: 12rem;
+        height: auto;
     }
     
     .edit-profile-info {
@@ -512,15 +512,15 @@
     }
     
     .edit-profile-name {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .edit-profile-occupation , .edit-profile-location {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
     
     .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         text-shadow: 0.05rem 0.1rem #1e1e1e;
     }
     
@@ -551,7 +551,7 @@
         height: 3.5rem;
         padding: 1rem;
         border-radius: 0.7rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     /* Edit About Me Form */
@@ -564,13 +564,13 @@
         height: 8rem;
         padding: 1rem;
         border-radius: 0.7rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     /* Account Details */
     .account-details {
         gap: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin-top: 1rem;
     }
     
@@ -588,7 +588,7 @@
     
     .account-details-form .form-group label {
         margin: 0.8rem 0rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .account-details-form .form-group input,
@@ -635,12 +635,12 @@
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
     .edit-profile-header {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem;
     }
     
     .edit-profile-image {
-        width: 11rem;
-        height: 11rem;
+        width: 8rem;
+        height: auto;
     }
 
     .edit-profile-image-btn {
