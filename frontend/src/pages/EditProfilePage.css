@@ -24,17 +24,17 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.3rem;
+    right: 0.3rem;
     background-color: #8CAD63;
     border: 0.2rem solid #7a9954;
     color: white;
-    padding: 1rem 1.8rem;
+    padding: 1rem 1rem;
     border-radius: 50%;
     cursor: pointer;
     font-size: 2rem;
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
 }
 
 .edit-profile-pic-btn:hover {
@@ -106,7 +106,7 @@
 }
 
 .edit-profile-occupation , .edit-profile-location {
-    font-size: 1.7rem;
+    font-size: 2rem;
 }
 
 .edit-profile-occupation {
@@ -497,9 +497,30 @@
         width: 12rem;
         height: auto;
     }
+
+    .image-selector-modal {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 0.1rem solid #1e1e1e;
+        border-radius: 0.7rem;
+        width: 2rem;
+        padding: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .image-selector-container {
+        gap: 0.5rem;
+    }
     
     .edit-profile-info {
         margin-top: 0.8rem;
+    }
+
+    .profile-image-option {
+        width: 2.8rem;
+        height: 2.8rem;
     }
 
     .profile-image-text {

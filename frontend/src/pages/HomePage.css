@@ -207,28 +207,28 @@
     }
     
     .top-rated-profile-name {
-        font-size: 2.2em;
+        font-size: 1.8em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
 
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
         width: 15rem;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     
     .top-rated-profile-score {
       font-weight: bold;
-      font-size: 2em;
+      font-size: 1.5em;
     }
     
     .top-rated-location {
-        font-size: 1.5em; /* Smaller font size for location */
+        font-size: 1.2em; /* Smaller font size for location */
         text-align: right;
         margin: 0.7rem 0rem;
         
@@ -246,14 +246,13 @@
 
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
-
     .top-rated-section, .explore-section {
-        padding: 2.5rem;
+        padding: 1.5rem;
         width: 100%;
     }
     
     .explore-section {
-        gap: 1.5rem; /* Add spacing between cards */
+        gap: 0.8rem; /* Add spacing between cards */
     }
     
     .top-rated-container {
@@ -261,15 +260,15 @@
     }
     
     .top-rated-card {
-        padding: 1rem;
+        padding: 0.8rem 1rem;
     }
 
     .top-rated-profile-image-container {
-        margin-right: 1rem; /* Space between image and text */
+        margin-right: 0.8rem; /* Space between image and text */
     }
     
     .top-rated-profile-image {
-        width: 6rem;
+        width: 4rem;
         height: auto;
     }
     
@@ -278,30 +277,30 @@
     }
     
     .top-rated-profile-name {
-        max-width: 8rem;
-        font-size: 1.5em;
+        max-width: 10rem;
+        font-size: 1em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
-        max-width: 8rem;
-        font-size: 1.1em;
+        max-width: 10rem;
+        font-size: 0.7em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
-        max-width: 8rem;
-        font-size: 1.1em;
+        max-width: 10rem;
+        font-size: 0.7em;
     }
     
     .top-rated-profile-score {
         max-width: 10rem;
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 0.8em;
     }
     
     .top-rated-location {
-        font-size: 1em; /* Smaller font size for location */
+        font-size: 0.5em; /* Smaller font size for location */
         text-align: right;
         margin: 0.3rem 0rem;
     }
@@ -311,8 +310,8 @@
     }
 
     .arrow-icon {
-        width: 2rem; /* Adjust image size */
-        height: 2rem;
+        width: 1.5rem; /* Adjust image size */
+        height: 1.5rem;
     }
 }
 
@@ -324,7 +323,7 @@
     }
     
     .explore-section {
-        gap: 1rem; /* Add spacing between cards */
+        gap: 0.8rem; /* Add spacing between cards */
     }
     
     .top-rated-container {
@@ -332,15 +331,15 @@
     }
     
     .top-rated-card {
-        padding: 0.8rem;
+        padding: 0.8rem 1rem;
     }
 
     .top-rated-profile-image-container {
-        margin-right: 1rem; /* Space between image and text */
+        margin-right: 0.8rem; /* Space between image and text */
     }
     
     .top-rated-profile-image {
-        width: 4.5rem;
+        width: 4rem;
         height: auto;
     }
     
@@ -349,30 +348,30 @@
     }
     
     .top-rated-profile-name {
-        max-width: 8rem;
-        font-size: 1.1em;
+        max-width: 10rem;
+        font-size: 1em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
-        max-width: 8rem;
-        font-size: 0.9em;
+        max-width: 10rem;
+        font-size: 0.7em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
-        max-width: 7rem;
-        font-size: 0.9em;
+        max-width: 10rem;
+        font-size: 0.7em;
     }
     
     .top-rated-profile-score {
         max-width: 10rem;
         font-weight: bold;
-        font-size: 1em;
+        font-size: 0.8em;
     }
     
     .top-rated-location {
-        font-size: 0.7em; /* Smaller font size for location */
+        font-size: 0.5em; /* Smaller font size for location */
         text-align: right;
         margin: 0.3rem 0rem;
     }
@@ -420,24 +419,24 @@
     }
     
     .top-rated-profile-name {
-        max-width: 8rem;
+        max-width: 10rem;
         font-size: 1em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
-        max-width: 8rem;
+        max-width: 10rem;
         font-size: 0.7em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
-        max-width: 5rem;
+        max-width: 10rem;
         font-size: 0.7em;
     }
     
     .top-rated-profile-score {
-        max-width: 8rem;
+        max-width: 10rem;
         font-weight: bold;
         font-size: 0.8em;
     }
@@ -460,5 +459,71 @@
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
+    .top-rated-section, .explore-section {
+        padding: 1.5rem;
+        width: 100%;
+    }
+    
+    .explore-section {
+        gap: 0.8rem; /* Add spacing between cards */
+    }
+    
+    .top-rated-container {
+        padding: 0rem 0rem;
+    }
+    
+    .top-rated-card {
+        padding: 0.8rem 0.5rem;
+    }
 
+    .top-rated-profile-image-container {
+        margin-right: 0.8rem; /* Space between image and text */
+    }
+    
+    .top-rated-profile-image {
+        width: 4rem;
+        height: auto;
+    }
+    
+    .top-rated-profile-info {
+        width: 100%;
+    }
+    
+    .top-rated-profile-name {
+        max-width: 10rem;
+        font-size: 1em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-occupation {
+        max-width: 10rem;
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-description {
+        max-width: 10rem;
+        font-size: 0.7em;
+    }
+    
+    .top-rated-profile-score {
+        max-width: 10rem;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+    
+    .top-rated-location {
+        font-size: 0.5em; /* Smaller font size for location */
+        text-align: right;
+        margin: 0.3rem 0rem;
+    }
+
+    .navigation-button {
+
+    }
+
+    .arrow-icon {
+        width: 1.5rem; /* Adjust image size */
+        height: 1.5rem;
+    }
 }
