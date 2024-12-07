@@ -1,974 +1,586 @@
 /* Global Styles */
 html body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f2ffe1;
-    color: #1E1E1E;
+  font-family: "Roboto", sans-serif;
+  background-color: #f2ffe1;
+  color: #1e1e1e;
 }
 
 /* TEXT */
 html h1 {
-<<<<<<< HEAD
-    font-size: 6rem; /* Default size */
-    margin: 2rem 0rem;
-    text-align: center;
-    font-weight: bold;
-=======
-    text-align: center;
-    font-weight: bold;
-    font-size: 5rem; /* Default size */
->>>>>>> aws
-    padding: 0rem 2rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 5rem; /* Default size */
+  padding: 0rem 2rem;
 }
 
 html h2 {
-    font-size: 4rem; /* Default size */
-    text-align: center;
-    font-weight: bold;
-    margin: 0rem;
+  font-size: 4rem; /* Default size */
+  text-align: center;
+  font-weight: bold;
+  margin: 0rem;
 }
 
 /* Search, Saved Roommates Title */
 .general-content h2 {
-    margin: 2rem 0rem;
-    padding: 0rem 2rem;
+  margin: 2rem 0rem;
+  padding: 0rem 2rem;
 }
 
 html h3 {
-<<<<<<< HEAD
-    margin-top: 3rem;
-=======
-    margin: 2rem 0rem;
-    font-size: 2.5rem;
->>>>>>> aws
+  margin: 2rem 0rem;
+  font-size: 2.5rem;
 }
 
 html h4 {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 html h5 {
-    font-size: 1.5rem;
-<<<<<<< HEAD
-    margin: 2rem 0rem;
-=======
-    margin: 0.7rem 0rem;
->>>>>>> aws
-    text-align: center;
-    font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0.7rem 0rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 /* Rate Your Roommate Title */
 .highlight {
-    color: #e4fff5;
-    text-shadow: 0rem 0rem 0.4rem #1e1e1e;
-
+  color: #e4fff5;
+  text-shadow: 0rem 0rem 0.4rem #1e1e1e;
 }
 
 /* Top-rated Roommates text */
 .highlight2 {
-    color: #fefefe;
-    text-shadow: 0rem 0rem 0.4rem #1e1e1e;
+  color: #fefefe;
+  text-shadow: 0rem 0rem 0.4rem #1e1e1e;
 }
 
 /* Explore Roommates text */
 .highlight3 {
-    color: #e4fff5;
-    text-shadow: 0rem 0rem 0.4rem #1e1e1e;
+  color: #e4fff5;
+  text-shadow: 0rem 0rem 0.4rem #1e1e1e;
 }
 
 /* Top-rated Profile Score, Review Page Score */
 .highlight4 {
-    color: #fefefe;
-    text-shadow: 0rem 0rem 0.3rem #1e1e1e;
+  color: #fefefe;
+  text-shadow: 0rem 0rem 0.3rem #1e1e1e;
 }
 
 /* Review Score + Stars */
 .highlight5 {
-    color: #8CAD63;
-    /* text-shadow: 0rem 0rem 0.15rem #1e1e1e; */
-    text-shadow: 0.05rem 0.05rem #1e1e1e;
-<<<<<<< HEAD
-    
-=======
->>>>>>> aws
+  color: #8cad63;
+  /* text-shadow: 0rem 0rem 0.15rem #1e1e1e; */
+  text-shadow: 0.05rem 0.05rem #1e1e1e;
 }
 
 /* CONTAINER */
 .general-content {
-    width: 100%;
-    min-height: 100vh;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem 1rem;
-<<<<<<< HEAD
-    gap: 2rem; /* Add spacing between cards */
-=======
-    gap: 2rem;
->>>>>>> aws
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  gap: 2rem;
 }
 
 .top-rated-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 55rem;
-    height: 100%;
-    padding: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 55rem;
+  height: 100%;
+  padding: 3rem;
 }
 
 .profile-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1rem;
-    width: 100%;
-    max-width: 55rem;
-    height: 100%;
-    padding: 3rem;
-    background-color: #ffffff;
-    border: 0.1rem solid #1e1e1e;
-    border-radius: 0.9rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  width: 100%;
+  max-width: 55rem;
+  height: 100%;
+  padding: 3rem;
+  background-color: #ffffff;
+  border: 0.1rem solid #1e1e1e;
+  border-radius: 0.9rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile-card:hover {
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 .profile-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word; 
-    white-space: normal;
-    vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  vertical-align: middle;
 }
 
 .profile-date-location {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .profile-info {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 75%;
-    word-wrap: break-word;
-    overflow-wrap: break-word; 
-    white-space: normal;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 75%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
-
 
 /* BUTTONS */
 .button-container {
-<<<<<<< HEAD
-    padding-top: 1rem;
-=======
-    padding: 1rem;
->>>>>>> aws
-    display: flex;
-    gap: 1rem; /* Space between buttons */
+  padding: 1rem;
+  display: flex;
+  gap: 1rem; /* Space between buttons */
 }
 
 .normal-btn {
-    text-align: center;
-    margin: 0.5rem;
-<<<<<<< HEAD
-    font-size: 2.1rem;
-    padding: 1rem;
-    width: 16rem;
-    border-radius: 0.8rem;
-    border: 0.2rem solid #1e1e1e;
-=======
-    font-size: 1.6rem;
-    padding: 1rem;
-    width: 12rem;
-    border-radius: 0.8rem;
-    border: 0.15rem solid #1e1e1e;
->>>>>>> aws
+  text-align: center;
+  margin: 0.5rem;
+  font-size: 1.6rem;
+  padding: 1rem;
+  width: 12rem;
+  border-radius: 0.8rem;
+  border: 0.15rem solid #1e1e1e;
 }
 
 .normal-btn:hover {
-    cursor: pointer;
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
+  cursor: pointer;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 /* Navigation bar button */
 .nav-btn {
-    text-align: center;
-    margin: 0.5rem;
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    width: 5rem;
-    border-radius: 0.5rem;
-    border: 0.1rem solid #1e1e1e;
-    text-shadow: 0.05rem 0.05rem #1e1e1e;
+  text-align: center;
+  margin: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #1e1e1e;
+  text-shadow: 0.05rem 0.05rem #1e1e1e;
 }
 
 .nav-btn:hover {
-    cursor: pointer;
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
+  cursor: pointer;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 /* Primary Button (e.g., login button) */
 .primary-btn {
-    background-color: #559CD0; /* Sky blue */
-    color: #FFFFFF; /* White text */
-    text-shadow: 0.1rem 0.1rem #1e1e1e;
+  background-color: #559cd0; /* Sky blue */
+  color: #ffffff; /* White text */
+  text-shadow: 0.1rem 0.1rem #1e1e1e;
 }
 
 .primary-btn:hover {
-    background-color: #6db2e3; /* Lighter blue */
-    color: #FFFFFF; /* White text */
-    text-shadow: 0.1rem 0.1rem #1e1e1e;
+  background-color: #6db2e3; /* Lighter blue */
+  color: #ffffff; /* White text */
+  text-shadow: 0.1rem 0.1rem #1e1e1e;
 }
 
 /* Primary Button when clicked */
 .primary-btn:active {
-    background-color: #559CD0;
+  background-color: #559cd0;
 }
 
 /* Secondary Button (e.g., register button) */
 .secondary-btn {
-    background-color: #E3E3E3; /* Gray */
-    color: #1E1E1E; /* Almost black text */
-    text-shadow: 0.05rem 0.05rem #9e9e9e;
+  background-color: #e3e3e3; /* Gray */
+  color: #1e1e1e; /* Almost black text */
+  text-shadow: 0.05rem 0.05rem #9e9e9e;
 }
 
 .secondary-btn:hover {
-    background-color: #f0f0f0; /* Lighter gray */
-    color: #1E1E1E; /* Almost black text */
-    text-shadow: 0.05rem 0.05rem #9e9e9e;
+  background-color: #f0f0f0; /* Lighter gray */
+  color: #1e1e1e; /* Almost black text */
+  text-shadow: 0.05rem 0.05rem #9e9e9e;
 }
 
 /* Secondary Button when clicked */
 .secondary-btn:active {
-    background-color: #E3E3E3;
+  background-color: #e3e3e3;
 }
 
 /* Menu Selector Button */
 .menu-button {
-    background-color: #1E1E1E; /* Almost black */
-    color: #FFFFFF;
-    font-size: 18px;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+  background-color: #1e1e1e; /* Almost black */
+  color: #ffffff;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
 }
 
 /* LINKS */
 /* Remove default link styles */
 html a {
-    color: inherit; /* Inherit text color from the parent */
-    text-decoration: none;
+  color: inherit; /* Inherit text color from the parent */
+  text-decoration: none;
 }
 
 html a:hover {
-    text-decoration: none;
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
+  text-decoration: none;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 html .nav-link {
-    color: #1E1E1E; /* Almost black */
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
+  color: #1e1e1e; /* Almost black */
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 html .nav-link:hover {
-    color: #1E1E1E; /* Almost black */
-    text-shadow: 2px 2px #e4fff5;
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
+  color: #1e1e1e; /* Almost black */
+  text-shadow: 2px 2px #e4fff5;
+  transform: translateY(0.1rem);
+  transition: transform 150ms;
 }
 
 html .nav-link:active {
-    color: #878787;
-<<<<<<< HEAD
-}
-
-/* PROFILE CARD */
-.profile-card {
-    display: flex;
-    flex-direction: row; /* Make the card layout horizontal */
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 55rem;
-    padding: 2.5rem;
-    background-color: #ffffff;
-    border: 0.1rem solid #1e1e1e; /* Bottom border */
-    border-radius: 0.7rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.profile-card:hover {
-    cursor: pointer;
-    transform: translateY(0.1rem);
-    transition: transform 150ms;
-}
-
-.profile-info-container {
-    display: flex;
-    flex-direction: row; 
-}
-
-.profile-image-container {
-    flex-shrink: 0; /* Prevent the image from shrinking */
-    margin-right: 2rem; /* Space between image and text */
-=======
->>>>>>> aws
+  color: #878787;
 }
 
 .profile-image {
-    width: 10rem; /* Adjust image size */
-    height: 10rem;
-    border-radius: 50%; /* Make the image circular */
-    object-fit: cover;
-<<<<<<< HEAD
+  width: 10rem; /* Adjust image size */
+  height: 10rem;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover;
+  margin-right: 2rem;
 }
 
-.profile-info {
-    display: flex;
-    flex-direction: column; /* Stack profile name, description, and score vertically */
-    text-align: left;
+/* Media query for Large Screens (Laptop L) */
+@media (max-width: 1440px) {
+  html h1 {
+    font-size: 3.5rem; /* Reduce title font size */
+  }
+
+  html h2 {
+    font-size: 3rem;
+  }
+
+  html h3 {
+    margin: 1rem 0rem;
+    font-size: 2rem;
+  }
+
+  html h5 {
+    font-size: 1.4rem;
+    margin: 0.6rem 0rem;
+  }
+
+  .profile-info {
+    width: 85%;
+  }
+
+  .profile-image {
+    width: 6rem; /* Adjust image size */
+    height: 6rem;
+    margin-right: 1.5rem;
+  }
+
+  .normal-btn {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.9rem;
+    width: 12rem;
+    border-radius: 0.7rem;
+    border: 0.15rem solid #1e1e1e;
+  }
+}
+
+/* Media Query for Medium Screens (Laptop) */
+@media (max-width: 1024px) {
+  .general-content {
+    gap: 2rem; /* Add spacing between cards */
+    padding: 3rem;
+  }
+
+  html h1 {
+    font-size: 3.5rem;
+  }
+
+  html h2 {
+    font-size: 2.5rem;
+  }
+
+  html h3 {
+    margin: 0rem;
+    font-size: 1.7rem;
+  }
+
+  html h5 {
+    font-size: 1.3rem;
+    margin: 0.6rem 0rem;
+  }
+
+  .profile-info {
+    width: 85%;
+  }
+
+  .profile-image {
+    width: 6rem; /* Adjust image size */
+    height: 6rem;
+    margin-right: 1.5rem;
+  }
+
+  .normal-btn {
+    text-align: center;
+    margin: 0.3rem;
+    font-size: 1.3rem;
+    padding: 0.8rem;
+    width: 10rem;
+    border-radius: 0.7rem;
+    border: 0.12rem solid #1e1e1e;
+  }
+}
+/* Media Query for Small Screens (Tablet) */
+@media (max-width: 768px) {
+  .general-content {
+    gap: 1.5rem; /* Add spacing between cards */
+    padding: 2.5rem;
+  }
+
+  html h1 {
+    font-size: 2.5rem;
+  }
+
+  html h2 {
+    font-size: 1.8rem;
+  }
+
+  html h3 {
+    margin: 0rem;
+    font-size: 1.4rem;
+  }
+
+  html h5 {
+    font-size: 1.3rem;
+    margin: 0.6rem 0rem;
+  }
+
+  .profile-info {
+    width: 84%;
+  }
+
+  .profile-image {
+    width: 5rem; /* Adjust image size */
+    height: 5rem;
     margin-right: 1rem;
-    max-width: 30em;
-}
+  }
 
-.profile-name {
-    font-size: 2em;
-    font-weight: bold;
-}
+  .button-container {
+    gap: 0.7rem;
+  }
 
-.profile-score {
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.profile-occupation {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.profile-description {
-    align-self: baseline;
-    text-align: left;
-    white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
-    word-wrap: break-word; /* Breaks words if they are too long */
-    overflow-wrap: break-word; /* Compatibility for older browsers */
-    max-width: 100%; /* Ensures it stays within the container */
-    box-sizing: border-box; /* Includes padding in width calculations */
-    font-size: 1.5em;
-}
-
-.location-favorite-container {
-    display: flex;
-    flex-direction: column;
-    align-items: right;
-    max-width: 8em;
-    margin-bottom: 3rem;
-}
-
-.profile-location {
-  font-size: 1.3em; /* Smaller font size for location */
-  margin-bottom: 1rem;
-  text-align: right;
-}
-
-.favorite-icon {
-  cursor: pointer;
-  text-align: right;
-}
-=======
-    margin-right: 2rem;
-}
-
-/* Media query for Large Screens (Laptop L) */
-@media (max-width: 1440px) {
-    html h1 {
-        font-size: 3.5rem; /* Reduce title font size */
-    }
-
-    html h2 {
-        font-size: 3rem;
-    }
-
-    html h3 {
-        margin: 1rem 0rem;
-        font-size: 2rem;
-    }
-
-    html h5 {
-        font-size: 1.4rem;
-        margin: 0.6rem 0rem;
-    }
-
-    .profile-info {
-        width: 85%;
-    }
-
-    .profile-image {
-        width: 6rem; /* Adjust image size */
-        height: 6rem;
-        margin-right: 1.5rem;
-    }
-
-    .normal-btn {
-        text-align: center;
-        margin: 0.5rem;
-        font-size: 1.5rem;
-        padding: 0.9rem;
-        width: 12rem;
-        border-radius: 0.7rem;
-        border: 0.15rem solid #1e1e1e;
-    }
-}
-
-/* Media Query for Medium Screens (Laptop) */
-@media (max-width: 1024px) {
-    .general-content {
-        gap: 2rem; /* Add spacing between cards */
-        padding: 3rem;
-    }
-
-    html h1 {
-        font-size: 3.5rem;
-    }
-
-    html h2 {
-        font-size: 2.5rem;
-    }
-
-    html h3 {
-        margin: 0rem;
-        font-size: 1.7rem;
-    }
-
-    html h5 {
-        font-size: 1.3rem;
-        margin: 0.6rem 0rem;
-    }
-
-    .profile-info {
-        width: 85%;
-    }
-
-    .profile-image {
-        width: 6rem; /* Adjust image size */
-        height: 6rem;
-        margin-right: 1.5rem;
-    }
-
-    .normal-btn {
-        text-align: center;
-        margin: 0.3rem;
-        font-size: 1.3rem;
-        padding: 0.8rem;
-        width: 10rem;
-        border-radius: 0.7rem;
-        border: 0.12rem solid #1e1e1e;
-    }
-    
-}
-/* Media Query for Small Screens (Tablet) */
-@media (max-width: 768px) {
-    .general-content {
-        gap: 1.5rem; /* Add spacing between cards */
-        padding: 2.5rem;
-    }
-    
-    html h1 {
-        font-size: 2.5rem;
-    }
-
-    html h2 {
-        font-size: 1.8rem;
-    }
-
-    html h3 {
-        margin: 0rem;
-        font-size: 1.4rem;
-    }
-
-    html h5 {
-        font-size: 1.3rem;
-        margin: 0.6rem 0rem;
-    }
-
-    .profile-info {
-        width: 84%;
-    }
-
-
-    .profile-image {
-        width: 5rem; /* Adjust image size */
-        height: 5rem;
-        margin-right: 1rem;
-    }
-    
-    .button-container {
-        gap: 0.7rem;
-    }
-
-    .normal-btn {
-        text-align: center;
-        margin: 0.3rem;
-        font-size: 1.1rem;
-        padding: 0.7rem;
-        width: 8.5rem;
-        border-radius: 0.6rem;
-        border: 0.1rem solid #1e1e1e;
-    }
+  .normal-btn {
+    text-align: center;
+    margin: 0.3rem;
+    font-size: 1.1rem;
+    padding: 0.7rem;
+    width: 8.5rem;
+    border-radius: 0.6rem;
+    border: 0.1rem solid #1e1e1e;
+  }
 }
 
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
-    .general-content {
-        gap: 1rem; /* Add spacing between cards */
-        padding: 1.5rem;
-    }
+  .general-content {
+    gap: 1rem; /* Add spacing between cards */
+    padding: 1.5rem;
+  }
 
-    html h1 {
-        font-size: 2.5rem;
-    }
+  html h1 {
+    font-size: 2.5rem;
+  }
 
-    html h2 {
-        font-size: 1.7rem; /* Further reduce title font size */
-    }
+  html h2 {
+    font-size: 1.7rem; /* Further reduce title font size */
+  }
 
-    html h3 {
-        margin: 0rem;
-        font-size: 1rem;
-    }
+  html h3 {
+    margin: 0rem;
+    font-size: 1rem;
+  }
 
-    html h5 {
-        font-size: 1.2rem;
-        margin: 0.6rem 0rem;
-    }
-    
-    .profile-image {
-        width: 4rem; /* Adjust image size */
-        height: 4rem;
-        margin-right: 1rem;
-    }
-    
-    .button-container {
-        gap: 0.2rem;
-        padding-top: 0.5rem;
-    }
+  html h5 {
+    font-size: 1.2rem;
+    margin: 0.6rem 0rem;
+  }
 
-    .normal-btn {
-        text-align: center;
-        margin: 0.3rem;
-        font-size: 1.1rem;
-        padding: 0.7rem;
-        width: 8.5rem;
-        border-radius: 0.6rem;
-        border: 0.1rem solid #1e1e1e;
-    }
+  .profile-image {
+    width: 4rem; /* Adjust image size */
+    height: 4rem;
+    margin-right: 1rem;
+  }
+
+  .button-container {
+    gap: 0.2rem;
+    padding-top: 0.5rem;
+  }
+
+  .normal-btn {
+    text-align: center;
+    margin: 0.3rem;
+    font-size: 1.1rem;
+    padding: 0.7rem;
+    width: 8.5rem;
+    border-radius: 0.6rem;
+    border: 0.1rem solid #1e1e1e;
+  }
 }
 
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
-    .general-content {
-        gap: 1rem; /* Add spacing between cards */
-        padding: 1.5rem;
-    }
+  .general-content {
+    gap: 1rem; /* Add spacing between cards */
+    padding: 1.5rem;
+  }
 
-    html h1 {
-        font-size: 2.5rem;
-    }
+  html h1 {
+    font-size: 2.5rem;
+  }
 
-    html h2 {
-        font-size: 2rem; /* Further reduce title font size */
-    }
+  html h2 {
+    font-size: 2rem; /* Further reduce title font size */
+  }
 
-    html h3 {
-        margin: 0rem;
-        font-size: 1.2rem;
-    }
+  html h3 {
+    margin: 0rem;
+    font-size: 1.2rem;
+  }
 
-    html h5 {
-        font-size: 1.1rem;
-        margin: 0.4rem 0rem;
-    }
+  html h5 {
+    font-size: 1.1rem;
+    margin: 0.4rem 0rem;
+  }
 
-    .profile-info {
-        width: 75%;
-    }
+  .profile-info {
+    width: 75%;
+  }
 
-    .profile-image {
-        width: 4rem; /* Adjust image size */
-        height: 4rem;
-        margin-right: 1rem;
-    }
+  .profile-image {
+    width: 4rem; /* Adjust image size */
+    height: 4rem;
+    margin-right: 1rem;
+  }
 
-    .button-container {
-        gap: 0.2rem;
-    }
+  .button-container {
+    gap: 0.2rem;
+  }
 
-    .normal-btn {
-        margin: 0.5rem;
-        font-size: 0.9rem;
-        padding: 0.6rem;
-        width: 6.5rem;
-        border-radius: 0.5rem;
-        border: 0.1rem solid #1e1e1e;
-    }
+  .normal-btn {
+    margin: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+    width: 6.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+  }
 }
 
 /* Media Query for Extra Small Screens (Mobile M) */
 @media (max-width: 375px) {
-    .general-content {
-        gap: 1rem; /* Add spacing between cards */
-        padding: 1.5rem;
-    }
+  .general-content {
+    gap: 1rem; /* Add spacing between cards */
+    padding: 1.5rem;
+  }
 
-    html h1 {
-        font-size: 2rem;
-    }
+  html h1 {
+    font-size: 2rem;
+  }
 
-    html h2 {
-        font-size: 1.5rem; /* Further reduce title font size */
-    }
+  html h2 {
+    font-size: 1.5rem; /* Further reduce title font size */
+  }
 
-    html h3 {
-        margin: 0rem;
-        font-size: 1rem;
-    }
+  html h3 {
+    margin: 0rem;
+    font-size: 1rem;
+  }
 
-    html h5 {
-        font-size: 1rem;
-        margin: 0.4rem 0rem;
-    }
+  html h5 {
+    font-size: 1rem;
+    margin: 0.4rem 0rem;
+  }
 
-    .profile-info {
-        width: 72%;
-    }
-    
-    .profile-image {
-        width: 4rem; /* Adjust image size */
-        height: 4rem;
-        margin-right: 0.7rem;
-    }
+  .profile-info {
+    width: 72%;
+  }
 
-    .normal-btn {
-        margin: 0.5rem;
-        font-size: 0.7rem;
-        padding: 0.4rem;
-        width: 5rem;
-        border-radius: 0.5rem;
-        border: 0.1rem solid #1e1e1e;
-    }
+  .profile-image {
+    width: 4rem; /* Adjust image size */
+    height: 4rem;
+    margin-right: 0.7rem;
+  }
+
+  .normal-btn {
+    margin: 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.4rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+  }
 }
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
-    .general-content {
-        gap: 1rem; /* Add spacing between cards */
-        padding: 1.5rem;
-    }
+  .general-content {
+    gap: 1rem; /* Add spacing between cards */
+    padding: 1.5rem;
+  }
 
-    html h1 {
-        font-size: 2rem;
-    }
+  html h1 {
+    font-size: 2rem;
+  }
 
-    html h2 {
-        font-size: 1.3rem; /* Further reduce title font size */
-    }
->>>>>>> aws
+  html h2 {
+    font-size: 1.3rem; /* Further reduce title font size */
+  }
 
-    html h3 {
-        margin: 0rem;
-        font-size: 1rem;
-    }
+  html h3 {
+    margin: 0rem;
+    font-size: 1rem;
+  }
 
-    html h5 {
-        font-size: 1rem;
-        margin: 0.3rem 0rem;
-    }
+  html h5 {
+    font-size: 1rem;
+    margin: 0.3rem 0rem;
+  }
 
-    .profile-info {
-        width: 65%;
-    }
+  .profile-info {
+    width: 65%;
+  }
 
-    .normal-btn {
-        margin: 0.5rem;
-        font-size: 0.7rem;
-        padding: 0.4rem;
-        width: 5rem;
-        border-radius: 0.5rem;
-        border: 0.1rem solid #1e1e1e;
-    }
+  .normal-btn {
+    margin: 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.4rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+  }
 }
-<<<<<<< HEAD
-
-/* Media query for Large Screens (Laptop L) */
-@media (max-width: 1440px) {
-    .normal-btn {
-      text-align: center;
-      margin: 0.5rem;
-      font-size: 2rem;
-      padding: 1rem;
-      width: 15rem;
-      border-radius: 0.7rem;
-      border: 0.15rem solid #1e1e1e;
-    }
-}
-
-/* Media Query for Medium Screens (Laptop) */
-@media (max-width: 1024px) {
-    .general-content {
-        gap: 2rem; /* Add spacing between cards */
-        padding: 3rem;
-    }
-
-    html h1 {
-        font-size: 5rem; /* Reduce title font size */
-    }
-
-    .profile-card {
-        max-width: 55rem;
-        padding: 2.2rem;
-        border: 0.1rem solid #1e1e1e; /* Bottom border */
-        border-radius: 0.8rem;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Like/Save Roommate button */
-    .heart-icon {
-        width: 2.5rem; /* Adjust image size */
-        height: 2.5rem;
-    }
-
-    .normal-btn {
-        text-align: center;
-        margin: 0.5rem;
-        font-size: 1.7rem;
-        padding: 1rem;
-        width: 15rem;
-        border-radius: 0.7rem;
-        border: 0.15rem solid #1e1e1e;
-      }
-}
-/* Media Query for Small Screens (Tablet) */
-@media (max-width: 768px) {
-    .general-content {
-        gap: 1.5rem; /* Add spacing between cards */
-        padding: 2.5rem;
-    }
-    
-    html h1 {
-        font-size: 4rem; /* Further reduce title font size */
-    }
-
-    html h2 {
-        font-size: 3.5rem; /* Further reduce title font size */
-    }
-
-    .profile-card {
-        max-width: 55rem;
-        padding: 2.2rem;
-        border: 0.1rem solid #1e1e1e; /* Bottom border */
-        border-radius: 0.7rem;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    .profile-image-container {
-        flex-shrink: 0; /* Prevent the image from shrinking */
-        margin-right: 1rem;
-        display: flex;
-        align-items: center;
-    }
-    
-    .profile-image {
-        width: 6.5rem; /* Adjust image size */
-        height: 6.5rem;
-    }
-    
-    .profile-info {
-        display: flex;
-        flex-direction: column; /* Stack profile name, description, and score vertically */
-        text-align: left;
-        margin-right: 1rem;
-        max-width: 20em;
-    }
-    
-    .profile-name {
-        font-size: 1.2em;
-        font-weight: bold;
-    }
-    
-    .profile-score {
-        font-weight: bold;
-        font-size: 1.1em;
-    }
-    
-    .profile-occupation {
-        font-size: 1em;
-        font-weight: bold;
-    }
-    
-    .profile-description {
-        font-size: 1em;
-    }
-    
-    .location-favorite-container {
-        max-width: 6em;
-        margin-bottom: 2rem;
-    }
-    
-    .profile-location {
-      font-size: 1em; /* Smaller font size for location */
-      margin-bottom: 0.5rem;
-      text-align: right;
-    }
-    
-    .favorite-icon {
-      cursor: pointer;
-      text-align: right;
-      margin-bottom: 0rem;
-    }
-    
-    /* Like/Save Roommate button */
-    .heart-icon {
-      width: 2rem; /* Adjust image size */
-      height: 2rem;
-    }
-
-
-    .normal-btn {
-        text-align: center;
-        margin: 0.5rem;
-        font-size: 1.5rem;
-        padding: 1rem;
-        width: 14rem;
-        border-radius: 0.6rem;
-        border: 0.1rem solid #1e1e1e;
-    }
-}
-/* Media Query for Extra Small Screens (Mobile L) */
-@media (max-width: 425px) {
-    .general-content {
-        gap: 1rem; /* Add spacing between cards */
-        padding: 1.5rem;
-    }
-
-    html h1 {
-        font-size: 3rem;
-    }
-
-    html h2 {
-        font-size: 2.5rem; /* Further reduce title font size */
-    }
-
-    .profile-card {
-        max-width: 55rem;
-        padding: 1rem;
-        border: 0.08rem solid #1e1e1e; /* Bottom border */
-        border-radius: 0.7rem;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    
-    .profile-image-container {
-        flex-shrink: 0; /* Prevent the image from shrinking */
-        margin-right: 0.7rem;
-    }
-    
-    .profile-image {
-        width: 4rem; /* Adjust image size */
-        height: 4rem;
-    }
-
-    .profile-info-container {
-        max-width: 18rem;
-    }
-    
-    .profile-info {
-        display: flex;
-        flex-direction: column; /* Stack profile name, description, and score vertically */
-        text-align: left;
-        margin-right: 1rem;
-        max-width: 19em;
-    }
-    
-    .profile-name {
-        font-size: 1em;
-        font-weight: bold;
-    }
-    
-    .profile-score {
-        font-weight: bold;
-        font-size: 0.8em;
-    }
-    
-    .profile-occupation {
-        font-size: 0.7em;
-        font-weight: bold;
-    }
-    
-    .profile-description {
-        font-size: 0.7em;
-    }
-    
-    .location-favorite-container {
-        display: flex;
-        flex-direction: column;
-        align-items: right;
-        max-width: 5em;
-        margin-bottom: 1rem;
-    }
-
-    
-    .profile-location {
-      font-size: 0.6em; /* Smaller font size for location */
-      margin-bottom: 0.5rem;
-      text-align: right;
-    }
-    
-    .favorite-icon {
-      cursor: pointer;
-      text-align: right;
-      margin-bottom: 0rem;
-    }
-    
-    /* Like/Save Roommate button */
-    .heart-icon {
-      width: 1.2rem; /* Adjust image size */
-      height: 1.2rem;
-    }
-
-    .normal-btn {
-        text-align: center;
-        margin: 0.5rem;
-        font-size: 1.3rem;
-        padding: 1rem;
-        width: 10rem;
-        border-radius: 0.5rem;
-        border: 0.1rem solid #1e1e1e;
-      }
-}
-
-/* Media Query for Extra Small Screens (Mobile M) */
-@media (max-width: 375px) {
-}
-
-/* Media Query for Extra Small Screens (Mobile S) */
-@media (max-width: 320px) {
-}
-=======
->>>>>>> aws
-   
