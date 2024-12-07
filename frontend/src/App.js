@@ -26,6 +26,15 @@ function ProtectedRoute({ isAllowed, children, redirectTo = "/" }) {
     return children;
 }
 
+function NotFound() {
+    return (
+        <div className="general-content">
+            <h2>Page Not Found</h2>
+            <h3>The page you are looking for does not exist.</h3>
+        </div>
+    );
+}
+
 function App() {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
@@ -232,6 +241,8 @@ function App() {
                     userCity={userCity}
                      />}
             />
+            {/* Catch-all route for undefined paths */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer onForgotPasswordClick={handleForgotPasswordClick} />
         {showLogin && (
