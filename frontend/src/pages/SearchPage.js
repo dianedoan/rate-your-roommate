@@ -93,7 +93,7 @@ function SearchPage() {
                         <span className="highlight5">
                           {user.AverageScore === 0
                             ? "N/A"
-                            : `${user.AverageScore}/5`}
+                            : `${(user.AverageScore).toFixed(1)}/5`}
                         </span>{" "}
                         Rating
                       </div>
