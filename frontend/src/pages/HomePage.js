@@ -11,13 +11,16 @@ const HomePage = ({ userId, sortKey, userCity }) => {
     const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
     const [topRatedLoading, setTopRatedLoading] = useState(true);
     const [exploreLoading, setExploreLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [topRatedError, setTopRatedError] = useState("");
+    const [exploreError, setExploreError] = useState("");
     const navigate = useNavigate();
+
+    const generalError = topRatedError && exploreError;
 
     useEffect(() => {
         console.log("userId received by HomePage:", userId);
         console.log("userCity received by HomePage:", userCity);
-        if (userId == "cef620a8-0dde-47e2-8b72-a398c40decb3" && userCity === "admin") {
+        if (userId === "cef620a8-0dde-47e2-8b72-a398c40decb3" && userCity === "admin") {
             navigate("/admin");
         }
     }, [userId, userCity, navigate]);
@@ -36,7 +39,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                 console.log("Fetched top-rated users:", data);
                 setTopRatedList(data.topRatedUsers || []);
             } catch (err) {
-                setError("An error occurred while fetching top-rated users.");
+                setTopRatedError("An error occurred while fetching top-rated users.");
             } finally {
                 setTopRatedLoading(false);
             }
@@ -47,7 +50,7 @@ const HomePage = ({ userId, sortKey, userCity }) => {
     // Fetch Search Results
     const fetchSearchResults = async (query) => {
         setExploreLoading(true);
-        setError("");
+        setExploreError("");
         try {
             const response = await fetch(
                 `${config.apiBaseUrl}/search?searchTerm=${encodeURIComponent(query)}`
@@ -55,15 +58,14 @@ const HomePage = ({ userId, sortKey, userCity }) => {
             const data = await response.json();
             console.log("Fetched explore-section users:", data);
             if (response.ok) {
-                // Filter out the logged-in user
                 const filtered = data.results?.filter((user) => user.UserId !== userId);
                 setFilteredUsers(filtered || []);
             } else {
                 setFilteredUsers([]);
-                setError(data.message || "Error fetching results.");
+                setExploreError(data.message || "Error fetching results.");
             }
         } catch (err) {
-            setError("An error occurred while fetching search results.");
+            setExploreError("An error occurred while fetching search results.");
         } finally {
             setExploreLoading(false);
         }
@@ -71,100 +73,115 @@ const HomePage = ({ userId, sortKey, userCity }) => {
 
     useEffect(() => {
         if (userCity && userCity.trim() !== "") {
-        fetchSearchResults(userCity);
+            fetchSearchResults(userCity);
         } else {
-        setFilteredUsers([]);
-        setExploreLoading(false);
+            setFilteredUsers([]);
+            setExploreLoading(false);
         }
     }, [userCity]);
 
     // Handle next and previous buttons for top-rated users
     const handleNext = () => {
         setActiveTopRatedIndex(
-        (prevIndex) => (prevIndex + 1) % topRatedList.length
+            (prevIndex) => (prevIndex + 1) % topRatedList.length
         );
     };
 
     const handlePrevious = () => {
         setActiveTopRatedIndex(
-        (prevIndex) => (prevIndex - 1 + topRatedList.length) % topRatedList.length
+            (prevIndex) => (prevIndex - 1 + topRatedList.length) % topRatedList.length
         );
     };
+
+    if (topRatedLoading || exploreLoading) {
+        return (
+            <div className="general-content">
+                <h2>Loading...</h2>
+            </div>
+        );
+    }
+
+    if (generalError) {
+        return (
+            <div className="general-content">
+                <h3>Error: {generalError}</h3>
+            </div>
+        );
+    }
 
     return (
         <div className="homepage-content">
             {/* Top-Rated Section */}
             <div className="top-rated-section">
                 <h2>Top-Rated <span className="highlight2">Roommates</span></h2>
-                {topRatedLoading ? (
-                <h3>Loading top-rated roommates...</h3>
+                {topRatedError ? (
+                    <h3>Error: {topRatedError}</h3>
                 ) : topRatedList.length > 0 ? (
-                <div className="top-rated-container">
-                    <button onClick={handlePrevious} className="navigation-button">
-                    <img src={leftarrow} alt="previous" className="arrow-icon" />
-                    </button>
+                    <div className="top-rated-container">
+                        <button onClick={handlePrevious} className="navigation-button">
+                            <img src={leftarrow} alt="previous" className="arrow-icon" />
+                        </button>
 
-                    {/* Display Only the Active Top-Rated Card */}
-                    <div
-                    className="top-rated-card-link"
-                    onClick={() =>
-                        navigate(
-                        `/reviews/${topRatedList[activeTopRatedIndex].RecipientId}`
-                        )
-                    }
-                    >
                         <div
-                            className="top-rated-card"
-                            key={topRatedList[activeTopRatedIndex].Username}
+                            className="top-rated-card-link"
+                            onClick={() =>
+                                navigate(
+                                    `/reviews/${topRatedList[activeTopRatedIndex].RecipientId}`
+                                )
+                            }
                         >
-                            <div className="profile-container">
-                                <img
-                                    src={
-                                    topRatedList[activeTopRatedIndex].ProfilePicture ||
-                                    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
-                                    }
-                                    alt={`${
-                                    topRatedList[activeTopRatedIndex] || "User"
-                                    }'s profile`}
-                                    className="top-rated-profile-image"
-                                />
-                                <div className="profile-info">
-                                    <div className="profile-date-location">
-                                        <div className="top-rated-profile-name">
-                                            {topRatedList[activeTopRatedIndex].FirstName}{" "}
-                                            {topRatedList[activeTopRatedIndex].LastName}
+                            <div
+                                className="top-rated-card"
+                                key={topRatedList[activeTopRatedIndex].Username}
+                            >
+                                <div className="profile-container">
+                                    <img
+                                        src={
+                                            topRatedList[activeTopRatedIndex].ProfilePicture ||
+                                            "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
+                                        }
+                                        alt={`${
+                                            topRatedList[activeTopRatedIndex] || "User"
+                                        }'s profile`}
+                                        className="top-rated-profile-image"
+                                    />
+                                    <div className="profile-info">
+                                        <div className="profile-date-location">
+                                            <div className="top-rated-profile-name">
+                                                {topRatedList[activeTopRatedIndex].FirstName}{" "}
+                                                {topRatedList[activeTopRatedIndex].LastName}
+                                            </div>
+                                            <div className="top-rated-location">
+                                                {topRatedList[activeTopRatedIndex].City},{" "}
+                                                {topRatedList[activeTopRatedIndex].State}
+                                            </div>
                                         </div>
-                                        <div className="top-rated-location">
-                                            {topRatedList[activeTopRatedIndex].City},{" "}
-                                            {topRatedList[activeTopRatedIndex].State}
+                                        <div className="top-rated-profile-occupation">
+                                            {topRatedList[activeTopRatedIndex].Occupation}
+                                        </div>
+                                        <div className="top-rated-profile-description">
+                                            {topRatedList[activeTopRatedIndex].AboutMe}
+                                        </div>
+                                        <div className="top-rated-profile-score">
+                                            <span className="highlight4">
+                                                {(
+                                                    topRatedList[activeTopRatedIndex].AverageScore || 0
+                                                ).toFixed(1)}
+                                                /5
+                                            </span>{" "}
+                                            Rating
                                         </div>
                                     </div>
-                                    <div className="top-rated-profile-occupation">
-                                        {topRatedList[activeTopRatedIndex].Occupation}
-                                    </div>
-                                    <div className="top-rated-profile-description">
-                                        {topRatedList[activeTopRatedIndex].AboutMe}
-                                    </div>
-                                    <div className="top-rated-profile-score">
-                                        <span className="highlight4">
-                                        {(
-                                            topRatedList[activeTopRatedIndex].AverageScore || 0
-                                        ).toFixed(1)}
-                                        /5
-                                        </span>{" "}
-                                        Rating
-                                    </div>
                                 </div>
-                                </div>
-                                </div>
-                                </div>
+                            </div>
+                        </div>
 
-                    <button onClick={handleNext} className="navigation-button">
-                    <img src={rightarrow} alt="next" className="arrow-icon" />
-                    </button>
-                </div>
+                        <button onClick={handleNext} className="navigation-button">
+                            <img src={rightarrow} alt="next" className="arrow-icon" />
+                        </button>
+                    </div>
                 ) : (
-                <h3>No top-rated roommates found.</h3>
+                    <h3>No top-rated roommates found.</h3>
                 )}
             </div>
 
@@ -173,17 +190,15 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                 <h2>
                     Explore <span className="highlight3">Roommates</span>
                 </h2>
-                {!userId ? (
-                    <h3>Please log in to view roommates near you.</h3>
-                ) : exploreLoading ? (
-                    <h3>Loading explore results...</h3>
+                {exploreError ? (
+                    <h3>Error: {exploreError}</h3>
                 ) : filteredUsers.length > 0 ? (
                     filteredUsers.map((user) => (
                         <div
-                        key={user.username}
-                        className="review-card"
-                        onClick={() => navigate(`/reviews/${user.UserId}`)}
-                    >
+                            key={user.username}
+                            className="review-card"
+                            onClick={() => navigate(`/reviews/${user.UserId}`)}
+                        >
                             <div className="profile-container">
                                 <img
                                     src={
@@ -195,7 +210,6 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                                 />
                                 <div className="profile-info">
                                     <div className="profile-date-location">
-
                                         <div className="review-score">
                                             {user.first_name} {user.last_name}
                                         </div>
