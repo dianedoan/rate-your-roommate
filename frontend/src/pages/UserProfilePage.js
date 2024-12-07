@@ -9,6 +9,7 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
 
   // State variables
   const [userProfile, setUserProfile] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -46,6 +47,21 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     }
   };
 
+  // Fetch user reviews
+  const fetchReviews = async () => {
+    const url = `${config.apiBaseUrl}/get-my-reviews?ReviewerId=${userId}`;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch reviews.");
+      const data = await response.json();
+      console.log("Fetched created reviews: ", data);
+      setReviews(data.reviews || []); // Assuming the API returns an object with a "reviews" array
+    } catch (err) {
+      console.error("Error fetching reviews:", err.message);
+      setError("Failed to fetch reviews.");
+    }
+  };
+
   useEffect(() => {
     if (userId && sortKey) {
       console.log(
@@ -54,6 +70,7 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
         sortKey
       );
       fetchProfile();
+      fetchReviews();
     } else {
       console.log("useEffect skipped: userId or sortKey is null.");
     }
@@ -111,8 +128,6 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     }
     return "";
   };
-
-  const reviews = userProfile?.reviews || [];
 
   if (!userId) {
     return (
@@ -199,26 +214,41 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
           <div className="user-profile-reviews">Past Reviews</div>
           {reviews.length > 0 ? (
             reviews.map((review) => (
-              <div key={review.id} className="past-review-info line-separator">
-                <div className="past-review-score">
-                  <span className="highlight5">{review.score}/5 </span>
+              <div
+                key={review["DataType#Timestamp"]}
+                className="past-review-info line-separator"
+              >
+                <div className="review-score">
+                  <span className="highlight5">{review.Score}/5 </span>
                   <span className="highlight5">
-                    {generateStarRating(review.score)}
+                    {generateStarRating(review.Score)}
                   </span>
                 </div>
-                <div className="past-review-description">
-                  {review.description}
+                <div className="review-description">
+                  {review.ReviewText}
                 </div>
-                {review.yesNoAnswers && (
-                  <div className="past-review-questions">
-                    {review.yesNoAnswers.map((item, index) => (
-                      <div key={index} className="past-review-question-answer">
-                        <strong>{item.question}</strong> {item.answer}
-                      </div>
-                    ))}
+                {review.YesNoAnswers && (
+                  <div className="review-questions">
+                      {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => {
+                            const questionMapping = {
+                                space_respect: "Was this roommate respectful of your space?",
+                                punctuality: "Was this roommate punctual with paying their living fees?",
+                                roommates_again: "Would you be roommates again?",
+                            };
+
+                          const questionText = questionMapping[questionKey] || questionKey;
+
+                          return (
+                              <div key={index} className="review-question-answer">
+                                  <strong>{questionText}</strong>: {answerObj || "Not answered"}
+                              </div>
+                          );
+                      })}
                   </div>
                 )}
-                <div className="past-review-date">{review.date}</div>
+                <div className="review-date">
+                    {review.Timestamp ? new Date(review.Timestamp * 1000).toLocaleDateString() : "Date not available"}
+                </div>
               </div>
             ))
           ) : (
