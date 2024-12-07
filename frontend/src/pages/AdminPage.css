@@ -14,26 +14,11 @@
   height: auto;
 }
 
-.admin-user-review {
-  border-bottom: 0.1rem solid #c2c2c2;
-  padding: 0.5rem;
-  padding-bottom: 1rem;
-}
-
-.admin-user-review:last-child {
-  border-bottom: none; /* Remove border from last review */
-}
-
-.review-id {
-  font-size: 1.2rem;
-  text-decoration: underline;
-}
-
 /* Table Styling */
 .table-container {
-  border: 1px solid #1e1e1e; /* Table border color */
-  border-radius: 0.5rem; /* Round the corners */
-  overflow: hidden; /* Ensure the table doesn't overflow the rounded container */
+  border: 1px solid #1e1e1e;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 html .table-bordered {
@@ -109,10 +94,6 @@ html .table td {
   .admin-profile-pic {
     width: 4rem;
     height: auto;
-  }
-
-  .review-id {
-    font-size: 1rem;
   }
 }
 

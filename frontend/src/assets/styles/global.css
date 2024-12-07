@@ -27,7 +27,8 @@ html h2 {
 }
 
 html h3 {
-    margin-top: 3rem;
+    margin: 2rem 0rem;
+    font-size: 2.5rem;
 }
 
 html h4 {
@@ -312,6 +313,11 @@ html .nav-link:active {
         font-size: 3rem;
     }
 
+    html h3 {
+        margin: 1rem 0rem;
+        font-size: 2rem;
+    }
+
     html h5 {
         font-size: 1.4rem;
         margin: 0.6rem 0rem;
@@ -377,6 +383,11 @@ html .nav-link:active {
 
     html h2 {
         font-size: 2.5rem;
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1.7rem;
     }
 
     html h5 {
@@ -452,8 +463,13 @@ html .nav-link:active {
         font-size: 1.8rem;
     }
 
+    html h3 {
+        margin: 0rem;
+        font-size: 1.4rem;
+    }
+
     html h5 {
-        font-size: 1.2rem;
+        font-size: 2rem;
         margin: 0.6rem 0rem;
     }
 
@@ -539,7 +555,7 @@ html .nav-link:active {
 }
 
 /* Media Query for Extra Small Screens (Mobile L) */
-@media (max-width: 525px) {
+@media (max-width: 425px) {
     .general-content {
         gap: 1rem; /* Add spacing between cards */
         padding: 1.5rem;
@@ -551,6 +567,11 @@ html .nav-link:active {
 
     html h2 {
         font-size: 1.7rem; /* Further reduce title font size */
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1rem;
     }
 
     .profile-card {
@@ -653,6 +674,11 @@ html .nav-link:active {
         font-size: 2rem; /* Further reduce title font size */
     }
 
+    html h3 {
+        margin: 0rem;
+        font-size: 1.2rem;
+    }
+
     .profile-card {
         max-width: 55rem;
         padding: 1rem;
@@ -751,6 +777,11 @@ html .nav-link:active {
         font-size: 1.5rem; /* Further reduce title font size */
     }
 
+    html h3 {
+        margin: 0rem;
+        font-size: 1rem;
+    }
+
     .profile-card {
         max-width: 55rem;
         padding: 0.9rem;
@@ -843,6 +874,11 @@ html .nav-link:active {
 
     html h2 {
         font-size: 1.3rem; /* Further reduce title font size */
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1rem;
     }
 
     .profile-name {

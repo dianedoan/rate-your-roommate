@@ -141,11 +141,6 @@
     font-size: 1.8em;
 }
 
-.review-title {
-    font-size: 2em;
-    font-weight: bold;
-}
-
 .review-description {
     font-size: 1.5em;
 }
@@ -271,12 +266,7 @@
         font-weight: bold;
         font-size: 1.5em;
     }
-    
-    .review-title {
-        font-size: 2em;
-        font-weight: bold;
-    }
-    
+
     .review-description {
         font-size: 1.5em;
     }
@@ -375,7 +365,7 @@
 
     .review-score {
         font-weight: bold;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
     
     .review-description {
@@ -383,8 +373,8 @@
     }
     
     .review-questions {
-        font-size: 1.1em;
-        margin: 1rem 0rem;
+        font-size: 0.9em;
+        margin: 0.5rem 0rem;
     }
 
     .review-date {
@@ -464,21 +454,16 @@
 
     .review-score {
         font-weight: bold;
-        font-size: 1.3em;
-    }
-    
-    .review-title {
-        font-size: 1.3em;
-        font-weight: bold;
+        font-size: 1em;
     }
     
     .review-description {
-        font-size: 1.1em;
+        font-size: 0.9em;
     }
     
     .review-questions {
-        font-size: 1em;
-        margin: 1rem 0rem;
+        font-size: 0.7em;
+        margin: 0.5rem 0rem;
     }
     
     .review-username {
@@ -487,7 +472,7 @@
     }
     
     .review-date {
-        font-size: 1.2em;
+        font-size: 0.9em;
     }
 }
 
@@ -563,21 +548,16 @@
 
     .review-score {
         font-weight: bold;
-        font-size: 1.3em;
-    }
-    
-    .review-title {
-        font-size: 1.3em;
-        font-weight: bold;
+        font-size: 0.9em;
     }
     
     .review-description {
-        font-size: 1em;
+        font-size: 0.8em;
     }
     
     .review-questions {
-        font-size: 1em;
-        margin: 1rem 0rem;
+        font-size: 0.6em;
+        margin: 0.5rem 0rem;
     }
     
     .review-username {
@@ -586,7 +566,7 @@
     }
     
     .review-date {
-        font-size: 1.2em;
+        font-size: 0.8em;
     }
 }
 
@@ -662,29 +642,19 @@
 
     .review-score {
         font-weight: bold;
-        font-size: 1.3em;
-    }
-    
-    .review-title {
-        font-size: 1.3em;
-        font-weight: bold;
+        font-size: 0.8em;
     }
     
     .review-description {
-        font-size: 0.9em;
+        font-size: 0.7em;
     }
     
     .review-questions {
-        font-size: 0.9em;
-        margin: 1rem 0rem;
-    }
-    
-    .review-username {
-        font-size: 1.2em;
-        font-weight: bold;
+        font-size: 0.5em;
+        margin: 0.4rem 0rem;
     }
     
     .review-date {
-        font-size: 1.2em;
+        font-size: 0.7em;
     }
 } 

@@ -34,7 +34,7 @@
 }
 
 .user-profile-occupation , .user-profile-location {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .user-profile-occupation {
@@ -180,39 +180,13 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     text-align: left;
     width: 95%;
     margin: 1rem;
-    border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
+    border-bottom: 0.1rem solid #a7a7a7; /* Line separator between reviews */
+    padding-bottom: 1rem;
 }
 
 .past-review-info:last-child {
     border-bottom: none; /* Remove border from last review */
-}
-
-.past-review-score {
-    font-weight: bold;
-    font-size: 1.8em;
-}
-
-.past-review-title {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.past-review-description {
-    font-size: 1.5em;
-}
-
-.past-review-questions {
-    font-size: 1em;
-    margin: 1rem 0rem;
-}
-
-.past-review-username {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.past-review-date {
-    font-size: 1.5em;
+    padding-bottom: 0rem;
 }
 
 /* Buttons */
@@ -272,7 +246,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .edit-profile-btn {
@@ -306,7 +280,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .edit-profile-btn {
@@ -359,34 +333,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     
     .past-review-info {
         width: 95%;
-        padding: 0rem 0rem;
-    }
-    
-    .past-review-score {
-        font-weight: bold;
-        font-size: 1.5em;
-    }
-    
-    .past-review-title {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-    
-    .past-review-description {
-        font-size: 1.2em;
-    }
-    
-    .past-review-questions {
-        font-size: 1em;
-        margin: 1rem 0rem;
-    }
-    
-    .past-review-username {
-        font-size: 1.2em;
-    }
-    
-    .past-review-date {
-        font-size: 1.1em;
+        padding-bottom: 1rem;
     }
 }
 
@@ -406,11 +353,11 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .user-profile-cards-section {
@@ -460,41 +407,6 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
         font-size: 1.2rem;
         padding: 0.5rem 1rem;
     }
-
-    .past-review-info {
-        width: 95%;
-        margin-top: 0.8rem;
-        padding: 0rem 0rem;
-        border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
-    }
-    
-    .past-review-score {
-        font-weight: bold;
-        font-size: 1.2em;
-    }
-    
-    .past-review-title {
-        font-size: 1.2em;
-        font-weight: bold;
-    }
-    
-    .past-review-description {
-        font-size: 1em;
-    }
-    
-    .past-review-questions {
-        font-size: 0.8em;
-        margin: 1rem 0rem;
-    }
-    
-    .past-review-username {
-        font-size: 1em;
-    }
-    
-    .past-review-date {
-        font-size: 0.9em;
-    }
-
 }
 
 /* Media Query for Extra Small Screens (Mobile M) */
@@ -513,11 +425,11 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .edit-profile-btn {
@@ -571,35 +483,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     .past-review-info {
         width: 95%;
         margin-top: 0.5rem;
-        padding: 0rem 0rem;
-        border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
-    }
-    
-    .past-review-score {
-        font-weight: bold;
-        font-size: 1.1em;
-    }
-    
-    .past-review-title {
-        font-size: 1.1em;
-        font-weight: bold;
-    }
-    
-    .past-review-description {
-        font-size: 0.9em;
-    }
-    
-    .past-review-questions {
-        font-size: 0.8em;
-        margin: 1rem 0rem;
-    }
-    
-    .past-review-username {
-        font-size: 1em;
-    }
-    
-    .past-review-date {
-        font-size: 0.9em;
+        padding-bottom: 1rem;
     }
 }
 
@@ -610,8 +494,8 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-image {
-        width: 6rem; /* Adjust image size */
-        height: 6rem;
+        width: 5.5rem;
+        height: 5.5rem;
     }
     
     .user-profile-info {
@@ -619,11 +503,11 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
     
     .user-profile-occupation , .user-profile-location {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
     
     .edit-profile-btn {
@@ -677,34 +561,6 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     .past-review-info {
         width: 95%;
         margin-top: 0.5rem;
-        padding: 0rem 0rem;
-        border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
-    }
-    
-    .past-review-score {
-        font-weight: bold;
-        font-size: 1.1em;
-    }
-    
-    .past-review-title {
-        font-size: 1.1em;
-        font-weight: bold;
-    }
-    
-    .past-review-description {
-        font-size: 0.9em;
-    }
-    
-    .past-review-questions {
-        font-size: 0.8em;
-        margin: 1rem 0rem;
-    }
-    
-    .past-review-username {
-        font-size: 1em;
-    }
-    
-    .past-review-date {
-        font-size: 0.9em;
+        padding-bottom: 1rem;
     }
 }
