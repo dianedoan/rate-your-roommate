@@ -1,58 +1,48 @@
 .search-bar {
-    padding: 1rem 0rem;
-    width: 100%;
-    max-width: 55rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  padding: 1rem 0rem;
+  width: 100%;
+  max-width: 55rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-bar .form-control {
-    border-radius: 2rem;
-    padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  padding: 0.8rem 1.5rem;
 }
 
 .search-results {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 2rem;
-    gap: 2rem; /* Add spacing between cards */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  gap: 2rem; /* Add spacing between cards */
 }
 
-<<<<<<< HEAD
-=======
 @media (max-width: 525px) {
-    .search-bar {
-        padding: 0rem 1rem;
-    }
+  .search-bar {
+    padding: 0rem 1rem;
+  }
 
-    .search-bar .form-control {
-        border-radius: 2rem;
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
+  .search-bar .form-control {
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }
 
->>>>>>> aws
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
-    .search-bar {
-        padding: 0rem 1rem;
-    }
+  .search-bar {
+    padding: 0rem 1rem;
+  }
 
-    .search-bar .form-control {
-        border-radius: 2rem;
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-<<<<<<< HEAD
-
-    .search-results {
-        gap: 1rem; /* Add spacing between cards */
-    }
-=======
->>>>>>> aws
+  .search-bar .form-control {
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }
