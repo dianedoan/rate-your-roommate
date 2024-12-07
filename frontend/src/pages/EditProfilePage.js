@@ -5,7 +5,7 @@ import edit from "../assets/images/button-icons/edit.svg";
 import config from "../components/config.json";
 import "./EditProfilePage.css";
 
-const EditProfilePage = ({ userId, sortKey }) => {
+const EditProfilePage = ({ userId, sortKey, userCity }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -276,6 +276,15 @@ const EditProfilePage = ({ userId, sortKey }) => {
       <div className="general-content">
         <h2>Not Logged In</h2>
         <h3>Please log in to access this page.</h3>
+      </div>
+    );
+  }
+
+  if (userCity === "admin") {
+    return (
+      <div className="general-content">
+        <h2>User Profile Unavailable</h2>
+        <h3>User profiles are not available for admin accounts.</h3>
       </div>
     );
   }

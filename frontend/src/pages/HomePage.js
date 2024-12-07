@@ -16,7 +16,10 @@ const HomePage = ({ userId, sortKey, userCity }) => {
 
     useEffect(() => {
         console.log("userCity received by HomePage:", userCity);
-    }, [userCity]);
+        if (userCity === "admin") {
+            navigate("/admin");
+        }
+    }, [userCity, navigate]);
 
     // Fetch Top-Rated Users
     useEffect(() => {

@@ -77,6 +77,9 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
             <Navbar.Brand href="/admin">
               <img src={home} alt="home-icon" className="navbar-admin" />
             </Navbar.Brand>
+            <Navbar.Brand href="/search">
+              <img src={search} alt="search-icon" className="navbar-admin" />
+            </Navbar.Brand>
           </Nav>
         )}
 

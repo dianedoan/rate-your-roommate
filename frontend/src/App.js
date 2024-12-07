@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import TermsConditions from "./pages/TermsConditions";
@@ -18,6 +18,13 @@ import ForgotPasswordModal from "./components/ForgotPasswordModal";
 import SetupProfileModal from "./components/SetupProfileModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/global.css";
+
+function ProtectedRoute({ isAllowed, children, redirectTo = "/" }) {
+    if (!isAllowed) {
+        return <Navigate to={redirectTo} replace />;
+    }
+    return children;
+}
 
 function App() {
     const [showLogin, setShowLogin] = useState(false);
@@ -179,11 +186,14 @@ function App() {
                 userId={userId}
                 />}
             />
-            <Route path="/admin" element={
-                <AdminPage
-                onLogoutClick={handleLogout} 
-                />}
-            />
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute isAllowed={userCity === "admin"} redirectTo="/home">
+                            <AdminPage onLogoutClick={handleLogout} />
+                        </ProtectedRoute>
+                    }
+                />
             <Route path="/about" element={<About />} />
             <Route path="/terms" element={<TermsConditions />} />
             <Route
@@ -199,7 +209,9 @@ function App() {
                 element={
                     <CreateReviewPage 
                         userId={userId} 
-                        sortKey={sortKey} />}
+                        sortKey={sortKey}
+                        userCity={userCity}
+                    />}
             />
             <Route path="/search" element={<SearchPage />} />
             <Route
@@ -208,6 +220,7 @@ function App() {
                     <UserProfilePage
                     userId={userId}
                     sortKey={sortKey}
+                    userCity={userCity}
                     onLogoutClick={handleLogout}
                     />}
             />
@@ -215,7 +228,9 @@ function App() {
                 path="/edit-profile"
                 element={<EditProfilePage
                     userId={userId} 
-                    sortKey={sortKey} />}
+                    sortKey={sortKey}
+                    userCity={userCity}
+                     />}
             />
         </Routes>
         <Footer onForgotPasswordClick={handleForgotPasswordClick} />

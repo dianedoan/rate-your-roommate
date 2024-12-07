@@ -4,8 +4,8 @@ import { Badge } from "react-bootstrap";
 import config from "../components/config.json";
 import "./UserProfilePage.css";
 
-const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
-  console.log("UserProfilePage: Received userId and sortKey:", userId, sortKey);
+const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
+  console.log("UserProfilePage: Received userId, sortKey, userCity:", userId, sortKey, userCity);
 
   // State variables
   const [userProfile, setUserProfile] = useState(null);
@@ -134,6 +134,15 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
       <div className="general-content">
         <h2>Not Logged In</h2>
         <h3>Please log in to access this page.</h3>
+      </div>
+    );
+  }
+
+  if (userCity === "admin") {
+    return (
+      <div className="general-content">
+        <h2>User Profile Unavailable</h2>
+        <h3>User profiles are not available for admin accounts.</h3>
       </div>
     );
   }
