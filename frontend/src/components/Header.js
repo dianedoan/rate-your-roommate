@@ -65,32 +65,6 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Determine if Navbar.Toggle should be shown
-  const showNavbarToggle = !(
-    isHomePage ||
-    isReviewPage ||
-    isCreateReviewPage ||
-    isSearchPage ||
-    isMessagesPage ||
-    isSavedRoommatesPage ||
-    isUserProfilePage ||
-    isEditProfilePage
-  );
-
-  // Determine if the sticky bottom bar should be shown (mobile screens and specific pages)
-  const showBottomNav =
-    isHomePage ||
-    isReviewPage ||
-    isCreateReviewPage ||
-    isSearchPage ||
-    isMessagesPage ||
-    isSavedRoommatesPage ||
-    isUserProfilePage ||
-    isEditProfilePage;
-
-  // Determine if the icons should be hidden (on landing, terms, or about pages)
-  const hideHeaderIcons = isLandingPage || isTermsPage || isAboutPage;
-
   return (
     <>
       <Navbar bg="white" expand="lg" className="navbar" sticky="top">
