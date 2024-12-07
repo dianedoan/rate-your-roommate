@@ -132,7 +132,6 @@ const AdminPage = ({ onLogoutClick }) => {
               ))}
             </tbody>
           </Table>
-          {/* Small Screens: Cards */}
           <div className="d-block d-md-none">
             {users.map((user) => {
               return (

@@ -11,7 +11,7 @@ function ForgotPasswordModal({ show, onClose }) {
   const [isResetSuccessful, setIsResetSuccessful] = useState(false);
   const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
   const [securityQuestion, setSecurityQuestion] = useState("");
-  const [correctSecurityAnswer, setCorrectSecurityAnswer] = useState(""); // Store the correct answer
+  const [correctSecurityAnswer, setCorrectSecurityAnswer] = useState("");
   const [userId, setUserId] = useState("");
   const [sortKey, setSortKey] = useState("");
   const [error, setError] = useState(null);

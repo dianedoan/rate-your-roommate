@@ -114,8 +114,6 @@ const LoginModal = ({
         </Form>
         <div className="separator">
           <div className="flex-grow-1 border-top"></div>
-          {/* <span className="mx-2 text-center small"></span> */}
-          <div className="flex-grow-1 border-top"></div>
         </div>
         <div className="social-login d-flex flex-column align-items-center">
           <Button

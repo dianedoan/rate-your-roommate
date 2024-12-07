@@ -89,7 +89,6 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
       if (response.ok) {
         // Registration successful
         console.log("User registered:", result);
-        // onRegisterSuccess(result.UserId); // Call the success handler
         onRegisterSuccess(result); // Call the success handler
         onClose(); // Close the modal
       } else {
