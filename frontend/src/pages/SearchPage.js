@@ -23,28 +23,30 @@ function SearchPage() {
 
   const navigate = useNavigate();
 
-  // Fetch search results from the backend
-  const fetchSearchResults = async (query) => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await fetch(
-        `${config.apiBaseUrl}/search?searchTerm=${encodeURIComponent(query)}`
-      );
-      const data = await response.json();
+// Function to fetch search results
+const fetchSearchResults = async (query) => {
+  setLoading(true);
+  setError("");
+  try {
+    const response = await fetch(
+      `${config.apiBaseUrl}/search?searchTerm=${encodeURIComponent(query)}`
+    );
+    const data = await response.json();
 
-      if (response.ok) {
-        setFilteredUsers(data.results || []);
-      } else {
-        setFilteredUsers([]);
-        setError(data.message || "Error fetching results.");
-      }
-    } catch (err) {
-      setError("An error occurred while fetching search results.");
-    } finally {
-      setLoading(false);
+    if (response.ok) {
+      // Filter out the user with the specified userId
+      const filtered = data.results.filter((user) => user.UserId !== 'cef620a8-0dde-47e2-8b72-a398c40decb3');
+      setFilteredUsers(filtered);
+    } else {
+      setFilteredUsers([]);
+      setError(data.message || "Error fetching results.");
     }
-  };
+  } catch (err) {
+    setError("An error occurred while fetching search results.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Handle search query changes
   useEffect(() => {
