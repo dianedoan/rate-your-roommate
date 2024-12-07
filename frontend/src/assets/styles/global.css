@@ -469,7 +469,7 @@ html .nav-link:active {
     }
 
     html h5 {
-        font-size: 2rem;
+        font-size: 1.3rem;
         margin: 0.6rem 0rem;
     }
 
@@ -572,6 +572,11 @@ html .nav-link:active {
     html h3 {
         margin: 0rem;
         font-size: 1rem;
+    }
+
+    html h5 {
+        font-size: 1.2rem;
+        margin: 0.6rem 0rem;
     }
 
     .profile-card {
@@ -679,6 +684,11 @@ html .nav-link:active {
         font-size: 1.2rem;
     }
 
+    html h5 {
+        font-size: 1.1rem;
+        margin: 0.4rem 0rem;
+    }
+
     .profile-card {
         max-width: 55rem;
         padding: 1rem;
@@ -782,6 +792,11 @@ html .nav-link:active {
         font-size: 1rem;
     }
 
+    html h5 {
+        font-size: 1rem;
+        margin: 0.4rem 0rem;
+    }
+
     .profile-card {
         max-width: 55rem;
         padding: 0.9rem;
@@ -879,6 +894,11 @@ html .nav-link:active {
     html h3 {
         margin: 0rem;
         font-size: 1rem;
+    }
+
+    html h5 {
+        font-size: 1rem;
+        margin: 0.3rem 0rem;
     }
 
     .profile-name {

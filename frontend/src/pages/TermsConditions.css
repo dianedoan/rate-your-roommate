@@ -15,7 +15,6 @@
 .terms-content {
     background-color: white;
     padding: 5rem;
-    font-size: 2rem;
 }
 
 .terms-image {
@@ -25,35 +24,29 @@
 
 .terms-content h5 {
     text-align: left;
-    font-size: 2rem;
 }
 
 /* Media query for larger screens (2560px) */
 @media (max-width: 2560px) {
-    .terms-content {
+    .about-content {
         padding: 4rem;
-        font-size: 1.5rem;
-    }
-
-    .terms-content h5 {
-        font-size: 2rem;
+        font-size: 1.4rem;
     }
 }
 
 /* Media query for laptop screens (1440px) */
 @media (max-width: 1440px) {
-    .terms-content {
-        padding: 3rem;
-        font-size: 1.5rem;
+    .about-content {
+        padding: 3.5rem;
+        font-size: 1.2rem;
     }
-    
+
     .terms-container h1 {
         padding: 0rem;
         margin-top: 5rem;
     }
 
     .terms-content h5 {
-        font-size: 1.8rem;
         margin: 1rem 0rem;
     }
 
@@ -76,7 +69,7 @@
     }
 
     .terms-content h5 {
-        font-size: 1.5rem;
+
         margin: 0.8rem 0rem;
     }
 
@@ -88,9 +81,9 @@
 
 /* Media Query for Small Screens (Mobile) */
 @media (max-width: 768px) {
-    .terms-content {
+    .about-content {
         padding: 2rem;
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     .terms-container h1 {
@@ -99,7 +92,7 @@
     }
 
     .terms-content h5 {
-        font-size: 1.1rem;
+
         margin: 0.5rem 0rem;
     }
 
@@ -120,8 +113,13 @@
         margin-top: 4rem;
     }
 
+    .terms-content {
+        padding: 2rem;
+        font-size: 0.7rem;
+    }
+
     .terms-content h5 {
-        font-size: 1.2rem;
+
         margin: 0.4rem 0rem;
     }
 
@@ -143,7 +141,6 @@
     }
 
     .terms-content h5 {
-        font-size: 1.2rem;
         margin: 0.4rem 0rem;
     }
     .terms-image {
@@ -164,7 +161,6 @@
     }
 
     .terms-content h5 {
-        font-size: 1.1rem;
         margin: 0.3rem 0rem;
     }
 
