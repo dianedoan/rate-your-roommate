@@ -217,7 +217,7 @@ const CreateReviewPage = ({ userId, sortKey, userCity }) => {
                             cleanliness: ['Messy', 'Clean'],
                             communication: ['Non-existent', 'Active'],
                             timeliness: ['Late', 'On-time'],
-                            noiseLevel: ['Quiet', 'Loud'],
+                            noiseLevel: ['Loud', 'Quiet'],
                             etiquette: ['Rude', 'Polite'],
                         };
 
