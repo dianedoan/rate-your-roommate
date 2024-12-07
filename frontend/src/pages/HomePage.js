@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { userListWithRatings, getInitialLikedProfiles, getTopRatedList } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import heart2 from "../assets/images/button-icons/heart2.svg";
 import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
 import leftarrow from "../assets/images/button-icons/left-arrow.svg";
@@ -8,31 +8,58 @@ import rightarrow from "../assets/images/button-icons/right-arrow.svg";
 import "./HomePage.css";
 
 const HomePage = () => {
+    // Manually set logged in user
+    const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const [searchQuery, setSearchQuery] = useState("");
-    const [likedProfiles, setLikedProfiles] = useState(getInitialLikedProfiles());
     const [activeTopRatedIndex, setActiveTopRatedIndex] = useState(0);
+    const [likedProfiles, setLikedProfiles] = useState(loggedInUser.likedProfiles);
+
     const navigate = useNavigate();
-    const topRatedList = getTopRatedList();
+
+    // Calculate average rating for a user based on their reviews
+    const calculateAverageRating = (userId) => {
+        // Filter reviews by the user
+        const userReviews = reviewsData.filter(review => review.userId === userId);
+        
+        // Calculate the sum of the scores and the number of reviews
+        const totalScore = userReviews.reduce((acc, review) => acc + parseFloat(review.score), 0);
+        const averageRating = totalScore / userReviews.length;
+
+        // Round to 1 decimal place
+        return averageRating ? Math.round(averageRating * 10) / 10 : 0;
+    };
+
+    // Add dynamic rating calculation to each user
+    const userListWithRatings = userList.map(user => ({
+        ...user,
+        rating: calculateAverageRating(user.id), // Calculate and add the average rating
+    }));
+
+    // Filter users with a rating of 4.0 or higher for top-rated roommates
+    const topRatedList = userListWithRatings.filter(user => user.rating >= 4.0);
 
     const filteredUsers = userListWithRatings.filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.state.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const toggleLike = (userName) => {
         setLikedProfiles((prevLikes) => {
-            const user = userListWithRatings.find((u) => u.name === userName);
-            if (!user) return prevLikes;
-
-            const updatedLikes = { ...prevLikes };
-            if (updatedLikes[userName]) {
-                delete updatedLikes[userName];
+            const updatedLikes = [...prevLikes];
+            if (updatedLikes.includes(userName)) {
+                // If the user is already liked, remove them
+                const index = updatedLikes.indexOf(userName);
+                updatedLikes.splice(index, 1);
             } else {
-                updatedLikes[userName] = user;
+                // If the user is not liked, add them
+                updatedLikes.push(userName);
             }
 
             console.log("Liked Profiles:", Object.values(updatedLikes));
+
             return updatedLikes;
         });
     };
@@ -68,23 +95,47 @@ const HomePage = () => {
                             className="top-rated-card-link"
                             onClick={() => navigate(`/reviews/${topRatedList[activeTopRatedIndex].id}`)}
                         >
-                            <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].name}>
-                                <div className="profile-image-container">
+                            <div className="top-rated-card" key={topRatedList[activeTopRatedIndex].username}>
+                                <div className="top-rated-profile-image-container">
                                     <img
                                         src={topRatedList[activeTopRatedIndex].image}
-                                        alt={topRatedList[activeTopRatedIndex].name}
+                                        alt={topRatedList[activeTopRatedIndex].username}
                                         className="top-rated-profile-image"
                                     />
                                 </div>
-                                <div className="top-rated-profile-info">
-                                    <div className="top-rated-profile-name">
-                                        {topRatedList[activeTopRatedIndex].name}
-                                    </div>
-                                    <div className="top-rated-profile-occupation">
-                                        {topRatedList[activeTopRatedIndex].occupation}
-                                    </div>
-                                    <div className="top-rated-profile-description">
-                                        {topRatedList[activeTopRatedIndex].description}
+                                <div className="top-rated-card-container">
+                                    <div className="top-rated-profile-info-container">
+                                        <div className="top-rated-profile-info">
+                                            <div className="top-rated-profile-name">
+                                                {topRatedList[activeTopRatedIndex].firstName} {topRatedList[activeTopRatedIndex].lastName}
+                                            </div>
+                                            <div className="top-rated-profile-occupation">
+                                                {topRatedList[activeTopRatedIndex].occupation}
+                                            </div>
+                                            <div className="top-rated-profile-description">
+                                                {topRatedList[activeTopRatedIndex].description}
+                                            </div>
+                                        </div>
+                                    
+                                        <div className="top-rated-location-favorite-container">
+                                            <div className="top-rated-location">
+                                                {topRatedList[activeTopRatedIndex].city},{" "}
+                                                {topRatedList[activeTopRatedIndex].state}
+                                            </div>
+                                            <div className="favorite-icon">
+                                                <img
+                                                    src={likedProfiles.includes(topRatedList[activeTopRatedIndex].username)
+                                                        ? heart2filled
+                                                        : heart2}
+                                                    alt="heart icon"
+                                                    className="heart-icon"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
+                                                        toggleLike(topRatedList[activeTopRatedIndex].username); // Toggle like
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="top-rated-profile-score">
                                         <span className="highlight4">
@@ -92,28 +143,7 @@ const HomePage = () => {
                                         </span>{" "}
                                         Rating
                                     </div>
-                                </div>
-                                <div className="location-favorite-container">
-                                    <p className="top-rated-location">
-                                        {topRatedList[activeTopRatedIndex].city},{" "}
-                                        {topRatedList[activeTopRatedIndex].state}
-                                    </p>
-                                    <div className="favorite-icon">
-                                        <img
-                                            src={
-                                                likedProfiles[topRatedList[activeTopRatedIndex].name]
-                                                    ? heart2filled
-                                                    : heart2
-                                            }
-                                            alt="heart icon"
-                                            className="heart-icon"
-                                            onClick={(e) => {
-                                                e.stopPropagation(); // Prevent propagation to avoid navigating when clicking the heart icon
-                                                toggleLike(topRatedList[activeTopRatedIndex].name); // Use the name of the active top-rated user
-                                            }}
-                                        />
-                                    </div>
-                                </div>
+                                </div>                 
                             </div>
                         </div>
                         {/* Next Button */}
@@ -134,36 +164,40 @@ const HomePage = () => {
                 {filteredUsers.length > 0 ? (
                     filteredUsers.map((user) => (
                         <div
-                            key={user.name}
+                            key={user.username}
                             className="profile-card"
                             onClick={() => goToUserProfile(user.id)}
                         >
-                            <div className="profile-image-container">
-                                <img src={user.image} alt={user.name} className="profile-image" />
-                            </div>
-                            <div className="profile-info">
-                                <div className="profile-name">{user.name}</div>
-                                <div className="profile-score">
-                                    <span className="highlight5">
-                                        {user.rating === 0 ? "N/A" : `${user.rating}/5`}
-                                    </span>{" "}
-                                    Rating
+                            <div className="profile-info-container">
+                                <div className="profile-image-container">
+                                    <img src={user.image} alt={user.username} className="profile-image" />
                                 </div>
-                                <div className="profile-occupation">{user.occupation}</div>
-                                <div className="profile-description">{user.description}</div>
+                                <div className="profile-info">
+                                    <div className="profile-name">{user.firstName} {user.lastName}</div>
+                                    <div className="profile-score">
+                                        <span className="highlight5">
+                                            {user.rating === 0 ? "N/A" : `${user.rating}/5`}
+                                        </span>{" "}
+                                        Rating
+                                    </div>
+                                    <div className="profile-occupation">{user.occupation}</div>
+                                    <div className="profile-description">{user.description}</div>
+                                </div>
                             </div>
                             <div className="location-favorite-container">
-                                <p className="profile-location">
+                                <div className="profile-location">
                                     {user.city}, {user.state}
-                                </p>
+                                </div>
                                 <div className="favorite-icon">
                                     <img
-                                        src={likedProfiles[user.name] ? heart2filled : heart2}
+                                        src={likedProfiles.includes(user.username)
+                                            ? heart2filled
+                                            : heart2}
                                         alt="heart icon"
                                         className="heart-icon"
                                         onClick={(e) => {
                                             e.stopPropagation(); // Prevent navigation when clicking the heart icon
-                                            toggleLike(user.name); // Toggle like on click
+                                            toggleLike(user.username); // Toggle like on click
                                         }}
                                     />
                                 </div>

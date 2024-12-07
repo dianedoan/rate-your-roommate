@@ -1,18 +1,72 @@
 import { useState, useEffect } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
-import { userList, reviewsData, generateStarRating } from "../data/userData";
+import { userList, reviewsData } from "../data/userData";
 import edit from "../assets/images/button-icons/edit.svg";
+import profile0 from "../assets/images/profile-pics/profile0.jpg";
+import profile1 from "../assets/images/profile-pics/profile1.jpg";
+import profile2 from "../assets/images/profile-pics/profile2.jpg";
+import profile3 from "../assets/images/profile-pics/profile3.jpg";
+import profile4 from "../assets/images/profile-pics/profile4.jpg";
+import profile5 from "../assets/images/profile-pics/profile5.jpg";
+import profile6 from "../assets/images/profile-pics/profile6.jpg";
+import profile7 from "../assets/images/profile-pics/profile7.jpg";
+import profile8 from "../assets/images/profile-pics/profile8.jpg";
+import profile9 from "../assets/images/profile-pics/profile9.jpg";
+import profile10 from "../assets/images/profile-pics/profile10.jpg";
+import profile11 from "../assets/images/profile-pics/profile11.jpg";
+import profile12 from "../assets/images/profile-pics/profile12.jpg";
+import profile13 from "../assets/images/profile-pics/profile13.jpg";
+import profile14 from "../assets/images/profile-pics/profile14.jpg";
+import profile15 from "../assets/images/profile-pics/profile15.jpg";
+import profile16 from "../assets/images/profile-pics/profile16.jpg";
+import profile17 from "../assets/images/profile-pics/profile17.jpg";
+import profile18 from "../assets/images/profile-pics/profile18.jpg";
+import profile19 from "../assets/images/profile-pics/profile19.jpg";
+import profile20 from "../assets/images/profile-pics/profile20.jpg";
 import './EditProfilePage.css';
 
 const EditProfilePage = () => {
     // Manually set logged in user
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
+    
     const navigate = useNavigate();
 
-    // Filter reviews made by the current user
-    const userReviews = reviewsData.filter(review => review.authorId === loggedInUser.id);
+    // State for managing selected profile picture
+    const [selectedImage, setSelectedImage] = useState(loggedInUser.image);
+    const [isImageSelectorOpen, setImageSelectorOpen] = useState(false);
+   
+    // List of available profile images
+    const profileImages = [profile0, profile1, profile2, profile3, profile4, profile5, profile6, profile7, profile8, profile9, profile10, profile11, profile12, profile13, profile14, profile15, profile16, profile17, profile18, profile19, profile20];
 
+    const handleImageSelect = (image) => {
+        setSelectedImage(image);
+        loggedInUser.image = image; // Update image property for the logged in user
+        console.log('Updated user object:', loggedInUser);
+        setImageSelectorOpen(false); // Close the selector after choosing
+    };
+
+    // State for editing About Me
+    const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
+    const [aboutMeText, setAboutMeText] = useState(loggedInUser.description || '');
+    const [originalAboutMe, setOriginalAboutMe] = useState(loggedInUser.description || '');
+    const [selectedPreferences, setSelectedPreferences] = useState(loggedInUser?.preferences || []);
+    const [isEditingPreferences, setIsEditingPreferences] = useState(false);
+    
+    // Save changes to About Me
+    const handleSaveAboutMe = () => {
+        // Update the originalAboutMe state and simulate saving the updated data
+        setOriginalAboutMe(aboutMeText);
+        loggedInUser.description = aboutMeText; // Example update (update the actual data as needed)
+        setIsEditingAboutMe(false);
+    };
+    
+    // Cancel editing and revert the state
+    const handleCancelEdit = () => {
+        setAboutMeText(originalAboutMe); // Revert to the original description
+        setIsEditingAboutMe(false);
+    };
+    
     const preferencesList = [
         'Age 18-24', 'Age 25-34', 'Age 35-44',
         'Early Riser', 'Late Sleeper', 'Snores',
@@ -24,33 +78,8 @@ const EditProfilePage = () => {
         'Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian',
         'Bookworm', 'Fitness Enthusiast', 'Gamer'
     ];
-
-    // State for editing About Me
-    const [isEditingAboutMe, setIsEditingAboutMe] = useState(false);
-    const [aboutMeText, setAboutMeText] = useState(loggedInUser.description || '');
-    const [originalAboutMe, setOriginalAboutMe] = useState(loggedInUser.description || '');
-    const [selectedPreferences, setSelectedPreferences] = useState(loggedInUser?.preferences || []);
-    const [isEditingPreferences, setIsEditingPreferences] = useState(false);
-
-    // State for editing reviews
-    const [isEditingReviews, setIsEditingReviews] = useState(false);
-    const [userReviewsState, setUserReviewsState] = useState(userReviews); // Store reviews in state
-
-    // Save changes to About Me
-    const handleSaveAboutMe = () => {
-        // Update the originalAboutMe state and simulate saving the updated data
-        setOriginalAboutMe(aboutMeText);
-        loggedInUser.description = aboutMeText; // Example update (update the actual data as needed)
-        setIsEditingAboutMe(false);
-    };
-
-    // Cancel editing and revert the state
-    const handleCancelEdit = () => {
-        setAboutMeText(originalAboutMe); // Revert to the original description
-        setIsEditingAboutMe(false);
-    };
-
-    // Helper function to categorize preferences
+    
+    // Function to categorize preferences
     const getPreferenceCategoryClass = (pref) => {
         if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) {
             return 'age-related';
@@ -84,7 +113,7 @@ const EditProfilePage = () => {
         }
         return '';
     };
-
+    
     // Handle preference badge click to add or remove preferences
     const handleBadgeClick = (pref) => {
         if (selectedPreferences.includes(pref)) {
@@ -110,9 +139,20 @@ const EditProfilePage = () => {
         setSelectedPreferences(loggedInUser.preferences); // Revert to original preferences
         setIsEditingPreferences(false);
     };
-
+    
     // Filter out selected preferences from the available preferences list
     const availablePreferences = preferencesList.filter(pref => !selectedPreferences.includes(pref));
+    
+    // Function to generate the star rating based on score
+    const generateStarRating = (score) => {
+        const filledStars = '★'.repeat(Math.floor(score));
+        const halfStar = score % 1 >= 0.5 ? '½' : ''; // Check if score has a .5 and add "½" if true
+        return filledStars + halfStar;
+    };
+    
+    // State for editing reviews
+    const [isEditingReviews, setIsEditingReviews] = useState(false);
+    const [userReviewsState, setUserReviewsState] = useState(reviewsData.filter(review => review.authorId === loggedInUser.id)); // Store past reviews made by logged in user in state
     
     // Handle editing reviews (delete reviews)
     const handleDeleteReview = (reviewId) => {
@@ -132,7 +172,6 @@ const EditProfilePage = () => {
     const [accountDetails, setAccountDetails] = useState({
         username: loggedInUser.username,
         email: loggedInUser.email,
-        password: loggedInUser.password,
         firstName: loggedInUser.firstName,
         lastName: loggedInUser.lastName,
         occupation: loggedInUser.occupation,
@@ -146,7 +185,6 @@ const EditProfilePage = () => {
         // Update loggedInUser object with the new values
         loggedInUser.username = accountDetails.username;
         loggedInUser.email = accountDetails.email;
-        loggedInUser.password = accountDetails.password;
         loggedInUser.firstName = accountDetails.firstName;
         loggedInUser.lastName = accountDetails.lastName;
         loggedInUser.occupation = accountDetails.occupation;
@@ -171,14 +209,33 @@ const EditProfilePage = () => {
     };
 
     return (
-        <div className="edit-profile-content">
+        <div className="user-profile-content">
             <div className="edit-profile-header">
-                <div className="edit-profile-image">
+                <div className="edit-profile-image-wrapper">
                     <img
-                        src={loggedInUser.image}
+                        src={selectedImage}
                         alt={`${loggedInUser.name}'s profile`}
                         className="edit-profile-image"
                     />
+                    <button 
+                        className="edit-profile-image-btn"
+                        onClick={() => setImageSelectorOpen(!isImageSelectorOpen)}
+                    >
+                        ✎
+                    </button>
+                    {isImageSelectorOpen && (
+                        <div className="image-selector-dropdown">
+                            {profileImages.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Profile option ${index + 1}`}
+                                    className="profile-option-image"
+                                    onClick={() => handleImageSelect(image)}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <div className="edit-profile-info">
                     <div className="edit-profile-name">{loggedInUser.firstName} {loggedInUser.lastName}</div>
@@ -193,8 +250,8 @@ const EditProfilePage = () => {
                 </div>
             </div>
 
-            <div className="edit-profile-cards-section">
-                <div className="edit-profile-card">
+            <div className="user-profile-cards-section">
+                <div className="user-profile-card">
                     <div className="edit-profile-about-me">
                         <p><span className="edit-highlight">Edit </span>About Me</p>
                         <button 
@@ -211,7 +268,7 @@ const EditProfilePage = () => {
                                 value={aboutMeText}
                                 onChange={(e) => setAboutMeText(e.target.value)}
                             />
-                            <div className="button-container">
+                            <div className="edit-profile-button-container">
                                 <button className="primary-btn save-button" onClick={handleSaveAboutMe}>
                                     Save
                                 </button>
@@ -224,13 +281,13 @@ const EditProfilePage = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="edit-profile-description">
+                        <div className="user-profile-description">
                             {originalAboutMe || 'No description provided.'}
                         </div>
                     )}
                 </div>
 
-                <div className="edit-profile-card">
+                <div className="user-profile-card">
                     <div className="edit-profile-preferences">
                         <p><span className="edit-highlight">Edit </span>Preferences & Lifestyle</p>
                         <button 
@@ -280,7 +337,7 @@ const EditProfilePage = () => {
                                     )}
                                 </div>
                             </div>
-                            <div className="button-container">
+                            <div className="edit-profile-button-container">
                                 <button className="primary-btn save-button" onClick={handleSavePreferences}>
                                     Save
                                 </button>
@@ -311,7 +368,7 @@ const EditProfilePage = () => {
                         </div>
                     )}
                 </div>
-                <div className="edit-profile-card">
+                <div className="user-profile-card">
                     <div className="edit-profile-account-details">
                         <div className="edit-profile-settings">
                         <p><span className="edit-highlight">Edit </span>Account Details</p>
@@ -396,7 +453,7 @@ const EditProfilePage = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="button-container">
+                            <div className="edit-profile-button-container">
                                 <button className="primary-btn save-button" onClick={handleSaveAccountDetails}>
                                     Save
                                 </button>
@@ -412,15 +469,15 @@ const EditProfilePage = () => {
                             <div className="account-first-name"><strong>First Name: </strong> {loggedInUser.firstName}</div>
                             <div className="account-last-name"><strong>Last Name: </strong> {loggedInUser.lastName}</div>
                             <div className="account-occupation"><strong>Occupation: </strong> {loggedInUser.occupation}</div>
-                            <div className="location">
+                            <div className="account-location">
                                 <div className="account-country"><strong>Country: </strong>  {loggedInUser.country}</div>
-                                <div className="account-country"><strong>State/Province: </strong>  {loggedInUser.state}</div>
-                                <div className="account-country"><strong>City: </strong> {loggedInUser.city}</div>
+                                <div className="account-state"><strong>State/Province: </strong>  {loggedInUser.state}</div>
+                                <div className="account-city"><strong>City: </strong> {loggedInUser.city}</div>
                             </div>
                         </div>
                     )}
                 </div>
-                <div className="edit-profile-card">
+                <div className="user-profile-card">
                     <div className="edit-profile-reviews">
                         <p><span className="edit-highlight">Remove </span>Past Reviews</p>
                         <button 
@@ -453,7 +510,7 @@ const EditProfilePage = () => {
                                         <div className="past-review-username">{review.username}</div>
                                         <div className="past-review-date">{review.date}</div>
                                             <button 
-                                                className="delete-review-button"
+                                                className="delete-review-btn"
                                                 onClick={() => handleDeleteReview(review.id)}
                                             >
                                                 Delete
