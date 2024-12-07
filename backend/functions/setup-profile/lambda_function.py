@@ -31,7 +31,7 @@ def lambda_handler(event, context):
         expression_attribute_values = {}
         expression_attribute_names = {}
 
-        # Check if ProfileData exists; initialize if necessary
+        # Check if ProfileData exists; initialize if not
         if about_me is not None or preferences is not None:
             existing_item = table.get_item(
                 Key={'UserId': user_id, 'DataType#Timestamp': data_type}

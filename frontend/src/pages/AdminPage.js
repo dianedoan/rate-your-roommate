@@ -1,41 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
-import { userList, reviewsData as initialReviewsData } from "../data/userData"; // Example data sources
-import "./AdminPage.css"; // For custom styles, if needed
+import "./AdminPage.css";
+import config from "../components/config.json";
 
 const AdminPage = () => {
-  const [users, setUsers] = useState(userList);
-  const [reviewsData, setReviewsData] = useState(initialReviewsData);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Fetch all users
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${config.apiBaseUrl}/get-all-users`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch users.");
+        }
+        const data = await response.json();
+        setUsers(data.users || []); // Assuming the API returns an object with a `users` array
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   // Function to delete a user
-  const handleDeleteUser = (userId) => {
+  const handleDeleteUser = async (userId, sortKey) => {
     const confirmation = window.confirm(
       "Are you sure you want to delete this user?"
     );
-    if (confirmation) {
-      const updatedUsers = users.filter((user) => user.id !== userId);
-      setUsers(updatedUsers);
-    }
-  };
+    if (!confirmation) return;
 
-  // Delete a specific review
-  const handleDeleteReview = (reviewId) => {
-    const updatedReviews = reviewsData.filter(
-      (review) => review.reviewId !== reviewId
-    );
-    const confirmation = window.confirm(
-      "Are you sure you want to delete this past review?"
-    );
-    if (confirmation) {
-      setReviewsData(updatedReviews);
-    }
-  };
+    try {
+      setLoading(true);
+      setError(null);
 
-  // Function to generate the star rating based on score
-  const generateStarRating = (score) => {
-    const filledStars = "★".repeat(Math.floor(score));
-    const halfStar = score % 1 >= 0.5 ? "½" : ""; // Check if score has a .5 and add "½" if true
-    return filledStars + halfStar;
+      const response = await fetch(`${config.apiBaseUrl}/delete-user`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ UserId: userId, SortKey: sortKey }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user.");
+      }
+
+      // Remove the deleted user from the state
+      setUsers((prevUsers) =>
+        prevUsers.filter((user) => user.UserId !== userId)
+      );
+      alert("User deleted successfully.");
+    } catch (err) {
+      setError(err.message);
+      alert("Failed to delete user. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,8 +75,9 @@ const AdminPage = () => {
         <h5>
           <span className="highlight5">Manage Registered Users</span>
         </h5>
+        {loading && <p>Loading...</p>}
+        {error && <p className="error-text">{error}</p>}
         <div className="table-container">
-          {/* Large Screens: Table */}
           <Table bordered className="d-none d-md-table">
             <thead>
               <tr>
@@ -59,171 +88,41 @@ const AdminPage = () => {
                 <th>City</th>
                 <th>State/Province</th>
                 <th>Country</th>
-                <th>Past Reviews</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => {
-                const userReviews = reviewsData.filter(
-                  (review) => review.authorId === user.id
-                );
-
-                return (
-                  <tr key={user.id}>
-                    <td>
-                      <img
-                        src={user.image}
-                        alt={user.username}
-                        className="admin-profile-pic"
-                      />
-                    </td>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td>{user.city}</td>
-                    <td>{user.state}</td>
-                    <td>{user.country}</td>
-                    <td>
-                      {userReviews.length > 0 ? (
-                        userReviews.map((review) => (
-                          <div
-                            key={review.reviewId}
-                            className="admin-user-review"
-                          >
-                            <div className="review-id">
-                              <strong>Review ID:</strong> {review.reviewId}
-                            </div>
-                            <div>
-                              <strong>Reviewed for User ID:</strong>{" "}
-                              {review.userId}
-                            </div>
-                            <div>
-                              <strong>Displayed Username:</strong>{" "}
-                              {review.username}
-                            </div>
-                            <div>
-                              <strong>Score:</strong>{" "}
-                              <span className="highlight5">
-                                {review.score}/5{" "}
-                                {generateStarRating(review.score)}
-                              </span>
-                            </div>
-                            <div>
-                              <strong>Title:</strong> {review.title}
-                            </div>
-                            <div>
-                              <strong>Description:</strong> {review.description}
-                            </div>
-                            {review.yesNoAnswers && (
-                              <div>
-                                {review.yesNoAnswers.map((item, index) => (
-                                  <div key={index}>
-                                    <strong>{item.question}</strong>:{" "}
-                                    {item.answer}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                            <div>
-                              <strong>Date:</strong> {review.date}
-                            </div>
-                            <button
-                              className="delete-btn"
-                              onClick={() =>
-                                handleDeleteReview(review.reviewId)
-                              }
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        ))
-                      ) : (
-                        <em>No reviews found</em>
-                      )}
-                    </td>
-                    <td>
-                      <button
-                        className="delete-user-btn"
-                        onClick={() => handleDeleteUser(user.id)}
-                      >
-                        Delete User
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-
-          {/* Small Screens: Cards */}
-          <div className="d-block d-md-none">
-            {users.map((user) => {
-              const userReviews = reviewsData.filter(
-                (review) => review.authorId === user.id
-              );
-              return (
-                <div className="user-card" key={user.id}>
-                  <div className="card-header">
+              {users.map((user) => (
+                <tr key={user.UserId}>
+                  <td>
                     <img
-                      src={user.image}
+                      src={user.profile_picture || "default-profile.png"}
                       alt={user.username}
                       className="admin-profile-pic"
                     />
-                    <h5>
-                      {user.firstName} {user.lastName}
-                    </h5>
-                    <p>
-                      {user.city}, {user.state}, {user.country}
-                    </p>
-                  </div>
-                  <div className="card-body">
-                    <h6>Reviews</h6>
-                    {userReviews.length > 0 ? (
-                      userReviews.map((review) => (
-                        <div
-                          key={review.reviewId}
-                          className="admin-user-review"
-                        >
-                          <p>
-                            <strong>Review ID:</strong> {review.reviewId}
-                          </p>
-                          <p>
-                            <strong>Score:</strong> {review.score}/5{" "}
-                            {generateStarRating(review.score)}
-                          </p>
-                          <p>
-                            <strong>Title:</strong> {review.title}
-                          </p>
-                          <p>
-                            <strong>Description:</strong> {review.description}
-                          </p>
-                          <button
-                            className="delete-btn"
-                            onClick={() => handleDeleteReview(review.reviewId)}
-                          >
-                            Delete Review
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <em>No reviews found</em>
-                    )}
-                  </div>
-                  <div className="card-footer">
+                  </td>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    {user.first_name} {user.last_name}
+                  </td>
+                  <td>{user.city}</td>
+                  <td>{user.state}</td>
+                  <td>{user.country}</td>
+                  <td>
                     <button
                       className="delete-user-btn"
-                      onClick={() => handleDeleteUser(user.id)}
+                      onClick={() =>
+                        handleDeleteUser(user.UserId, user.SortKey)
+                      }
                     >
                       Delete User
                     </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </div>
     </div>

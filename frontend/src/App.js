@@ -27,8 +27,7 @@ function App() {
   const [userId, setUserId] = useState(null);
   const [sortKey, setSortKey] = useState(null);
   const [userCity, setUsercity] = useState(null);
-
-  const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
+  // const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
   // const [isSuccess, setIsSuccess] = useState(null);
   // const [securityQuestion, setSecurityQuestion] = useState("");
 
@@ -52,20 +51,77 @@ function App() {
   };
 
   const handleForgotPasswordClick = () => {
-    setIsSuccess(null);
+    // setIsSuccess(null);
     setShowForgotPassword(true);
-    setShowLogin(false);
+    // setShowLogin(false);
   };
 
   const handleCloseLoginModal = () => setShowLogin(false);
   const handleCloseRegisterModal = () => setShowRegister(false);
   const handleCloseForgotPasswordModal = () => {
     setShowForgotPassword(false);
-    setIsSuccess(null);
-    setShowPasswordResetForm(false);
+    // setIsSuccess(null);
+    // setShowPasswordResetForm(false);
   };
 
   const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
+
+  const userList = [
+    {
+      id: "alice-wang",
+      username: "alicewang",
+      email: "alicewang@example.com",
+      firstName: "Alice",
+      lastName: "Wang",
+      password: "123456",
+      securityQuestion: "What is your pet's name?",
+      securityAnswer: "cat",
+      city: "Calgary",
+      state: "AB",
+      country: "Canada",
+      occupation: "Athlete",
+      description: "I love skating and sleeping",
+      preferences: [
+        "Early Riser",
+        "Pet Owner",
+        "Clean & Tidy",
+        "Likes Socializing",
+        "Vegetarian",
+      ],
+      likedProfiles: ["sallysmith", "davejones", "bobbrown"],
+    },
+  ];
+
+  // Handle form submit for ForgotPasswordModal
+  const handleSubmitForgotPassword = (username, email) => {
+    const user = userList.find(
+      (user) => user.username === username && user.email === email
+    );
+    if (user) {
+      setIsSuccess(true);
+      setSecurityQuestion(user.securityQuestion);
+    } else {
+      setIsSuccess(false);
+    }
+  };
+
+  // Handle form submit for security question in ForgotPasswordModal
+  // const handleSecuritySubmit = (answer) => {
+  //   const user = userList.find(
+  //     (user) => user.securityQuestion === securityQuestion
+  //   );
+
+  //   if (answer === user.securityAnswer) {
+  //     setShowPasswordResetForm(true); // Show password reset form
+  //   } else {
+  //     alert("Incorrect answer. Try again.");
+  //   }
+  // };
+
+  // Handle form submit for password reset in ForgotPasswordModal
+  // const handlePasswordReset = (newPassword) => {
+  //   console.log("New Password:", newPassword); // Simulate saving the password
+  // };
 
   const handleSuccessfulLogin = (response) => {
     try {
@@ -99,7 +155,12 @@ function App() {
 
       // Navigate to the home page
       setShowLogin(false);
-      window.location.href = "/home";
+
+      if (UserId === "admin") {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/home";
+      }
     } catch (error) {
       console.error("Login response error:", error.message);
       alert("Failed to log in. Please try again.");
@@ -230,7 +291,10 @@ function App() {
         />
       )}
       {showForgotPassword && (
-        <ForgotPasswordModal onClose={handleCloseForgotPasswordModal} />
+        <ForgotPasswordModal
+          show={showForgotPassword}
+          onClose={handleCloseForgotPasswordModal}
+        />
       )}
       {showSetupProfile && (
         <SetupProfileModal

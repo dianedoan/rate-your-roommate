@@ -1,6 +1,7 @@
 import boto3
 import json
 from collections import defaultdict
+from boto3.dynamodb.conditions import Key
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb', region_name='ca-central-1')
@@ -8,9 +9,10 @@ table = dynamodb.Table('RoommateRatings')
 
 def lambda_handler(event, context):
     try:
-        # Scan for reviews (optimized with ProjectionExpression)
+        # Scan for reviews (use ExpressionAttributeNames for special characters)
         response = table.scan(
-            FilterExpression="begins_with(SortKey, :reviewPrefix)",
+            FilterExpression="begins_with(#dataTypeTimestamp, :reviewPrefix)",
+            ExpressionAttributeNames={"#dataTypeTimestamp": "DataType#Timestamp"},
             ExpressionAttributeValues={":reviewPrefix": "Review#"},
             ProjectionExpression="RecipientId, Score"
         )
@@ -40,22 +42,27 @@ def lambda_handler(event, context):
         # Limit to top 3 users
         top_recipient_ids = [user['RecipientId'] for user in average_scores[:3]]
 
-        # Batch get profiles for the top-rated users
-        keys = [{'UserId': rid, 'SortKey': 'SignUp#'} for rid in top_recipient_ids]
-        profile_response = dynamodb.batch_get_item(
-            RequestItems={
-                'RoommateRatings': {
-                    'Keys': keys
-                }
-            }
-        )
+        # Query for profiles of the top-rated users
+        profiles = []
+        for rid in top_recipient_ids:
+            profile_response = table.query(
+                KeyConditionExpression=Key('UserId').eq(rid) & Key('DataType#Timestamp').begins_with("SignUp#"),
+                ExpressionAttributeNames={"#state": "state"},
+                ProjectionExpression="UserId, first_name, last_name, occupation, city, profile_picture, ProfileData, #state"
+            )
+            profiles.extend(profile_response.get('Items', []))
 
-        profiles = profile_response['Responses'].get('RoommateRatings', [])
+        # Combine profiles with scores
         top_rated_users = [
             {
                 'RecipientId': profile['UserId'],
-                'FirstName': profile.get('FirstName', 'Unknown'),
-                'LastName': profile.get('LastName', 'Unknown'),
+                'FirstName': profile.get('first_name', 'Unknown'),
+                'LastName': profile.get('last_name', 'Unknown'),
+                'Occupation': profile.get('occupation', 'Unknown'),
+                'ProfilePicture': profile.get('profile_picture', 'Unknown'),
+                'City': profile.get('city', 'Unknown'),
+                'State': profile.get('state', 'Unknown'),
+                'AboutMe': profile.get('ProfileData', {}).get('aboutMe'),
                 'AverageScore': next((x['AverageScore'] for x in average_scores if x['RecipientId'] == profile['UserId']), 0)
             }
             for profile in profiles

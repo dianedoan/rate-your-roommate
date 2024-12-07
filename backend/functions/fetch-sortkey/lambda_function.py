@@ -7,42 +7,39 @@ table = dynamodb.Table('RoommateRatings')
 
 def lambda_handler(event, context):
     try:
-        # Get UserId from query parameters
-        query_params = event.get('queryStringParameters', {})
-        user_id = query_params.get('UserId')
+        # Get the UserId from the query parameters
+        user_id = event['queryStringParameters']['UserId']
 
-        # Validate UserId
+        # Validate input
         if not user_id:
             return {
                 'statusCode': 400,
                 'body': json.dumps({'message': 'UserId is required!'})
             }
 
-        # Query DynamoDB for SortKey that starts with "SignUp#"
+        # Query items with the given UserId
         response = table.query(
-            KeyConditionExpression="UserId = :userId AND begins_with(SortKey, :prefix)",
-            ExpressionAttributeValues={
-                ":userId": user_id,
-                ":prefix": "SignUp#"
-            },
-            ProjectionExpression="SortKey"
+            KeyConditionExpression="UserId = :userId",
+            ExpressionAttributeValues={":userId": user_id},
+            ProjectionExpression="#dataType",
+            ExpressionAttributeNames={"#dataType": "DataType#Timestamp"}
         )
 
-        # Extract the items
+        # Filter items locally to find the SortKey that starts with 'SignUp#'
         items = response.get('Items', [])
-        if not items:
+        signup_item = next(
+            (item for item in items if item['DataType#Timestamp'].startswith('SignUp#')), None
+        )
+
+        if not signup_item:
             return {
                 'statusCode': 404,
-                'body': json.dumps({'message': 'No matching SortKey found for the specified UserId.'})
+                'body': json.dumps({'message': 'SignUp item not found for the given UserId.'})
             }
 
-        # Return the first matching SortKey
         return {
             'statusCode': 200,
-            'body': json.dumps({
-                'message': 'SortKey retrieved successfully.',
-                'SortKey': items[0]['SortKey']  # Assuming only need the first match
-            })
+            'body': json.dumps({'message': 'SortKey retrieved successfully.', 'SortKey': signup_item['DataType#Timestamp']})
         }
 
     except Exception as e:

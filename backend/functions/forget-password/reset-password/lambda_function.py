@@ -4,7 +4,7 @@ import bcrypt
 
 # Initialize the DynamoDB client
 dynamodb = boto3.resource('dynamodb', region_name='ca-central-1')
-table = dynamodb.Table('RoommateRatings')  
+table = dynamodb.Table('RoommateRatings')
 
 def lambda_handler(event, context):
     try:
@@ -23,16 +23,17 @@ def lambda_handler(event, context):
 
         # Hash the new password
         hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
         # Update the password in DynamoDB
         table.update_item(
             Key={
                 'UserId': user_id,
-                'DataType#Timestamp': sort_key 
+                'DataType#Timestamp': sort_key
             },
             UpdateExpression="SET #password = :password",
-            ExpressionAttributeValues={':password': new_password},
+            ExpressionAttributeValues={':password': hashed_password},
             ExpressionAttributeNames={
-                '#password': hashed_password  
+                '#password': 'password'  # Attribute name in DynamoDB
             }
         )
 

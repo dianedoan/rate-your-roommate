@@ -2,6 +2,10 @@ import boto3
 import json
 import time
 
+import boto3
+import json
+import time
+
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb', region_name='ca-central-1')
 table = dynamodb.Table('RoommateRatings')
@@ -14,8 +18,10 @@ def lambda_handler(event, context):
         recipient_id = body.get('recipientId')
         score = body.get('score')
         review_text = body.get('reviewText', '')  # Optional field
-        
-        # Validate input
+        yes_no_answers = body.get('yesNoAnswers', {})  # Expecting a map
+        ratings = body.get('ratings', {})  # Expecting a map
+
+        # Validate required input fields
         if not (reviewer_id and recipient_id and score):
             return {
                 'statusCode': 400,
@@ -27,17 +33,20 @@ def lambda_handler(event, context):
         data_type_timestamp = f"Review#{timestamp}"
 
         # Create a new review item
-        table.put_item(
-            Item={
-                'UserId': recipient_id,  # Partition key is the recipient's UserId
-                'DataType#Timestamp': data_type_timestamp,    # Sort key starts with "Review#"
-                'ReviewerId': reviewer_id,
-                'RecipientId': recipient_id,
-                'Score': score,
-                'ReviewText': review_text,
-                'Timestamp': timestamp
-            }
-        )
+        item = {
+            'UserId': recipient_id,  # Partition key is the recipient's UserId
+            'DataType#Timestamp': data_type_timestamp,  # Sort key starts with "Review#"
+            'ReviewerId': reviewer_id,
+            'RecipientId': recipient_id,
+            'Score': score,
+            'ReviewText': review_text,
+            'Timestamp': timestamp,
+            'YesNoAnswers': yes_no_answers,
+            'Ratings': ratings
+        }
+
+        # Write item to DynamoDB
+        table.put_item(Item=item)
 
         return {
             'statusCode': 200,

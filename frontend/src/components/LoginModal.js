@@ -4,7 +4,12 @@ import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Modal.css";
 import config from "./config.json";
 
-const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess, onGuestLogin }) => {
+const LoginModal = ({
+  onClose,
+  onForgotPasswordClick,
+  onLoginSuccess,
+  onGuestLogin,
+}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -114,12 +119,12 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess, onGuestLog
         </div>
         <div className="social-login d-flex flex-column align-items-center">
           <Button
-              className="w-100 mt-3 guest-button"
-              variant="outline-secondary"
-              block
-              onClick={onGuestLogin}
-            >
-             Continue as Guest
+            className="w-100 mt-3 guest-button"
+            variant="outline-secondary"
+            block
+            onClick={onGuestLogin}
+          >
+            Continue as Guest
           </Button>
         </div>
       </Modal.Body>

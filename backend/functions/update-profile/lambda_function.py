@@ -11,7 +11,11 @@ def lambda_handler(event, context):
         body = json.loads(event['body'])
         user_id = body.get('UserId')
         sort_key = body.get('DataType#Timestamp')
-        profile_data = body.get('ProfileData')  # Contains fields like aboutMe and preferences
+        profile_picture = body.get('profile_picture')
+        profile_data = body.get('ProfileData')  # Contains aboutMe and preferences
+        first_name = body.get('firstName')
+        last_name = body.get('lastName')
+        city = body.get('city')
         occupation = body.get('occupation')
         country = body.get('country')
         state = body.get('state')  # Reserved keyword
@@ -29,6 +33,11 @@ def lambda_handler(event, context):
         expression_attribute_values = {}
         expression_attribute_names = {}
 
+        # Add profile_picture
+        if profile_picture:
+            update_expression += "profile_picture = :profile_picture, "
+            expression_attribute_values[":profile_picture"] = profile_picture
+
         # Add ProfileData (only includes aboutMe and preferences)
         if profile_data:
             for key, value in profile_data.items():
@@ -36,6 +45,12 @@ def lambda_handler(event, context):
                 expression_attribute_values[f":{key}"] = value
 
         # Add other top-level fields
+        if first_name:
+            update_expression += "first_name = :first_name, "
+            expression_attribute_values[":first_name"] = first_name
+        if last_name:
+            update_expression += "last_name = :last_name, "
+            expression_attribute_values[":last_name"] = last_name
         if occupation:
             update_expression += "occupation = :occupation, "
             expression_attribute_values[":occupation"] = occupation

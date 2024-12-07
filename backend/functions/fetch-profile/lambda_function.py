@@ -7,7 +7,7 @@ table = dynamodb.Table('RoommateRatings')
 def lambda_handler(event, context):
     try:
         user_id = event.get("queryStringParameters", {}).get("UserId")
-        sort_key = event.get("queryStringParameters", {}).get("SortKey")  # Optional: Adjust for your use case
+        sort_key = event.get("queryStringParameters", {}).get("SortKey")  
 
         if not user_id or not sort_key:
             return {

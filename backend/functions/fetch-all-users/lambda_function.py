@@ -7,21 +7,22 @@ table = dynamodb.Table('RoommateRatings')
 
 def lambda_handler(event, context):
     try:
-        # Scan the table with a filter to include only items where DataType#Timestamp starts with 'Signup#'
+        # Perform a scan with the corrected prefix
         response = table.scan(
             FilterExpression="begins_with(#dataType, :prefix)",
             ExpressionAttributeNames={
                 "#dataType": "DataType#Timestamp"
             },
             ExpressionAttributeValues={
-                ":prefix": "Signup#"
+                ":prefix": "SignUp#"  
             }
         )
 
         # Get all items from the response
         users = response.get('Items', [])
+        print("Filtered Items: ", users)  
 
-        # Paginate if necessary
+        # Handle pagination if necessary
         while 'LastEvaluatedKey' in response:
             response = table.scan(
                 FilterExpression="begins_with(#dataType, :prefix)",
@@ -29,12 +30,13 @@ def lambda_handler(event, context):
                     "#dataType": "DataType#Timestamp"
                 },
                 ExpressionAttributeValues={
-                    ":prefix": "Signup#"
+                    ":prefix": "SignUp#"  
                 },
                 ExclusiveStartKey=response['LastEvaluatedKey']
             )
             users.extend(response.get('Items', []))
 
+        # Return users
         return {
             'statusCode': 200,
             'body': json.dumps({'users': users})

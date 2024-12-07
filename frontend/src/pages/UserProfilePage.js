@@ -46,6 +46,20 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     }
   };
 
+  // Fetch user reviews
+  const fetchReviews = async () => {
+    const url = `${config.apiBaseUrl}/get-my-reviews?ReviewerId=${userId}`;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch reviews.");
+      const data = await response.json();
+      setReviews(data.reviews || []); // Assuming the API returns an object with a "reviews" array
+    } catch (err) {
+      console.error("Error fetching reviews:", err.message);
+      setError("Failed to fetch reviews.");
+    }
+  };
+
   useEffect(() => {
     if (userId && sortKey) {
       console.log(
@@ -54,6 +68,7 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
         sortKey
       );
       fetchProfile();
+      fetchReviews();
     } else {
       console.log("useEffect skipped: userId or sortKey is null.");
     }
@@ -199,7 +214,10 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
           <div className="user-profile-reviews">Past Reviews</div>
           {reviews.length > 0 ? (
             reviews.map((review) => (
-              <div key={review.id} className="past-review-info line-separator">
+              <div
+                key={review["DataType#Timestamp"]}
+                className="past-review-info line-separator"
+              >
                 <div className="past-review-score">
                   <span className="highlight5">{review.score}/5 </span>
                   <span className="highlight5">
@@ -207,15 +225,21 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
                   </span>
                 </div>
                 <div className="past-review-description">
-                  {review.description}
+                  {review.ReviewText}
                 </div>
                 {review.yesNoAnswers && (
                   <div className="past-review-questions">
-                    {review.yesNoAnswers.map((item, index) => (
-                      <div key={index} className="past-review-question-answer">
-                        <strong>{item.question}</strong> {item.answer}
-                      </div>
-                    ))}
+                    {Object.entries(review.YesNoAnswers).map(
+                      ([question, answer], index) => (
+                        <div
+                          key={index}
+                          className="past-review-question-answer"
+                        >
+                          <strong>{question.replace(/_/g, " ")}:</strong>{" "}
+                          {answer}
+                        </div>
+                      )
+                    )}
                   </div>
                 )}
                 <div className="past-review-date">{review.date}</div>

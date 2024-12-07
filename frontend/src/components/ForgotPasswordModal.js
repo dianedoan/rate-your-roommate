@@ -4,11 +4,8 @@ import "./Modal.css";
 import config from "./config.json";
 
 function ForgotPasswordModal({
+  show, // Only keeping the necessary props
   onClose,
-  onSubmit,
-  onSecuritySubmit,
-  onPasswordReset,
-  onForgotPasswordClick,
 }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -17,6 +14,7 @@ function ForgotPasswordModal({
   const [isResetSuccessful, setIsResetSuccessful] = useState(false);
   const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
   const [securityQuestion, setSecurityQuestion] = useState("");
+  const [correctSecurityAnswer, setCorrectSecurityAnswer] = useState(""); // Store the correct answer
   const [userId, setUserId] = useState("");
   const [sortKey, setSortKey] = useState("");
   const [error, setError] = useState(null);
@@ -27,13 +25,16 @@ function ForgotPasswordModal({
 
     try {
       const response = await fetch(
-        `${config.apiBaseUrl}/get-security-question`,
+        `${
+          config.apiBaseUrl
+        }/get-security-question?username=${encodeURIComponent(
+          username
+        )}&email=${encodeURIComponent(email)}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username, email }),
         }
       );
 
@@ -42,6 +43,7 @@ function ForgotPasswordModal({
         setUserId(result.UserId);
         setSortKey(result.Sortkey);
         setSecurityQuestion(result.security_question);
+        setCorrectSecurityAnswer(result.security_answer); // Store the correct answer
       } else {
         setError(result.message || "Failed to fetch security question.");
       }
@@ -59,7 +61,7 @@ function ForgotPasswordModal({
       return;
     }
 
-    if (securityAnswer === result.security_answer) {
+    if (securityAnswer === correctSecurityAnswer) {
       setShowPasswordResetForm(true);
     } else {
       setError("Incorrect security answer.");

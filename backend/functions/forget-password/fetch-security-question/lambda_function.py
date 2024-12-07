@@ -43,6 +43,8 @@ def lambda_handler(event, context):
         return {
             "statusCode": 200,
             "body": json.dumps({
+                "UserId": user["UserId"],
+                "Sortkey": user["DataType#Timestamp"],
                 "security_question": user["security_question"],
                 "security_answer": user["security_answer"]  
             })
