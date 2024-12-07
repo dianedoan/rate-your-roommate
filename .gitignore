@@ -13,3 +13,15 @@ backend/build/
 # .env
 # backend/.env
 # frontend/.env
+
+venv
+
+backend/functions/*/__pycache__
+backend/functions/*/package
+backend/functions/*/artifact.zip
+backend/functions/*/requirements.txt
+frontend/src/components/config.json
+
+backend/functions/*/*/artifact.zip
+backend/functions/*/*/requirements.txt
+backend/functions/*/*/package
