@@ -11,6 +11,7 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [reviewsLoading, setReviewsLoading] = useState(true); 
   const [error, setError] = useState(null);
 
   // Fetch profile data from API
@@ -55,10 +56,12 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
       if (!response.ok) throw new Error("Failed to fetch reviews.");
       const data = await response.json();
       console.log("Fetched created reviews: ", data);
-      setReviews(data.reviews || []); // Assuming the API returns an object with a "reviews" array
+      setReviews(data.reviews || []);
+      setReviewsLoading(false);
     } catch (err) {
       console.error("Error fetching reviews:", err.message);
       setError("Failed to fetch reviews.");
+      setReviewsLoading(false);
     }
   };
 
@@ -220,58 +223,60 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
           </div>
         </div>
         <div className="user-profile-card">
-          <div className="user-profile-reviews">Past Reviews</div>
-          {reviews.length > 0 ? (
-            reviews.map((review) => (
-              <div
-                key={review["DataType#Timestamp"]}
-                className="past-review-info line-separator"
-              >
-                <div className="review-score">
-                  <span className="highlight5">{review.Score}/5 </span>
-                  <span className="highlight5">
-                    {generateStarRating(review.Score)}
-                  </span>
-                </div>
-                <div className="review-description">
-                  {review.ReviewText}
-                </div>
-                {review.YesNoAnswers && (
-                  <div className="review-questions">
-                      {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => {
-                            const questionMapping = {
-                                space_respect: "Was this roommate respectful of your space?",
-                                punctuality: "Was this roommate punctual with paying their living fees?",
-                                roommates_again: "Would you be roommates again?",
-                            };
+            <div className="user-profile-reviews">Past Reviews</div>
+                {reviewsLoading ? (
+                    <h5>Loading past reviews...</h5>
+                ) : reviews.length > 0 ? (
+                reviews.map((review) => (
+                <div
+                    key={review["DataType#Timestamp"]}
+                    className="past-review-info line-separator"
+                >
+                    <div className="review-score">
+                    <span className="highlight5">{review.Score}/5 </span>
+                    <span className="highlight5">
+                        {generateStarRating(review.Score)}
+                    </span>
+                    </div>
+                    <div className="review-description">
+                    {review.ReviewText}
+                    </div>
+                    {review.YesNoAnswers && (
+                    <div className="review-questions">
+                        {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => {
+                                const questionMapping = {
+                                    space_respect: "Was this roommate respectful of your space?",
+                                    punctuality: "Was this roommate punctual with paying their living fees?",
+                                    roommates_again: "Would you be roommates again?",
+                                };
 
-                          const questionText = questionMapping[questionKey] || questionKey;
+                            const questionText = questionMapping[questionKey] || questionKey;
 
-                          return (
-                              <div key={index} className="review-question-answer">
-                                  <strong>{questionText}</strong>: {answerObj || "Not answered"}
-                              </div>
-                          );
-                      })}
-                  </div>
-                )}
-                <div className="review-date">
-                    {review.Timestamp ? new Date(review.Timestamp * 1000).toLocaleDateString() : "Date not available"}
+                            return (
+                                <div key={index} className="review-question-answer">
+                                    <strong>{questionText}</strong>: {answerObj || "Not answered"}
+                                </div>
+                            );
+                        })}
+                    </div>
+                    )}
+                    <div className="review-date">
+                        {review.Timestamp ? new Date(review.Timestamp * 1000).toLocaleDateString() : "Date not available"}
+                    </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <h5>No reviews yet.</h5>
-          )}
+                ))
+            ) : (
+                <h5>No reviews yet.</h5>
+            )}
+            </div>
         </div>
-      </div>
-      <div className="profile-buttons-container">
-        <button className="profile-btn" onClick={onLogoutClick}>
-          Logout
-        </button>
-      </div>
-    </div>
-  );
+        <div className="profile-buttons-container">
+            <button className="profile-btn" onClick={onLogoutClick}>
+            Logout
+            </button>
+        </div>
+        </div>
+    );
 };
 
 export default UserProfilePage;
