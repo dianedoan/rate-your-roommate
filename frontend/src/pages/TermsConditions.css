@@ -1,18 +1,10 @@
 /* Main container setup */
 .terms-container {
-    background-image: url('../assets/images/Picture1.svg');
-    background-size: contain;
-    background-position: bottom center;
-    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     position: relative;
-    height: 88rem;
-    border: inset 15rem transparent;
-    border-top: none;
-    border-bottom: none;
 }
 
 /* Title styling - on top of background image */
@@ -23,222 +15,157 @@
 .terms-content {
     background-color: white;
     padding: 5rem;
-    font-size: 2rem;
+}
+
+.terms-image {
+    width: 50rem;
+    margin-top: 1.5rem;
 }
 
 .terms-content h5 {
     text-align: left;
-    font-size: 2rem;
 }
 
 /* Media query for larger screens (2560px) */
 @media (max-width: 2560px) {
-    .terms-container {
-        height: 85rem;
-    }
-
-    .terms-content {
+    .about-content {
         padding: 4rem;
-        font-size: 1.5rem;
-    }
-
-    .terms-content h5 {
-        font-size: 2rem;
-    }
-}
-
-/* Media query for larger screens (2560px) */
-@media (max-width: 2200px) {
-    .terms-container {
-        height: 75rem;
-    }
-}
-
-/* Media query for larger screens (2100px) */
-@media (max-width: 2100px) {
-    .terms-container {
-        height: 78rem;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
-    }
-
-    .terms-container h1 {
-        font-size: 6rem;
-        padding: 0rem;
-        margin-top: 7rem;
-    }
-}
-
-/* Media query for larger screens (1820px) */
-@media (max-width: 1820px) {
-    .terms-container {
-        height: 70rem;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
-    }
-
-    .terms-container h1 {
-        font-size: 5.5rem;
-        padding: 0rem;
-        margin-top: 6rem;
-    }
-}
-
-/* Media query for larger screens (1820px) */
-@media (max-width: 1620px) {
-    .terms-container {
-        height: 60rem;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
-    }
-
-    .terms-container h1 {
-        font-size: 5.5rem;
-        padding: 0rem;
-        margin-top: 6rem;
+        font-size: 1.4rem;
     }
 }
 
 /* Media query for laptop screens (1440px) */
 @media (max-width: 1440px) {
-    .terms-container {
-        height: 53em;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
+    .about-content {
+        padding: 3.5rem;
+        font-size: 1.2rem;
     }
 
     .terms-container h1 {
-        font-size: 5rem;
         padding: 0rem;
-        margin-top: 6rem;
+        margin-top: 5rem;
     }
 
     .terms-content h5 {
-        font-size: 1.8rem;
         margin: 1rem 0rem;
     }
-}
 
-/* Media query for laptop screens (1440px) */
-@media (max-width: 1200px) { 
-    .terms-container {
-        height: 43rem;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
+    .terms-image {
+        width: 40rem;
+        margin-top: 1rem;
     }
 }
 
 /* Media Query for Tablet Screens (1024px) */
 @media (max-width: 1024px) {
-    .terms-container {
-        height: 40rem;
-        border: inset 3rem transparent;
-        border-top: none;
-        border-bottom: none;
-    }
-
     .terms-content {
-        padding: 3rem;
+        padding: 2.5rem;
         font-size: 1rem;
     }
 
     .terms-container h1 {
-        font-size: 4rem;
-        padding: 0rem;
-        margin-top: 5rem;
-    }
-
-    .terms-content h5 {
-        font-size: 1.5rem;
-        margin: 0.8rem 0rem;
-    }
-}
-
-/* Media Query for Small Screens (Mobile) */
-@media (max-width: 768px) {
-    .terms-container {
-        height: 35rem;
-    }
-
-    .terms-container h1 {
-        font-size: 4rem;
-        padding: 0rem;
-        margin-top: 5rem;
-    }
-
-    .terms-content h5 {
-        font-size: 1.2rem;
-        margin: 0.5rem 0rem;
-    }
-}
-
-/* Media Query for Extra Small Screens */
-@media (max-width: 480px) {
-    .terms-container{
-        height: 25rem;
-    }
-    
-    .terms-title {
-        padding-top: 3rem;
-    }
-
-    .terms-container h1 {
-        font-size: 3rem;
         padding: 0rem;
         margin-top: 4rem;
     }
 
     .terms-content h5 {
-        font-size: 1.2rem;
+
+        margin: 0.8rem 0rem;
+    }
+
+    .terms-image {
+        width: 30rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Media Query for Small Screens (Mobile) */
+@media (max-width: 768px) {
+    .about-content {
+        padding: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 3rem;
+    }
+
+    .terms-content h5 {
+
+        margin: 0.5rem 0rem;
+    }
+
+    .terms-image {
+        width: 23rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 425px) {
+    .terms-title {
+        padding-top: 3rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 4rem;
+    }
+
+    .terms-content {
+        padding: 2rem;
+        font-size: 0.7rem;
+    }
+
+    .terms-content h5 {
+
         margin: 0.4rem 0rem;
+    }
+
+    .terms-image {
+        width: 20rem;
+        margin-top: 0.5rem;
     }
 }
 
 /* Media Query for Extra Small Screens */
 @media (max-width: 375px) {
-    .terms-container{
-        height: 20rem;
-    }
-    
     .terms-title {
         padding-top: 3rem;
     }
 
     .terms-container h1 {
-        font-size: 2.5rem;
         padding: 0rem;
         margin-top: 3rem;
     }
 
     .terms-content h5 {
-        font-size: 1.2rem;
         margin: 0.4rem 0rem;
+    }
+    .terms-image {
+        width: 18rem;
+        margin-top: 0.5rem;
     }
 }
 
 /* Media Query for Extra Small Screens */
 @media (max-width: 320px) {
-    .terms-container{
-        height: 18rem;
-    }
-    
     .terms-title {
         padding-top: 3rem;
     }
 
     .terms-container h1 {
-        font-size: 2.2rem;
         padding: 0rem;
         margin-top: 3rem;
     }
 
     .terms-content h5 {
-        font-size: 1.1rem;
         margin: 0.3rem 0rem;
+    }
+
+    .terms-image {
+        width: 15rem;
+        margin-top: 0.5rem;
     }
 }

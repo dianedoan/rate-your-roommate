@@ -1,4 +1,5 @@
 import React from 'react';
+import Picture2 from '../assets/images/Picture2.svg';
 import './MainSection.css';
 
 function MainSection({ onLoginClick, onRegisterClick, userId }) {
@@ -12,6 +13,7 @@ function MainSection({ onLoginClick, onRegisterClick, userId }) {
             <button className="normal-btn secondary-btn" onClick={onRegisterClick}>Register</button>
           </div>
         )}
+        <img src={Picture2} alt="Landing Image" className="landing-image" />
       </div>
     </section>
   );

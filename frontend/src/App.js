@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import TermsConditions from "./pages/TermsConditions";
@@ -19,6 +24,22 @@ import SetupProfileModal from "./components/SetupProfileModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/global.css";
 
+function ProtectedRoute({ isAllowed, children, redirectTo = "/" }) {
+  if (!isAllowed) {
+    return <Navigate to={redirectTo} replace />;
+  }
+  return children;
+}
+
+function NotFound() {
+  return (
+    <div className="general-content">
+      <h2>Page Not Found</h2>
+      <h3>The page you are looking for does not exist.</h3>
+    </div>
+  );
+}
+
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -27,9 +48,6 @@ function App() {
   const [userId, setUserId] = useState(null);
   const [sortKey, setSortKey] = useState(null);
   const [userCity, setUsercity] = useState(null);
-  // const [showPasswordResetForm, setShowPasswordResetForm] = useState(false);
-  // const [isSuccess, setIsSuccess] = useState(null);
-  // const [securityQuestion, setSecurityQuestion] = useState("");
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -51,77 +69,16 @@ function App() {
   };
 
   const handleForgotPasswordClick = () => {
-    // setIsSuccess(null);
     setShowForgotPassword(true);
-    // setShowLogin(false);
   };
 
   const handleCloseLoginModal = () => setShowLogin(false);
   const handleCloseRegisterModal = () => setShowRegister(false);
   const handleCloseForgotPasswordModal = () => {
     setShowForgotPassword(false);
-    // setIsSuccess(null);
-    // setShowPasswordResetForm(false);
   };
 
   const handleCloseSetupProfileModal = () => setShowSetupProfile(false);
-
-  const userList = [
-    {
-      id: "alice-wang",
-      username: "alicewang",
-      email: "alicewang@example.com",
-      firstName: "Alice",
-      lastName: "Wang",
-      password: "123456",
-      securityQuestion: "What is your pet's name?",
-      securityAnswer: "cat",
-      city: "Calgary",
-      state: "AB",
-      country: "Canada",
-      occupation: "Athlete",
-      description: "I love skating and sleeping",
-      preferences: [
-        "Early Riser",
-        "Pet Owner",
-        "Clean & Tidy",
-        "Likes Socializing",
-        "Vegetarian",
-      ],
-      likedProfiles: ["sallysmith", "davejones", "bobbrown"],
-    },
-  ];
-
-  // Handle form submit for ForgotPasswordModal
-  const handleSubmitForgotPassword = (username, email) => {
-    const user = userList.find(
-      (user) => user.username === username && user.email === email
-    );
-    if (user) {
-      setIsSuccess(true);
-      setSecurityQuestion(user.securityQuestion);
-    } else {
-      setIsSuccess(false);
-    }
-  };
-
-  // Handle form submit for security question in ForgotPasswordModal
-  // const handleSecuritySubmit = (answer) => {
-  //   const user = userList.find(
-  //     (user) => user.securityQuestion === securityQuestion
-  //   );
-
-  //   if (answer === user.securityAnswer) {
-  //     setShowPasswordResetForm(true); // Show password reset form
-  //   } else {
-  //     alert("Incorrect answer. Try again.");
-  //   }
-  // };
-
-  // Handle form submit for password reset in ForgotPasswordModal
-  // const handlePasswordReset = (newPassword) => {
-  //   console.log("New Password:", newPassword); // Simulate saving the password
-  // };
 
   const handleSuccessfulLogin = (response) => {
     try {
@@ -153,14 +110,9 @@ function App() {
       localStorage.setItem("sortKey", SortKey);
       localStorage.setItem("userCity", city);
 
-      // Navigate to the home page
       setShowLogin(false);
 
-      if (UserId === "admin") {
-        window.location.href = "/admin";
-      } else {
-        window.location.href = "/home";
-      }
+      window.location.href = "/home";
     } catch (error) {
       console.error("Login response error:", error.message);
       alert("Failed to log in. Please try again.");
@@ -244,7 +196,14 @@ function App() {
             />
           }
         />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute isAllowed={userCity === "admin"} redirectTo="/home">
+              <AdminPage onLogoutClick={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route
@@ -256,7 +215,13 @@ function App() {
         <Route path="/reviews/:recipientId" element={<ReviewPage />} />
         <Route
           path="/create-review/:recipientId"
-          element={<CreateReviewPage userId={userId} sortKey={sortKey} />}
+          element={
+            <CreateReviewPage
+              userId={userId}
+              sortKey={sortKey}
+              userCity={userCity}
+            />
+          }
         />
         <Route path="/search" element={<SearchPage />} />
         <Route
@@ -265,14 +230,23 @@ function App() {
             <UserProfilePage
               userId={userId}
               sortKey={sortKey}
+              userCity={userCity}
               onLogoutClick={handleLogout}
             />
           }
         />
         <Route
           path="/edit-profile"
-          element={<EditProfilePage userId={userId} sortKey={sortKey} />}
+          element={
+            <EditProfilePage
+              userId={userId}
+              sortKey={sortKey}
+              userCity={userCity}
+            />
+          }
         />
+        {/* Catch-all route for undefined paths */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick} />
       {showLogin && (

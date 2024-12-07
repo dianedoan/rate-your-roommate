@@ -9,15 +9,16 @@ import "./Header.css";
 
 function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 992); // Set initial mobile state
-  const [userProfile, setUserProfile] = useState("Guest");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state to track login status
+  const [userProfile, setUserProfile] = useState({}); // Default to an empty object
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [isAdmin, setIsAdmin] = useState(false); // New state to check if user is admin
 
   useEffect(() => {
     if (userId && sortKey) {
       // Fetch profile data from API
       const fetchProfile = async () => {
         if (!userId || !sortKey) {
-          setError("Header: UserId or SortKey is missing.");
+          console.error("Header: UserId or SortKey is missing.");
           return;
         }
 
@@ -26,7 +27,6 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
         }/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(
           sortKey
         )}`;
-        // const url = ''; // for testing
         console.log("Constructed URL:", url);
 
         try {
@@ -36,12 +36,17 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
 
           const data = await response.json();
           console.log("fetchProfile: Fetched data:", data);
+
           setUserProfile(data);
-          setIsLoggedIn(true); // Set login status to true if profile is fetched successfully
+          setIsLoggedIn(true);
+
+          // Check if the user is an admin
+          setIsAdmin(data.city === "admin");
         } catch (err) {
           console.error("Header: Error fetching data:", err.message);
-          setUserProfile("Guest");
-          setIsLoggedIn(false); // Ensure logged-in status is false if there's an error
+          setUserProfile({});
+          setIsLoggedIn(false);
+          setIsAdmin(false); // Default to non-admin on error
         }
       };
       fetchProfile();
@@ -66,52 +71,78 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
         <Navbar.Brand href={"/"}>
           <img src={Logo} alt="Rate Your Roommate" className="navbar-logo" />
         </Navbar.Brand>
-        {/* Conditionally render Navbar.Toggle */}
-        {!isLoggedIn && isMobile && (
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        )}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto d-flex">
-            {!isLoggedIn && (
-              <>
-                <button className="nav-btn primary-btn" onClick={onLoginClick}>
-                  Login
-                </button>
-                <button
-                  className="nav-btn secondary-btn"
-                  onClick={onRegisterClick}
-                >
-                  Register
-                </button>
-              </>
-            )}
-            {isLoggedIn && !isMobile && (
-              <>
-                <Navbar.Brand href="/home">
+
+        {/* Navbar for admin */}
+        {isAdmin && (
+          <>
+            {isMobile && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto">
+                <Navbar.Brand href="/admin">
                   <img src={home} alt="home-icon" className="navbar-home" />
+                  {isMobile && <span className="nav-btn">Home</span>}
                 </Navbar.Brand>
                 <Navbar.Brand href="/search">
-                  <img
-                    src={search}
-                    alt="search-icon"
-                    className="navbar-search"
-                  />
+                  <img src={search} alt="search-icon" className="navbar-search" />
+                  {isMobile && <span className="nav-btn">Search</span>}
                 </Navbar.Brand>
-                <Navbar.Brand href="/profile">
-                  <img
-                    src={profile}
-                    alt="profile-icon"
-                    className="navbar-profile"
-                  />
-                </Navbar.Brand>
-              </>
+              </Nav>
+            </Navbar.Collapse>
+          </>
+        )}
+
+        {!isAdmin && (
+          <>
+            {!isLoggedIn && isMobile && (
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
             )}
-          </Nav>
-        </Navbar.Collapse>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto d-flex">
+                {!isLoggedIn && (
+                  <>
+                    <button
+                      className="nav-btn primary-btn"
+                      onClick={onLoginClick}
+                    >
+                      Login
+                    </button>
+                    <button
+                      className="nav-btn secondary-btn"
+                      onClick={onRegisterClick}
+                    >
+                      Register
+                    </button>
+                  </>
+                )}
+                {isLoggedIn && !isMobile && (
+                  <>
+                    <Navbar.Brand href="/home">
+                      <img src={home} alt="home-icon" className="navbar-home" />
+                    </Navbar.Brand>
+                    <Navbar.Brand href="/search">
+                      <img
+                        src={search}
+                        alt="search-icon"
+                        className="navbar-search"
+                      />
+                    </Navbar.Brand>
+                    <Navbar.Brand href="/profile">
+                      <img
+                        src={profile}
+                        alt="profile-icon"
+                        className="navbar-profile"
+                      />
+                    </Navbar.Brand>
+                  </>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </>
+        )}
       </Navbar>
 
       {/* Sticky bottom navigation bar for mobile screens */}
-      {isLoggedIn && isMobile && (
+      {!isAdmin && isLoggedIn && isMobile && (
         <div className="bottom-navbar d-block d-lg-none">
           <Navbar bg="white" className="bottom-navbar-content">
             <Nav className="w-100 d-flex justify-content-between">

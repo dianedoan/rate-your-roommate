@@ -5,7 +5,7 @@ import starfilled from "../assets/images/button-icons/star-filled.svg";
 import config from "../components/config.json";
 import './CreateReviewPage.css';
 
-const CreateReviewPage = ({ userId, sortKey }) => {
+const CreateReviewPage = ({ userId, sortKey, userCity }) => {
     const { recipientId } = useParams();
     const navigate = useNavigate();
 
@@ -181,6 +181,15 @@ const CreateReviewPage = ({ userId, sortKey }) => {
         );
     }
 
+    if (userCity === "admin") {
+        return (
+          <div className="general-content">
+            <h2>Create Review Unavailable</h2>
+            <h3>Creating reviews are not available for admin accounts.</h3>
+          </div>
+        );
+    }
+
     return (
         <div className="create-review-content">
             <div className="create-review-header">
@@ -208,7 +217,7 @@ const CreateReviewPage = ({ userId, sortKey }) => {
                             cleanliness: ['Messy', 'Clean'],
                             communication: ['Non-existent', 'Active'],
                             timeliness: ['Late', 'On-time'],
-                            noiseLevel: ['Quiet', 'Loud'],
+                            noiseLevel: ['Loud', 'Quiet'],
                             etiquette: ['Rude', 'Polite'],
                         };
 

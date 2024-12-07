@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
-import "./Modal.css";
+import { Modal, Button, Form, ModalFooter } from "react-bootstrap";
 import config from "./config.json";
+import "./Modal.css";
 
-function ForgotPasswordModal({
-  show, // Only keeping the necessary props
-  onClose,
-}) {
+function ForgotPasswordModal({ show, onClose }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [securityAnswer, setSecurityAnswer] = useState("");
@@ -72,6 +69,11 @@ function ForgotPasswordModal({
     e.preventDefault();
     setError(null);
 
+    if (newPassword.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+
     try {
       const response = await fetch(`${config.apiBaseUrl}/reset-password`, {
         method: "POST",
@@ -115,25 +117,27 @@ function ForgotPasswordModal({
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>
-          <div>{renderModalTitle()}</div>
-          <div>{renderModalSubtitle()}</div>
+        <Modal.Title className="w-100 text-center">
+          <div className="modal-title-main">{renderModalTitle()}</div>
+          <div className="modal-title-sub">{renderModalSubtitle()}</div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {isResetSuccessful ? (
-          <div className="text-center">Password reset successful!</div>
+          <div className="text-center">
+            You may use your new password to log in.
+          </div>
         ) : securityQuestion ? (
           !showPasswordResetForm ? (
             <Form onSubmit={handleSecuritySubmit}>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label>Security Question</Form.Label>
                 <Form.Control type="text" value={securityQuestion} readOnly />
               </Form.Group>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label>Your Answer</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="Enter your answer"
                   value={securityAnswer}
                   onChange={(e) => setSecurityAnswer(e.target.value)}
@@ -146,7 +150,7 @@ function ForgotPasswordModal({
             </Form>
           ) : (
             <Form onSubmit={handlePasswordResetSubmit}>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label>New Password</Form.Label>
                 <Form.Control
                   type="password"
@@ -163,7 +167,7 @@ function ForgotPasswordModal({
           )
         ) : (
           <Form onSubmit={handleInitialSubmit}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -172,7 +176,7 @@ function ForgotPasswordModal({
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -188,6 +192,7 @@ function ForgotPasswordModal({
           </Form>
         )}
       </Modal.Body>
+      <ModalFooter></ModalFooter>
     </Modal>
   );
 }

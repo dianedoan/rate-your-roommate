@@ -5,7 +5,7 @@ import edit from "../assets/images/button-icons/edit.svg";
 import config from "../components/config.json";
 import "./EditProfilePage.css";
 
-const EditProfilePage = ({ userId, sortKey }) => {
+const EditProfilePage = ({ userId, sortKey, userCity }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -276,6 +276,15 @@ const EditProfilePage = ({ userId, sortKey }) => {
       <div className="general-content">
         <h2>Not Logged In</h2>
         <h3>Please log in to access this page.</h3>
+      </div>
+    );
+  }
+
+  if (userCity === "admin") {
+    return (
+      <div className="general-content">
+        <h2>User Profile Unavailable</h2>
+        <h3>User profiles are not available for admin accounts.</h3>
       </div>
     );
   }
@@ -661,89 +670,6 @@ const EditProfilePage = ({ userId, sortKey }) => {
                 </div>
               </div>
             </div>
-          )}
-        </div>
-        <div className="user-profile-card">
-          <div className="edit-profile-reviews">
-            <p>
-              <span className="edit-highlight">Remove </span>Past Reviews
-            </p>
-            <button
-              className="edit-button"
-              onClick={() => setIsEditingReviews(!isEditingReviews)}
-              disabled={isEditingReviews || reviews.length === 0}
-            >
-              <img src={edit} alt="Edit" />
-            </button>
-          </div>
-          {isEditingReviews ? (
-            <div className="edit-reviews-list">
-              {reviews.length > 0 ? (
-                reviews.map((review) => (
-                  <div
-                    key={review.id}
-                    className="past-review-info line-separator"
-                  >
-                    <div className="past-review-score">
-                      <span className="highlight5">{review.score}/5 </span>
-                      <span className="highlight5">
-                        {generateStarRating(review.score)}
-                      </span>
-                    </div>
-                    <div className="past-review-description">
-                      {review.description}
-                    </div>
-                    {review.yesNoAnswers && (
-                      <div className="past-review-questions">
-                        {review.yesNoAnswers.map((item, index) => (
-                          <div
-                            key={index}
-                            className="past-review-question-answer"
-                          >
-                            <strong>{item.question}</strong> {item.answer}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    <div className="past-review-date">{review.date}</div>
-                    <button
-                      className="delete-review-btn"
-                      onClick={() => handleDeleteReview(review.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <h5>No reviews found.</h5>
-              )}
-            </div>
-          ) : reviews.length > 0 ? (
-            reviews.map((review) => (
-              <div key={review.id} className="past-review-info line-separator">
-                <div className="past-review-score">
-                  <span className="highlight5">{review.score}/5 </span>
-                  <span className="highlight5">
-                    {generateStarRating(review.score)}
-                  </span>
-                </div>
-                <div className="past-review-description">
-                  {review.description}
-                </div>
-                {review.yesNoAnswers && (
-                  <div className="past-review-questions">
-                    {review.yesNoAnswers.map((item, index) => (
-                      <div key={index} className="past-review-question-answer">
-                        <strong>{item.question}</strong> {item.answer}
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <div className="past-review-date">{review.date}</div>
-              </div>
-            ))
-          ) : (
-            <h5>No reviews found.</h5>
           )}
         </div>
       </div>

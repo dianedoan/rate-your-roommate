@@ -4,12 +4,19 @@ import { Badge } from "react-bootstrap";
 import config from "../components/config.json";
 import "./UserProfilePage.css";
 
-const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
-  console.log("UserProfilePage: Received userId and sortKey:", userId, sortKey);
+const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
+  console.log(
+    "UserProfilePage: Received userId, sortKey, userCity:",
+    userId,
+    sortKey,
+    userCity
+  );
 
   // State variables
   const [userProfile, setUserProfile] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Fetch profile data from API
@@ -53,10 +60,13 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch reviews.");
       const data = await response.json();
-      setReviews(data.reviews || []); // Assuming the API returns an object with a "reviews" array
+      console.log("Fetched created reviews: ", data);
+      setReviews(data.reviews || []);
+      setReviewsLoading(false);
     } catch (err) {
       console.error("Error fetching reviews:", err.message);
       setError("Failed to fetch reviews.");
+      setReviewsLoading(false);
     }
   };
 
@@ -127,13 +137,20 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
     return "";
   };
 
-  const reviews = userProfile?.reviews || [];
-
   if (!userId) {
     return (
       <div className="general-content">
         <h2>Not Logged In</h2>
         <h3>Please log in to access this page.</h3>
+      </div>
+    );
+  }
+
+  if (userCity === "admin") {
+    return (
+      <div className="general-content">
+        <h2>User Profile Unavailable</h2>
+        <h3>User profiles are not available for admin accounts.</h3>
       </div>
     );
   }
@@ -212,37 +229,51 @@ const UserProfilePage = ({ userId, sortKey, onLogoutClick }) => {
         </div>
         <div className="user-profile-card">
           <div className="user-profile-reviews">Past Reviews</div>
-          {reviews.length > 0 ? (
+          {reviewsLoading ? (
+            <h5>Loading past reviews...</h5>
+          ) : reviews.length > 0 ? (
             reviews.map((review) => (
               <div
                 key={review["DataType#Timestamp"]}
                 className="past-review-info line-separator"
               >
-                <div className="past-review-score">
-                  <span className="highlight5">{review.score}/5 </span>
+                <div className="review-score">
+                  <span className="highlight5">{review.Score}/5 </span>
                   <span className="highlight5">
-                    {generateStarRating(review.score)}
+                    {generateStarRating(review.Score)}
                   </span>
                 </div>
-                <div className="past-review-description">
-                  {review.ReviewText}
-                </div>
-                {review.yesNoAnswers && (
-                  <div className="past-review-questions">
+                <div className="review-description">{review.ReviewText}</div>
+                {review.YesNoAnswers && (
+                  <div className="review-questions">
                     {Object.entries(review.YesNoAnswers).map(
-                      ([question, answer], index) => (
-                        <div
-                          key={index}
-                          className="past-review-question-answer"
-                        >
-                          <strong>{question.replace(/_/g, " ")}:</strong>{" "}
-                          {answer}
-                        </div>
-                      )
+                      ([questionKey, answerObj], index) => {
+                        const questionMapping = {
+                          space_respect:
+                            "Was this roommate respectful of your space?",
+                          punctuality:
+                            "Was this roommate punctual with paying their living fees?",
+                          roommates_again: "Would you be roommates again?",
+                        };
+
+                        const questionText =
+                          questionMapping[questionKey] || questionKey;
+
+                        return (
+                          <div key={index} className="review-question-answer">
+                            <strong>{questionText}</strong>:{" "}
+                            {answerObj || "Not answered"}
+                          </div>
+                        );
+                      }
                     )}
                   </div>
                 )}
-                <div className="past-review-date">{review.date}</div>
+                <div className="review-date">
+                  {review.Timestamp
+                    ? new Date(review.Timestamp * 1000).toLocaleDateString()
+                    : "Date not available"}
+                </div>
               </div>
             ))
           ) : (

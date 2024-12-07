@@ -5,13 +5,11 @@ function AboutContent() {
     return (
         <div className="about-content">
             <p className="content">
-            <h5></h5>
                 Welcome to <span className="highlight5">Rate Your Roommate</span> where we make finding the perfect roommate a seamless and stress-free experience!
             </p>
             <p className="content">
             <h5></h5>
             We understand that choosing a roommate is more than just finding someone to share rent with—it's about creating a living environment that feels like home. 
-            That’s why we built <span className="highlight5">Rate Your Roommate</span>, a web-based application designed to connect you with potential roommates who align with your lifestyle, preferences, and values.
             </p>
             <p className="content">
             <h5></h5>
@@ -19,7 +17,7 @@ function AboutContent() {
             </p>
             <h5></h5>
             <p className="content">
-                <span className="highlight5">Rate Your Roommate</span> is the perfect web-based application that contains a database of available roommates with their ratings an reviews from verified past roommates readily displayed on their profile. 
+                <span className="highlight5">Rate Your Roommate</span> is the perfect web-based application that contains a database of available roommates with their ratings and reviews from past roommates readily displayed on their profile. 
             </p>
         </div>
     )
