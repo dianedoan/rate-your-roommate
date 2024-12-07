@@ -101,9 +101,9 @@
 html .profile-preference-tag , html .selected-profile-preference-tag {
     color: #ffffff;
     margin: 0.4rem;
-    padding: 0.7rem 1rem;
+    padding: 0.6rem 0.8rem;
     border-radius: 1.3rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: normal;
 }
 
@@ -324,7 +324,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
         margin: 0.3rem;
         padding: 0.4rem 0.6rem;
         border-radius: 1.3rem;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     
     .profile-buttons-container {
@@ -466,9 +466,9 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
 
     html .profile-preference-tag , html .selected-profile-preference-tag {
         margin: 0.3rem;
-        padding: 0.4rem 0.6rem;
+        padding: 0.3rem 0.5rem;
         border-radius: 1rem;
-        font-size: 0.7rem;
+        font-size: 0.rem;
     }
 
     .profile-buttons-container {
@@ -543,8 +543,8 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
 
     html .profile-preference-tag , html .selected-profile-preference-tag {
-        margin: 0.3rem;
-        padding: 0.3rem 0.5rem;
+        margin: 0.2rem;
+        padding: 0.2rem 0.4rem;
         border-radius: 1.3rem;
         font-size: 0.5rem;
     }

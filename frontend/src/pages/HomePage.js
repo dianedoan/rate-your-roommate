@@ -116,52 +116,47 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                             className="top-rated-card"
                             key={topRatedList[activeTopRatedIndex].Username}
                         >
-                            <div className="top-rated-profile-image-container">
-                            <img
-                                src={
-                                topRatedList[activeTopRatedIndex].ProfilePicture ||
-                                "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
-                                }
-                                alt={`${
-                                topRatedList[activeTopRatedIndex] || "User"
-                                }'s profile`}
-                                className="top-rated-profile-image"
-                            />
-                            </div>
-                            <div className="top-rated-card-container">
-                                <div className="top-rated-profile-info-container">
-                                    <div className="top-rated-profile-info">
+                            <div className="profile-container">
+                                <img
+                                    src={
+                                    topRatedList[activeTopRatedIndex].ProfilePicture ||
+                                    "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
+                                    }
+                                    alt={`${
+                                    topRatedList[activeTopRatedIndex] || "User"
+                                    }'s profile`}
+                                    className="top-rated-profile-image"
+                                />
+                                <div className="profile-info">
+                                    <div className="profile-date-location">
                                         <div className="top-rated-profile-name">
                                             {topRatedList[activeTopRatedIndex].FirstName}{" "}
                                             {topRatedList[activeTopRatedIndex].LastName}
                                         </div>
+                                        <div className="top-rated-location">
+                                            {topRatedList[activeTopRatedIndex].City},{" "}
+                                            {topRatedList[activeTopRatedIndex].State}
+                                        </div>
+                                    </div>
                                     <div className="top-rated-profile-occupation">
                                         {topRatedList[activeTopRatedIndex].Occupation}
                                     </div>
-                                </div>
-
-                                <div className="top-rated-location-favorite-container">
-                                    <div className="top-rated-location">
-                                        {topRatedList[activeTopRatedIndex].City},{" "}
-                                        {topRatedList[activeTopRatedIndex].State}
+                                    <div className="top-rated-profile-description">
+                                        {topRatedList[activeTopRatedIndex].AboutMe}
                                     </div>
+                                    <div className="top-rated-profile-score">
+                                        <span className="highlight4">
+                                        {(
+                                            topRatedList[activeTopRatedIndex].AverageScore || 0
+                                        ).toFixed(1)}
+                                        /5
+                                        </span>{" "}
+                                        Rating
                                     </div>
                                 </div>
-                            <div className="top-rated-profile-description">
-                                {topRatedList[activeTopRatedIndex].AboutMe}
-                            </div>
-                            <div className="top-rated-profile-score">
-                                <span className="highlight4">
-                                {(
-                                    topRatedList[activeTopRatedIndex].AverageScore || 0
-                                ).toFixed(1)}
-                                /5
-                                </span>{" "}
-                                Rating
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                                </div>
+                                </div>
+                                </div>
 
                     <button onClick={handleNext} className="navigation-button">
                     <img src={rightarrow} alt="next" className="arrow-icon" />
@@ -184,42 +179,44 @@ const HomePage = ({ userId, sortKey, userCity }) => {
                 ) : filteredUsers.length > 0 ? (
                     filteredUsers.map((user) => (
                         <div
-                            key={user.username}
-                            className="profile-card"
-                            onClick={() => navigate(`/reviews/${user.UserId}`)}
-                        >
-                            <div className="profile-info-container">
-                                <div className="profile-image-container">
-                                    <img
-                                        src={
-                                            user.profile_picture ||
-                                            "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
-                                        }
-                                        alt={`${user.username || "User"}'s profile`}
-                                        className="profile-image"
-                                    />
-                                    <div className="profile-info">
-                                        <div className="profile-name">
+                        key={user.username}
+                        className="review-card"
+                        onClick={() => navigate(`/reviews/${user.UserId}`)}
+                    >
+                            <div className="profile-container">
+                                <img
+                                    src={
+                                        user.profile_picture ||
+                                        "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"
+                                    }
+                                    alt={`${user.username || "User"}'s profile`}
+                                    className="profile-image"
+                                />
+                                <div className="profile-info">
+                                    <div className="profile-date-location">
+
+                                        <div className="review-score">
                                             {user.first_name} {user.last_name}
                                         </div>
-                                        <div className="profile-score">
-                                            <span className="highlight5">
-                                                {user.AverageScore === 0
-                                                    ? "N/A"
-                                                    : `${(user.AverageScore).toFixed(1)}/5`}
-                                            </span>{" "}
-                                            Rating
-                                        </div>
-                                        <div className="profile-occupation">
-                                            {user.occupation}
-                                        </div>
-                                        <div className="profile-description">
-                                            {user.ProfileData?.aboutMe}
+                                        <div className="review-description">
+                                            {user.city}, {user.state}
                                         </div>
                                     </div>
-                                </div>
-                                <div className="profile-location">
-                                    {user.city}, {user.state}
+                                    <div className="review-score">
+                                        <span className="highlight5">
+                                            {user.AverageScore === 0
+                                                ? "N/A"
+                                                : `${(user.AverageScore).toFixed(1)}/5`}
+                                        </span>{" "}
+                                        Rating
+                                    </div>
+
+                                    <div className="review-date">
+                                        {user.occupation}
+                                    </div>
+                                    <div className="review-description">
+                                        {user.ProfileData?.aboutMe}
+                                    </div>
                                 </div>
                             </div>
                         </div>

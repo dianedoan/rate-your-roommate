@@ -10,20 +10,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem;
 }
 
 .top-rated-section {
     background-color: #E4FFF5;
     border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    padding: 4rem;
 }
 
 .explore-section {
     background-color: #f2ffe1;
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap */
-    gap: 2rem; /* Add spacing between cards */
-    justify-content: center; /* Center the cards */
+    padding: 3rem;
+}
+
+.top-rated-section h2 , .explore-section h2 {
+    padding: 2rem 0rem;
 }
 
 .top-rated-container {
@@ -39,7 +40,6 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 3rem 3rem;
 }
 
 .top-rated-card:hover {
@@ -51,10 +51,11 @@
 }
 
 .top-rated-profile-image {
-    width: 12rem;
-    height: auto;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
+    width: 12rem;
+    height: 12rem;
+    margin-right: 2rem;
 }
 
 .top-rated-card-container {
@@ -90,13 +91,11 @@
 }
 
 .top-rated-profile-description {
-    align-self: baseline;
-    text-align: left;
-    white-space: pre-wrap;
-    word-wrap: break-word; 
-    overflow-wrap: break-word;
-    max-width: 100%; 
-    box-sizing: border-box; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;  
     font-size: 1.5em;
     width: 30rem;
 }
@@ -114,9 +113,9 @@
 }
 
 .top-rated-location {
-    font-size: 1.5em;
+    font-size: 1.8em;
     text-align: right;
-    margin: 0.7rem 0rem;
+    margin-left: 1rem;
 }
 
 .navigation-button {
@@ -146,7 +145,9 @@
     
     .top-rated-profile-image {
         width: 9rem;
-        height: auto;
+        height: 9rem;
+        margin-right: 1.5rem;
+        
     }
     
     .top-rated-profile-name {
@@ -169,8 +170,7 @@
     } 
     
     .top-rated-location {
-        font-size: 1.2em;
-        margin: 0.7rem 0rem;
+        font-size: 1.5em;
     }
 }
 
@@ -178,6 +178,10 @@
 @media (max-width: 1024px) {
     .top-rated-section, .explore-section {
         padding: 3rem;
+    }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1.5rem 0rem;
     }
 
     .top-rated-card {
@@ -190,7 +194,8 @@
     
     .top-rated-profile-image {
         width: 9rem;
-        height: auto;
+        height: 9rem;
+        margin-right: 1.5rem;
     }
     
     .top-rated-profile-name {
@@ -228,6 +233,10 @@
     .explore-section {
         gap: 0.8rem; /* Add spacing between cards */
     }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+    }
     
     .top-rated-container {
         padding: 0rem 0rem;
@@ -238,12 +247,13 @@
     }
 
     .top-rated-profile-image-container {
-        margin-right: 0.8rem; /* Space between image and text */
+        margin-right: 0.8rem;
     }
     
     .top-rated-profile-image {
         width: 6rem;
-        height: auto;
+        height: 6rem;
+        margin-right: 1.1rem;
     }
     
     .top-rated-profile-info {
@@ -299,6 +309,10 @@
     .explore-section {
         gap: 0.8rem; /* Add spacing between cards */
     }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+    }
     
     .top-rated-container {
         padding: 0rem 0rem;
@@ -314,7 +328,8 @@
     
     .top-rated-profile-image {
         width: 4rem;
-        height: auto;
+        height: 4rem;
+        margin-right: 1rem;
     }
     
     .top-rated-profile-info {
@@ -371,6 +386,10 @@
         gap: 0.8rem; /* Add spacing between cards */
     }
     
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+    }
+
     .top-rated-container {
         padding: 0rem 0rem;
     }
@@ -385,7 +404,9 @@
     
     .top-rated-profile-image {
         width: 4rem;
-        height: auto;
+        height: 4rem;
+        margin-right: 0.7rem;
+
     }
     
     .top-rated-profile-info {
@@ -441,6 +462,10 @@
     .explore-section {
         gap: 0.8rem; /* Add spacing between cards */
     }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+    }
     
     .top-rated-container {
         padding: 0rem 0rem;
@@ -456,7 +481,7 @@
     
     .top-rated-profile-image {
         width: 4rem;
-        height: auto;
+        height: 4rem;
     }
     
     .top-rated-profile-info {

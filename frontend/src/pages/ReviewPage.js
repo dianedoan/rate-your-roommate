@@ -83,7 +83,6 @@ const ReviewPage = () => {
         return average.toFixed(1); // Round to 1 decimal place
     };
     
-
     const averageRating = calculateAverageRating();
 
     // Generate star ratings
@@ -123,12 +122,12 @@ const ReviewPage = () => {
     return (
         <div className="review-content">
             <div className="review-profile-section">
+
                 <div className="review-profile-card">
-                    <div className="profile-info-container">
-                        <div className="review-profile-info">
-                            <div className="name-heart-container">
-                                <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
-                            </div>
+                    <div className="profile-container">
+                        <div className="profile-info">
+
+                            <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
                             <div className="review-profile-occupation">{reviewProfile.Occupation}</div>
                             <div className="review-profile-description">
                                 {reviewProfile.AboutMe || "No description provided."}
@@ -143,16 +142,6 @@ const ReviewPage = () => {
                                     </Badge>
                                 ))}
                             </div>
-                        </div>
-                        <div className="image-location-container">
-                            <img
-                                src={reviewProfile.ProfilePicture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
-                                alt={`${reviewProfile.username || "User"}'s profile`}
-                                className="review-profile-image"
-                            />
-                            <p className="review-profile-location">{reviewProfile.City}, {reviewProfile.State}</p>
-                        </div>
-                    </div>
                             <div className="review-profile-score">
                                 <span className="highlight4">
                                     {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
@@ -165,6 +154,16 @@ const ReviewPage = () => {
                                     Rate
                                 </button>
                             </div>
+                        </div>
+                        <div className="image-location-container">
+                            <img
+                                src={reviewProfile.ProfilePicture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                                alt={`${reviewProfile.username || "User"}'s profile`}
+                                className="review-profile-image"
+                            />
+                            <p className="review-profile-location">{reviewProfile.City}, {reviewProfile.State}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
