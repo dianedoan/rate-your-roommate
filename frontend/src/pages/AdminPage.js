@@ -11,22 +11,23 @@ const AdminPage = ( { onLogoutClick }) => {
     // Fetch all users
     useEffect(() => {
         const fetchUsers = async () => {
-        try {
-            setLoading(true);
-            setError(null);
-            const response = await fetch(`${config.apiBaseUrl}/get-all-users`);
-            if (!response.ok) {
-            throw new Error("Failed to fetch users.");
+            try {
+                setLoading(true);
+                setError(null);
+                const response = await fetch(`${config.apiBaseUrl}/get-all-users`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch users.");
+                }
+                const data = await response.json();
+                // Filter out the admin account
+                setUsers(data.users?.filter(user => user.UserId !== "cef620a8-0dde-47e2-8b72-a398c40decb3") || []); 
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
-            const data = await response.json();
-            setUsers(data.users || []); // Assuming the API returns an object with a `users` array
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
         };
-
+    
         fetchUsers();
     }, []);
 
