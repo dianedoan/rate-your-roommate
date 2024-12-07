@@ -106,13 +106,9 @@ function App() {
             localStorage.setItem("userCity", city);
 
             setShowLogin(false);
+
+            window.location.href = "/home";
             
-            // Check if admin
-            if (city === "admin") {
-                    window.location.href = "/admin";
-                } else {
-                    window.location.href = "/home";
-                }
         } catch (error) {
             console.error("Login response error:", error.message);
             alert("Failed to log in. Please try again.");

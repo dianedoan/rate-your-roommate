@@ -15,11 +15,12 @@ const HomePage = ({ userId, sortKey, userCity }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log("userId received by HomePage:", userId);
         console.log("userCity received by HomePage:", userCity);
-        if (userCity === "admin") {
+        if (userId == "cef620a8-0dde-47e2-8b72-a398c40decb3" && userCity === "admin") {
             navigate("/admin");
         }
-    }, [userCity, navigate]);
+    }, [userId, userCity, navigate]);
 
     // Fetch Top-Rated Users
     useEffect(() => {
