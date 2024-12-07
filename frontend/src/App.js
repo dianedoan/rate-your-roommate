@@ -82,7 +82,7 @@ function App() {
 
   const handleSuccessfulLogin = (response) => {
     try {
-      // log the response structure
+      // Debugging: log the response structure
       console.log("Login response:", response);
 
       // Extract values directly from the response
@@ -172,13 +172,9 @@ function App() {
     }
   };
 
-  const handleSuccessfulLogin = (user) => {
-    setShowLogin(false);
-    if (user.username == "admin") {
-      window.location.href = "/admin";
-    } else {
-      window.location.href = "/home";
-    }
+  const handleGuestLogin = () => {
+    // Navigate to the landing page
+    window.location.href = "/home";
   };
 
   return (
@@ -228,11 +224,29 @@ function App() {
           }
         />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/saved" element={<SavedRoommatesPage />} />
-        <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/edit-profile" element={<EditProfilePage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route
+          path="/profile"
+          element={
+            <UserProfilePage
+              userId={userId}
+              sortKey={sortKey}
+              userCity={userCity}
+              onLogoutClick={handleLogout}
+            />
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <EditProfilePage
+              userId={userId}
+              sortKey={sortKey}
+              userCity={userCity}
+            />
+          }
+        />
+        {/* Catch-all route for undefined paths */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer onForgotPasswordClick={handleForgotPasswordClick} />
       {showLogin && (

@@ -1,18 +1,10 @@
 /* Main container setup */
 .terms-container {
-    background-image: url('../assets/images/Picture1.svg');
-    background-size: contain;
-    background-position: bottom center;
-    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     position: relative;
-    height: 88rem;
-    border: inset 15rem transparent;
-    border-top: none;
-    border-bottom: none;
 }
 
 /* Title styling - on top of background image */
@@ -23,77 +15,157 @@
 .terms-content {
     background-color: white;
     padding: 5rem;
-    font-size: 2rem;
+}
+
+.terms-image {
+    width: 50rem;
+    margin-top: 1.5rem;
+}
+
+.terms-content h5 {
+    text-align: left;
 }
 
 /* Media query for larger screens (2560px) */
 @media (max-width: 2560px) {
-    .terms-container {
-        height: 82rem;
-    }
-
-    .terms-content {
+    .about-content {
         padding: 4rem;
-        font-size: 1.5rem;
-    }
-}
-
-/* Media query for larger screens (2560px) */
-@media (max-width: 2200px) {
-    .terms-container {
-        height: 70rem;
-    }
-}
-
-/* Media query for larger screens (1900px) */
-@media (max-width: 1900px) {
-    .terms-container {
-        height: 60rem;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
+        font-size: 1.4rem;
     }
 }
 
 /* Media query for laptop screens (1440px) */
 @media (max-width: 1440px) {
-    .terms-container {
-        height: 55rem;
-        border: inset 8rem transparent;
-        border-top: none;
-        border-bottom: none;
+    .about-content {
+        padding: 3.5rem;
+        font-size: 1.2rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 5rem;
+    }
+
+    .terms-content h5 {
+        margin: 1rem 0rem;
+    }
+
+    .terms-image {
+        width: 40rem;
+        margin-top: 1rem;
     }
 }
 
 /* Media Query for Tablet Screens (1024px) */
 @media (max-width: 1024px) {
-    .terms-container {
-        height: 45rem;
-        border: inset 3rem transparent;
-        border-top: none;
-        border-bottom: none;
+    .terms-content {
+        padding: 2.5rem;
+        font-size: 1rem;
     }
 
-    .terms-content {
-        padding: 3rem;
-        font-size: 1rem;
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 4rem;
+    }
+
+    .terms-content h5 {
+
+        margin: 0.8rem 0rem;
+    }
+
+    .terms-image {
+        width: 30rem;
+        margin-top: 1rem;
     }
 }
 
 /* Media Query for Small Screens (Mobile) */
 @media (max-width: 768px) {
-    .terms-container {
-        height: 35rem;
+    .about-content {
+        padding: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 3rem;
+    }
+
+    .terms-content h5 {
+
+        margin: 0.5rem 0rem;
+    }
+
+    .terms-image {
+        width: 23rem;
+        margin-top: 0.5rem;
     }
 }
 
 /* Media Query for Extra Small Screens */
-@media (max-width: 480px) {
-    .terms-container{
-        height: 30rem;
-    }
-    
+@media (max-width: 425px) {
     .terms-title {
         padding-top: 3rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 4rem;
+    }
+
+    .terms-content {
+        padding: 2rem;
+        font-size: 0.7rem;
+    }
+
+    .terms-content h5 {
+
+        margin: 0.4rem 0rem;
+    }
+
+    .terms-image {
+        width: 20rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 375px) {
+    .terms-title {
+        padding-top: 3rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 3rem;
+    }
+
+    .terms-content h5 {
+        margin: 0.4rem 0rem;
+    }
+    .terms-image {
+        width: 18rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 320px) {
+    .terms-title {
+        padding-top: 3rem;
+    }
+
+    .terms-container h1 {
+        padding: 0rem;
+        margin-top: 3rem;
+    }
+
+    .terms-content h5 {
+        margin: 0.3rem 0rem;
+    }
+
+    .terms-image {
+        width: 15rem;
+        margin-top: 0.5rem;
     }
 }

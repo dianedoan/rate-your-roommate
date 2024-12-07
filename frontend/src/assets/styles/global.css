@@ -7,10 +7,16 @@ html body {
 
 /* TEXT */
 html h1 {
+<<<<<<< HEAD
     font-size: 6rem; /* Default size */
     margin: 2rem 0rem;
     text-align: center;
     font-weight: bold;
+=======
+    text-align: center;
+    font-weight: bold;
+    font-size: 5rem; /* Default size */
+>>>>>>> aws
     padding: 0rem 2rem;
 }
 
@@ -28,7 +34,12 @@ html h2 {
 }
 
 html h3 {
+<<<<<<< HEAD
     margin-top: 3rem;
+=======
+    margin: 2rem 0rem;
+    font-size: 2.5rem;
+>>>>>>> aws
 }
 
 html h4 {
@@ -37,7 +48,11 @@ html h4 {
 
 html h5 {
     font-size: 1.5rem;
+<<<<<<< HEAD
     margin: 2rem 0rem;
+=======
+    margin: 0.7rem 0rem;
+>>>>>>> aws
     text-align: center;
     font-weight: bold;
 }
@@ -72,7 +87,10 @@ html h5 {
     color: #8CAD63;
     /* text-shadow: 0rem 0rem 0.15rem #1e1e1e; */
     text-shadow: 0.05rem 0.05rem #1e1e1e;
+<<<<<<< HEAD
     
+=======
+>>>>>>> aws
 }
 
 /* CONTAINER */
@@ -84,12 +102,79 @@ html h5 {
     flex-direction: column;
     align-items: center;
     padding: 4rem 1rem;
+<<<<<<< HEAD
     gap: 2rem; /* Add spacing between cards */
+=======
+    gap: 2rem;
+>>>>>>> aws
 }
+
+.top-rated-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 55rem;
+    height: 100%;
+    padding: 3rem;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+    width: 100%;
+    max-width: 55rem;
+    height: 100%;
+    padding: 3rem;
+    background-color: #ffffff;
+    border: 0.1rem solid #1e1e1e;
+    border-radius: 0.9rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card:hover {
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    vertical-align: middle;
+}
+
+.profile-date-location {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 75%;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+}
+
 
 /* BUTTONS */
 .button-container {
+<<<<<<< HEAD
     padding-top: 1rem;
+=======
+    padding: 1rem;
+>>>>>>> aws
     display: flex;
     gap: 1rem; /* Space between buttons */
 }
@@ -97,11 +182,19 @@ html h5 {
 .normal-btn {
     text-align: center;
     margin: 0.5rem;
+<<<<<<< HEAD
     font-size: 2.1rem;
     padding: 1rem;
     width: 16rem;
     border-radius: 0.8rem;
     border: 0.2rem solid #1e1e1e;
+=======
+    font-size: 1.6rem;
+    padding: 1rem;
+    width: 12rem;
+    border-radius: 0.8rem;
+    border: 0.15rem solid #1e1e1e;
+>>>>>>> aws
 }
 
 .normal-btn:hover {
@@ -203,6 +296,7 @@ html .nav-link:hover {
 
 html .nav-link:active {
     color: #878787;
+<<<<<<< HEAD
 }
 
 /* PROFILE CARD */
@@ -234,6 +328,8 @@ html .nav-link:active {
 .profile-image-container {
     flex-shrink: 0; /* Prevent the image from shrinking */
     margin-right: 2rem; /* Space between image and text */
+=======
+>>>>>>> aws
 }
 
 .profile-image {
@@ -241,6 +337,7 @@ html .nav-link:active {
     height: 10rem;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
+<<<<<<< HEAD
 }
 
 .profile-info {
@@ -295,29 +392,329 @@ html .nav-link:active {
   cursor: pointer;
   text-align: right;
 }
-
-/* Like/Save Roommate button */
-.heart-icon {
-  width: 2.5rem; /* Adjust image size */
-  height: 2.5rem;
+=======
+    margin-right: 2rem;
 }
 
-.heart-icon:hover {
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
+/* Media query for Large Screens (Laptop L) */
+@media (max-width: 1440px) {
+    html h1 {
+        font-size: 3.5rem; /* Reduce title font size */
+    }
+
+    html h2 {
+        font-size: 3rem;
+    }
+
+    html h3 {
+        margin: 1rem 0rem;
+        font-size: 2rem;
+    }
+
+    html h5 {
+        font-size: 1.4rem;
+        margin: 0.6rem 0rem;
+    }
+
+    .profile-info {
+        width: 85%;
+    }
+
+    .profile-image {
+        width: 6rem; /* Adjust image size */
+        height: 6rem;
+        margin-right: 1.5rem;
+    }
+
+    .normal-btn {
+        text-align: center;
+        margin: 0.5rem;
+        font-size: 1.5rem;
+        padding: 0.9rem;
+        width: 12rem;
+        border-radius: 0.7rem;
+        border: 0.15rem solid #1e1e1e;
+    }
 }
 
-/* Social Media Buttons */
-.social-button {
-  background-color: #1E1E1E; /* Almost black */
-  color: #FFFFFF; /* White text */
-  font-size: 16px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
+/* Media Query for Medium Screens (Laptop) */
+@media (max-width: 1024px) {
+    .general-content {
+        gap: 2rem; /* Add spacing between cards */
+        padding: 3rem;
+    }
+
+    html h1 {
+        font-size: 3.5rem;
+    }
+
+    html h2 {
+        font-size: 2.5rem;
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1.7rem;
+    }
+
+    html h5 {
+        font-size: 1.3rem;
+        margin: 0.6rem 0rem;
+    }
+
+    .profile-info {
+        width: 85%;
+    }
+
+    .profile-image {
+        width: 6rem; /* Adjust image size */
+        height: 6rem;
+        margin-right: 1.5rem;
+    }
+
+    .normal-btn {
+        text-align: center;
+        margin: 0.3rem;
+        font-size: 1.3rem;
+        padding: 0.8rem;
+        width: 10rem;
+        border-radius: 0.7rem;
+        border: 0.12rem solid #1e1e1e;
+    }
+    
 }
+/* Media Query for Small Screens (Tablet) */
+@media (max-width: 768px) {
+    .general-content {
+        gap: 1.5rem; /* Add spacing between cards */
+        padding: 2.5rem;
+    }
+    
+    html h1 {
+        font-size: 2.5rem;
+    }
+
+    html h2 {
+        font-size: 1.8rem;
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1.4rem;
+    }
+
+    html h5 {
+        font-size: 1.3rem;
+        margin: 0.6rem 0rem;
+    }
+
+    .profile-info {
+        width: 84%;
+    }
+
+
+    .profile-image {
+        width: 5rem; /* Adjust image size */
+        height: 5rem;
+        margin-right: 1rem;
+    }
+    
+    .button-container {
+        gap: 0.7rem;
+    }
+
+    .normal-btn {
+        text-align: center;
+        margin: 0.3rem;
+        font-size: 1.1rem;
+        padding: 0.7rem;
+        width: 8.5rem;
+        border-radius: 0.6rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 2.5rem;
+    }
+
+    html h2 {
+        font-size: 1.7rem; /* Further reduce title font size */
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1rem;
+    }
+
+    html h5 {
+        font-size: 1.2rem;
+        margin: 0.6rem 0rem;
+    }
+    
+    .profile-image {
+        width: 4rem; /* Adjust image size */
+        height: 4rem;
+        margin-right: 1rem;
+    }
+    
+    .button-container {
+        gap: 0.2rem;
+        padding-top: 0.5rem;
+    }
+
+    .normal-btn {
+        text-align: center;
+        margin: 0.3rem;
+        font-size: 1.1rem;
+        padding: 0.7rem;
+        width: 8.5rem;
+        border-radius: 0.6rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 2.5rem;
+    }
+
+    html h2 {
+        font-size: 2rem; /* Further reduce title font size */
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1.2rem;
+    }
+
+    html h5 {
+        font-size: 1.1rem;
+        margin: 0.4rem 0rem;
+    }
+
+    .profile-info {
+        width: 75%;
+    }
+
+    .profile-image {
+        width: 4rem; /* Adjust image size */
+        height: 4rem;
+        margin-right: 1rem;
+    }
+
+    .button-container {
+        gap: 0.2rem;
+    }
+
+    .normal-btn {
+        margin: 0.5rem;
+        font-size: 0.9rem;
+        padding: 0.6rem;
+        width: 6.5rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 2rem;
+    }
+
+    html h2 {
+        font-size: 1.5rem; /* Further reduce title font size */
+    }
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1rem;
+    }
+
+    html h5 {
+        font-size: 1rem;
+        margin: 0.4rem 0rem;
+    }
+
+    .profile-info {
+        width: 72%;
+    }
+    
+    .profile-image {
+        width: 4rem; /* Adjust image size */
+        height: 4rem;
+        margin-right: 0.7rem;
+    }
+
+    .normal-btn {
+        margin: 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.4rem;
+        width: 5rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+    .general-content {
+        gap: 1rem; /* Add spacing between cards */
+        padding: 1.5rem;
+    }
+
+    html h1 {
+        font-size: 2rem;
+    }
+
+    html h2 {
+        font-size: 1.3rem; /* Further reduce title font size */
+    }
+>>>>>>> aws
+
+    html h3 {
+        margin: 0rem;
+        font-size: 1rem;
+    }
+
+    html h5 {
+        font-size: 1rem;
+        margin: 0.3rem 0rem;
+    }
+
+    .profile-info {
+        width: 65%;
+    }
+
+    .normal-btn {
+        margin: 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.4rem;
+        width: 5rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+    }
+}
+<<<<<<< HEAD
 
 /* Media query for Large Screens (Laptop L) */
 @media (max-width: 1440px) {
@@ -572,4 +969,6 @@ html .nav-link:active {
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
 }
+=======
+>>>>>>> aws
    

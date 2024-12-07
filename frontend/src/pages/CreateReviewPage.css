@@ -138,7 +138,10 @@
 .create-review-button-container {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
     width: 50rem;
+=======
+>>>>>>> aws
     justify-content: center;
     margin-top: 1rem;
 }
@@ -149,7 +152,11 @@
     margin: 1rem;
     font-size: 1.2rem;
     padding: 1rem;
+<<<<<<< HEAD
     width: 100%;
+=======
+    width: 12rem;
+>>>>>>> aws
     border-radius: 0.8rem;
     border: 0.1rem solid #1e1e1e;
 }
@@ -159,9 +166,103 @@
     color: red;
     font-size: 1.5rem;
     /* font-weight: bold; */
-    /* margin: 2rem 0rem; */
+    margin-top: 1rem;;
 }
 
+<<<<<<< HEAD
+=======
+/* Media Query for Small Screens (Tablet) */
+@media (max-width: 768px) {
+    /* Question Card */
+    .question-card {
+        margin: 1rem;
+        padding: 1.2rem;
+        border: 0.1rem solid #1e1e1e;
+        border-radius: 0.7rem;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .rating-category , .yes-no-question , .open-ended-section , .anonymous-toggle {
+        font-size: 1rem;
+    }
+    
+    .questions-section {
+        padding: 2rem;
+    }
+
+    .create-review-name {
+        font-size: 2.2rem;
+    }
+    
+    .create-review-occupation , .create-review-location {
+        font-size: 1.5rem;
+    }
+    
+    .create-review-occupation {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .star-label {
+        font-size: 0.8rem;
+        margin: 0rem 0rem;
+        margin-bottom: 0rem;
+    }
+
+    .star-icon {
+        width: 1.5rem;
+    }
+
+    .star-number {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Radio Button */
+    .radio-label {
+        margin-right: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .radio-button {
+        margin-right: 0.2rem;
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+
+    .radio-button:checked {
+        margin-right: 0.5rem;
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+
+    /* Comments Form */
+    .comments-form-title , .comments-form {
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .create-review-button-container {
+        margin: 1rem;
+    }    
+
+    /* Submit and Cancel Buttons */
+    .submit-review-btn {
+        font-size: 0.9rem;
+        padding: 0.9rem;
+        margin: 0rem 0.5rem;
+        border-radius: 0.7rem;
+        border: 0.1rem solid #1e1e1e;
+        width: 9rem;
+    }
+    .error-message {
+        font-size: 1.2rem;
+        margin-top: 0.5rem;;
+    }
+}
+
+>>>>>>> aws
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
     /* Question Card */
@@ -234,6 +335,7 @@
         font-size: 0.8rem;
     }
 
+<<<<<<< HEAD
     .anonymous-label {
         font-size: 1rem;
     }
@@ -246,11 +348,15 @@
 
     .create-review-button-container {
         width: 100%;
+=======
+    .create-review-button-container {
+>>>>>>> aws
         margin: 1rem;
     }    
 
     /* Submit and Cancel Buttons */
     .submit-review-btn {
+<<<<<<< HEAD
         font-size: 1rem;
         padding: 1rem;
         margin: 0rem 0.5rem;
@@ -263,4 +369,56 @@
         font-size: 1rem;
     }
 
+=======
+        font-size: 0.9rem;
+        padding: 0.9rem;
+        margin: 0rem 0.5rem;
+        border-radius: 0.7rem;
+        border: 0.1rem solid #1e1e1e;
+        width: 8rem;
+    }
+
+    .error-message {
+        font-size: 1rem;
+        margin-top: 0rem;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    /* Submit and Cancel Buttons */
+    .submit-review-btn {
+        font-size: 0.7rem;
+        padding: 0.8rem;
+        margin: 0rem 0.5rem;
+        border-radius: 0.7rem;
+        border: 0.1rem solid #1e1e1e;
+        width: 7rem;
+    }
+
+    .stars-container {
+        gap: 0.2rem;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+    .create-review-button-container {
+        margin: 0.8rem;
+    }   
+
+    /* Submit and Cancel Buttons */
+    .submit-review-btn {
+        font-size: 0.7rem;
+        padding: 0.8rem;
+        margin: 0rem 0.5rem;
+        border-radius: 0.7rem;
+        border: 0.1rem solid #1e1e1e;
+        width: 7rem;
+    }
+    
+    .error-message {
+        font-size: 0.9rem;
+    }
+>>>>>>> aws
 }

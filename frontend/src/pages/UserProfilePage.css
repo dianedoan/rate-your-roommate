@@ -13,8 +13,13 @@
 }
 
 .user-profile-image {
+<<<<<<< HEAD
     width: 16rem; /* Adjust image size */
     height: 16rem;
+=======
+    width: 12rem; /* Adjust image size */
+    height: auto;
+>>>>>>> aws
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
 }
@@ -24,21 +29,25 @@
     flex-direction: column; /* Stack profile name, description, and score vertically */
     justify-content: center;
     text-align: left;
-    max-width: 55%;
+    max-width: 30rem;
     margin-left: 4rem;
 }
 
 .user-profile-name {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
 .user-profile-occupation , .user-profile-location {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
 }
 
 .user-profile-occupation {
     font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    text-align: left; 
 }
 
 .user-profile-cards-section {
@@ -70,7 +79,11 @@
     font-weight: bold;
     align-self: baseline;
     color: #8CAD63;
+<<<<<<< HEAD
     font-size: 2rem;
+=======
+    font-size: 1.8rem;
+>>>>>>> aws
     text-shadow: 0.05rem 0.1rem #1e1e1e;
 }
 
@@ -78,12 +91,21 @@
     align-self: baseline;
     text-align: left;
     margin-top: 1rem;
+<<<<<<< HEAD
     font-size: 1.8rem;
     white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
     word-wrap: break-word; /* Breaks words if they are too long */
     overflow-wrap: break-word; /* Compatibility for older browsers */
     max-width: 100%; /* Ensures it stays within the container */
     box-sizing: border-box; /* Includes padding in width calculations */
+=======
+    font-size: 1.5rem;
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    max-width: 100%; 
+    box-sizing: border-box; 
+>>>>>>> aws
 }
 
 /* Preference Tag */
@@ -97,9 +119,9 @@
 html .profile-preference-tag , html .selected-profile-preference-tag {
     color: #ffffff;
     margin: 0.4rem;
-    padding: 0.7rem 1rem;
+    padding: 0.6rem 0.8rem;
     border-radius: 1.3rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: normal;
 }
 
@@ -176,45 +198,23 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     text-align: left;
     width: 95%;
     margin: 1rem;
+<<<<<<< HEAD
     border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
+=======
+    border-bottom: 0.1rem solid #a7a7a7; /* Line separator between reviews */
+    padding-bottom: 1rem;
+>>>>>>> aws
 }
 
 .past-review-info:last-child {
     border-bottom: none; /* Remove border from last review */
-}
-
-.past-review-score {
-    font-weight: bold;
-    font-size: 1.8em;
-}
-
-.past-review-title {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.past-review-description {
-    font-size: 1.5em;
-}
-
-.past-review-questions {
-    font-size: 1em;
-    margin: 1rem 0rem;
-}
-
-.past-review-username {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.past-review-date {
-    font-size: 1.5em;
+    padding-bottom: 0rem;
 }
 
 /* Buttons */
 .edit-profile-btn {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     background-color: transparent;
     border: none;
@@ -255,8 +255,13 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
 
     .user-profile-image {
+<<<<<<< HEAD
         width: 14rem; /* Adjust image size */
         height: 14rem;
+=======
+        width: 10rem; /* Adjust image size */
+        height: auto;
+>>>>>>> aws
     }
 
     .user-profile-info {
@@ -264,11 +269,28 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
+<<<<<<< HEAD
         font-size: 3rem;
     }
     
     .user-profile-occupation , .user-profile-location {
         font-size: 2rem;
+=======
+        font-size: 2rem;
+    }
+    
+    .user-profile-occupation , .user-profile-location {
+        font-size: 1.2rem;
+    }
+
+    .edit-profile-btn {
+        font-size: 1.3rem;
+    }
+
+    .profile-btn {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+>>>>>>> aws
     }
 }
 
@@ -276,6 +298,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
 /* Media Query for Small Screens (Tablet) */
 @media (max-width: 768px) {
     .user-profile-header {
+<<<<<<< HEAD
         padding: 4rem 2rem;
     }
     
@@ -284,11 +307,22 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
         height: 13rem;
     }
     
+=======
+        padding: 3rem 2rem;
+    }
+    
+    .user-profile-image {
+        width: 10rem; /* Adjust image size */
+        height: auto;
+    }
+
+>>>>>>> aws
     .user-profile-info {
         margin-left: 2.5rem;
     }
     
     .user-profile-name {
+<<<<<<< HEAD
         font-size: 2.5rem;
     }
     
@@ -298,6 +332,22 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     
     .edit-profile-btn {
         font-size: 1.5rem;
+=======
+        font-size: 2rem;
+    }
+    
+    .user-profile-occupation , .user-profile-location {
+        font-size: 1.2rem;
+    }
+
+    .edit-profile-btn {
+        font-size: 1.3rem;
+    }
+
+    .profile-btn {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+>>>>>>> aws
     }
 
     .user-profile-cards-section {
@@ -315,6 +365,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-about-me , .user-profile-preferences , .user-profile-reviews {
+<<<<<<< HEAD
         font-size: 1.8rem;
         text-shadow: 0.05rem 0.1rem #1e1e1e;
     }
@@ -326,20 +377,39 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
 
     .preferences-section {
         margin-top: 1rem;
+=======
+        font-size: 1.3rem;
+        text-shadow: 0.05rem 0.1rem #1e1e1e;
+    }
+    
+    .user-profile-description , .preferences-section , .past-review-info  {
+        margin-top: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .preferences-section {
+
+>>>>>>> aws
     }
 
     html .profile-preference-tag , html .selected-profile-preference-tag {
         margin: 0.3rem;
         padding: 0.4rem 0.6rem;
         border-radius: 1.3rem;
+<<<<<<< HEAD
         font-size: 0.8rem;
     }
 
+=======
+        font-size: 0.7rem;
+    }
+>>>>>>> aws
     
     .profile-buttons-container {
         margin-bottom: 2rem;
     }
     
+<<<<<<< HEAD
     .profile-btn {
         font-size: 2rem;
         padding: 0.5rem 3rem;
@@ -376,6 +446,11 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     
     .past-review-date {
         font-size: 1.1em;
+=======
+    .past-review-info {
+        width: 95%;
+        padding-bottom: 1rem;
+>>>>>>> aws
     }
 }
 
@@ -395,11 +470,19 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
+<<<<<<< HEAD
         font-size: 1.8rem;
     }
     
     .user-profile-occupation , .user-profile-location {
         font-size: 1.2rem;
+=======
+        font-size: 1.6rem;
+    }
+    
+    .user-profile-occupation , .user-profile-location {
+        font-size: 1.1rem;
+>>>>>>> aws
     }
     
     .user-profile-cards-section {
@@ -449,6 +532,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
         font-size: 1.2rem;
         padding: 0.5rem 1rem;
     }
+<<<<<<< HEAD
 
     .past-review-info {
         width: 95%;
@@ -484,6 +568,8 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
         font-size: 0.9em;
     }
 
+=======
+>>>>>>> aws
 }
 
 /* Media Query for Extra Small Screens (Mobile M) */
@@ -502,11 +588,19 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
+<<<<<<< HEAD
         font-size: 1.3rem;
     }
     
     .user-profile-occupation , .user-profile-location {
         font-size: 1rem;
+=======
+        font-size: 1.2rem;
+    }
+    
+    .user-profile-occupation , .user-profile-location {
+        font-size: 0.9rem;
+>>>>>>> aws
     }
     
     .edit-profile-btn {
@@ -543,9 +637,15 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
 
     html .profile-preference-tag , html .selected-profile-preference-tag {
         margin: 0.3rem;
+<<<<<<< HEAD
         padding: 0.4rem 0.6rem;
         border-radius: 1rem;
         font-size: 0.7rem;
+=======
+        padding: 0.3rem 0.5rem;
+        border-radius: 1rem;
+        font-size: 0.rem;
+>>>>>>> aws
     }
 
     .profile-buttons-container {
@@ -560,6 +660,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     .past-review-info {
         width: 95%;
         margin-top: 0.5rem;
+<<<<<<< HEAD
         padding: 0rem 0rem;
         border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
     }
@@ -589,6 +690,9 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     
     .past-review-date {
         font-size: 0.9em;
+=======
+        padding-bottom: 1rem;
+>>>>>>> aws
     }
 }
 
@@ -599,8 +703,13 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-image {
+<<<<<<< HEAD
         width: 6rem; /* Adjust image size */
         height: 6rem;
+=======
+        width: 5.5rem;
+        height: 5.5rem;
+>>>>>>> aws
     }
     
     .user-profile-info {
@@ -608,11 +717,19 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
     
     .user-profile-name {
+<<<<<<< HEAD
         font-size: 1.3rem;
     }
     
     .user-profile-occupation , .user-profile-location {
         font-size: 1rem;
+=======
+        font-size: 1.1rem;
+    }
+    
+    .user-profile-occupation , .user-profile-location {
+        font-size: 0.8rem;
+>>>>>>> aws
     }
     
     .edit-profile-btn {
@@ -648,8 +765,13 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     }
 
     html .profile-preference-tag , html .selected-profile-preference-tag {
+<<<<<<< HEAD
         margin: 0.3rem;
         padding: 0.3rem 0.5rem;
+=======
+        margin: 0.2rem;
+        padding: 0.2rem 0.4rem;
+>>>>>>> aws
         border-radius: 1.3rem;
         font-size: 0.5rem;
     }
@@ -666,6 +788,7 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     .past-review-info {
         width: 95%;
         margin-top: 0.5rem;
+<<<<<<< HEAD
         padding: 0rem 0rem;
         border-bottom: 0.1rem solid #ccc; /* Line separator between reviews */
     }
@@ -695,5 +818,8 @@ html .profile-preference-tag.age-related , .selected-profile-preference-tag.age-
     
     .past-review-date {
         font-size: 0.9em;
+=======
+        padding-bottom: 1rem;
+>>>>>>> aws
     }
 }

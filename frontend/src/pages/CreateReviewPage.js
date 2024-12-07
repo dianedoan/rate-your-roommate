@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { userList, reviewsData } from "../data/userData";
-import star2 from "../assets/images/button-icons/star2.svg";
-import star2filled from "../assets/images/button-icons/star2-filled.svg";
+import star from "../assets/images/button-icons/star.svg";
+import starfilled from "../assets/images/button-icons/star-filled.svg";
+import config from "../components/config.json";
 import './CreateReviewPage.css';
 
+<<<<<<< HEAD
 const CreateReviewPage = () => {
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
     const { userId } = useParams();
     const user = userList.find((u) => u.id === userId);
     const navigate = useNavigate();
 
+=======
+const CreateReviewPage = ({ userId, sortKey, userCity }) => {
+    const { recipientId } = useParams();
+    const navigate = useNavigate();
+
+    const [reviewProfile, setReviewProfile] = useState(null);
+>>>>>>> aws
     const [ratings, setRatings] = useState({
         cleanliness: 0,
         communication: 0,
@@ -18,17 +26,113 @@ const CreateReviewPage = () => {
         noiseLevel: 0,
         etiquette: 0,
     });
-
     const [yesNoQuestions, setYesNoQuestions] = useState({
+<<<<<<< HEAD
         respectful: '',
         punctualFees: '', 
         roommatesAgain: '',
+=======
+        space_respect: "",
+        punctuality: "",
+        roommates_again: "",
+>>>>>>> aws
     });
+    const [openEnded, setOpenEnded] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
+<<<<<<< HEAD
     const [openEndedTitle, setTitle] = useState('');
     const [openEnded, setOpenEnded] = useState('');
     const [isAnonymous, setIsAnonymous] = useState(false);
     const [error, setError] = useState(''); // State for error messages
+=======
+    useEffect(() => {
+        // Fetch recipient profile from the API
+        const fetchReviewData = async () => {
+            console.log("Fetching profile and reviews for recipientId:", recipientId);
+
+            const url = `${config.apiBaseUrl}/get-user-reviews?RecipientId=${recipientId}`;
+
+            try {
+                const response = await fetch(url);
+
+                if (response.status === 404) {
+                    throw new Error("User review page not found."); // Handle 404 explicitly
+                }
+
+                if (!response.ok) throw new Error("Failed to fetch review data.");
+
+                const data = await response.json();
+                console.log("Fetched data:", data);
+                console.log("Fetched user data:", data.user);
+
+                setReviewProfile(data.user);
+                console.log("Fetched first name:", reviewProfile.FirstName);
+                console.log("Fetched last name:", reviewProfile.LastName);
+                console.log("Fetched user occupation:", reviewProfile.Occupation);
+                console.log("Fetched user city:", reviewProfile.City);
+                console.log("Fetched user state:", reviewProfile.State);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching review data:", err.message);
+                setLoading(false);
+            }
+        };
+        
+        fetchReviewData();
+    }, [recipientId]);
+
+
+    // Scroll to the top when the page is rendered
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
+
+        const reviewData = {
+            reviewerId: userId,
+            recipientId,
+            score: ((ratings.cleanliness +
+                ratings.communication +
+                ratings.timeliness +
+                ratings.noiseLevel +
+                ratings.etiquette) / 5).toFixed(1),
+            reviewText: openEnded,
+            yesNoAnswers: yesNoQuestions,
+            ratings,
+        };
+
+        console.log('Submitting Review Data:', reviewData);
+
+        try {
+            setLoading(true);
+            const response = await fetch(`${config.apiBaseUrl}/write-review?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(reviewData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                navigate(`/reviews/${recipientId}`);
+            } else {
+                setError(result.message || 'Failed to submit review.');
+            }
+        } catch (err) {
+            setError('An error occurred. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
+>>>>>>> aws
 
     const handleRatingChange = (category, value) => {
         setRatings((prevRatings) => ({
@@ -45,6 +149,7 @@ const CreateReviewPage = () => {
     };
 
     const validateForm = () => {
+<<<<<<< HEAD
         // Check all ratings
         const allRatingsAnswered = Object.values(ratings).every((rating) => rating > 0);
 
@@ -109,6 +214,23 @@ const CreateReviewPage = () => {
         reviewsData.unshift(newReview);
         console.log("New Review Submitted:", newReview);
         navigate(`/reviews/${userId}`);
+=======
+        const allRatingsAnswered = Object.values(ratings).every((rating) => rating > 0);
+        const allYesNoAnswered = Object.values(yesNoQuestions).every((answer) => answer !== '');
+
+        if (!allRatingsAnswered) {
+            setError('Please provide a rating for all categories.');
+            return false;
+        }
+
+        if (!allYesNoAnswered) {
+            setError('Please answer all yes/no questions.');
+            return false;
+        }
+
+        setError(''); 
+        return true;
+>>>>>>> aws
     };
 
     const renderStars = (category, labelBefore, labelAfter) => {
@@ -116,7 +238,7 @@ const CreateReviewPage = () => {
         const stars = [];
 
         for (let i = 1; i <= 5; i++) {
-            const starIcon = i <= rating ? star2filled : star2;
+            const starIcon = i <= rating ? starfilled : star;
             stars.push(
                 <div key={i} className="star-container">
                     <img
@@ -139,16 +261,47 @@ const CreateReviewPage = () => {
         );
     };
 
+    if (!userId) {
+        return (
+            <div className="general-content">
+                <h2>Not Logged In</h2>
+                <h3>Please log in to access this page.</h3>
+            </div>
+        );
+    }
+
+    if (userCity === "admin") {
+        return (
+          <div className="general-content">
+            <h2>Create Review Unavailable</h2>
+            <h3>Creating reviews are not available for admin accounts.</h3>
+          </div>
+        );
+    }
+
     return (
         <div className="create-review-content">
             <div className="create-review-header">
+<<<<<<< HEAD
                 <div className="create-review-name">Rate: {user.username}</div>
                 <div className="occupation-location-container">
                     <div className="create-review-occupation">{user.occupation}</div>
                     <div className="create-review-location">{user.city}, {user.state}</div>
                 </div>
+=======
+                {reviewProfile ? (
+                    <>
+                        <div className="create-review-name">Rate: {reviewProfile.FirstName} {reviewProfile.LastName}</div>
+                        <div className="occupation-location-container">
+                            <div className="create-review-occupation">{reviewProfile.Occupation}</div>
+                            <div className="create-review-location">{reviewProfile.City}, {reviewProfile.State}</div>
+                        </div>
+                    </>
+                ) : (
+                    <h3>Loading...</h3>
+                )}
+>>>>>>> aws
             </div>
-
             <form onSubmit={handleSubmit} className="review-form">
                 <div className="questions-section">
                     {['cleanliness', 'communication', 'timeliness', 'noiseLevel', 'etiquette'].map((category) => {
@@ -161,7 +314,11 @@ const CreateReviewPage = () => {
                             cleanliness: ['Messy', 'Clean'],
                             communication: ['Non-existent', 'Active'],
                             timeliness: ['Late', 'On-time'],
+<<<<<<< HEAD
                             noiseLevel: ['Quiet', 'Loud'],
+=======
+                            noiseLevel: ['Loud', 'Quiet'],
+>>>>>>> aws
                             etiquette: ['Rude', 'Polite'],
                         };
 
@@ -176,13 +333,13 @@ const CreateReviewPage = () => {
                     })}
 
                     {[{
-                        id: 'respectful',
+                        id: 'space_respect',
                         question: 'Was this roommate respectful of your space?',
                     }, {
-                        id: 'punctualFees',
+                        id: 'punctuality',
                         question: 'Was this roommate punctual with paying their living fees?',
                     }, {
-                        id: 'roommatesAgain',
+                        id: 'roommates_again',
                         question: 'Would you be roommates again?',
                     }].map(({ id, question }) => (
                         <div key={id} className="question-card yes-no-question">
@@ -226,6 +383,7 @@ const CreateReviewPage = () => {
                     ))}
 
                     <div className="question-card open-ended-section">
+<<<<<<< HEAD
                         <label className="question-label" htmlFor="title">What do you want other users to know about this roommate?</label>
                         <input
                             className="comments-form-title"
@@ -237,6 +395,9 @@ const CreateReviewPage = () => {
                         />
 
                         <label className="question-label" htmlFor="openEnded"></label>
+=======
+                        <label className="question-label" htmlFor="openEnded">What do you want other users to know about this roommate?</label>
+>>>>>>> aws
                         <textarea
                             className="comments-form"
                             value={openEnded}
@@ -246,18 +407,9 @@ const CreateReviewPage = () => {
                         />
                     </div>
 
-                    <div className="question-card anonymous-toggle">
-                        <label className="anonymous-label">
-                            <input
-                                className="anonymous-checkbox"
-                                type="checkbox"
-                                checked={isAnonymous}
-                                onChange={() => setIsAnonymous((prev) => !prev)}
-                            />
-                            Submit as Anonymous?
-                        </label>
-                    </div>
+                    {error && <div className="error-message">{error}</div>} 
 
+<<<<<<< HEAD
                     {error && <div className="error-message">{error}</div>} {/* Display error message */}
 
                     <div className="create-review-button-container">
@@ -266,6 +418,16 @@ const CreateReviewPage = () => {
                             type="button"
                             className="secondary-btn submit-review-btn"
                             onClick={() => navigate(`/reviews/${userId}`)}
+=======
+                    <div className="create-review-button-container">
+                        <button type="submit" className="primary-btn submit-review-btn" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit Review'}
+                        </button>
+                        <button
+                            type="button"
+                            className="secondary-btn submit-review-btn"
+                            onClick={() => navigate(`/reviews/${recipientId}`)}
+>>>>>>> aws
                         >
                             Cancel
                         </button>
@@ -276,4 +438,4 @@ const CreateReviewPage = () => {
     );
 };
 
-export default CreateReviewPage;
+export default CreateReviewPage; 

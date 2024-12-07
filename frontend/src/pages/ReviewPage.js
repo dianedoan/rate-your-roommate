@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { userList, reviewsData } from "../data/userData";
+=======
+>>>>>>> aws
 import { Badge } from 'react-bootstrap';
-import heart2 from "../assets/images/button-icons/heart2.svg";
-import heart2filled from "../assets/images/button-icons/heart2-filled.svg";
+import config from "../components/config.json";
 import './ReviewPage.css';
 
 const ReviewPage = () => {
+<<<<<<< HEAD
     // Manually set logged in user
     const loggedInUser = userList.find(user => user.username === 'sallysmith');
 
@@ -59,23 +62,126 @@ const ReviewPage = () => {
             return updatedLikes;
         });
     };
+=======
+    const { recipientId } = useParams(); // Fetch recipientId from URL parameters
+    const navigate = useNavigate();
+
+    // State variables
+    const [reviewProfile, setReviewProfile] = useState(null);
+    const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Fetch profile and reviews data from the API
+        const fetchReviewData = async () => {
+            console.log("Fetching profile and reviews for recipientId:", recipientId);
+
+            const url = `${config.apiBaseUrl}/get-user-reviews?RecipientId=${recipientId}`;
+
+            try {
+                const response = await fetch(url);
+
+                if (response.status === 404) {
+                    throw new Error("User review page not found."); // Handle 404 explicitly
+                }
+
+                if (!response.ok) throw new Error("Failed to fetch review data.");
+
+                const data = await response.json();
+                console.log("Fetched data:", data);
+
+                setReviewProfile(data.user);
+                setReviews(data.reviews);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching review data:", err.message);
+                if (err.message === "User review page not found.") {
+                    setError("User review page not found.");
+                } else {
+                    setError("Failed to fetch review data. Please try again later.");
+                }
+                setLoading(false);
+            }
+        };
+        
+        fetchReviewData();
+    }, [recipientId]);
+>>>>>>> aws
 
     // Scroll to the top when the page is rendered
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []); // Ensures it runs only once when the component is mounted
+    }, []);
 
-    if (!user) {
+    // Categorize preferences for styling
+    const getPreferenceCategoryClass = (pref) => {
+        if (['Age 18-24', 'Age 25-34', 'Age 35-44'].includes(pref)) return 'age-related';
+        if (['Early Riser', 'Late Sleeper', 'Snores'].includes(pref)) return 'sleep-related';
+        if (['Pet Owner', 'No Pets', 'Allergic to Pets'].includes(pref)) return 'pet-related';
+        if (['Clean & Tidy', 'Messy'].includes(pref)) return 'cleanliness-related';
+        if (['Organized', 'Unorganized'].includes(pref)) return 'organize-related';
+        if (['Likes Socializing', 'Prefers Quiet Spaces'].includes(pref)) return 'social-related';
+        if (['Homebody', 'Goes Out Often', 'Travels Often', 'Works from Home'].includes(pref)) return 'lifestyle-related';
+        if (['Smoker Friendly', 'Non-Smoker'].includes(pref)) return 'smoking-related';
+        if (['Vegetarian', 'Vegan', 'Pescatarian', 'Non-Vegetarian'].includes(pref)) return 'diet-related';
+        if (['Bookworm', 'Gamer', 'Fitness Enthusiast'].includes(pref)) return 'hobby-related';
+        return '';
+    };
+
+    // Calculate average user rating
+    const calculateAverageRating = () => {
+        if (reviews.length === 0) return null;
+    
+        const totalScore = reviews.reduce((sum, review) => {
+            const score = parseFloat(review.Score); // Convert Score to a number
+            return sum + (isNaN(score) ? 0 : score);
+        }, 0);
+    
+        const average = totalScore / reviews.length
+        return average.toFixed(1); // Round to 1 decimal place
+    };
+    
+    const averageRating = calculateAverageRating();
+
+    // Generate star ratings
+    const generateStarRating = (score) => {
+        const filledStars = '★'.repeat(Math.floor(score));
+        const halfStar = score % 1 >= 0.5 ? '½' : '';
+        return filledStars + halfStar;
+    };
+
+    if (loading) {
         return (
             <div className="general-content">
-                <h2>Page Not Found!</h2>
-                <h3>The user review page you are trying to access does not exist.</h3>
+                <h2>Loading...</h2>
             </div>
         );
     }
 
+<<<<<<< HEAD
     // Render preferences from the user object
     const preferences = user.preferences || [];
+=======
+    if (error) {
+        if (error === "User review page not found.") {
+            return (
+                <div className="general-content">
+                    <h2>Page Not Found!</h2>
+                    <h3>The user review page you are trying to access does not exist.</h3>
+                </div>
+            );
+        }
+
+        else {
+            return (
+                <div className="general-content">
+                    <h3>Error: {error}</h3>
+                </div>
+            );
+        }
+    }
+>>>>>>> aws
 
     // Function to categorize preferences
     const getPreferenceCategoryClass = (pref) => {
@@ -115,7 +221,9 @@ const ReviewPage = () => {
     return (
         <div className="review-content">
             <div className="review-profile-section">
+
                 <div className="review-profile-card">
+<<<<<<< HEAD
                     <div className="review-profile-info">
                         <div className="name-heart-container">
                             <div className="review-profile-name">{user.firstName} {user.lastName}</div>
@@ -139,21 +247,56 @@ const ReviewPage = () => {
                                 <Badge
                                     key={pref}
                                     className={`profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
+=======
+                    <div className="profile-container">
+                        <div className="profile-info">
+
+                            <div className="review-profile-name">{reviewProfile.FirstName} {reviewProfile.LastName}</div>
+                            <div className="review-profile-occupation">{reviewProfile.Occupation}</div>
+                            <div className="review-profile-description">
+                                {reviewProfile.AboutMe || "No description provided."}
+                            </div>
+                            <div className="review-preferences-section">
+                                {reviewProfile.Preferences?.map((pref) => (
+                                    <Badge
+                                        key={pref}
+                                        className={`profile-preference-tag ${getPreferenceCategoryClass(pref)}`}
+                                    >
+                                        {pref}
+                                    </Badge>
+                                ))}
+                            </div>
+                            <div className="review-profile-score">
+                                <span className="highlight4">
+                                    {averageRating !== null ? `${averageRating}/5 ` : "N/A "}
+                                </span> 
+                                Rating
+                                <button
+                                    className="rate-btn primary-btn"
+                                    onClick={() => navigate(`/create-review/${recipientId}`)}
+>>>>>>> aws
                                 >
-                                    {pref}
-                                </Badge>
-                            ))}
+                                    Rate
+                                </button>
+                            </div>
                         </div>
+<<<<<<< HEAD
                     </div>
                     <div className="image-location-container">
                         <div className="image-container">
                             <img
                                 src={user.image}
                                 alt={user.username}
+=======
+                        <div className="image-location-container">
+                            <img
+                                src={reviewProfile.ProfilePicture || "https://res.cloudinary.com/djx2y175z/image/upload/v1733203679/profile0_mcl0ts.png"}
+                                alt={`${reviewProfile.username || "User"}'s profile`}
+>>>>>>> aws
                                 className="review-profile-image"
                             />
+                            <p className="review-profile-location">{reviewProfile.City}, {reviewProfile.State}</p>
                         </div>
-                        <p className="review-profile-location">{user.city}, {user.state}</p>
                     </div>
                     <div className="review-profile-score">
                         <span className="highlight4">
@@ -171,29 +314,41 @@ const ReviewPage = () => {
             </div>
 
             <div className="review-section">
-                {userReviews.length > 0 ? (
-                    userReviews.map((review) => (
-                        <div key={review.id} className="review-card">
+                {reviews.length > 0 ? (
+                    [...reviews].reverse().map((review, index) => (
+                        <div key={index} className="review-card">
                             <div className="review-info">
                                 <div className="review-score">
-                                    <span className="highlight5">{review.score}/5 </span>
-                                    <span className="highlight5">{generateStarRating(review.score)}</span>
+                                    <span className="highlight5">{review.Score}/5 </span>
+                                    <span className="highlight5">{generateStarRating(review.Score)}</span>
                                 </div>
-                                <div className="review-title">{review.title}</div>
-                                <div className="review-description">{review.description}</div>
+                                <div className="review-description">
+                                    {review.ReviewText}
+                                </div>
 
-                                {review.yesNoAnswers && (
+                                {review.YesNoAnswers && (
                                     <div className="review-questions">
-                                        {review.yesNoAnswers.map((item, index) => (
-                                            <div key={index} className="review-question-answer">
-                                                <strong>{item.question}</strong> {item.answer}
-                                            </div>
-                                        ))}
+                                        {Object.entries(review.YesNoAnswers).map(([questionKey, answerObj], index) => {
+                                            const questionMapping = {
+                                                space_respect: "Was this roommate respectful of your space?",
+                                                punctuality: "Was this roommate punctual with paying their living fees?",
+                                                roommates_again: "Would you be roommates again?",
+                                            };
+
+                                            const questionText = questionMapping[questionKey] || questionKey;
+
+                                            return (
+                                                <div key={index} className="review-question-answer">
+                                                    <strong>{questionText}</strong>: {answerObj || "Not answered"}
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 )}
-                                
-                                <div className="review-username">{review.username}</div>
-                                <div className="review-date">{review.date}</div>
+                                <div className="review-date">
+                                    {review.Timestamp ? new Date(review.Timestamp * 1000).toLocaleDateString() : "Date not available"}
+                                </div>
+
                             </div>
                         </div>
                     ))

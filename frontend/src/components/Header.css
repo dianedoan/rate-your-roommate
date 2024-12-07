@@ -1,21 +1,63 @@
 /* NAVIGATION BAR */
 html .navbar {
+<<<<<<< HEAD
   border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
   padding: 1rem 1.5rem;
+=======
+    border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    padding: 0.8rem 1.2rem;
+>>>>>>> aws
 }
 
 /* Logo Icon */
 .navbar-logo {
+<<<<<<< HEAD
   height: 5rem;
+=======
+    height: 3.5rem;
+    width: auto; 
+>>>>>>> aws
 }
 
 .navbar-logo:hover {
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
+.navbar-username {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    color: #8CAD63;
+    margin-right: 1.3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0.05rem 0.05rem #1e1e1e;
+}
+
+/* Bottom Sticky Navbar */
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.bottom-navbar-content {
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-home:hover, .navbar-search:hover, .navbar-messages:hover, .navbar-heart:hover, .navbar-profile:hover {
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
 }
 
 /* Smaller size for mobile screens (navbar toggle is shown) */
 @media (max-width: 991px) {
+<<<<<<< HEAD
   .bottom-navbar .navbar {
     padding: 1.5rem 7rem;
     border-bottom: none;
@@ -29,36 +71,51 @@ html .navbar {
   .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
     width: 2.5rem;
   }
+=======
+    .bottom-navbar .navbar {
+        padding: 1.2rem 7rem;
+        border-bottom: none;
+    }
+>>>>>>> aws
 
-  .nav-btn {
-    text-align: left;
-    margin: 0rem;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    width: 100%;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: transparent;
-    color: #1E1E1E;
-    font-weight: bold;
-    text-shadow: none;
-  }
+    .navbar-logo {
+        height: 3rem;
+        width: auto; 
+    }
 
-  .nav-btn:hover {
-    background-color: transparent;
-    color: #1E1E1E;
-    text-shadow: 2px 2px #e4fff5;
-    border: 0.1rem solid #1e1e1e;
-  }
+    .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+        width: 2.5rem;
+    }
 
-  /* Nav Button when clicked */
-  .nav-btn:active {
-    background-color: #e4fff5;
-  }
+    .nav-btn {
+        text-align: left;
+        margin: 0rem;
+        font-size: 1.2rem;
+        width: 100%;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: transparent;
+        color: #1E1E1E;
+        font-weight: bold;
+        text-shadow: none;
+    }
+
+    .nav-btn:hover {
+        background-color: transparent;
+        color: #1E1E1E;
+        text-shadow: 2px 2px #e4fff5;
+        border: 0.1rem solid #1e1e1e;
+    }
+
+    /* Nav Button when clicked */
+    .nav-btn:active {
+        background-color: #e4fff5;
+    }
 }
 
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
+<<<<<<< HEAD
   html .navbar {
     border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
     padding: 0.8rem 0.8rem;
@@ -95,11 +152,50 @@ html .navbar {
 .navbar-home:hover, .navbar-search:hover, .navbar-messages:hover, .navbar-heart:hover, .navbar-profile:hover {
   transform: translateY(0.1rem);
   transition: transform 150ms;
+=======
+    html .navbar {
+        border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+    }
+
+    .navbar-logo {
+        height: 2.5rem; /* Mobile size */
+        width: auto;  /* Maintain aspect ratio */
+    }
+
+    .bottom-navbar .navbar {
+        padding: 1rem 2rem;
+    }
+
+    .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+        width: 2rem;
+    }
+
+    .nav-btn {
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+>>>>>>> aws
 }
 
-.navbar-profile-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%; /* Make it circular */
-  object-fit: cover; /* Ensure the image fits the circle */
+/* Media Query for Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+        width: 1.5rem;
+    }
+
+    .nav-btn {
+        font-size: 0.9rem;
+        padding: 0.3rem;
+    }
+}
+/* Media Query for Extra Small Screens (Mobile S) */
+@media (max-width: 320px) {
+    .navbar-home , .navbar-search , .navbar-messages , .navbar-heart , .navbar-profile {
+        width: 1.4rem;
+    }
+
+    .nav-btn {
+        font-size: 0.9rem;
+        padding: 0.3rem;
+    }
 }

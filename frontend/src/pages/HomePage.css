@@ -14,20 +14,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     padding: 4rem;
+=======
+>>>>>>> aws
 }
 
 .top-rated-section {
     background-color: #E4FFF5;
     border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
+<<<<<<< HEAD
+=======
+    padding: 4rem;
+>>>>>>> aws
 }
 
 .explore-section {
     background-color: #f2ffe1;
+<<<<<<< HEAD
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap */
     gap: 2rem; /* Add spacing between cards */
     justify-content: center; /* Center the cards */
+=======
+    padding: 3rem;
+}
+
+.top-rated-section h2 , .explore-section h2 {
+    padding: 2rem 0rem;
+>>>>>>> aws
 }
 
 .top-rated-container {
@@ -43,7 +58,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+<<<<<<< HEAD
     padding: 3rem 3rem;
+=======
+>>>>>>> aws
 }
 
 .top-rated-card:hover {
@@ -55,10 +73,18 @@
 }
 
 .top-rated-profile-image {
+<<<<<<< HEAD
     width: 15rem; /* Adjust image size */
     height: 15rem;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
+=======
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    width: 12rem;
+    height: 12rem;
+    margin-right: 2rem;
+>>>>>>> aws
 }
 
 .top-rated-card-container {
@@ -68,6 +94,10 @@
 
 .top-rated-profile-info-container {
     display: flex;
+<<<<<<< HEAD
+=======
+    justify-content: space-between;
+>>>>>>> aws
     flex-direction: row;
 }
 
@@ -75,6 +105,14 @@
     display: flex;
     flex-direction: column; /* Stack profile name, occupation, description, and score vertically */
     text-align: left;
+<<<<<<< HEAD
+=======
+    white-space: pre-wrap;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+    max-width: 100%; 
+    width: 15rem;
+>>>>>>> aws
 }
 
 .top-rated-profile-name {
@@ -88,6 +126,7 @@
 }
 
 .top-rated-profile-description {
+<<<<<<< HEAD
     align-self: baseline;
     text-align: left;
     white-space: pre-wrap; /* Preserves newlines and allows text wrapping */
@@ -97,6 +136,15 @@
     box-sizing: border-box; /* Includes padding in width calculations */
     width: 15rem;
     font-size: 1.5em;
+=======
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;  
+    font-size: 1.5em;
+    width: 30rem;
+>>>>>>> aws
 }
 
 .top-rated-profile-score {
@@ -112,9 +160,15 @@
 }
 
 .top-rated-location {
+<<<<<<< HEAD
     font-size: 1.5em;
     text-align: right;
     margin: 0.7rem 0rem;
+=======
+    font-size: 1.8em;
+    text-align: right;
+    margin-left: 1rem;
+>>>>>>> aws
 }
 
 .navigation-button {
@@ -128,6 +182,7 @@
     transition: transform 150ms;
 }
 
+<<<<<<< HEAD
 /* Media Query for Medium Screens (Laptop) */
 @media (max-width: 1024px) {
     .top-rated-section h2 , .explore-section h2 {
@@ -135,12 +190,111 @@
         font-size: 3rem;
     }
 
+=======
+/* Media query for Large Screens (Laptop L) */
+@media (max-width: 1440px) {
+    .top-rated-section, .explore-section {
+        padding: 3rem;
+    }
+
+    .top-rated-card {
+        padding: 2rem;
+    }
+    
+    .top-rated-profile-image-container {
+        margin-right: 2rem;
+    }
+    
+    .top-rated-profile-image {
+        width: 9rem;
+        height: 9rem;
+        margin-right: 1.5rem;
+        
+    }
+    
+    .top-rated-profile-name {
+        font-size: 2em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-occupation {
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-description {
+        width: 23rem;
+        font-size: 1.3em;
+    }
+    
+    .top-rated-profile-score {
+      font-size: 1.7em;
+    } 
+    
+    .top-rated-location {
+        font-size: 1.5em;
+    }
+}
+
+/* Media Query for Medium Screens (Laptop) */
+@media (max-width: 1024px) {
+    .top-rated-section, .explore-section {
+        padding: 3rem;
+    }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1.5rem 0rem;
+    }
+
+    .top-rated-card {
+        padding: 2rem;
+    }
+    
+    .top-rated-profile-image-container {
+        margin-right: 2rem;
+    }
+    
+    .top-rated-profile-image {
+        width: 9rem;
+        height: 9rem;
+        margin-right: 1.5rem;
+    }
+    
+    .top-rated-profile-name {
+        font-size: 2em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-occupation {
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-description {
+        width: 23rem;
+        font-size: 1.3em;
+    }
+    
+    .top-rated-profile-score {
+      font-size: 1.7em;
+    } 
+    
+    .top-rated-location {
+        font-size: 1.2em;
+        margin: 0.7rem 0rem;
+    }
+}
+
+/* Media Query for Small Screens (Tablet) */
+@media (max-width: 768px) {
+>>>>>>> aws
     .top-rated-section, .explore-section {
         padding: 3rem;
         width: 100%;
     }
     
     .explore-section {
+<<<<<<< HEAD
         gap: 2rem; /* Add spacing between cards */
     }
     
@@ -216,6 +370,13 @@
     
     .explore-section {
         gap: 1.5rem; /* Add spacing between cards */
+=======
+        gap: 0.8rem; /* Add spacing between cards */
+    }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+>>>>>>> aws
     }
     
     .top-rated-container {
@@ -223,6 +384,7 @@
     }
     
     .top-rated-card {
+<<<<<<< HEAD
         padding: 1rem;
     }
 
@@ -308,6 +470,19 @@
     .top-rated-profile-image {
         width: 6rem; /* Adjust image size */
         height: 6rem;
+=======
+        padding: 0.8rem 2rem;
+    }
+
+    .top-rated-profile-image-container {
+        margin-right: 0.8rem;
+    }
+    
+    .top-rated-profile-image {
+        width: 6rem;
+        height: 6rem;
+        margin-right: 1.1rem;
+>>>>>>> aws
     }
     
     .top-rated-profile-info {
@@ -315,20 +490,34 @@
     }
     
     .top-rated-profile-name {
+<<<<<<< HEAD
         max-width: 8rem;
+=======
+        max-width: 10rem;
+>>>>>>> aws
         font-size: 1.2em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
+<<<<<<< HEAD
         max-width: 8rem;
         font-size: 1em;
+=======
+        max-width: 10rem;
+        font-size: 0.9em;
+>>>>>>> aws
         font-weight: bold;
     }
     
     .top-rated-profile-description {
+<<<<<<< HEAD
         max-width: 7rem;
         font-size: 1em;
+=======
+        max-width: 12rem;
+        font-size: 0.9em;
+>>>>>>> aws
     }
     
     .top-rated-profile-score {
@@ -353,19 +542,32 @@
     }
 }
 
+<<<<<<< HEAD
 /* Media Query for Extra Small Screens (Mobile M) */
 @media (max-width: 375px) {
     .top-rated-section h2 , .explore-section h2 {
         padding-top: 1rem;  
         font-size: 1.7rem;
     }
+=======
+/* Media Query for Extra Small Screens (Mobile L) */
+@media (max-width: 425px) {
+>>>>>>> aws
     .top-rated-section, .explore-section {
         padding: 1.5rem;
         width: 100%;
     }
     
     .explore-section {
+<<<<<<< HEAD
         gap: 1rem; /* Add spacing between cards */
+=======
+        gap: 0.8rem; /* Add spacing between cards */
+    }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+>>>>>>> aws
     }
     
     .top-rated-container {
@@ -373,6 +575,7 @@
     }
     
     .top-rated-card {
+<<<<<<< HEAD
         padding: 0.5rem;
     }
 
@@ -383,6 +586,19 @@
     .top-rated-profile-image {
         width: 5rem; /* Adjust image size */
         height: 5rem;
+=======
+        padding: 0.8rem 1rem;
+    }
+
+    .top-rated-profile-image-container {
+        margin-right: 0.8rem; /* Space between image and text */
+    }
+    
+    .top-rated-profile-image {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1rem;
+>>>>>>> aws
     }
     
     .top-rated-profile-info {
@@ -390,26 +606,121 @@
     }
     
     .top-rated-profile-name {
+<<<<<<< HEAD
         max-width: 8rem;
+=======
+        max-width: 10rem;
+>>>>>>> aws
         font-size: 1em;
         font-weight: bold;
     }
     
     .top-rated-profile-occupation {
+<<<<<<< HEAD
         max-width: 8rem;
+=======
+        max-width: 10rem;
+>>>>>>> aws
         font-size: 0.7em;
         font-weight: bold;
     }
     
     .top-rated-profile-description {
+<<<<<<< HEAD
         max-width: 5rem;
+=======
+        max-width: 10rem;
+>>>>>>> aws
         font-size: 0.7em;
     }
     
     .top-rated-profile-score {
+<<<<<<< HEAD
         max-width: 8rem;
         font-weight: bold;
         font-size: 1em;
+=======
+        max-width: 10rem;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+    
+    .top-rated-location {
+        font-size: 0.5em; /* Smaller font size for location */
+        text-align: right;
+        margin: 0.3rem 0rem;
+    }
+
+    .navigation-button {
+
+    }
+
+    .arrow-icon {
+        width: 1.5rem; /* Adjust image size */
+        height: 1.5rem;
+    }
+}
+
+/* Media Query for Extra Small Screens (Mobile M) */
+@media (max-width: 375px) {
+    .top-rated-section, .explore-section {
+        padding: 1.5rem;
+        width: 100%;
+    }
+    
+    .explore-section {
+        gap: 0.8rem; /* Add spacing between cards */
+    }
+    
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+    }
+
+    .top-rated-container {
+        padding: 0rem 0rem;
+    }
+    
+    .top-rated-card {
+        padding: 0.8rem 1rem;
+    }
+
+    .top-rated-profile-image-container {
+        margin-right: 0.8rem; /* Space between image and text */
+    }
+    
+    .top-rated-profile-image {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 0.7rem;
+
+    }
+    
+    .top-rated-profile-info {
+        width: 100%;
+    }
+    
+    .top-rated-profile-name {
+        max-width: 10rem;
+        font-size: 1em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-occupation {
+        max-width: 10rem;
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-description {
+        max-width: 10rem;
+        font-size: 0.7em;
+    }
+    
+    .top-rated-profile-score {
+        max-width: 10rem;
+        font-weight: bold;
+        font-size: 0.8em;
+>>>>>>> aws
     }
     
     .top-rated-location {
@@ -430,5 +741,79 @@
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
+<<<<<<< HEAD
 
+=======
+    .top-rated-section, .explore-section {
+        padding: 1.5rem;
+        width: 100%;
+    }
+    
+    .explore-section {
+        gap: 0.8rem; /* Add spacing between cards */
+    }
+
+    .top-rated-section h2 , .explore-section h2 {
+        padding: 1rem 0rem;
+    }
+    
+    .top-rated-container {
+        padding: 0rem 0rem;
+    }
+    
+    .top-rated-card {
+        padding: 0.8rem 0.5rem;
+    }
+
+    .top-rated-profile-image-container {
+        margin-right: 0.8rem; /* Space between image and text */
+    }
+    
+    .top-rated-profile-image {
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .top-rated-profile-info {
+        width: 100%;
+    }
+    
+    .top-rated-profile-name {
+        max-width: 10rem;
+        font-size: 1em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-occupation {
+        max-width: 10rem;
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+    
+    .top-rated-profile-description {
+        max-width: 10rem;
+        font-size: 0.7em;
+    }
+    
+    .top-rated-profile-score {
+        max-width: 10rem;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+    
+    .top-rated-location {
+        font-size: 0.5em; /* Smaller font size for location */
+        text-align: right;
+        margin: 0.3rem 0rem;
+    }
+
+    .navigation-button {
+
+    }
+
+    .arrow-icon {
+        width: 1.5rem; /* Adjust image size */
+        height: 1.5rem;
+    }
+>>>>>>> aws
 }

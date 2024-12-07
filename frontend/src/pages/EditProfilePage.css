@@ -1,7 +1,7 @@
 .edit-profile-header {
     background-color: #ffffff;
     border-bottom: 0.1rem solid #1e1e1e; /* Bottom border */
-    padding: 5rem 3rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,8 +13,8 @@
 }
 
 .edit-profile-image {
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: auto;
     border-radius: 50%; /* Make the image circular */
     object-fit: cover;
 }
@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+<<<<<<< HEAD
     top: 0.5rem;
     right: 0.5rem;
     background-color: #8CAD63;
@@ -35,13 +36,30 @@
     font-size: 2rem;
     width: 4rem;
     height: 4rem;
+=======
+    top: 0.6rem;
+    right: 0.6rem;
+    background-color: #8CAD63;
+    border: 0.2rem solid #7a9954;
+    color: white;
+    padding: 1rem 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    width: 3rem;
+    height: 3rem;
+>>>>>>> aws
 }
 
 .edit-profile-pic-btn:hover {
     background-color: #7a9954;
 }
 
+<<<<<<< HEAD
 .image-selector-dropdown {
+=======
+.image-selector-modal {
+>>>>>>> aws
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -56,11 +74,37 @@
     border-radius: 0.9rem;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
     gap: 1rem;
     z-index: 1000;
 }
 
 .profile-option-image {
+=======
+    z-index: 1000;
+}
+
+.profile-image-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 1rem 0rem;
+}
+
+.cancel-pic-container {
+    margin-top: 1rem;
+}
+
+.image-selector-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.profile-image-option {
+>>>>>>> aws
     cursor: pointer;
     object-fit: cover;
     border-radius: 50%;
@@ -69,7 +113,11 @@
     height: 5rem;
 }
 
+<<<<<<< HEAD
 .profile-option-image:hover {
+=======
+.profile-image-option:hover {
+>>>>>>> aws
     transform: scale(1.1);
     border: 2px solid #8CAD63;
 }
@@ -79,19 +127,30 @@
     flex-direction: column; /* Stack profile name, description, and score vertically */
     text-align: center;
     margin-top: 1.5rem;
+<<<<<<< HEAD
+=======
+    max-width: 55%;
+>>>>>>> aws
 }
 
 .edit-profile-name {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: bold;
 }
 
 .edit-profile-occupation , .edit-profile-location {
-    font-size: 2.2rem;
+    font-size: 2rem;
 }
 
 .edit-profile-occupation {
     font-weight: bold;
+<<<<<<< HEAD
+=======
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal;
+    text-align: center; 
+>>>>>>> aws
 }
 
 .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
@@ -99,7 +158,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%; 
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-shadow: 0.05rem 0.1rem #1e1e1e;
     color: #8CAD63;
@@ -135,7 +194,7 @@
 /* Buttons */
 .goback-profile-btn {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     background-color: transparent;
     border: none;
@@ -147,6 +206,11 @@
     background: none;
     border: none;
     cursor: pointer;
+}
+
+.edit-button:disabled {
+    cursor: default;
+    opacity: 0;
 }
 
 .edit-button img {
@@ -176,7 +240,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     resize: none;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
 /* Account Details */
@@ -288,6 +352,7 @@
 /* Media Query for Medium Screens (Laptop) */
 @media (max-width: 1024px) {
     .edit-profile-header {
+<<<<<<< HEAD
         padding: 4rem 2rem;
     }
     
@@ -307,6 +372,27 @@
     }
     
     .image-selector-dropdown {
+=======
+        padding: 2rem;
+    }
+    
+    .edit-profile-image {
+        width: 13rem;
+        height: auto;
+    }
+
+    .edit-profile-image-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        border: 0.2rem solid #7a9954;
+        padding: 1rem 1rem;
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    .image-selector-modal {
+>>>>>>> aws
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -314,11 +400,31 @@
         border-radius: 0.8rem;
         padding: 1rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
         gap: 1rem;
         z-index: 1000;
     }
     
     .profile-option-image {
+=======
+        z-index: 1000;
+    }
+
+    .profile-image-text {
+        font-size: 1.5rem;
+        margin: 1rem 0rem;
+    }
+    
+    .cancel-pic-container {
+        margin-top: 1rem;
+    }
+    
+    .image-selector-container {
+        gap: 1rem;
+    }
+    
+    .profile-image-option {
+>>>>>>> aws
         width: 5rem;
         height: 5rem;
     }
@@ -328,6 +434,7 @@
     }
     
     .edit-profile-name {
+<<<<<<< HEAD
         font-size: 3rem;
     }
     
@@ -337,6 +444,17 @@
     
     .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
         font-size: 2rem;
+=======
+        font-size: 2.5rem;
+    }
+    
+    .edit-profile-occupation , .edit-profile-location {
+        font-size: 1.8rem;
+    }
+    
+    .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
+        font-size: 1.8rem;
+>>>>>>> aws
         text-shadow: 0.05rem 0.1rem #1e1e1e;
     }
     
@@ -454,13 +572,45 @@
     }
     
     .edit-profile-image {
+<<<<<<< HEAD
         width: 14rem;
         height: 14rem;
+=======
+        width: 11rem;
+        height: auto;
+    }
+
+    .edit-profile-image-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        border: 0.15rem solid #7a9954;
+        padding: 1rem 1rem;
+        font-size: 1.3rem;
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .image-selector-modal {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 0.1rem solid #1e1e1e;
+        border-radius: 0.7rem;
+        width: 2rem;
+        padding: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .image-selector-container {
+        gap: 0.5rem;
+>>>>>>> aws
     }
     
     .edit-profile-info {
         margin-top: 0.8rem;
     }
+<<<<<<< HEAD
     
     .edit-profile-name {
         font-size: 2.5rem;
@@ -472,6 +622,33 @@
     
     .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
         font-size: 1.8rem;
+=======
+
+    .profile-image-option {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+
+    .profile-image-text {
+        font-size: 1.5rem;
+        margin: 1rem 0rem;
+    }
+    
+    .cancel-pic-container {
+        margin-top: 1rem;
+    }
+    
+    .edit-profile-name {
+        font-size: 2rem;
+    }
+    
+    .edit-profile-occupation , .edit-profile-location {
+        font-size: 1.3rem;
+    }
+    
+    .edit-profile-about-me , .edit-profile-preferences , .edit-profile-reviews , .edit-profile-settings , .edit-profile-account-details {
+        font-size: 1.3rem;
+>>>>>>> aws
         text-shadow: 0.05rem 0.1rem #1e1e1e;
     }
     
@@ -502,7 +679,11 @@
         height: 3.5rem;
         padding: 1rem;
         border-radius: 0.7rem;
+<<<<<<< HEAD
         font-size: 1.5rem;
+=======
+        font-size: 1.3rem;
+>>>>>>> aws
     }
     
     /* Edit About Me Form */
@@ -515,13 +696,21 @@
         height: 8rem;
         padding: 1rem;
         border-radius: 0.7rem;
+<<<<<<< HEAD
         font-size: 1.5rem;
+=======
+        font-size: 1.3rem;
+>>>>>>> aws
     }
     
     /* Account Details */
     .account-details {
         gap: 1rem;
+<<<<<<< HEAD
         font-size: 1.5rem;
+=======
+        font-size: 1.3rem;
+>>>>>>> aws
         margin-top: 1rem;
     }
     
@@ -539,7 +728,11 @@
     
     .account-details-form .form-group label {
         margin: 0.8rem 0rem;
+<<<<<<< HEAD
         font-size: 1.5rem;
+=======
+        font-size: 1.3rem;
+>>>>>>> aws
     }
     
     .account-details-form .form-group input,
@@ -586,6 +779,7 @@
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
     .edit-profile-header {
+<<<<<<< HEAD
         padding: 2rem 1.5rem;
     }
     
@@ -605,6 +799,27 @@
     }
     
     .image-selector-dropdown {
+=======
+        padding: 1.5rem;
+    }
+    
+    .edit-profile-image {
+        width: 8rem;
+        height: auto;
+    }
+
+    .edit-profile-image-btn {
+        top: 0.2rem;
+        right: 0.2rem;
+        border: 0.15rem solid #7a9954;
+        padding: 0.8rem 0.8rem;
+        font-size: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .image-selector-modal {
+>>>>>>> aws
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -613,11 +828,18 @@
         width: 22rem;
         padding: 0.5rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
         gap: 0.5rem;
         z-index: 1000;
     }
     
     .profile-option-image {
+=======
+        z-index: 1000;
+    }
+    
+    .profile-image-option {
+>>>>>>> aws
         width: 2.5rem;
         height: 2.5rem;
     }
@@ -625,6 +847,22 @@
     .edit-profile-info {
         margin-top: 0.5rem;
     }
+<<<<<<< HEAD
+=======
+
+    .profile-image-text {
+        font-size: 1.2rem;
+        margin: 0.5rem 0rem;
+    }
+
+    .image-selector-container {
+        gap: 0.5rem;
+    }
+    
+    .cancel-pic-container {
+        margin-top: 0.5rem;
+    }
+>>>>>>> aws
     
     .edit-profile-name {
         font-size: 1.8rem;
@@ -753,8 +991,13 @@
     }
     
     .edit-profile-image {
+<<<<<<< HEAD
         width: 8rem;
         height: 8rem;
+=======
+        width: 7rem;
+        height: 7rem;
+>>>>>>> aws
     }
 
     .edit-profile-image-btn {
@@ -767,7 +1010,11 @@
         height: 1.5rem;
     }
     
+<<<<<<< HEAD
     .image-selector-dropdown {
+=======
+    .image-selector-modal {
+>>>>>>> aws
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -776,11 +1023,22 @@
         width: 19.5rem;
         padding: 0.8rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
         gap: 0.5rem;
         z-index: 1000;
     }
     
     .profile-option-image {
+=======
+        z-index: 1000;
+    }
+
+    .image-selector-container {
+        gap: 0.5rem;
+    }
+    
+    .profile-image-option {
+>>>>>>> aws
         width: 2.5rem;
         height: 2.5rem;
     }
@@ -911,7 +1169,11 @@
 
 /* Media Query for Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
+<<<<<<< HEAD
     .image-selector-dropdown {
+=======
+    .image-selector-modal {
+>>>>>>> aws
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -920,11 +1182,42 @@
         width: 13.5rem;
         padding: 0.8rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
         gap: 0.5rem;
         z-index: 1000;
     }
     
     .profile-option-image {
+=======
+        z-index: 1000;
+    }
+
+    .edit-profile-image-btn {
+        top: 0.2rem;
+        right: 0.2rem;
+        border: 0.1rem solid #7a9954;
+        padding: 0.6rem 0.6rem;
+        font-size: 0.8rem;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .edit-profile-image {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .profile-image-text {
+        font-size: 1rem;
+        margin: 0.5rem 0rem;
+    }
+    
+    .image-selector-container {
+        gap: 0.5rem;
+    }
+    
+    .profile-image-option {
+>>>>>>> aws
         width: 2.5rem;
         height: 2.5rem;
     }

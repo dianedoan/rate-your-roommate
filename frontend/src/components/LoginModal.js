@@ -1,34 +1,57 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
-import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { userList } from '../data/userData'; // Import registered users
-import './Modal.css';
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from "react-icons/fa";
+import "./Modal.css";
+import config from "./config.json";
 
-const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
+const LoginModal = ({
+  onClose,
+  onForgotPasswordClick,
+  onLoginSuccess,
+  onGuestLogin,
+}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // Track error messages
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // Track error messages
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
   const handlePasswordToggle = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate credentials
-    const user = userList.find(
-      (u) => u.username === username && u.password === password
-    );
+    setIsSubmitting(true); // Show a loading state
+    setError(""); // Clear previous errors
 
-    if (user) {
-      console.log('Login successful for user:', user);
-      setError('');
-      onClose(); // Close the modal
-      onLoginSuccess(user); // Trigger the login success callback
-    } else {
-      setError('Invalid username or password');
+    try {
+      const response = await fetch(`${config.apiBaseUrl}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("Login successful:", result);
+        onLoginSuccess(result); // Pass the entire result
+      } else {
+        console.error("Login failed:", result.message);
+        setError(result.message || "Invalid username or password.");
+      }
+    } catch (err) {
+      console.error("Error during login:", err);
+      setError("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false); // Remove loading state
     }
   };
 
@@ -58,7 +81,7 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
             <Form.Label>Password</Form.Label>
             <div className="icon-container">
               <Form.Control
-                type={passwordVisible ? 'text' : 'password'}
+                type={passwordVisible ? "text" : "password"}
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -80,21 +103,26 @@ const LoginModal = ({ onClose, onForgotPasswordClick, onLoginSuccess }) => {
             Forgot Password?
           </Button>
 
-          <Button variant="primary" type="submit" className="w-100 mt-3">
-            Login
+          <Button
+            variant="primary"
+            type="submit"
+            className="w-100 mt-3"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Logging in..." : "Login"}
           </Button>
         </Form>
         <div className="separator">
           <div className="flex-grow-1 border-top"></div>
-          <span className="mx-2 text-center small">or sign in with</span>
-          <div className="flex-grow-1 border-top"></div>
         </div>
         <div className="social-login d-flex flex-column align-items-center">
-          <Button className="social-button" variant="outline-danger" block>
-            <FaGoogle /> Login with Google
-          </Button>
-          <Button className="social-button" variant="outline-primary" block>
-            <FaFacebook /> Login with Facebook
+          <Button
+            className="w-100 mt-3 guest-button"
+            variant="outline-secondary"
+            block
+            onClick={onGuestLogin}
+          >
+            Continue as Guest
           </Button>
         </div>
       </Modal.Body>

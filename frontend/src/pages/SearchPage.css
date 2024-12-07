@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 55rem;
     display: flex;
-    flex-direction: row; /* Make the card layout horizontal */
+    flex-direction: row;
     align-items: center;
 }
 
@@ -22,6 +22,21 @@
     gap: 2rem; /* Add spacing between cards */
 }
 
+<<<<<<< HEAD
+=======
+@media (max-width: 525px) {
+    .search-bar {
+        padding: 0rem 1rem;
+    }
+
+    .search-bar .form-control {
+        border-radius: 2rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+>>>>>>> aws
 /* Media Query for Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
     .search-bar {
@@ -33,8 +48,11 @@
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
     }
+<<<<<<< HEAD
 
     .search-results {
         gap: 1rem; /* Add spacing between cards */
     }
+=======
+>>>>>>> aws
 }
