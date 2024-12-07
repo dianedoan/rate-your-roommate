@@ -1,245 +1,336 @@
 .admin-dashboard {
-  padding: 0rem 5rem;
+    padding: 0rem 5rem;
 }
 
 .admin-dashboard h5 {
-  text-align: left;
-  font-size: 2rem;
+    text-align: left;
+    font-size: 2rem;
 }
 
 .admin-profile-pic {
-  border-radius: 50%; /* Make the image circular */
-  object-fit: cover;
-  width: 5rem;
-  height: auto;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    width: 5rem;
+    height: auto;
 }
 
 /* Table Styling */
 .table-container {
-  border: 1px solid #1e1e1e;
-  border-radius: 0.5rem;
-  overflow: hidden;
+    border: 1px solid #1e1e1e;
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 
 html .table-bordered {
-  margin: 0rem;
+    margin: 0rem;
 }
 
 html .table {
-  background-color: #ffffff;
-  border: 1px solid #1e1e1e;
-  border-radius: 0.5rem;
-  overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #1e1e1e;
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 
 html .table th {
-  background-color: rgb(244, 255, 252);
-  color: #1e1e1e;
-  text-align: center;
-  padding: 1rem;
-  font-size: 1rem;
+    background-color: rgb(244, 255, 252);
+    color: #1e1e1e;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
 html .table td {
-  text-align: left;
-  padding: 1rem;
-  font-size: 1rem;
-}
-
-.delete-btn,
-.delete-user-btn {
-  text-align: center;
-  margin: 0.5rem;
-  font-size: 0.8rem;
-  padding: 0.5rem;
-  width: 5rem;
-  border-radius: 0.5rem;
-  border: 0.1rem solid #1e1e1e;
-  background-color: #f05353;
-  color: #ffffff;
-  text-shadow: 0.05rem 0.05rem #1e1e1e;
-  margin: 0.5rem 0rem;
+    text-align: left;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
 .delete-user-btn {
-  width: 6rem;
-  font-size: 1rem;
-  border-radius: 0.6rem;
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 0.6rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #1e1e1e;
+    background-color: #f05353;
+    color: #ffffff;
+    margin: 0.5rem 0rem;
 }
 
-.delete-btn:hover,
 .delete-user-btn:hover {
-  transform: translateY(0.1rem);
-  transition: transform 150ms;
-  background-color: #e05050;
-  text-shadow: none;
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+    background-color: #e05050;
+    text-shadow: none;
 }
 
 /* Large Screens (Laptop L) */
 @media (max-width: 1440px) {
-  .admin-dashboard {
-    padding: 0rem 5rem;
-  }
+    .admin-dashboard {
+        padding: 0rem 5rem;
+    }
 
-  .table-container {
-    overflow-x: auto;
-  }
+    .table-container {
+        overflow-x: auto;
+    }
 
-  html .table th,
-  html .table td {
-    font-size: 0.8rem;
-    padding: 0.8rem;
-  }
+    html .table th,
+    html .table td {
+        font-size: 0.8rem;
+        padding: 0.8rem;
+    }
 
-  .admin-profile-pic {
-    width: 4rem;
-    height: auto;
-  }
+    .admin-profile-pic {
+        width: 4rem;
+        height: auto;
+    }
+
+    .delete-user-btn {
+        text-align: center;
+        font-size: 0.6rem;
+        padding: 0.5rem;
+        width: 4.5rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+        margin: 0.5rem 0rem;
+    }
 }
 
 /* Medium Screens (Laptop) */
 @media (max-width: 1024px) {
-  .admin-dashboard {
-    padding: 0rem 5rem;
-  }
+    .admin-dashboard {
+        padding: 0rem 0rem;
+    }
 
-  .table-container {
-    overflow-x: auto;
-  }
+    .table-container {
+        overflow-x: auto;
+    }
 
-  html .table th,
-  html .table td {
-    font-size: 0.7rem;
-    padding: 0.8rem;
-  }
+    html .table th,
+    html .table td {
+        font-size: 0.7rem;
+        padding: 0.8rem;
+    }
 
-  .admin-profile-pic {
-    width: 4rem;
-    height: auto;
-  }
+    .admin-profile-pic {
+        width: 4rem;
+        height: auto;
+    }
+    
+    .delete-user-btn {
+        text-align: center;
+        font-size: 0.55rem;
+        padding: 0.5rem;
+        width: 4rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+        margin: 0.5rem 0rem;
+    }
 }
 
 /* Small Screens (Tablet) */
-@media (max-width: 768px) {
-  .table-container {
-    overflow-x: auto;
-  }
+@media (max-width: 767px) {
+    .admin-dashboard {
+        padding: 0rem 0rem;
+    }
 
-  html .table th,
-  html .table td {
-    font-size: 0.85rem;
-    padding: 0.7rem;
-  }
+    .table-container {
+        border: none;
+        overflow: hidden;
+    }
 
-  .d-none {
-    display: none !important;
-  }
+    html .table th,
+    html .table td {
+        font-size: 0.85rem;
+        padding: 0.7rem;
+    }
 
-  .d-md-table {
-    display: none !important;
-  }
+    .d-none {
+        display: none !important;
+    }
 
-  .d-block {
-    display: block !important;
-  }
+    .d-md-table {
+        display: none !important;
+    }
 
-  .d-md-none {
-    display: block !important;
-  }
+    .d-block {
+        display: block !important;
+    }
 
-  .user-card {
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+    .d-md-none {
+        display: block !important;
+    }
 
-  .user-card .card-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+    .user-card {
+        margin-bottom: 1rem;
+        border: 1px solid #1e1e1e;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-  .user-card .card-body {
-    margin-top: 1rem;
-  }
+    .user-card .card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 
-  .user-card .card-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
+    .user-card .card-body {
+        margin-top: 1rem;
+    }
 
-  .admin-profile-pic {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-  }
+    .user-card .card-footer {
+        display: flex;
+        justify-content: center;
+    }
 
-  .delete-btn,
-  .delete-user-btn {
-    font-size: 0.7rem;
-  }
+    .admin-profile-pic {
+        border-radius: 50%;
+        width: 3rem;
+        height: auto;
+        margin-right: 0rem;
+    }
+
+    .admin-name {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .admin-location , .admin-email {
+        font-size: 1rem;
+    }
+
+    .delete-user-btn {
+        text-align: center;
+        font-size: 0.55rem;
+        padding: 0.5rem;
+        width: 4rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+        margin: 0.5rem 0rem;
+    }
 }
 
 /* Extra Small Screens (Mobile L) */
 @media (max-width: 425px) {
-  .table-container {
-    overflow-x: auto;
-  }
+    .table-container {
+        overflow-x: auto;
+    }
 
-  html .table th,
-  html .table td {
-    font-size: 0.75rem;
-    padding: 0.6rem;
-  }
+    html .table th,
+    html .table td {
+        font-size: 0.75rem;
+        padding: 0.6rem;
+    }
 
-  .delete-btn,
-  .delete-user-btn {
-    font-size: 0.6rem;
-    padding: 0.4rem;
-    width: 4rem;
-  }
+    .user-card .card-header {
+        gap: 0.6rem;
+    }
+
+    .admin-profile-pic {
+        border-radius: 50%;
+        width: 3rem;
+        height: auto;
+        margin-right: 0.3rem;
+    }
+    
+    .admin-name {
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    .admin-location , .admin-email {
+        font-size: 0.9rem;
+    }
+
+    .delete-user-btn {
+        text-align: center;
+        font-size: 0.55rem;
+        padding: 0.5rem;
+        width: 4rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+        margin: 0.5rem 0rem;
+    }
 }
 
 /* Extra Small Screens (Mobile M) */
 @media (max-width: 375px) {
-  .table-container {
-    overflow-x: auto;
-  }
+    .table-container {
+        overflow-x: auto;
+    }
 
-  html .table th,
-  html .table td {
-    font-size: 0.7rem;
-    padding: 0.5rem;
-  }
+    html .table th,
+    html .table td {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+    }
 
-  .delete-btn,
-  .delete-user-btn {
-    font-size: 0.6rem;
-    padding: 0.3rem;
-    width: 4rem;
-  }
+    .user-card .card-header {
+        gap: 0.6rem;
+    }
+
+    .admin-profile-pic {
+        border-radius: 50%;
+        width: 3rem;
+        height: auto;
+        margin-right: 0.3rem;
+    }
+
+    .admin-name {
+        font-weight: bold;
+        font-size: 1.3rem;
+    }
+
+    .admin-location , .admin-email {
+        font-size: 0.85rem;
+    }
+
+    .delete-user-btn {
+        text-align: center;
+        font-size: 0.55rem;
+        padding: 0.5rem;
+        width: 4rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+        margin: 0.5rem 0rem;
+    }
 }
 
 /* Extra Small Screens (Mobile S) */
 @media (max-width: 320px) {
-  .table-container {
-    overflow-x: auto;
-  }
+    .table-container {
+        overflow-x: auto;
+    }
 
-  html .table th,
-  html .table td {
-    font-size: 0.65rem;
-    padding: 0.4rem;
-  }
+    html .table th,
+    html .table td {
+        font-size: 0.65rem;
+        padding: 0.4rem;
+    }
 
-  .delete-btn,
-  .delete-user-btn {
-    font-size: 0.5rem;
-    padding: 0.3rem;
-    width: 3.5rem;
-  }
+    .user-card .card-header {
+        gap: 0.3rem;
+    }
+
+    .admin-name {
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .admin-location , .admin-email {
+        font-size: 0.7rem;
+    }
+
+    .delete-user-btn {
+        text-align: center;
+        font-size: 0.55rem;
+        padding: 0.5rem;
+        width: 4rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid #1e1e1e;
+        margin: 0.5rem 0rem;
+    }
 }

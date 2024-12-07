@@ -72,10 +72,9 @@ const AdminPage = ( { onLogoutClick }) => {
         <div className="general-content">
             <div className="admin-dashboard">
                 <h2>Admin <span className="highlight3">Dashboard</span></h2>
-                <h5><span className="highlight5">Manage Registered Users</span></h5>
 
-                {loading && <p>Loading...</p>}
-                {error && <p className="error-text">{error}</p>}
+                {loading && <h3>Loading...</h3>}
+                {error && <h3 className="error-text">{error}</h3>}
                 
                 <div className="table-container">
                     <Table bordered className="d-none d-md-table">
@@ -132,10 +131,10 @@ const AdminPage = ( { onLogoutClick }) => {
                                     alt={user.username}
                                     className="admin-profile-pic"
                                 />
-                                <h5>{user.first_name} {user.last_name}</h5>
-                                <p>{user.city}, {user.state}, {user.country}</p>
+                                <div className="admin-name">{user.first_name} {user.last_name}</div>
+                                <div className="admin-location">{user.city}, {user.state}, {user.country}</div>
                             </div>
-                            <p>{user.email}</p>
+                            <div className="admin-email">{user.email}</div>
                             <div className="card-footer">
                                 <button
                                     className="delete-user-btn"

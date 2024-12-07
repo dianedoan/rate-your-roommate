@@ -72,15 +72,23 @@ function Header({ onLoginClick, onRegisterClick, userId, sortKey }) {
           <img src={Logo} alt="Rate Your Roommate" className="navbar-logo" />
         </Navbar.Brand>
 
+        {/* Navbar for admin */}
         {isAdmin && (
-          <Nav className="ms-auto">
-            <Navbar.Brand href="/admin">
-              <img src={home} alt="home-icon" className="navbar-admin" />
-            </Navbar.Brand>
-            <Navbar.Brand href="/search">
-              <img src={search} alt="search-icon" className="navbar-admin" />
-            </Navbar.Brand>
-          </Nav>
+          <>
+            {isMobile && <Navbar.Toggle aria-controls="basic-navbar-nav" />}
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto">
+                <Navbar.Brand href="/admin">
+                  <img src={home} alt="home-icon" className="navbar-home" />
+                  {isMobile && <span className="nav-btn">Home</span>}
+                </Navbar.Brand>
+                <Navbar.Brand href="/search">
+                  <img src={search} alt="search-icon" className="navbar-search" />
+                  {isMobile && <span className="nav-btn">Search</span>}
+                </Navbar.Brand>
+              </Nav>
+            </Navbar.Collapse>
+          </>
         )}
 
         {!isAdmin && (
