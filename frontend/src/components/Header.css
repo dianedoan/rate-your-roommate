@@ -54,7 +54,7 @@ html .navbar {
     }
 
     .navbar-logo {
-        height: 4rem;
+        height: 3rem;
         width: auto; 
     }
 
@@ -109,7 +109,7 @@ html .navbar {
 
     .nav-btn {
         font-size: 1rem;
-        padding: 0rem 0.5rem;
+        padding: 0.4rem;
     }
 }
 
@@ -121,6 +121,7 @@ html .navbar {
 
     .nav-btn {
         font-size: 0.9rem;
+        padding: 0.3rem;
     }
 }
 /* Media Query for Extra Small Screens (Mobile S) */
@@ -130,6 +131,7 @@ html .navbar {
     }
 
     .nav-btn {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        padding: 0.3rem;
     }
 }
