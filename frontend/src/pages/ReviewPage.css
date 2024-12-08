@@ -161,9 +161,7 @@
 
 .review-description {
   font-size: 1.5em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: wrap;
   max-width: 100%;
   display: block;
 }
@@ -209,6 +207,23 @@
   .review-profile-card {
     padding: 2rem;
   }
+
+  /* Review Card + Profile Card */
+.review-card {
+  display: flex;
+  flex-direction: row; /* Make the card layout horizontal */
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  width: 100%;
+  max-width: 55rem;
+  height: 100%;
+  padding: 2rem;
+  background-color: #ffffff;
+  border: 0.1rem solid #1e1e1e;
+  border-radius: 0.9rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
 }
 
 /* Media Query for Medium Screens (Laptop) */
@@ -287,7 +302,7 @@
     width: 100%;
     max-width: 55rem;
     height: 100%;
-    padding: 3rem;
+    padding: 2rem;
     border: 0.1rem solid #1e1e1e;
     border-radius: 0.7rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -382,9 +397,9 @@
   .review-card {
     margin: 1rem;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
     height: 100%;
-    padding: 3rem;
+    padding: 1.5rem;
     border: 0.1rem solid #1e1e1e;
     border-radius: 0.7rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -396,7 +411,7 @@
   }
 
   .review-description {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   .review-questions {
@@ -410,7 +425,7 @@
   }
 
   .review-date {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 }
 
@@ -477,11 +492,11 @@
   }
 
   .review-card {
-    margin: 1rem;
+    margin: 0.5rem;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
     height: 100%;
-    padding: 2.5rem;
+    padding: 1.2rem;
     border: 0.1rem solid #1e1e1e;
     border-radius: 0.7rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -493,11 +508,11 @@
   }
 
   .review-description {
-    font-size: 1.5em;
+    font-size: 1.1em;
   }
 
   .review-questions {
-    font-size: 1.1em;
+    font-size: 1em;
     margin: 1rem 0rem;
   }
 
@@ -507,7 +522,7 @@
   }
 
   .review-date {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 }
 
@@ -578,7 +593,7 @@
     width: 100%;
     max-width: 50rem;
     height: 100%;
-    padding: 2.2rem;
+    padding: 1.1rem;
     border: 0.1rem solid #1e1e1e;
     border-radius: 0.7rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -586,15 +601,15 @@
 
   .review-score {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   .review-description {
-    font-size: 1.5em;
+    font-size: 0.9em;
   }
 
   .review-questions {
-    font-size: 1.1em;
+    font-size: 0.8em;
     margin: 1rem 0rem;
   }
 
@@ -604,7 +619,7 @@
   }
 
   .review-date {
-    font-size: 1.5em;
+    font-size: 1.1em;
   }
 }
 
@@ -612,7 +627,7 @@
 @media (max-width: 320px) {
   .review-profile-section,
   .review-section {
-    padding: 1rem;
+    padding: 1.1rem;
   }
 
   .review-profile-card {
@@ -631,7 +646,7 @@
   }
 
   .review-profile-name {
-    font-size: 1.3em;
+    font-size: 1.5em;
   }
 
   .review-profile-occupation {
@@ -647,9 +662,9 @@
   }
 
   .review-profile-image {
-    width: 5.5rem;
+    width: 5rem;
     height: auto;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
   }
 
   .review-profile-location {
@@ -657,14 +672,14 @@
   }
 
   .review-preferences-section {
-    margin: 0.1rem 0rem;
+    margin: 0.3rem 0rem;
   }
 
   .rate-btn {
-    margin-left: 1rem;
-    font-size: 0.6rem;
-    height: 1.8rem;
-    width: 2.8rem;
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    height: 2rem;
+    width: 3rem;
     border-radius: 0.6rem;
     border: 0.1rem solid #1e1e1e;
     text-shadow: 0.1rem 0.1rem #1e1e1e;
@@ -675,7 +690,7 @@
     width: 100%;
     max-width: 50rem;
     height: 100%;
-    padding: 2.1rem;
+    padding: 1rem;
     border: 0.1rem solid #1e1e1e;
     border-radius: 0.7rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -683,14 +698,15 @@
 
   .review-score {
     font-weight: bold;
-    font-size: 1.3em;
-  }
-  .review-description {
     font-size: 1.2em;
   }
 
+  .review-description {
+    font-size: 0.9em;
+  }
+
   .review-questions {
-    font-size: 1.1em;
+    font-size: 0.8em;
     margin: 1rem 0rem;
   }
 
@@ -700,6 +716,6 @@
   }
 
   .review-date {
-    font-size: 1.2em;
+    font-size: 0.9em;
   }
 }

@@ -471,7 +471,7 @@
   }
 
   .explore-section {
-    gap: 0.8rem; /* Add spacing between cards */
+    gap: 0rem;
   }
 
   .top-rated-section h2,
