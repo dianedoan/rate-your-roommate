@@ -9,9 +9,9 @@ function Features() {
       <Container className="features-section text-center">
         <Row>
           <Col md={4} className="">
-            <ShieldLock size={40} />
-            <h5>Reviews are anonymous</h5>
-            <p className="feature">The rating system, each with an optional review, allows users to judge potential roommates based on their past experiences and interactions with other past roommates.</p>
+            <ChatDots size={40} />
+            <h5>Rate and review past roommates</h5>
+            <p className="feature">Rate users based on factors such as communication and manners each with an optional review.</p>
           </Col>
           <Col md={4} className="">
             <GeoAlt size={40} />
@@ -19,9 +19,9 @@ function Features() {
             <p className="feature">Users can select their location. This information helps narrow down location-based preferences and makes it easier to connect with nearby users.</p>
           </Col>
           <Col md={4} className="">
-            <ChatDots size={40} />
-            <h5>Chat and meet roommates</h5>
-            <p className="feature">Users have the ability to message one another so they can get to know each other better and for other inquiries.</p>
+            <ShieldLock size={40} />
+            <h5>Reviews are anonymous</h5>
+            <p className="feature">Allows users to judge potential roommates based on their past experiences and interactions with other past roommates anoymously.</p>
           </Col>
         </Row>
       </Container>
