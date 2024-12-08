@@ -49,7 +49,7 @@ const EditProfilePage = ({ userId, sortKey, userCity }) => {
         });
         setLoading(false);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
         setError("Failed to fetch profile data.");
         setLoading(false);
       }
@@ -74,7 +74,7 @@ const EditProfilePage = ({ userId, sortKey, userCity }) => {
 
       return response.ok;
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       throw new Error(err.message || "An error occurred while updating.");
     }
   };

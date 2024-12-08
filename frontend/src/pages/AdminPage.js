@@ -41,7 +41,7 @@ const AdminPage = ({ onLogoutClick }) => {
       "Are you sure you want to delete this user?"
     );
 
-    console.log("Deleting user with UserId:", userId, "and SortKey:", sortKey);
+    // console.log("Deleting user with UserId:", userId, "and SortKey:", sortKey);
     if (!confirmation) return;
 
     try {

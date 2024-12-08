@@ -88,16 +88,16 @@ const RegisterModal = ({ onClose, onRegisterSuccess, onLoginClick }) => {
 
       if (response.ok) {
         // Registration successful
-        console.log("User registered:", result);
+        // console.log("User registered:", result);
         onRegisterSuccess(result); // Call the success handler
         onClose(); // Close the modal
       } else {
         // Handle error response from Lambda
-        console.error("Registration failed:", result.message);
+        // console.error("Registration failed:", result.message);
         setError(result.message || "Failed to register user.");
       }
     } catch (error) {
-      console.error("An unexpected error occurred:", error);
+      // console.error("An unexpected error occurred:", error);
       setError("An unexpected error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);

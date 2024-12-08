@@ -17,7 +17,7 @@ const ReviewPage = () => {
   useEffect(() => {
     // Fetch profile and reviews data from the API
     const fetchReviewData = async () => {
-      console.log("Fetching profile and reviews for recipientId:", recipientId);
+      //   console.log("Fetching profile and reviews for recipientId:", recipientId);
 
       const url = `${config.apiBaseUrl}/get-user-reviews?RecipientId=${recipientId}`;
 
@@ -31,13 +31,13 @@ const ReviewPage = () => {
         if (!response.ok) throw new Error("Failed to fetch review data.");
 
         const data = await response.json();
-        console.log("Fetched data:", data);
+        // console.log("Fetched data:", data);
 
         setReviewProfile(data.user);
         setReviews(data.reviews);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching review data:", err.message);
+        // console.error("Error fetching review data:", err.message);
         if (err.message === "User review page not found.") {
           setError("User review page not found.");
         } else {

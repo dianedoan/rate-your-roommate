@@ -83,7 +83,7 @@ function App() {
   const handleSuccessfulLogin = (response) => {
     try {
       // Debugging: log the response structure
-      console.log("Login response:", response);
+      // console.log("Login response:", response);
 
       // Extract values directly from the response
       const { message, UserId, SortKey, city } = response;
@@ -98,12 +98,12 @@ function App() {
       setSortKey(SortKey);
       setUsercity(city);
 
-      console.log(
-        "App.js: Set UserId, SortKey, and City:",
-        UserId,
-        SortKey,
-        city
-      );
+      // console.log(
+      //   "App.js: Set UserId, SortKey, and City:",
+      //   UserId,
+      //   SortKey,
+      //   city
+      // );
 
       // Persist in localStorage
       localStorage.setItem("userId", UserId);
@@ -114,7 +114,7 @@ function App() {
 
       window.location.href = "/home";
     } catch (error) {
-      console.error("Login response error:", error.message);
+      // console.error("Login response error:", error.message);
       alert("Failed to log in. Please try again.");
     }
   };
@@ -137,11 +137,11 @@ function App() {
       // Set the values in state
       setUserId(UserId);
       setSortKey(SortKey);
-      console.log(
-        "App.js: Set UserId and SortKey after registration:",
-        UserId,
-        SortKey
-      );
+      // console.log(
+      //   "App.js: Set UserId and SortKey after registration:",
+      //   UserId,
+      //   SortKey
+      // );
 
       // Persist in localStorage
       localStorage.setItem("userId", UserId);

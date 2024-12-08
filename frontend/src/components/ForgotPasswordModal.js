@@ -45,7 +45,7 @@ function ForgotPasswordModal({ show, onClose }) {
         setError(result.message || "Failed to fetch security question.");
       }
     } catch (error) {
-      console.error("Error fetching security question:", error);
+      // console.error("Error fetching security question:", error);
       setError("An error occurred. Please try again.");
     }
   };
@@ -94,7 +94,7 @@ function ForgotPasswordModal({ show, onClose }) {
         setError(result.message || "Failed to reset password.");
       }
     } catch (error) {
-      console.error("Error resetting password:", error);
+      // console.error("Error resetting password:", error);
       setError("An error occurred. Please try again.");
     }
   };

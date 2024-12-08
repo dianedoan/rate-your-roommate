@@ -5,12 +5,12 @@ import config from "../components/config.json";
 import "./UserProfilePage.css";
 
 const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
-  console.log(
-    "UserProfilePage: Received userId, sortKey, userCity:",
-    userId,
-    sortKey,
-    userCity
-  );
+  // console.log(
+  //   "UserProfilePage: Received userId, sortKey, userCity:",
+  //   userId,
+  //   sortKey,
+  //   userCity
+  // );
 
   // State variables
   const [userProfile, setUserProfile] = useState(null);
@@ -21,11 +21,11 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
 
   // Fetch profile data from API
   const fetchProfile = async () => {
-    console.log(
-      "useEffect triggered with userId and sortKey:",
-      userId,
-      sortKey
-    );
+    // console.log(
+    //   "useEffect triggered with userId and sortKey:",
+    //   userId,
+    //   sortKey
+    // );
 
     if (!userId || !sortKey) {
       setError("UserId or SortKey is missing.");
@@ -35,7 +35,7 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
     const url = `${
       config.apiBaseUrl
     }/fetch-profile?UserId=${userId}&SortKey=${encodeURIComponent(sortKey)}`;
-    console.log("Constructed URL:", url);
+    // console.log("Constructed URL:", url);
 
     try {
       const response = await fetch(url);
@@ -43,11 +43,11 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
       if (!response.ok) throw new Error("Failed to fetch profile data.");
 
       const data = await response.json();
-      console.log("fetchProfile: Fetched data:", data);
+      // console.log("fetchProfile: Fetched data:", data);
       setUserProfile(data);
       setLoading(false);
     } catch (err) {
-      console.error("fetchProfile: Error fetching data:", err.message);
+      // console.error("fetchProfile: Error fetching data:", err.message);
       setError("Failed to fetch profile data.");
       setLoading(false);
     }
@@ -60,11 +60,11 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Failed to fetch reviews.");
       const data = await response.json();
-      console.log("Fetched created reviews: ", data);
+      // console.log("Fetched created reviews: ", data);
       setReviews(data.reviews || []);
       setReviewsLoading(false);
     } catch (err) {
-      console.error("Error fetching reviews:", err.message);
+      // console.error("Error fetching reviews:", err.message);
       setError("Failed to fetch reviews.");
       setReviewsLoading(false);
     }
@@ -72,15 +72,15 @@ const UserProfilePage = ({ userId, sortKey, userCity, onLogoutClick }) => {
 
   useEffect(() => {
     if (userId && sortKey) {
-      console.log(
-        "useEffect triggered with userId and sortKey:",
-        userId,
-        sortKey
-      );
+      // console.log(
+      //   "useEffect triggered with userId and sortKey:",
+      //   userId,
+      //   sortKey
+      // );
       fetchProfile();
       fetchReviews();
     } else {
-      console.log("useEffect skipped: userId or sortKey is null.");
+      // console.log("useEffect skipped: userId or sortKey is null.");
     }
   }, [userId, sortKey]);
 

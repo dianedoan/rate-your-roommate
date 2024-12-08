@@ -105,15 +105,15 @@ function SetUpProfileModal({ show, onClose, userId, sortKey, onLoginSuccess }) {
         throw new Error(result.message || "Failed to set up profile.");
       } else {
         const { message, userId, city } = result;
-        console.log("City updated:", city);
+        // console.log("City updated:", city);
       }
       setUsercity(city);
       localStorage.setItem("userCity", city);
-      console.log("Profile setup successful:", result);
+      // console.log("Profile setup successful:", result);
       onClose(); // Close the modal after successful submission
       window.location.href = "/home"; // Navigate to the homepage
     } catch (error) {
-      console.error("Error setting up profile:", error);
+      // console.error("Error setting up profile:", error);
       setError(error.message || "An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);

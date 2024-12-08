@@ -29,7 +29,7 @@ const CreateReviewPage = ({ userId, sortKey, userCity }) => {
   useEffect(() => {
     // Fetch recipient profile from the API
     const fetchReviewData = async () => {
-      console.log("Fetching profile and reviews for recipientId:", recipientId);
+      //   console.log("Fetching profile and reviews for recipientId:", recipientId);
 
       const url = `${config.apiBaseUrl}/get-user-reviews?RecipientId=${recipientId}`;
 
@@ -43,18 +43,18 @@ const CreateReviewPage = ({ userId, sortKey, userCity }) => {
         if (!response.ok) throw new Error("Failed to fetch review data.");
 
         const data = await response.json();
-        console.log("Fetched data:", data);
-        console.log("Fetched user data:", data.user);
+        // console.log("Fetched data:", data);
+        // console.log("Fetched user data:", data.user);
 
         setReviewProfile(data.user);
-        console.log("Fetched first name:", reviewProfile.FirstName);
-        console.log("Fetched last name:", reviewProfile.LastName);
-        console.log("Fetched user occupation:", reviewProfile.Occupation);
-        console.log("Fetched user city:", reviewProfile.City);
-        console.log("Fetched user state:", reviewProfile.State);
+        // console.log("Fetched first name:", reviewProfile.FirstName);
+        // console.log("Fetched last name:", reviewProfile.LastName);
+        // console.log("Fetched user occupation:", reviewProfile.Occupation);
+        // console.log("Fetched user city:", reviewProfile.City);
+        // console.log("Fetched user state:", reviewProfile.State);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching review data:", err.message);
+        // console.error("Error fetching review data:", err.message);
         setLoading(false);
       }
     };
@@ -90,7 +90,7 @@ const CreateReviewPage = ({ userId, sortKey, userCity }) => {
       ratings,
     };
 
-    console.log("Submitting Review Data:", reviewData);
+    // console.log("Submitting Review Data:", reviewData);
 
     try {
       setLoading(true);

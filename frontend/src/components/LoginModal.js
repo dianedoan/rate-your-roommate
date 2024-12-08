@@ -41,14 +41,14 @@ const LoginModal = ({
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Login successful:", result);
+        // console.log("Login successful:", result);
         onLoginSuccess(result); // Pass the entire result
       } else {
-        console.error("Login failed:", result.message);
+        // console.error("Login failed:", result.message);
         setError(result.message || "Invalid username or password.");
       }
     } catch (err) {
-      console.error("Error during login:", err);
+      // console.error("Error during login:", err);
       setError("An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false); // Remove loading state
