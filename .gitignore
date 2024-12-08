@@ -20,7 +20,7 @@ backend/functions/*/__pycache__
 backend/functions/*/package
 backend/functions/*/artifact.zip
 backend/functions/*/requirements.txt
-frontend/src/components/config.json
+# frontend/src/components/config.json
 
 backend/functions/*/*/artifact.zip
 backend/functions/*/*/requirements.txt
