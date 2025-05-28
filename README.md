@@ -1,4 +1,6 @@
-# seng513-fall24-group-4
+# Rate Your Roommate
+Full-stack web application where users can rate roommates and leave feedback. 
+The frontend uses HTML, CSS, React and Node.js and the serverless backend uses AWS Lambda to process real-time data streams and a scalable NoSQL database with AWS DynamoDB to store and query analytics data
 
 ## Deployment
 
@@ -7,8 +9,8 @@ To deploy the web app locally using Docker, follow these steps:
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/your-repository/seng513-fall24-group-4.git
-    cd seng513-fall24-group-4
+    git clone https://github.com/dianedoan/rate-your-roommate.git
+    cd rate-your-roommate
     ```
 
 2. **Build the Docker image**:
